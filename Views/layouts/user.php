@@ -9,6 +9,9 @@
 <body>
     <h2>Header</h2>
     <?php
+        if (!isset($subcontent)){
+            $subcontent =[];
+        }
         $this -> render($content, $subcontent);
     ?>
     <h2>Footer</h2>

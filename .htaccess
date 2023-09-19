@@ -6,4 +6,4 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
 # Chuyển hướng mọi yêu cầu đến index.php
-RewriteRule ^(.+)$ doan1/index.php/$1 [L,QSA]
+RewriteRule ^(.+)$ doan1full/index.php/$1 [L,QSA]
