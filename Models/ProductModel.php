@@ -92,6 +92,11 @@
             }
             return $result;
         }
+
+        public function laytatcasanpham(){
+            $datasanpham = $this->select('sanpham');
+            inmang($datasanpham);
+        }
     }
 
 ?>
