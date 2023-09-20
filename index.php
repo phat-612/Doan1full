@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require 'Debug.php';
     require 'Controllers/BaseController.php';
     require 'Models/BaseModel.php';

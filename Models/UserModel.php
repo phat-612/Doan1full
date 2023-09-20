@@ -6,13 +6,14 @@
     //Load Composer's autoloader
     require 'vendor/autoload.php';
     class UserModel extends BaseModel{
-        public function verifyEmail($email){
+        public function creatOtp($email){
             $mail = new PHPMailer(true);
-            $code = $this->randomCode();
+            $otp = $this->randomCode();
             $data = [
                 'email' => $email,
-                'code' => $code,
+                'otp' => $otp,
             ];
+            $this->delete('xacnhanemail', "email = '$email'");
             $this->create('xacnhanemail', $data);
             try {
                 
@@ -32,7 +33,7 @@
                 // Cấu hình nội dung email
                 $mail->isHTML(true);
                 $mail->Subject ='=?UTF-8?B?' . base64_encode('Xác nhận đăng nhập') . '?='; //tieu de
-                $mail->Body = "Mã xác nhận của bạn là $code"; // Nội dung email
+                $mail->Body = "Mã xác nhận của bạn là $otp"; // Nội dung email
 
                 // Gửi email và kiểm tra kết quả
                 if (!$mail->send()) {
@@ -46,16 +47,21 @@
             }
             // xoa code sau 1 thoi gian
         }
+        public function verifyOtp($email, $otp){
+            $isVerify = $this->select('xacnhanemail', 'id', "email = '$email' and otp = '$otp' and TIMESTAMPDIFF(MINUTE, thoigian, NOW()) < 3");
+            if ($isVerify){
+                echo "thành công";
+                $_SESSION['email'] = $email;
+            } else{
+                echo "thất bại";
+            }
+        }
         public function randomCode() {
             $code = '';
             for ($i = 0; $i < 6; $i++){
                 $code .= rand(0,9);
             }
             return $code;
-        }
-        public function deleteCode($email, $time = 300) {
-            sleep($time);
-            $this->delete('xacnhanemail', "email = $email");
         }
     }
 ?>

@@ -15,17 +15,21 @@
         }
         public function index(){
         }
-        public function laythongtinsanpham(){
-            $this->producModel->laytatcasanpham();
-        }
+
         public function guimai(){
             if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $email = $_POST['email'];
-                $this->userModel->verifyEmail($email);
+                $this->userModel->creatOtp($email);
             }
             
         }
-        public function delcode(){
+        public function xacnhanemail(){
+            if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $email = $_POST['email'];
+                $otp = $_POST['otp'];
+                $this->userModel->verifyOtp($email, $otp);
+            }
+            
         }
     }
 ?>
