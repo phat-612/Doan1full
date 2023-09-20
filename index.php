@@ -9,8 +9,6 @@
     $arrPath = array_values(array_filter(explode('/', $pathInfo)));
     $controllerName = ucfirst(strtolower(isset($arrPath[0]) ? $arrPath[0] : 'home')) . 'Controller';
     $actionName = isset($arrPath[1]) ? $arrPath[1] : 'index';
-    // echo $controllerName . '<br />';
-    // echo $actionName . '<br />';
     require "Controllers/$controllerName.php";
     $controllerObject = new $controllerName;
     $controllerObject->$actionName();
