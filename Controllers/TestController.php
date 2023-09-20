@@ -16,20 +16,8 @@
         public function index(){
         }
 
-        public function guimai(){
-            if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-                $email = $_POST['email'];
-                $this->userModel->creatOtp($email);
-            }
-            
-        }
-        public function xacnhanemail(){
-            if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-                $email = $_POST['email'];
-                $otp = $_POST['otp'];
-                $this->userModel->verifyOtp($email, $otp);
-            }
-            
+        public function guiotp(){
+            $this->userModel->creatOtp($_POST['email']);
         }
     }
 ?>
