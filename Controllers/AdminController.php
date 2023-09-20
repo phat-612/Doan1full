@@ -16,32 +16,5 @@
                 ]
             ]);
         }
-        public function add(){
-            if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-                $data = [
-                    'ghichu'=> $_POST['ghichu'],
-                    'trangthai'=> "Chờ xử lý",
-                    'nguoidung'=>[
-                        'hoten'=> $_POST['hoten'],
-                        'sodienthoai'=>$_POST['sodienthoai'],
-                        'diachi'=> $_POST['diachi'],
-                        'mail'=> $_POST['mail']
-                    ],
-                    'chitietdonhang'=>$_POST['chitietdonhang']
-                ];
-                echo $this->orderModel->addOrder($data);
-            } else {
-                echo 'Sai Phuong Thuc Roi';
-            }
-        }
-        public function status(){
-            if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-                $id = $_POST['id'];
-                $status = $_POST['status'];
-                $this->orderModel->changeStatusOrder($id, $status);
-            } else {
-                echo 'Sai Phuong Thuc Roi';
-            }
-        }
     }
 ?>

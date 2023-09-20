@@ -19,22 +19,5 @@
                 
             ]);
         }
-        public function guiotp(){
-            if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-                $this->userModel->creatOtp($_POST['email']);
-                $_SESSION['tempEmail'] = $_POST['email'];
-                return header("Location: /" . $GLOBALS['rootPath'] . "/login/nhapotp");
-            }
-        }
-        public function xacnhanotp(){
-            if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-                $this->userModel->verifyOtp($_SESSION['tempEmail'], $_POST['otp']);
-                if (isset($_SESSION['email'])){
-                    echo 'đăng nhập thành công';
-                } else{
-                    echo 'sai otp';
-                }
-            }
-        }
     }
 ?>
