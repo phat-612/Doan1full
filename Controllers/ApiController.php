@@ -78,6 +78,10 @@
             $status = $_POST['status'];
             $this->orderModel->changeStatusOrder($id, $status);
         }
+        public function adminLogin(){
+            $this->_checkMethod();
+            $this->userModel->adminLogin($_POST['taikhoan'], $_POST['matkhau']);
+        }
         private function _checkMethod($method = "POST"){
             if (!($this->reqMethod == $method)){
                 echo "Sai phương thức";

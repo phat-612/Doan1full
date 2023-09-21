@@ -45,7 +45,6 @@
             } catch (Exception $e) {
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
             }
-            // xoa code sau 1 thoi gian
         }
         public function verifyOtp($email, $otp){
             $isVerify = $this->select('xacnhanemail', 'id', "email = '$email' and otp = '$otp' and TIMESTAMPDIFF(MINUTE, thoigian, NOW()) < 3");
@@ -53,6 +52,14 @@
                 echo "thành công";
                 $_SESSION['email'] = $email;
             } else{
+                echo "thất bại";
+            }
+        }
+        public function adminLogin($taikhoan, $matkhau){
+            $isLogin = $this->select('admin', 'hoten', "taikhoan = '$taikhoan' and matkhau = '$matkhau'");
+            if($isLogin){
+                
+            } else {
                 echo "thất bại";
             }
         }
