@@ -45,7 +45,7 @@
             $this->_checkMethod();
             $this->userModel->creatOtp($_POST['email']);
             $_SESSION['tempEmail'] = $_POST['email'];
-            header("Location: /" . $GLOBALS['rootPath'] . "/login/nhapotp");
+            $this->gotoPage('login/nhapotp');
         }
         public function verifyOtp(){
             if ($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -80,7 +80,14 @@
         }
         public function adminLogin(){
             $this->_checkMethod();
-            $this->userModel->adminLogin($_POST['taikhoan'], $_POST['matkhau']);
+            $res = $this->userModel->adminLogin($_POST['taikhoan'], $_POST['matkhau']);
+            if ($res){
+                $this->gotoPage('admin/sanpham');
+                die();
+            } else{
+                $this->gotoPage('admin/');
+                die();
+            }
         }
         private function _checkMethod($method = "POST"){
             if (!($this->reqMethod == $method)){

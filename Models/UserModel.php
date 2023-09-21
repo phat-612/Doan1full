@@ -7,6 +7,10 @@
     require 'vendor/autoload.php';
     class UserModel extends BaseModel{
         public function creatOtp($email){
+            if (!($this->isExistEmail($email))){
+                echo "Email không tồn tại!";
+                return false;
+            }
             $mail = new PHPMailer(true);
             $otp = $this->randomCode();
             $data = [
@@ -56,12 +60,23 @@
             }
         }
         public function adminLogin($taikhoan, $matkhau){
-            $isLogin = $this->select('admin', 'hoten', "taikhoan = '$taikhoan' and matkhau = '$matkhau'");
-            if($isLogin){
-                
-            } else {
-                echo "thất bại";
+            $dataUser = $this->select('admin', 'taikhoan, matkhau', "taikhoan = '$taikhoan'");
+            if (!$dataUser){
+                echo "Sai tài khoản hoặc mật khẩu";
+                return false;
             }
+            $dataUser = $dataUser[0];
+            if ($dataUser['taikhoan'] == $taikhoan && $dataUser['matkhau'] == $matkhau){
+                echo "Đăng nhập thành công <br>";
+                $dataCookie =  $this->encodeData(json_encode($dataUser));
+                setcookie('verify_login', $dataCookie, time() + 3600, '/'.$GLOBALS['rootPath'].'/');
+                $_SESSION['admin'] = true;
+                return true;
+            } else{
+                echo "Sai tài khoản hoặc mật khẩu";
+                return false;
+            }
+            
         }
         public function randomCode() {
             $code = '';
@@ -69,6 +84,28 @@
                 $code .= rand(0,9);
             }
             return $code;
+        }
+        public function encodeData($data){
+            $secretKey = 'qweetretewrtggdfsg';
+            $key = base64_decode($secretKey);
+            $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
+            $encrypted = openssl_encrypt($data, 'aes-256-cbc', $key, 0, $iv);
+            return base64_encode($encrypted . '::' . $iv);
+        }
+        public function decodeData($dataEncode){
+            $secretKey = 'qweetretewrtggdfsg';
+            $key = base64_decode($secretKey);
+            $decodeData = base64_decode($dataEncode);
+            [$dataEncode, $iv] = explode('::', $decodeData);
+            $decrypted = openssl_decrypt($dataEncode, 'aes-256-cbc', $key, 0, $iv);
+            return $decrypted;
+        }
+        public function isExistEmail($mail){
+            $query = $this->select('nguoidung', 'id', "mail = '$mail'");
+            if ($query){
+                return true;
+            }
+            return false;
         }
     }
 ?>

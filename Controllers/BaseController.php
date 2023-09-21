@@ -15,5 +15,8 @@
         {
             return include "Models/$path.php";
         }
+        public function gotoPage($path){
+            return header('Location: ' . $path);
+        }
     }
 ?>
