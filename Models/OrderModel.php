@@ -46,6 +46,17 @@
                 $this->create('chitietdonhang', $value);
             }
         }
+        public function totalRevenue()
+        {
+            $totalRevenues = 0;
+            $monney = $this->select('donhang', 'tongtien', "trangthai='Đã xác nhận'");
+            $monney= $this -> arr2to1($monney);
+            foreach($monney as $value){
+                $totalRevenues += $value;
+            }
+            inmang($totalRevenues);
+            return $totalRevenues;
+        }
         public function changeStatusOrder($id, $status){
             $this->update('donhang', [
                 "trangthai"=>$status
