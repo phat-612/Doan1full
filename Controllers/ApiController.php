@@ -83,10 +83,10 @@
             $res = $this->userModel->adminLogin($_POST['taikhoan'], $_POST['matkhau']);
             if ($res){
                 $this->gotoPage('admin/sanpham');
-                die();
+                // die();
             } else{
                 $this->gotoPage('admin/');
-                die();
+                // die();
             }
         }
         private function _checkMethod($method = "POST"){

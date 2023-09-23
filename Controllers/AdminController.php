@@ -16,8 +16,15 @@
                 // inmang($dataUser);
                 $taikhoan= $dataUser['taikhoan'];
                 $matkhau= $dataUser['matkhau'];
-                $this->userModel->adminLogin($taikhoan, $matkhau);
-            }
+                $res = $this->userModel->adminLogin($taikhoan, $matkhau);
+                if ($res){
+                    $this->gotoPage('admin/sanpham');
+                    // die();
+                } else{
+                    $this->gotoPage('admin/');
+                    // die();
+                }
+            } 
             $this->render('layouts/admin',[
                 'content'=> 'admins/login',
                 'title'=> 'Đăng nhập',
@@ -26,7 +33,6 @@
             ]);
         }
         public function sanpham(){
-            
             $this->render('layouts/admin',[
                 'content'=> 'admins/product',
                 'title'=> 'Quản lý sản phẩm',
