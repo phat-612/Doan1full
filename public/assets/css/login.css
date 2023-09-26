@@ -1,0 +1,79 @@
+#container {
+    height: 500px;
+    position: relative;
+}
+
+.card_login {
+    position: absolute;
+    color: #3b3b3b96;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.card_login form {
+    border: 1px solid #333;
+    border-radius: 20px;
+    padding: 12px;
+}
+
+.card_login form h2 {
+    font-size: 3.2rem;
+}
+
+.card_login form .error_message {
+    font-size: 2rem;
+}
+
+.card_login form .row_form {
+    margin-top: 12px;
+    position: relative;
+}
+
+.card_login form .row_form .email {
+    top: 50%;
+    transform: translate(12px, -50%);
+    position: absolute;
+    font-size: 3.2rem;
+}
+
+.card_login form .row_form .otp {
+    top: 50%;
+    transform: translate(12px, -50%);
+    position: absolute;
+    font-size: 3.2rem;
+}
+
+.card_login form input {
+    font-size: 2.4rem;
+    padding: 8px 34px 8px 48px;
+    border: 1px solid #333;
+    border-radius: 30px;
+}
+
+
+.card_login form .btn_otp {
+    position: absolute;
+    font-size: 25px;
+    top: 50%;
+    transform: translate(-137px, -50%);
+    width: 35%;
+    border-radius: 25px;
+    padding: 4px 0px;
+}
+
+.card_login form .error_message {
+    margin-top: 12px;
+    color: red;
+}
+
+.card_login form button.submit {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 12px;
+    padding: 8px 48px;
+    font-size: 2.4rem;
+    border-radius: 20px;
+    background-color: aliceblue;
+}

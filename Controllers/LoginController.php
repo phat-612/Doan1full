@@ -7,15 +7,8 @@
         }
         public function index(){
             return $this->render('layouts/user',[
-                'content' => 'verifyemail/nhapmail',
+                'content' => 'userlogins/login',
                 'title' => 'Đăng nhập',
-                
-            ]);
-        }
-        public function nhapotp(){
-            return $this->render('layouts/user',[
-                'content' => 'verifyemail/nhapotp',
-                'title' => 'Xác nhận OTP',
                 
             ]);
         }

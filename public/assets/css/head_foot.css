@@ -1,0 +1,168 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  background-color: #fff;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  justify-content: space-around;
+  /* align-items: center; */
+  border-bottom: 1px solid rgba(112, 112, 112, 0.3);
+  height: 65px;
+}
+
+.header .left {
+  font-size: 1.5rem;
+}
+
+.header .left p {
+  line-height: 65px;
+}
+
+.header .mid img {
+  display: block;
+  height: 100%;
+}
+
+.header .right {
+  display: flex;
+  list-style-type: none;
+  align-items: center;
+}
+
+.header .right a {
+  display: inline-block;
+  position: relative;
+  padding: 14px;
+  font-size: 1.8rem;
+  color: #7f7f7f;
+  text-decoration: none;
+}
+
+.header .right .nhunnhin:hover {
+  color: #000;
+  animation: pulsate 0.5s ease;
+}
+
+.header .right .nhunnhin:hover span {
+  color: #ffffff;
+  background-color: #000000;
+  animation: pulsate 0.5s ease;
+}
+
+.header .right .number_annou {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0px 5px;
+  font-size: 1.4rem;
+  background-color: #7f7f7f;
+  color: #fff;
+  border-radius: 50%;
+}
+
+/* kh hover cho thể span được */
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.header .right .head_user:hover {
+  color: #000;
+}
+
+.sub_header {
+  height: 46px;
+  background-color: #fff;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.nav li {
+  list-style-type: none;
+}
+
+.nav>li>a {
+  display: inline-block;
+  padding: 0px 24px;
+  line-height: 46px;
+  text-decoration: none;
+  color: #212121;
+  font-size: 1.5rem;
+  /* box-shadow: 0 1px rgb(255, 255, 255); */
+  transition: 0.2s linear;
+}
+
+.nav li:hover>a {
+  color: #4996d2;
+  box-shadow: 0 1px #4996d2;
+}
+
+.nav>li {
+  position: relative;
+}
+
+.nav li a.isSubnav {
+  box-shadow: none;
+}
+
+.down_btn {
+  padding: 3px;
+  font-size: 1.2rem;
+}
+
+.nav .nav_list_item {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding: 0px 24px;
+  min-width: 212px;
+  background-color: #fff;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+  list-style-type: none;
+}
+
+.nav li:hover>.nav_list_item {
+  display: block;
+}
+
+.nav .nav_list_item a {
+  display: block;
+  text-decoration: none;
+  line-height: 40px;
+  color: #212121;
+  font-size: 1.5rem;
+}
+
+#container {
+  margin-top: 115px;
+}

@@ -7,6 +7,7 @@
     require 'vendor/autoload.php';
     class UserModel extends BaseModel{
         public function creatOtp($email){
+            error_log($email);
             if (!($this->isExistEmail($email))){
                 echo "Email không tồn tại!";
                 return false;

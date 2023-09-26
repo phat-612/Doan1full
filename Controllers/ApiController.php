@@ -43,9 +43,11 @@
         }
         public function sendOtp(){
             $this->_checkMethod();
+            error_log($_POST['email']);
             $this->userModel->creatOtp($_POST['email']);
             $_SESSION['tempEmail'] = $_POST['email'];
-            $this->gotoPage('login/nhapotp');
+            header('Content-Type: application/json');
+            echo json_encode(12312);
         }
         public function verifyOtp(){
             if ($_SERVER['REQUEST_METHOD'] == 'POST'){
