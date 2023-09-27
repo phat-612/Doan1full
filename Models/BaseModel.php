@@ -100,7 +100,7 @@
             return false;
         }
         private function _query($sql){
-            echo $sql . '<br />';
+            // echo $sql . '<br />';
             return mysqli_query($this->conn, $sql);
         }
         

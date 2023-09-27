@@ -10,7 +10,7 @@
             $this->importModel('UserModel');
             $this->userModel = new UserModel();
         }
-        public function index(){
+        public function login(){
             if (isset($_COOKIE['verify_login'])){
                 $dataUser = json_decode($this->userModel->decodeData($_COOKIE['verify_login']), true);
                 // inmang($dataUser);
@@ -21,7 +21,7 @@
                     $this->gotoPage('admin/sanpham');
                     // die();
                 } else{
-                    $this->gotoPage('admin/');
+                    $this->gotoPage('admin/login?error=true');
                     // die();
                 }
             } 

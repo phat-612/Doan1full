@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="public/assets/css/head_foot.css" />
+  <link rel="stylesheet" href="<?php echo _WEB_ROOT?>/public/assets/css/head_foot.css" />
+  <link rel="stylesheet" href="<?php echo _WEB_ROOT?>/public/assets/css/<?php echo $css_js?>.css" />
   <title>Trang chủ</title>
 </head>
 
@@ -86,8 +87,9 @@
             $this -> render($content, $subcontent);
         ?>
     </div>
-    
     <h2>Footer</h2>
-    <script src="https://kit.fontawesome.com/0a44fda8eb.js" crossorigin="anonymous"></script>
+  </div>
+  <script src="https://kit.fontawesome.com/0a44fda8eb.js" crossorigin="anonymous"></script>
+  <script src="<?php echo _WEB_ROOT?>/public/assets/js/<?php echo $css_js?>.js"></script>
 </body>
 </html>

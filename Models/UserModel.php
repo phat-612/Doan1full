@@ -7,9 +7,7 @@
     require 'vendor/autoload.php';
     class UserModel extends BaseModel{
         public function creatOtp($email){
-            error_log($email);
             if (!($this->isExistEmail($email))){
-                echo "Email không tồn tại!";
                 return false;
             }
             $mail = new PHPMailer(true);
@@ -18,8 +16,6 @@
                 'email' => $email,
                 'otp' => $otp,
             ];
-            $this->delete('xacnhanemail', "email = '$email'");
-            $this->create('xacnhanemail', $data);
             try {
                 
                 //Server settings
@@ -42,13 +38,15 @@
 
                 // Gửi email và kiểm tra kết quả
                 if (!$mail->send()) {
-                    echo 'Message could not be sent.';
-                    echo 'Mailer Error: ' . $mail->ErrorInfo;
+                    return false;
                 } else {
-                    echo 'Message has been sent.';
+                    $this->delete('xacnhanemail', "email = '$email'");
+                    $this->create('xacnhanemail', $data);
+                    $_SESSION['tempEmail'] = $_POST['email'];
+                    return true;
                 }
             } catch (Exception $e) {
-                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                return false;
             }
         }
         public function verifyOtp($email, $otp){

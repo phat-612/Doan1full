@@ -9,7 +9,14 @@
             return $this->render('layouts/user',[
                 'content' => 'userlogins/login',
                 'title' => 'Đăng nhập',
-                
+                'css_js' => 'login'
+            ]);
+        }
+        public function otp(){
+            return $this->render('layouts/user',[
+                'content' => 'userlogins/otp',
+                'title' => 'OTP',
+                'css_js' => 'login'
             ]);
         }
     }
