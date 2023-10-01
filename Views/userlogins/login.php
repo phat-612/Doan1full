@@ -5,7 +5,7 @@
             <i class="fa-solid fa-envelope email"></i>
             <input type="email" name="email" id="inp_email" placeholder="Nhập email mua hàng">
         </div>
-        <p class="error_message">Email không tồn tại!</p>
+        <p class="error_message" style="<?php echo isset($_GET['error']) ? "display:block" : ''?>">Email không tồn tại!</p>
         <button class="submit" type="submit">Tiếp tục</button>
     </form>
 </div>

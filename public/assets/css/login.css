@@ -54,7 +54,7 @@
 
 .card_login form .btn_otp {
     position: absolute;
-    font-size: 25px;
+    font-size: 20px;
     top: 50%;
     transform: translate(-137px, -50%);
     width: 35%;
@@ -65,6 +65,7 @@
 .card_login form .error_message {
     margin-top: 12px;
     color: red;
+    display: none;
 }
 
 .card_login form button.submit {

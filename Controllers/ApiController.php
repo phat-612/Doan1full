@@ -46,18 +46,18 @@
             error_log($_POST['email']);
             $res = $this->userModel->creatOtp($_POST['email']);
             if ($res){
-                $this->gotoPage('admin');
+                $this->gotoPage('login/otp');
             } else{
                 $this->gotoPage('login?error=1');
             }
         }
         public function verifyOtp(){
             if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-                $this->userModel->verifyOtp($_SESSION['tempEmail'], $_POST['otp']);
-                if (isset($_SESSION['email'])){
-                    echo 'đăng nhập thành công';
+                $res = $this->userModel->verifyOtp($_SESSION['tempEmail'], $_POST['otp']);
+                if ($res){
+                    $this->gotoPage('lichsumuahang');
                 } else{
-                    echo 'sai otp';
+                    $this->gotoPage('login/otp?error=1');
                 }
             }
         }

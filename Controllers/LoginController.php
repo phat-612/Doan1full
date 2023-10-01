@@ -6,6 +6,10 @@
             $this->userModel = new UserModel();
         }
         public function index(){
+            
+            if (isset($_SESSION['email'])){
+                $this->gotoPage('lichsumuahang');
+            }
             return $this->render('layouts/user',[
                 'content' => 'userlogins/login',
                 'title' => 'Đăng nhập',
@@ -13,6 +17,9 @@
             ]);
         }
         public function otp(){
+            if (!isset( $_SESSION['tempEmail'])){
+                $this->gotoPage('login');
+            }
             return $this->render('layouts/user',[
                 'content' => 'userlogins/otp',
                 'title' => 'OTP',

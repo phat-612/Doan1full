@@ -16,7 +16,7 @@
             return include "Models/$path.php";
         }
         public function gotoPage($path){
-            return header('Location: /'. $GLOBALS['rootPath'] . '/' . $path);
+            return header('Location: '. _WEB_ROOT . '/' . $path);
         }
     }
 ?>

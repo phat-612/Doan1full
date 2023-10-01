@@ -52,10 +52,11 @@
         public function verifyOtp($email, $otp){
             $isVerify = $this->select('xacnhanemail', 'id', "email = '$email' and otp = '$otp' and TIMESTAMPDIFF(MINUTE, thoigian, NOW()) < 3");
             if ($isVerify){
-                echo "thành công";
                 $_SESSION['email'] = $email;
+                
+                return true;
             } else{
-                echo "thất bại";
+                return false;
             }
         }
         public function adminLogin($taikhoan, $matkhau){
