@@ -3,12 +3,15 @@
     {
         private $orderModel;
         private $userModel;
+        private $productModel;
         public function __construct()
         {
             $this->importModel('OrderModel');
             $this->orderModel = new OrderModel();
             $this->importModel('UserModel');
             $this->userModel = new UserModel();
+            $this->importModel('ProductModel');
+            $this->productModel = new ProductModel();
         }
         public function index(){
             if (isset($_COOKIE['verify_login'])){
@@ -34,9 +37,10 @@
         }
         public function sanpham(){
             $this->render('layouts/admin',[
-                'content'=> 'admins/product',
+                'content'=> 'admins/sanpham',
                 'title'=> 'Quản lý sản phẩm',
                 'subcontent'=> [
+                    "sanpham" => $this->productModel->getAllProduct('*', '', 'gia')
                 ]
             ]);
         }

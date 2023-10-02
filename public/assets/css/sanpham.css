@@ -1,0 +1,55 @@
+* {
+  border: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.Product-list-form {
+  width: 83%;
+  height: 500px;
+  background-color: rgb(210, 210, 210);
+  margin: 100px 16.5%;
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: space-around;
+}
+.mother-box {
+  width: 98%;
+  height: 70%;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+a {
+  text-decoration: none;
+}
+.add-product {
+  padding: 1.1% 0%;
+  font-size: 1.3rem;
+}
+.table-box {
+  width: 98%;
+  text-align: center;
+  font-size: 1.5rem;
+}
+.table-box td {
+  padding: 1% 0%;
+}
+header {
+  font-size: 2rem;
+  font-weight: bold;
+}
+.Search {
+  padding: 1% 0;
+}
+input#search {
+  font: caption;
+}
+.filtering-box {
+  padding: 1% 0;
+  font: caption;
+}
+.Sort-box {
+  padding: 1% 0;
+  font: caption;
+}

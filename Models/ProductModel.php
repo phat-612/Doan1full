@@ -31,8 +31,8 @@
             $dataProduct = $this->select(self::TABLE, $column, $condition, $order, $limit);
             foreach ($dataProduct as $key => $value){
                 $idSanPham = $value['id'];
-                $dataProduct[$key]['hinhanh'] = $this->arr2to1($this->select('hinhanh', 'hinhanh', "idsanpham = $idSanPham", $order, $limit));
-                $dataProduct[$key]['chitietsanpham'] = $this->select('chitietsanpham', 'mausac, kichthuoc, soluong', "idsanpham = $idSanPham", $order, $limit);
+                $dataProduct[$key]['hinhanh'] = $this->arr2to1($this->select('hinhanh', 'hinhanh', "idsanpham = $idSanPham"));
+                $dataProduct[$key]['chitietsanpham'] = $this->select('chitietsanpham', 'mausac, kichthuoc, soluong', "idsanpham = $idSanPham");
             }
 
             return $dataProduct;

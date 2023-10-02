@@ -14,7 +14,7 @@
                 die('Kết nối cơ sở dữ liệu thất bại: ' . $this->conn->connect_error);
             }
         }
-        protected function select($table, $column = '*', $condition = '', $order = '', $limit =''){
+        protected function select($table, $column = '*', $condition = '', $order = '', $limit ='', $offset =''){
             $sql = "SELECT $column FROM $table";
             if ($condition){
                 $sql .= " WHERE $condition";
@@ -24,6 +24,9 @@
             }
             if ($limit){
                 $sql .= " LIMIT $limit";
+            }
+            if ($offset){
+                $sql .= " OFFSET $offset";
             }
             $query = $this->_query($sql);
             $data = [];
@@ -100,7 +103,7 @@
             return false;
         }
         private function _query($sql){
-            // echo $sql . '<br />';
+            echo $sql . '<br />';
             return mysqli_query($this->conn, $sql);
         }
         
