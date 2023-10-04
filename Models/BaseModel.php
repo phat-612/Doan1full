@@ -4,11 +4,7 @@
         private $conn;
         public function __construct()
         {
-            $host = 'localhost';
-            $userName = 'root';
-            $password = '';
-            $dbName = 'do_an_1';
-            $this->conn = mysqli_connect($host, $userName, $password, $dbName);
+            $this->conn = mysqli_connect(HOST_DB, USER_DB, PW_DB, NAME_DB);
             mysqli_set_charset($this->conn, 'utf8');
             if ($this->conn->connect_error) {
                 die('Kết nối cơ sở dữ liệu thất bại: ' . $this->conn->connect_error);
@@ -36,6 +32,16 @@
             }
             return $data;
         }
+        protected function select_by_sql($sql){
+            $query = $this->_query($sql);
+            $data = [];
+            while ($row = mysqli_fetch_assoc($query))
+            {
+                array_push($data, $row);
+            }
+            return $data;
+        }
+
         protected function create($table, $data){
             /*
                 $data = [
@@ -66,11 +72,12 @@
             }, array_keys($data), array_values($data));
             $set = implode(',', $set);
             $sql = "UPDATE $table SET $set WHERE id = $id";
-            $this->_query($sql);
+            return $this->_query($sql);
         }
         protected function delete($table, $cond){
             $sql = "DELETE FROM $table WHERE $cond";
-            $this->_query($sql);
+            return $this->_query($sql);
+
         }
         protected function generateUUIDv4() {
             $data = random_bytes(16);
@@ -103,7 +110,7 @@
             return false;
         }
         private function _query($sql){
-            echo $sql . '<br />';
+            // echo $sql . '<br />';
             return mysqli_query($this->conn, $sql);
         }
         
