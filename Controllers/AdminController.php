@@ -36,13 +36,7 @@
             ]);
         }
         public function sanpham(){
-            $this->render('layouts/admin',[
-                'content'=> 'admins/sanpham',
-                'title'=> 'Quản lý sản phẩm',
-                'subcontent'=> [
-                    "sanpham" => $this->productModel->getAllProduct('*', '', 'gia')
-                ]
-            ]);
+            
         }
     }
 ?>

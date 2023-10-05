@@ -9,14 +9,7 @@
         }
         public function index()
         {
-            $sanpham = $this->productModel->getAllProduct();
-            $this->render('layouts/user',[
-                'content'=> 'homes/index',
-                'title'=> 'Home',
-                'subcontent'=> [
-                    'sanpham'=>$sanpham
-                ]
-            ]);
+            
         }
     }
 ?>

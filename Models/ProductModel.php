@@ -2,44 +2,6 @@
     class ProductModel extends BaseModel
     {
         const TABLE = "sanpham";
-        public function getAllProduct($column = "*", $condition = "", $order = "", $limit = "")
-        {
-            /*
-                [
-                    [
-                        id=>,
-                        ten=>,
-                        hinhanh=>[
-                            anh1,
-                            anh2
-                        ],
-                        chitietsanpham =>[
-                            [
-                                mausac,
-                                size,
-                                soluong
-                            ],
-                            [
-                                mausac,
-                                size,
-                                soluong
-                            ]
-                        ]
-                    ]
-                ]
-            */
-            $dataProduct = $this->select(self::TABLE, $column, $condition, $order, $limit);
-            foreach ($dataProduct as $key => $value){
-                $idSanPham = $value['id'];
-                $dataProduct[$key]['hinhanh'] = $this->arr2to1($this->select('hinhanh', 'hinhanh', "idsanpham = $idSanPham"));
-                $dataProduct[$key]['chitietsanpham'] = $this->select('chitietsanpham', 'mausac, kichthuoc, soluong', "idsanpham = $idSanPham");
-            }
-
-            return $dataProduct;
-        }
-        public function getOneProduct($column = "*", $id){
-            return $this->getAllProduct($column, "id = $id", "", 1);
-        }
         public function addProduct($data = []){
             $dataProduct = array_slice($data, 0, 4, true);
             $dataImage = $this->saveImageProduct($_FILES['hinhanh']);
