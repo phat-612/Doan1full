@@ -2,41 +2,113 @@
     class ProductModel extends BaseModel
     {
         const TABLE = "sanpham";
-        public function addProduct($data = []){
+        public function addProduct($data = [], $file = []){
+            /*
+                [
+                    ten,
+                    mota,
+                    gia,
+                    iddanhmuc,
+                    hinhanh[],
+                    chitietsanpham[
+                        [
+                            idmausac,
+                            idkichthuoc,
+                            soluong
+                        ]
+                        ],
+                    bosuutap[]
+                ]
+            */
             $dataProduct = array_slice($data, 0, 4, true);
-            $dataImage = $this->saveImageProduct($_FILES['hinhanh']);
+            $dataImage = $this->saveImageProduct($file['hinhanh']);
             $dataDetail = $data["chitietsanpham"];
-            $id = $this->create(self::TABLE, $dataProduct);
-            foreach($dataImage as $key => $value){
-                $this->create("hinhanh", array("idsanpham"=> $id, "hinhanh"=> $value));
+            $dataCollection = $data["bosuutap"];
+            
+            $this->conn->begin_transaction();
+            
+            try {
+                
+                $id = $this->create(self::TABLE, $dataProduct);
+                foreach($dataImage as $key => $value){
+                    $this->create("hinhanh", array("idsanpham"=> $id, "hinhanh"=> $value));
+                }
+                foreach($dataDetail as $key => $value){
+                    $this->create("chitietsanpham", array_merge(array("idsanpham"=> $id), $value));
+                }
+                foreach($dataCollection as $value){
+                    $query = $this->select('bosuutap', 'id', "bosuutap = '$value'");
+                    if ($query){
+                        $idCollection = $this->arr2to1($query)['id'];
+                        $data = [
+                            'idsanpham' => $id,
+                            'idbosuutap' => $idCollection
+                        ];
+                        $this->create('chitietbosuutap', $data);
+                    } else{
+                        echo "bộ sưu tập không tồn tại";
+                    }
+                }
+                echo "thêm sản phẩm thành công";
+                $this->conn->commit();
             }
-            foreach($dataDetail as $key => $value){
-                $this->create("chitietsanpham", array_merge(array("idsanpham"=> $id), $value));
+            catch (Exception $e){
+                $this->conn->rollback();
+                echo 'Có lỗi';
             }
         }
-        public function updateProduct($data = [], $id){
-            // cập nhật sản phẩm
-            $dataProduct = array_slice($data, 0, 4, true);
-            $this->update(self::TABLE, $dataProduct, $id);
-            // cập nhật chi tiết
-            $dataDetail = $data["chitietsanpham"];
-            foreach($dataDetail as $key => $value){
-                $value['idsanpham'] = $id;
-                if (isset($value['id'])){
-                    $this->update('chitietsanpham', $value, $value['id']);
-                } else{
-                    $this->create('chitietsanpham', $value);
+        public function updateProduct($data = [], $file , $id){
+            $this->conn->begin_transaction();
+            try{
+                // cập nhật sản phẩm
+                $dataProduct = array_slice($data, 0, 4, true);
+                $this->update(self::TABLE, $dataProduct, $id);
+                // cập nhật chi tiết
+                $dataDetail = $data["chitietsanpham"];
+                foreach($dataDetail as $key => $value){
+                    $value['idsanpham'] = $id;
+                    if (isset($value['id'])){
+                        $this->update('chitietsanpham', $value, $value['id']);
+                    } else{
+                        $this->create('chitietsanpham', $value);
+                    }
                 }
-            }
-            // cập nhật hình ảnh
-            $dataImage = $this->saveImageProduct($_FILES['hinhanh']);
-            $this->deleteImgProduct($id);
-            foreach($dataImage as $key => $value){
-                $this->create("hinhanh", array("idsanpham"=> $id, "hinhanh"=> $value));
+                // cập nhật hình ảnh
+                $dataImage = $this->saveImageProduct($file['hinhanh']);
+                $this->deleteImgProduct($id);
+                foreach($dataImage as $key => $value){
+                    $this->create("hinhanh", array("idsanpham"=> $id, "hinhanh"=> $value));
+                }
+                // cập nhật bộ sưu tập
+                $dataCollection = $data["bosuutap"];
+                $this->delete('chitietbosuutap', "idsanpham = '$id'");
+                foreach($dataCollection as $value){
+                    $query = $this->select('bosuutap', 'id', "bosuutap = '$value'");
+                    if ($query){
+                        $idCollection = $this->arr2to1($query)['id'];
+                        $data = [
+                            'idsanpham' => $id,
+                            'idbosuutap' => $idCollection
+                        ];
+                        $this->create('chitietbosuutap', $data);
+                    } else{
+                        echo "bộ sưu tập không tồn tại";
+                    }
+                }
+                // hoàn thành cập nhật
+                $this->conn->commit();
+                echo "cập nhật thành công";
+            } catch (Exception $e){
+                $this->conn->rollback();
+                echo "cập nhật thất bại";
             }
         }
         public function deleteImgProduct($id){
-            $dirImgs = $this->arr2to1($this->select('hinhanh', 'hinhanh', "idsanpham = $id"));
+            $query = $this->arr2to1($this->select('hinhanh', 'hinhanh', "idsanpham = $id"), true);
+            if (!$query){
+                echo "Không tìm thấy";
+            }
+            $dirImgs = $query;
             foreach ($dirImgs as $dirImg) {
                 $this->deleteFile($dirImg);
             }
@@ -44,7 +116,7 @@
 
         }
         private function saveImageProduct($files){
-            $dirSaveImage = "public/assets/img/";
+            $dirSaveImage = "public/assets/img/products/";
             $result = array();
             foreach ($files['tmp_name'] as $key => $tmp_name){
                 $targetPath = $dirSaveImage . $this->generateUUIDv4() . '.png';

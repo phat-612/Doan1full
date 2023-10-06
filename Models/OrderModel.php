@@ -46,16 +46,27 @@
                 $this->create('chitietdonhang', $value);
             }
         }
-        public function totalRevenue()
+        public function totalRevenue($status='',$timet='',$timee='')
         {
-            $totalRevenues = 0;
-            $monney = $this->select('donhang', 'tongtien', "trangthai='Đã xác nhận'");
-            $monney= $this -> arr2to1($monney);
-            foreach($monney as $value){
-                $totalRevenues += $value;
+            $total = 0;
+            $sql = "SELECT tongtien FROM donhang";
+            if ($timet && $timee){
+                $sql .=  " WHERE thoigian BETWEEN '$timet' AND '$timee'";
+                if ($status){
+                $sql .= " AND trangthai='$status'";
+                }
             }
-            inmang($totalRevenues);
-            return $totalRevenues;
+            else {
+                if ($status){
+                $sql .= " WHERE trangthai='$status'";
+                }
+            }
+            $query = $this->select_by_sql($sql);
+            foreach ($query as $row) {
+                $value = $row['tongtien'];
+                $total += $value;
+            }
+            return $total;
         }
         public function changeStatusOrder($id, $status){
             $this->update('donhang', [

@@ -1,7 +1,7 @@
 <?php
     class BaseModel
     {
-        private $conn;
+        protected $conn;
         public function __construct()
         {
             $this->conn = mysqli_connect(HOST_DB, USER_DB, PW_DB, NAME_DB);
@@ -92,11 +92,19 @@
         
             return $uuid;
         }
-        protected function arr2to1($arr){
+        protected function arr2to1($arr, $index = false){
             $result = [];
-            foreach ($arr as $key => $values){
-                foreach($values as $value){
-                    $result[]= $value;
+            if ($index){
+                foreach ($arr as $values){
+                    foreach($values as $value){
+                        $result[]= $value;
+                    }
+                }
+            } else{
+                foreach ($arr as $values){
+                    foreach($values as $key => $value){
+                        $result[$key]= $value;
+                    }
                 }
             }
             return $result;
@@ -110,7 +118,7 @@
             return false;
         }
         private function _query($sql){
-            // echo $sql . '<br />';
+            echo $sql . '<br />';
             return mysqli_query($this->conn, $sql);
         }
         

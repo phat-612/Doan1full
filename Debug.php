@@ -1,9 +1,11 @@
 <?php
-    function inmang($arr)
+    function inmang($arr, $die = false)
     {
         echo '<pre>';
         print_r($arr);
         echo '</pre>';
-        die();
+        if ($die){
+            die();
+        }
     }
 ?>
