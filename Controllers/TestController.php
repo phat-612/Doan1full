@@ -29,7 +29,7 @@
             echo $this->testModel->total_customers();
         }
         public function oders(){
-            echo $this->testModel->new_oders();
+            echo $this->testModel->new_oders($_POST['$status']);
         }
       
     }
