@@ -22,8 +22,15 @@
         public function guiotp(){
             $this->userModel->creatOtp($_POST['email']);
         }
-        public function countProduct(){
-            echo $this->testModel->getNumberProduct(); 
+        // public function countProduct(){
+        //     echo $this->testModel->getNumberProduct(); 
+        // }
+        public function total() {
+            echo $this->testModel->total_customers();
         }
+        public function oders(){
+            echo $this->testModel->new_oders();
+        }
+      
     }
 ?>
