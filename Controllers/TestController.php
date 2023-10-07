@@ -29,16 +29,22 @@
             echo $this->testModel->total_customers();
         }
         public function oders(){
-            echo $this->testModel->getOrder($_POST['trangthai'], $_POST['bd'],$_POST['kt']);
+            echo $this->testModel->getOrder('','2023-10-05','2023-12-05');
         }
         public function revenue() {
-            echo $this->orderModel->totalRevenue('Thành công','2023-10-04','2023-11-05');
+            echo $this->orderModel->totalRevenue('Thành công','2023-10-04','2023-12-20');
         }
         public function themsp(){
             $this->producModel->addProduct($_POST, $_FILES);
         }
         public function suasp(){
             $this->producModel->updateProduct($_POST, $_FILES, $_POST['id']);
+        }
+        public function product(){
+            echo $this->testModel->getProduct();
+        }
+        public function size(){
+            echo $this->testModel->getSizes();
         }
     }
 ?>

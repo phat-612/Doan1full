@@ -14,7 +14,7 @@
         public function getOrder($status = '',$timeb='',$timee=''){
             $sql = "SELECT COUNT(*) sodonhang FROM donhang";
             if ($timeb && $timee){
-                $sql .=  " WHERE thoigian BETWEEN '$timeb' AND '$timee'";
+                $sql .=  " WHERE thoigian BETWEEN '$timeb' AND ('$timee' + INTERVAL 1 MONTH)";
                 if ($status){
                 $sql .= " AND trangthai='$status'";
                 }
@@ -25,6 +25,15 @@
             }
             $query = $this->select_by_sql($sql);
             return $query[0]['sodonhang'];
+        }
+        public function getProduct(){
+            $sql ="SELECT count(*) soluongsanpham FROM sanpham;";
+            $query = $this->select_by_sql($sql);
+            return $query[0]['soluongsanpham']; 
+        }
+        public function getSizes() {
+            $size =$this->arr2to1($this-> select('kichthuoc','kichthuoc'),true);
+            print_r($size);
         }
         
 }
