@@ -47,17 +47,10 @@
             echo $this->testModel->getSizes();
         }
         public function themKt(){
-            if ($this->producModel->addSize($_POST['size'])){
+            if ($this->producModel->deleteDetailValue('kichthuoc', $_POST['id'])){
                 echo 'da them';
             } else{
                 echo 'chua them';
-            }
-        }
-        public function xoaKt(){
-            if ($this->producModel->deleteSize($_POST['id'])){
-                echo 'da xóa';
-            } else{
-                echo 'chua xóa';
             }
         }
     }
