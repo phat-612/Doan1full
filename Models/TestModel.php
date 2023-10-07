@@ -35,6 +35,14 @@
             $size =$this->arr2to1($this-> select('kichthuoc','kichthuoc'),true);
             print_r($size);
         }
+        public function getDataProduct($id){
+            $id=0;
+            $sql = "SELECT ct.idsanpham , sp.ten , sp.mota , sp.gia
+            FROM chitietsanpham AS ct
+            JOIN sanpham AS sp ON ct.idsanpham = sp.id;";
+            $query  = $this->select_by_sql($sql);
+            
+        }
         
 }
 
