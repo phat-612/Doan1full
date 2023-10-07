@@ -51,10 +51,11 @@
                 }
                 echo "thêm sản phẩm thành công";
                 $this->conn->commit();
+                return true;
             }
             catch (Exception $e){
                 $this->conn->rollback();
-                echo 'Có lỗi';
+                return false;
             }
         }
         public function updateProduct($data = [], $file , $id){
@@ -97,12 +98,158 @@
                 }
                 // hoàn thành cập nhật
                 $this->conn->commit();
-                echo "cập nhật thành công";
+                return true;
             } catch (Exception $e){
                 $this->conn->rollback();
-                echo "cập nhật thất bại";
+                return false;
             }
         }
+        public function addDetailValue($name, $value){
+            $data = [
+                $name => $value
+            ];
+            if ($this->select($name, 'id', "$name = '$value'")){
+                return false;
+            }
+            try{
+                $this->create($name, $data);
+                return true;
+            }catch(Exception $e){
+                return false;
+            }
+        }
+        // public function addSize($size){
+            // $data = [
+            //     'kichthuoc'=> $size
+            // ];
+            // if ($this->select('kichthuoc', 'id', "kichthuoc = '$size'")){
+            //     return false;
+            // }
+            // try{
+            //     $this->create('kichthuoc', $data);
+            //     return true;
+            // }catch(Exception $e){
+            //     return false;
+            // }
+        // }
+        // public function editSize($size, $id){
+        //     $data = [
+        //         'kichthuoc'=> $size
+        //     ];
+        //     try{
+        //         $this->update('kichthuoc',$data, $id);
+        //         return true;
+        //     }catch(Exception $e){
+        //         return false;
+        //     }
+        // }
+        // public function deleteSize($id){
+        //     try{
+        //         $this->delete('kichthuoc', "id =$id");
+        //         return true;
+        //     }catch(Exception $e){
+        //         return false;
+        //     }
+        // }
+        // public function addColor($color){
+        //     $data = [
+        //         'mausac'=> $color
+        //     ];
+        //     if ($this->select('mausac', 'id', "mausac = '$color'")){
+        //         return false;
+        //     }
+        //     try{
+        //         $this->create('mausac', $data);
+        //         return true;
+        //     }catch(Exception $e){
+        //         return false;
+        //     }
+        // }
+        // public function editColor($color, $id){
+        //     $data = [
+        //         'mausac'=> $color
+        //     ];
+        //     try{
+        //         $this->update('mausac',$data, $id);
+        //         return true;
+        //     }catch(Exception $e){
+        //         return false;
+        //     }
+        // }
+        // public function deleteColor($id){
+        //     try{
+        //         $this->delete('mausac', "id =$id");
+        //         return true;
+        //     }catch(Exception $e){
+        //         return false;
+        //     }
+        // }
+        // public function addCategory($category){
+        //     $data = [
+        //         'danhmuc'=> $category
+        //     ];
+        //     if ($this->select('danhmuc', 'id', "danhmuc = '$category'")){
+        //         return false;
+        //     }
+        //     try{
+        //         $this->create('danhmuc', $data);
+        //         return true;
+        //     }catch(Exception $e){
+        //         return false;
+        //     }
+        // }
+        // public function editCategory($category, $id){
+        //     $data = [
+        //         'danhmuc'=> $category
+        //     ];
+        //     try{
+        //         $this->update('danhmuc',$data, $id);
+        //         return true;
+        //     }catch(Exception $e){
+        //         return false;
+        //     }
+        // }
+        // public function deleteCategory($id){
+        //     try{
+        //         $this->delete('danhmuc', "id =$id");
+        //         return true;
+        //     }catch(Exception $e){
+        //         return false;
+        //     }
+        // }
+        // public function addCollection($collection){
+        //     $data = [
+        //         'bosuutap'=> $collection
+        //     ];
+        //     if ($this->select('bosuutap', 'id', "bosuutap = '$collection'")){
+        //         return false;
+        //     }
+        //     try{
+        //         $this->create('bosuutap', $data);
+        //         return true;
+        //     }catch(Exception $e){
+        //         return false;
+        //     }
+        // }
+        // public function editCollection($collection, $id){
+        //     $data = [
+        //         'bosuutap'=> $collection
+        //     ];
+        //     try{
+        //         $this->update('bosuutap',$data, $id);
+        //         return true;
+        //     }catch(Exception $e){
+        //         return false;
+        //     }
+        // }
+        // public function deleteCollection($id){
+        //     try{
+        //         $this->delete('bosuutap', "id =$id");
+        //         return true;
+        //     }catch(Exception $e){
+        //         return false;
+        //     }
+        // }
         public function deleteImgProduct($id){
             $query = $this->arr2to1($this->select('hinhanh', 'hinhanh', "idsanpham = $id"), true);
             if (!$query){

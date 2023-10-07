@@ -46,5 +46,19 @@
         public function size(){
             echo $this->testModel->getSizes();
         }
+        public function themKt(){
+            if ($this->producModel->addSize($_POST['size'])){
+                echo 'da them';
+            } else{
+                echo 'chua them';
+            }
+        }
+        public function xoaKt(){
+            if ($this->producModel->deleteSize($_POST['id'])){
+                echo 'da xóa';
+            } else{
+                echo 'chua xóa';
+            }
+        }
     }
 ?>

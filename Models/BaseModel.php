@@ -55,7 +55,6 @@
                 return '"' . $value . '"';
             }, $values));
             $sql = "INSERT INTO $table ($column) VALUES ($values);";
-            // echo $sql .'<br />';
             $query = $this->_query($sql);
             $id = mysqli_insert_id($this->conn);
             return $id;
