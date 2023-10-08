@@ -46,6 +46,9 @@
         public function size(){
             echo $this->testModel->getSizes();
         }
+        public function data(){
+            echo $this->testModel->getDataProduct('$id');
+        }
         public function themKt(){
             if ($this->producModel->deleteDetailValue('kichthuoc', $_POST['id'])){
                 echo 'da them';
