@@ -137,7 +137,6 @@
                 return false;
             }
         }
-        
         public function deleteImgProduct($id){
             $query = $this->arr2to1($this->select('hinhanh', 'hinhanh', "idsanpham = $id"), true);
             if (!$query){
@@ -148,7 +147,6 @@
                 $this->deleteFile($dirImg);
             }
             $this->delete("hinhanh", "idsanpham = $id");
-
         }
         private function saveImageProduct($files){
             $dirSaveImage = "public/assets/img/products/";
