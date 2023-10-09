@@ -18,10 +18,6 @@
         }
         public function index(){
         }
-
-        public function guiotp(){
-            $this->userModel->creatOtp($_POST['email']);
-        }
         // public function countProduct(){
         //     echo $this->testModel->getNumberProduct(); 
         // }

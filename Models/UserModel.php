@@ -6,10 +6,27 @@
     //Load Composer's autoloader
     require 'vendor/autoload.php';
     class UserModel extends BaseModel{
-        public function creatOtp($email){
+        public function creatOtp($email, $dataOrder){
+            /*
+                [
+                    [
+                        hoten,
+                        email,
+                        sodienthoai,
+                        diachi,
+                        ghichu,
+                        chitietdonhang[
+                            
+                        ]
+                    ],
+                ]
+            */
             if (!($this->isExistEmail($email))){
                 return false;
             }
+            $dataEmail = "
+
+            ";
             $mail = new PHPMailer(true);
             $otp = $this->randomCode();
             $data = [
@@ -33,7 +50,7 @@
 
                 // Cấu hình nội dung email
                 $mail->isHTML(true);
-                $mail->Subject ='=?UTF-8?B?' . base64_encode('Xác nhận đăng nhập') . '?='; //tieu de
+                $mail->Subject ='=?UTF-8?B?' . base64_encode('Xác nhận đăng nhập') . '?=';
                 $mail->Body = "Mã xác nhận của bạn là $otp"; // Nội dung email
 
                 // Gửi email và kiểm tra kết quả
