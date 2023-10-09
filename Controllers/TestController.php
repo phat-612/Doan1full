@@ -56,5 +56,12 @@
                 echo 'chua them';
             }
         }
+        public function themDh(){
+            if ($this->orderModel->addOrder($_POST)){
+                echo 'da them';
+            } else{
+                echo 'chua them';
+            }
+        }
     }
 ?>

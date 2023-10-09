@@ -17,8 +17,7 @@
                 [
                     'ghichu': 'giao nhanh len',
                     'tongtien': 120000,
-                    'trangthai': 'Chờ xử lý',
-                    'nguoidung': [
+                    'khachhang': [
                         'hoten': 'Nguyen van a',
                         'sodienthoai': '0123456789',
                         'diachi': 'cna tho',
@@ -27,23 +26,37 @@
                     'chitietdathang': [
                         [
                             'idchitietsanpham': '1',
+                            'gia': 122000
                             'soluong': '12'
                         ],
                     ]
                 ]
             */
-            $dataOrderDetail = array_pop($data);
-            $dataUser = array_pop($data);
-            $dataOrder = $data;
-            $prices = $this->_getPriceOrder($dataOrderDetail);
-            $idUser = $this->create('nguoidung', $dataUser);
-            $dataOrder['idnguoidung'] = $idUser;
-            $dataOrder['tongtien'] = array_pop($prices);
-            $idOrder = $this->create(self::TABLE, $dataOrder);
-            foreach($dataOrderDetail as $value){
-                $value['iddonhang'] = $idOrder;
-                $value['gia']= array_shift($prices);
-                $this->create('chitietdonhang', $value);
+            $dataOrderDetail = $data['chitietdonhang'];
+            $dataUser = $data['khachhang'];
+            $dataOrder = [
+                'ghichu'=>$data['ghichu'],
+                'tongtien'=>$data['tongtien'],
+                'trangthai'=>'Chờ xử lý',
+            ];
+            $this->conn->begin_transaction();
+            try{
+                $idUser = $this->create('khachhang', $dataUser);
+                $dataOrder['idkhachhang'] = $idUser;
+                $idOrder = $this->create('donhang', $dataOrder);
+                foreach ($dataOrderDetail as $value) {
+                   $value['iddonhang'] = $idOrder;
+                   $this->create('chitietdonhang', $value);
+                   $isQua = $this->_checkQuaPro($value['idchitietsanpham'], $value['soluong']);
+                   if (!$isQua){
+                        throw new Exception("Không đủ số lượng");
+                    }
+                }
+                $this->conn->commit();
+                return true;
+            }catch (Exception $e){
+                $this->conn->rollback();
+                return false;
             }
         }
         public function totalRevenue($status='',$timet='',$timee='')
@@ -84,6 +97,22 @@
                 $totalPrice += $price * $value['soluong'];
             }
             return array_merge($prices, [$totalPrice]);
+        }
+        private function _checkQuaPro($idDetalPro, $orderQua){
+            $query = $this->select('chitietsanpham', 'soluong', "id = '$idDetalPro'");
+            if ($query){
+                $quaDetail = $query[0]['soluong'];
+                if ($orderQua > $quaDetail){
+                    return false;
+                }else{
+                    $data = [
+                        'soluong' => $quaDetail - $orderQua
+                    ];
+                    $this->update('chitietsanpham', $data, $idDetalPro);
+                    return true;
+                }
+            }
+            return false;
         }
     }
 
