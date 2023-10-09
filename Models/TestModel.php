@@ -37,11 +37,15 @@
         }
         public function getDataProduct($id){
             $id=0;
-            $sql = "SELECT ct.idsanpham , sp.ten , sp.mota , sp.gia
+            $sql1 = "SELECT ct.idsanpham , sp.ten , sp.mota , sp.gia , ct.idchitietsanpham
             FROM chitietsanpham AS ct
             JOIN sanpham AS sp ON ct.idsanpham = sp.id;";
-            $query  = $this->select_by_sql($sql);
-            
+            $sql2 = "SELECT kt.kichthuoc , ms.mausac FROM chitietsanpham as ct , kichthuoc as kt , mausac as ms WHERE ct.idmausac = ms.id AND ct.idkichthuoc = kt.id;";
+            $query1  = $this->select_by_sql($sql1);
+            $query2 = $this->select_by_sql($sql2);
+            $newArray = $query2;
+            $query = array_merge($query1 , $newArray);
+            inmang($query);
         }
         
 }
