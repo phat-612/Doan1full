@@ -11,7 +11,7 @@
             $this->importModel('ProductModel');
             $this->importModel('UserModel');
             $this->importModel('TestModel');
-            $this -> orderModel = new OrderModel();
+            $this ->orderModel = new OrderModel();
             $this->producModel = new ProductModel();
             $this->userModel = new UserModel();
             $this->testModel = new TestModel();
@@ -43,7 +43,7 @@
             echo $this->testModel->getSizes();
         }
         public function data(){
-            echo $this->testModel->getDataProduct('$id');
+          echo $this->testModel->getDataProduct('7');
         }
         public function themKt(){
             if ($this->producModel->deleteDetailValue('kichthuoc', $_POST['id'])){

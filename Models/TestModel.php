@@ -35,11 +35,10 @@
             $size =$this->arr2to1($this-> select('kichthuoc','kichthuoc'),true);
             print_r($size);
         }
-        public function getDataProduct($id){
-            $id=0;
+        public function getDataProduct($id=''){
             $sql1 = "SELECT ct.idsanpham , sp.ten , sp.mota , sp.gia 
-            FROM chitietsanpham AS ct
-            JOIN sanpham AS sp ON ct.idsanpham = sp.id;";
+            FROM chitietsanpham AS ct, sanpham AS sp
+            WHERE  ct.idsanpham = sp.id;";
             $sql2 = "SELECT kt.kichthuoc , ms.mausac FROM chitietsanpham as ct , kichthuoc as kt , mausac as ms 
             WHERE ct.idmausac = ms.id AND ct.idkichthuoc = kt.id;";
             $query1 = $this->select_by_sql($sql1);
@@ -47,14 +46,17 @@
             foreach ($query1 as $index => $value) {
                 $query1[$index]['chitietsanpham'] = $query2;
             }
-            inmang($query1);
-       
-            
-            
-
-
+            foreach ($query1 as $value) {
+                if ($id == $value['idsanpham']) {
+                    $result[] = $value;
+                }        
+            }
+            if (!empty($result)) {
+                print_r($result);     
+                return $result;
+            } else {
+                return "không có id sản phẩm";
+            }   
         }
-        
-}
-
+    }
 ?>
