@@ -132,5 +132,3 @@
         }
     }
 ?>
-<!-- xác nhận đăng nhập = mail -->
-<!-- admin đăng nhập -->

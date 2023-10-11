@@ -85,6 +85,7 @@
             $this->update('donhang', [
                 "trangthai"=>$status
             ], $id);
+            return true;
         }
         private function _getPriceOrder($dataOrderDetail){
             $prices = [];

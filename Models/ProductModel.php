@@ -108,10 +108,10 @@
             $data = [
                 $name => $value
             ];
-            if ($this->select($name, 'id', "$name = '$value'")){
-                return false;
-            }
             try{
+                if ($this->select($name, 'id', "$name = '$value'")){
+                    return false;
+                }
                 $this->create($name, $data);
                 return true;
             }catch(Exception $e){

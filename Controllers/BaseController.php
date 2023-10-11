@@ -1,8 +1,3 @@
-<!--    $content: truyền views vào layouts
-        $subcontent: truyền dữ liệu vào views
-
- -->
-
 <?php
     class BaseController
     {
