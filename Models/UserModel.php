@@ -79,18 +79,17 @@
         public function adminLogin($taikhoan, $matkhau){
             $dataUser = $this->select('admin', 'taikhoan, matkhau', "taikhoan = '$taikhoan'");
             if (!$dataUser){
-                echo "Sai tài khoản hoặc mật khẩu";
+                echo "Sai tài khoản hoặc mật khẩu 1";
                 return false;
             }
             $dataUser = $dataUser[0];
             if ($dataUser['taikhoan'] == $taikhoan && $dataUser['matkhau'] == $matkhau){
-                echo "Đăng nhập thành công <br>";
                 $dataCookie =  $this->encodeData(json_encode($dataUser));
                 setcookie('verify_login', $dataCookie, time() + 3600, '/'.$GLOBALS['rootPath'].'/');
-                $_SESSION['admin'] = true;
+                $_SESSION['isLogin'] = true;
                 return true;
             } else{
-                echo "Sai tài khoản hoặc mật khẩu";
+                echo "Sai tài khoản hoặc mật khẩu 2";
                 return false;
             }
             

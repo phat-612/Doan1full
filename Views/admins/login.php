@@ -1,4 +1,4 @@
-<form action="<?php echo _WEB_ROOT ?>/api/adminLogin" method="post">
+<form action="<?php echo _WEB_ROOT ?>/admin/login" method="post">
     <label for="taikhoan">Tài khoản</label>
     <input type="text" id="taikhoan" name="taikhoan">
     <label for="matkhau">Mật khẩu</label>

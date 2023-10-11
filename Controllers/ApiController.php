@@ -24,17 +24,6 @@
             $status = $_POST['status'];
             $this->orderModel->changeStatusOrder($id, $status);
         }
-        public function adminLogin(){
-            $this->_checkMethod();
-            $res = $this->userModel->adminLogin($_POST['taikhoan'], $_POST['matkhau']);
-            if ($res){
-                $this->gotoPage('admin/sanpham');
-                // die();
-            } else{
-                $this->gotoPage('admin/');
-                // die();
-            }
-        }
         private function _checkMethod($method = "POST"){
             if (!($this->reqMethod == $method)){
                 echo "Sai phương thức";

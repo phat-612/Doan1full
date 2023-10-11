@@ -1,7 +1,7 @@
 <?php
     session_start();
     require 'Debug.php';
-    require 'Core/config.php';
+    require 'config.php';
     require 'Controllers/BaseController.php';
     require 'Models/BaseModel.php';
     // đặt các hằng toàn cục
