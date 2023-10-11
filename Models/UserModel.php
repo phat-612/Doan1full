@@ -79,20 +79,27 @@
         public function adminLogin($taikhoan, $matkhau){
             $dataUser = $this->select('admin', 'taikhoan, matkhau', "taikhoan = '$taikhoan'");
             if (!$dataUser){
-                echo "Sai tài khoản hoặc mật khẩu 1";
                 return false;
             }
             $dataUser = $dataUser[0];
             if ($dataUser['taikhoan'] == $taikhoan && $dataUser['matkhau'] == $matkhau){
                 $dataCookie =  $this->encodeData(json_encode($dataUser));
-                setcookie('verify_login', $dataCookie, time() + 3600, '/'.$GLOBALS['rootPath'].'/');
+                setcookie('verify_login', $dataCookie, time() + 3600, '/');
                 $_SESSION['isLogin'] = true;
                 return true;
             } else{
-                echo "Sai tài khoản hoặc mật khẩu 2";
                 return false;
             }
             
+        }
+        public function adminLogout(){
+            if (isset($_COOKIE['verify_login'])){
+                setcookie('verify_login', '', time() - 10, '/');
+            }
+            if (isset($_SESSION['isLogin'])){
+                unset($_SESSION['isLogin']);
+            }
+            return true;
         }
         public function randomCode() {
             $code = '';

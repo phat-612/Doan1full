@@ -57,6 +57,10 @@
             //     ]
             // ]);
         }
+        public function logout(){
+            $this->userModel->adminLogout();
+            $this->gotoPage('admin/login');
+        }
         public function sanpham(){
             echo "Đây là trang quản lý sản phẩm";
         }
