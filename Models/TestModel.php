@@ -39,24 +39,24 @@
             $sql1 = "SELECT ct.idsanpham , sp.ten , sp.mota , sp.gia 
             FROM chitietsanpham AS ct, sanpham AS sp 
             WHERE  ct.idsanpham = sp.id";
-            $sql2 = "SELECT kt.kichthuoc , ms.mausac FROM chitietsanpham as ct , kichthuoc as kt , mausac as ms 
-            WHERE  ct.idkichthuoc = kt.id AND ct.idmausac = ms.id;";
+            $sql2 = "SELECT ct.idsanpham, kt.kichthuoc , ms.mausac, ct.soluong 
+            FROM chitietsanpham as ct , kichthuoc as kt , mausac as ms ,sanpham as sp 
+            WHERE ct.idsanpham = kt.id AND ct.idsanpham = ms.id AND ct.idsanpham = sp.id;";
             $query1 = $this->select_by_sql($sql1);
             $query2 = $this->select_by_sql($sql2);
             foreach ($query1 as $index => $value) {
                 $query1[$index]['chitietsanpham'] = $query2;
             }
             foreach ($query1 as $value) {
-                if ($id === $value['idsanpham']) {              
-                    $result[] = $value;
-                    inmang($result);     
-                }               
-        }
-            if (!empty($result)) {
-                return $result;
-            } else {
-                return "không có id sản phẩm";
-            }  
+                if ($id == $value['idsanpham']) {
+                    $Chitietsanpham = array_filter($value['chitietsanpham'], function ($item) use ($id) {
+                        return $item['idsanpham'] === $id;
+                    });
+                    $value['chitietsanpham'] = $Chitietsanpham;
+                    $result[] = $value; 
+                    inmang($result);
+                }
+            }
         }
         public function getDataOrder($id='') {
             $sql1 = "SELECT dh.id, kh.hoten , kh.sodienthoai ,kh.diachi,kh.email,dh.tongtien, dh.ghichu,dh.trangthai,dh.thoigian 
