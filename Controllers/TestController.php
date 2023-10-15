@@ -43,11 +43,14 @@
             echo $this->testModel->getSizes();
         }
         public function data(){
-          echo $this->testModel->getDataProduct('1');
+          echo $this->testModel->getDataProduct('2');
         }
         public function dataOrder(){
-            echo $this->testModel->getDataOrder('1');
-          }
+            echo $this->testModel->getDataOrder('4');
+        }
+        public function dataPageProduct(){
+            echo $this->testModel->getPageDataProduct('','','', 2, 2);
+        }
         public function themKt(){
             if ($this->producModel->deleteDetailValue('kichthuoc', $_POST['id'])){
                 echo 'da them';

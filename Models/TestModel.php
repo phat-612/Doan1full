@@ -36,50 +36,57 @@
             print_r($size);
         }
         public function getDataProduct($id=''){
-            $sql1 = "SELECT ct.idsanpham , sp.ten , sp.mota , sp.gia 
-            FROM chitietsanpham AS ct, sanpham AS sp 
-            WHERE  ct.idsanpham = sp.id";
-            $sql2 = "SELECT ct.idsanpham, kt.kichthuoc , ms.mausac, ct.soluong 
-            FROM chitietsanpham as ct , kichthuoc as kt , mausac as ms ,sanpham as sp 
-            WHERE ct.idsanpham = kt.id AND ct.idsanpham = ms.id AND ct.idsanpham = sp.id;";
+            $sql1 = "SELECT sp.id , sp.ten , sp.mota , sp.gia 
+            FROM  sanpham AS sp WHERE sp.id = '$id'";
+            $sql2 = "SELECT kt.kichthuoc,ms.mausac,ct.soluong
+            FROM chitietsanpham ct,mausac ms,kichthuoc kt,sanpham sp 
+            WHERE ms.id = ct.idsanpham AND kt.id = ct.idsanpham AND ct.idsanpham = sp.id AND sp.id ='$id'";
+            $sql3 = "SELECT ha.hinhanh
+            FROM chitietsanpham ct,sanpham sp ,hinhanh ha
+            WHERE sp.id=ha.id and ct.idsanpham=sp.id AND sp.id ='$id'";
             $query1 = $this->select_by_sql($sql1);
-            $query2 = $this->select_by_sql($sql2);
-            foreach ($query1 as $index => $value) {
-                $query1[$index]['chitietsanpham'] = $query2;
+            $query2=$this->select_by_sql($sql2);
+            $query3=$this->select_by_sql($sql3);
+            if (!$query1){
+                return false;
             }
             foreach ($query1 as $value) {
-                if ($id == $value['idsanpham']) {
-                    $Chitietsanpham = array_filter($value['chitietsanpham'], function ($item) use ($id) {
-                        return $item['idsanpham'] === $id;
-                    });
-                    $value['chitietsanpham'] = $Chitietsanpham;
-                    $result[] = $value; 
-                    inmang($result);
-                }
-            }
-        }
-        public function getDataOrder($id='') {
-            $sql1 = "SELECT dh.id, kh.hoten , kh.sodienthoai ,kh.diachi,kh.email,dh.tongtien, dh.ghichu,dh.trangthai,dh.thoigian 
-            FROM donhang as dh , khachhang as kh ,chitietdonhang as ct  WHERE ct.id = dh.id ;"; 
-            $sql2 = "SELECT dh.id, sp.ten , kt.kichthuoc , ms.mausac , sp.gia , ct.soluong 
-            FROM chitietdonhang as ct, mausac as ms , kichthuoc as kt , sanpham as sp,donhang as dh WHERE ct.id = kt.id AND ct.id = sp.id AND ct.id = ms.id and   dh.id = ct.id;";
-            $query1 = $this->select_by_sql($sql1);
-            $query2 = $this->select_by_sql($sql2);
-            foreach ($query1 as $index => $value) {
-                $query1[$index]['chitietdonhang'] = $query2;
+                $query1[0]['chitietsanpham'] = $query2;
+                $query1[0]['hinhanh']=$query3;  
             }
             // inmang($query1);
-            foreach ($query1 as $value) {
-                if ($id == $value['id']) {
-                    $result[] = $value;
-                }       
-                if (!empty($result)) {
-                    inmang($result);     
-                    return $result;
-                } else {
-                    return "không có id sản phẩm";
-                }       
+        }
+        public function getDataOrder($id='') {
+            $sql1 = "SELECT kh.hoten, kh.sodienthoai ,kh.diachi , kh.email , dh.ghichu,dh.tongtien,dh.trangthai,dh.thoigian 
+            FROM donhang dh ,khachhang kh 
+            WHERE kh.id=dh.id and dh.id='$id'"; 
+            $sql2 = "SELECT DISTINCT sp.ten , kt.kichthuoc , ms.mausac , ctdh.gia, ctdh.soluong 
+            FROM sanpham sp , donhang dh , chitietdonhang ctdh,kichthuoc kt,mausac ms,chitietsanpham ct
+            WHERE ct.idsanpham = ms.id AND ct.idsanpham = kt.id AND sp.id = ct.idsanpham AND dh.id = ctdh.iddonhang  AND sp.id=dh.id AND dh.id='$id'";
+            $query1 = $this->select_by_sql($sql1);
+            $query2 = $this->select_by_sql($sql2);
+            if (!$query1){
+                return false;
             }
+            foreach ($query1 as  $value) {
+                $query1[0]['chitietdonhang'] = $query2;
+                inmang($query1);
+            }
+        }
+        public function getPageDataProduct($collection='',$category='', $sort='ten', $page='1', $limit='15'){
+            $sql1= "SELECT sp.id,sp.ten ,sp.gia 
+            FROM sanpham as sp
+            limit $limit offset ".(($page-1)*$limit).";";
+            $query1 = $this->select_by_sql($sql1);
+            foreach ($query1 as $key => $value) {
+                $sql2 = "SELECT hinhanh 
+                FROM hinhanh , sanpham as sp
+                WHERE hinhanh.idsanpham = sp.id AND sp.id=".$value['id']." limit 2";
+                $query2= $this->select_by_sql($sql2);
+                $query1[$key]['hinhanh']=$this->arr2to1 ($query2, true);  
+            }     
+            inmang($query1,true);    
+
         }
     }
 ?>
