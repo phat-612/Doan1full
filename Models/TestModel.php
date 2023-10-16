@@ -6,7 +6,7 @@
             return $query[0]['total_count'];
         }
         public function total_customers(){
-            $sql = "SELECT DISTINCT COUNT(  DISTINCT sodienthoai) AS total_customers
+            $sql = "SELECT DISTINCT COUNT(DISTINCT sodienthoai) AS total_customers
             FROM khachhang";
             $query = $this->select_by_sql($sql);
             return $query[0]['total_customers'];
@@ -33,7 +33,7 @@
         }
         public function getSizes() {
             $size =$this->arr2to1($this-> select('kichthuoc','kichthuoc'),true);
-            print_r($size);
+            // print_r($size);
         }
         public function getDataProduct($id=''){
             $sql1 = "SELECT sp.id , sp.ten , sp.mota , sp.gia 
@@ -85,8 +85,27 @@
                 $query2= $this->select_by_sql($sql2);
                 $query1[$key]['hinhanh']=$this->arr2to1 ($query2, true);  
             }     
-            inmang($query1,true);    
-
+            // inmang($query1,true);    
+        }
+        public function getDataCart($email='',$sodienthoai='',$hoten=''){
+            $sql1 = "SELECT kh.hoten, kh.sodienthoai,kh.diachi,kh.email 
+            FROM khachhang as kh";
+             if ($email) {
+                $sql1 .= " WHERE kh.email = '$email'";
+                if ($sodienthoai) {
+                    $sql1 .= " AND kh.sodienthoai = '$sodienthoai'";
+                }
+            }else if ($hoten) {
+                $sql1 .= " WHERE kh.hoten = '$hoten'";
+            }
+            $query1= $this->select_by_sql($sql1);
+            foreach($query1 as $key => $value){
+                $sql2 = "SELECT dh.ghichu , dh.tongtien , dh.trangthai, dh.thoigian 
+                FROM donhang as dh";    
+                $query2 =$this->select_by_sql($sql2);
+                $query1[$key]['donhang']=$this->arr2to1($query2,true);
+            } 
+            inmang($query1);            
         }
     }
 ?>

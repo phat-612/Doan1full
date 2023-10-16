@@ -51,6 +51,10 @@
         public function dataPageProduct(){
             echo $this->testModel->getPageDataProduct('','','', 2, 2);
         }
+        public function Cart(){
+            echo $this->testModel->getDataCart('','','L');
+        }
+        
         public function themKt(){
             if ($this->producModel->deleteDetailValue('kichthuoc', $_POST['id'])){
                 echo 'da them';
