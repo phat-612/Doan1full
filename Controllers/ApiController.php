@@ -51,6 +51,14 @@
             }
             
         }
+        public function addOrder(){
+            $res = $this->orderModel->addOrder($_POST);
+            if ($res){
+                http_response_code(200);
+            } else{
+                http_response_code(400);
+            }
+        }
         // kiểm tra method
         private function _checkMethod($method = "POST"){
             if (!($this->reqMethod == $method)){

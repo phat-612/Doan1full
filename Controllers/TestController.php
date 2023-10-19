@@ -63,10 +63,11 @@
             }
         }
         public function themDh(){
-            if ($this->orderModel->addOrder($_POST)){
-                echo 'da them';
+            $res = $this->orderModel->addOrder($_POST);
+            if ($res){
+                http_response_code(200);
             } else{
-                echo 'chua them';
+                http_response_code(400);
             }
         }
     }

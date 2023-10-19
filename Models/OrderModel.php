@@ -48,8 +48,9 @@
                    $value['iddonhang'] = $idOrder;
                    $this->create('chitietdonhang', $value);
                    $isQua = $this->_checkQuaPro($value['idchitietsanpham'], $value['soluong']);
-                   if (!$isQua){
-                        throw new Exception("Không đủ số lượng");
+                   $isPrice = $this->_checkPrice($value['idchitietsanpham'], $value['gia']);
+                   if (!($isQua && $isPrice)){
+                        throw new Exception("Sai thông tin về giá, số lượng");
                     }
                 }
                 $this->conn->commit();
@@ -114,6 +115,19 @@
                 }
             }
             return false;
+        }
+        private function _checkPrice($idDetalPro, $price){
+            $query = $this->select('chitietsanpham c, sanpham s', 's.gia', "c.id = '$idDetalPro' and c.idsanpham = s.id");
+            if ($query){
+                $pricePro = $query[0]['gia'];
+                if ($pricePro == $price){
+                    return true;
+                } else {
+                    return false;
+                }
+            } else{
+                return false;
+            }
         }
     }
 
