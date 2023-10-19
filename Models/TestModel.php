@@ -87,25 +87,17 @@
             }     
             // inmang($query1,true);    
         }
-        public function getDataCart($email='',$sodienthoai='',$hoten=''){
-            $sql1 = "SELECT kh.hoten, kh.sodienthoai,kh.diachi,kh.email 
-            FROM khachhang as kh";
-             if ($email) {
-                $sql1 .= " WHERE kh.email = '$email'";
-                if ($sodienthoai) {
-                    $sql1 .= " AND kh.sodienthoai = '$sodienthoai'";
-                }
-            }else if ($hoten) {
-                $sql1 .= " WHERE kh.hoten = '$hoten'";
+        public function getDataCart($id=''){
+            $sql1 = "SELECT ctdh.iddonhang ,sp.ten , dh.thoigian , dh.tongtien , dh.trangthai 
+            FROM donhang as dh , chitietdonhang as ctdh, sanpham as sp WHERE ctdh.iddonhang = dh.id AND sp.id = dh.id and sp.id ='$id'"; 
+            $query1 = $this->select_by_sql($sql1);
+            foreach ($query1 as $key => $value){
+                $sql2= "SELECT ha.hinhanh  
+                FROM hinhanh as ha , sanpham as sp 
+                WHERE ha.idsanpham = sp.id and  sp.id='$id' LIMIT 1"; 
+                $query2 = $this->select_by_sql($sql2);
+                $query1[$key]['hinhanh']=$this->arr2to1($query2);
             }
-            $query1= $this->select_by_sql($sql1);
-            foreach($query1 as $key => $value){
-                $sql2 = "SELECT dh.ghichu , dh.tongtien , dh.trangthai, dh.thoigian 
-                FROM donhang as dh";    
-                $query2 =$this->select_by_sql($sql2);
-                $query1[$key]['donhang']=$this->arr2to1($query2,true);
-            } 
-            inmang($query1);            
         }
     }
 ?>

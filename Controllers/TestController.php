@@ -52,7 +52,7 @@
             echo $this->testModel->getPageDataProduct('','','', 2, 2);
         }
         public function Cart(){
-            echo $this->testModel->getDataCart('','','L');
+            echo $this->testModel->getDataCart('4');
         }
         
         public function themKt(){
