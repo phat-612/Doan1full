@@ -9,7 +9,12 @@
         }
         public function index()
         {
-            
+            $this->render('layouts/user',[
+                'content'=> 'homes/index',
+                'title'=> 'Đăng nhập',
+                'subcontent'=> [
+                ]
+            ]);
         }
     }
 ?>
