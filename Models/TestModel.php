@@ -91,17 +91,24 @@
             // inmang($query1,true);    
         }
         // lấy dữ liệu trang don hang
-        public function getDataCart($id=''){
-            $sql1 = "SELECT ctdh.iddonhang ,sp.ten , dh.thoigian , dh.tongtien , dh.trangthai 
-            FROM donhang as dh , chitietdonhang as ctdh, sanpham as sp WHERE ctdh.iddonhang = dh.id AND sp.id = dh.id and sp.id ='$id'"; 
-            $query1 = $this->select_by_sql($sql1);
-            foreach ($query1 as $key => $value){
-                $sql2= "SELECT ha.hinhanh  
-                FROM hinhanh as ha , sanpham as sp 
-                WHERE ha.idsanpham = sp.id and  sp.id='$id' LIMIT 1"; 
-                $query2 = $this->select_by_sql($sql2);
-                $query1[$key]['hinhanh']=$this->arr2to1($query2);
+        public function getDataCart($data = []){
+            // [
+            //     [
+            //         'idchitietsanpham'=> 12,
+            //         'soluong'=> 1,
+            //         'gia'=> 60000
+            //     ]
+            // ]
+            if (!$data) {
+                return false;
             }
+            $res = [];
+            foreach ($data as $value) {
+                $query = $this->select('sanpham s, chitietsanpham c, mausac m, kichthuoc k', 's.gia, s.ten, m.mausac, k.kichthuoc, c.id', 's.id = c.idsanpham and c.idmausac = m.id and c.idkichthuoc = k.id and c.id = '. $value['idchitietsanpham']);
+                array_push($res, $query);
+            }
+            inmang($res, true);
+            return $res;
         }
     }
 ?>

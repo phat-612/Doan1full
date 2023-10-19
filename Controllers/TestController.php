@@ -70,5 +70,20 @@
                 http_response_code(400);
             }
         }
+        public function laydulieugiohang(){
+            $data = [
+                [
+                    'idchitietsanpham'=> 12,
+                    'soluong'=> 1,
+                    'gia'=> 60000
+                ],
+                [
+                    'idchitietsanpham'=> 13,
+                    'soluong'=> 1,
+                    'gia'=> 60000
+                ]
+            ];
+            $this->testModel->getDataCart($data);
+        }
     }
 ?>
