@@ -49,12 +49,8 @@
             echo $this->testModel->getDataOrder('4');
         }
         public function dataPageProduct(){
-            echo $this->testModel->getPageDataProduct('','','', 2, 2);
+            inmang($this->testModel->getPageDataProduct());
         }
-        public function Cart(){
-            echo $this->testModel->getDataCart('4');
-        }
-        
         public function themKt(){
             if ($this->producModel->deleteDetailValue('kichthuoc', $_POST['id'])){
                 echo 'da them';
@@ -69,21 +65,6 @@
             } else{
                 http_response_code(400);
             }
-        }
-        public function laydulieugiohang(){
-            $data = [
-                [
-                    'idchitietsanpham'=> 12,
-                    'soluong'=> 1,
-                    'gia'=> 60000
-                ],
-                [
-                    'idchitietsanpham'=> 13,
-                    'soluong'=> 1,
-                    'gia'=> 60000
-                ]
-            ];
-            $this->testModel->getDataCart($data);
         }
     }
 ?>

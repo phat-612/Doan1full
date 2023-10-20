@@ -36,6 +36,7 @@
             // print_r($size);
         }
         // lấy dữ liệu trang sản phẩm
+        // không biết tác dụng hàm này
         public function getDataProduct($id=''){
             $sql1 = "SELECT sp.id , sp.ten , sp.mota , sp.gia 
             FROM  sanpham AS sp WHERE sp.id = '$id'";
@@ -58,6 +59,7 @@
             // inmang($query1);
         }
         // lấy dữ liệu trang đơn hàng
+        // chưa hoàn thành, tham số giống như trang lấy dữ liệu cho trang sản phẩm
         public function getDataOrder($id='') {
             $sql1 = "SELECT kh.hoten, kh.sodienthoai ,kh.diachi , kh.email , dh.ghichu,dh.tongtien,dh.trangthai,dh.thoigian 
             FROM donhang dh ,khachhang kh 
@@ -75,7 +77,8 @@
                 inmang($query1);
             }
         }
-        // lấy dữ liêu trang chủ 
+        // lấy dữ liêu trang chủ
+        // chưa hoàn thành còn 3 tham số chưa được sử dụng
         public function getPageDataProduct($collection='',$category='', $sort='ten', $page='1', $limit='15'){
             $sql1= "SELECT sp.id,sp.ten ,sp.gia 
             FROM sanpham as sp
@@ -87,28 +90,8 @@
                 WHERE hinhanh.idsanpham = sp.id AND sp.id=".$value['id']." limit 2";
                 $query2= $this->select_by_sql($sql2);
                 $query1[$key]['hinhanh']=$this->arr2to1 ($query2, true);  
-            }     
-            // inmang($query1,true);    
-        }
-        // lấy dữ liệu trang don hang
-        public function getDataCart($data = []){
-            // [
-            //     [
-            //         'idchitietsanpham'=> 12,
-            //         'soluong'=> 1,
-            //         'gia'=> 60000
-            //     ]
-            // ]
-            if (!$data) {
-                return false;
-            }
-            $res = [];
-            foreach ($data as $value) {
-                $query = $this->select('sanpham s, chitietsanpham c, mausac m, kichthuoc k, hinhanh h', 's.gia, s.ten, m.mausac, k.kichthuoc, c.id, h.hinhanh', 'h.idsanpham = s.id and s.id = c.idsanpham and c.idmausac = m.id and c.idkichthuoc = k.id and c.id = '. $value['idchitietsanpham'], '','1');
-                array_push($res, $query);
-            }
-            inmang($res, true);
-            return $res;
+            }    
+            return $query1;
         }
     }
 ?>
