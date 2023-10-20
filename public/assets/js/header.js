@@ -14,7 +14,6 @@ let btnDeletePros = document.querySelectorAll(".js_dlt_pro");
 if (loadCart().length > 0) {
     loadCartPage();
 } else {
-    console.log('khong co san pham');
 }
 
 // sự kiện chạy khi load web
@@ -59,8 +58,7 @@ document.querySelector(".shopping_bag").addEventListener("click", (e) => {
 document.querySelector(".bg_shopping_bag").addEventListener("click", (e) => {
     mdCart.style.display = "none";
 });
-// xử lý trong model giỏ hàng
-console.log('thêm sự kiện cho các nút');
+
 
 // thay đổi trong localStorage
 
@@ -77,6 +75,10 @@ function loadEleCart() {
             if (parseInt(inpNumber.value) <= 0) {
                 let cfDelPro = confirm("Bạn muốn xóa sản phẩm này không?");
                 if (cfDelPro) {
+                    editCartQua(
+                        "delete",
+                        e.target.closest(".card_item").getAttribute("idctsp")
+                    );
                     e.target.closest(".card_item").remove();
                 } else {
                     inpNumber.value = 1;
@@ -88,7 +90,6 @@ function loadEleCart() {
     });
     btnPlusPros.forEach((btnPlusPro) => {
         btnPlusPro.addEventListener("click", (e) => {
-            console.log('nut cong');
             let inpNumber = e.target.closest(".amount").querySelector(".myInput");
             inpNumber.value = parseInt(inpNumber.value) + 1;
             inpNumber.dispatchEvent(new Event("change"));
@@ -100,18 +101,22 @@ function loadEleCart() {
             let cfDelPro = confirm("Bạn muốn xóa sản phẩm này không?");
             if (cfDelPro) {
                 e.target.closest(".card_item").remove();
+                editCartQua(
+                    "delete",
+                    e.target.closest(".card_item").getAttribute("idctsp")
+                );
                 totalPay();
             }
         });
     });
     inpNumberPros.forEach((inpQua) => {
         inpQua.addEventListener("change", (e) => {
-            console.log('da thay doi gia tri');
             editCartQua(
                 "change",
                 e.target.closest(".card_item").getAttribute("idctsp"),
                 parseInt(e.target.value)
             );
+            totalPay();
         });
     });
 }
@@ -165,9 +170,9 @@ function addCart(idchitietsanpham, soluong, gia) {
     });
     saveCart(cart);
 }
-function editCartQua(action, idchitietsanpham, soluong = 1) {
+function editCartQua(action, idchitietsanpham = -1, soluong = 1) {
     let cart = loadCart();
-    if (action == "change") {
+    if (action == "change" && idchitietsanpham != -1) {
         cart.forEach((pro) => {
             if (pro.idchitietsanpham == idchitietsanpham) {
                 pro.soluong = soluong;
@@ -195,6 +200,8 @@ function loadCart() {
 async function loadCartPage() {
     let cartDB = await getDataCart();
     let cartLC = loadCart();
+    cartDB = checkDataCart(cartLC, cartDB);
+    cartLC = loadCart();
     cartDB.forEach((pro, ind) => {
         let htmlIn = `<div class="card_item" idctsp="${pro["id"]}">
     <div class="photo_product">
@@ -226,12 +233,12 @@ async function loadCartPage() {
     });
     loadEleCart();
     totalPay();
-    console.log('load cart page thành công');
 }
+// lấy dữ liệu các sản phẩm trong giỏ hàng từ db
 async function getDataCart() {
     let dataCart = loadCart();
-    let myHeaders = new Headers();
-    myHeaders.append("Cookie", "PHPSESSID=3b59oun5flimj73i29lj8dnhau");
+    // let myHeaders = new Headers();
+    // myHeaders.append("Cookie", "PHPSESSID=3b59oun5flimj73i29lj8dnhau");
 
     let formdata = new FormData();
     dataCart.forEach((pro, ind) => {
@@ -241,7 +248,7 @@ async function getDataCart() {
     })
     let requestOptions = {
         method: 'POST',
-        headers: myHeaders,
+        // headers: myHeaders,
         body: formdata,
         redirect: 'follow'
     };
@@ -253,4 +260,20 @@ async function getDataCart() {
     } catch (e) {
         return [];
     }
+}
+// kiểm tra dữ liệu giỏ hàng với dữ liệu db
+function checkDataCart(dataLC, dataDB) {
+    let arrLength = dataLC.length;
+    for (let i = 0; i < arrLength; i++) {
+        if (dataDB[i].length != undefined) {
+            dataDB.splice(i, 1);
+            dataLC.splice(i, 1);
+            continue;
+        }
+        if (dataDB[i]['gia'] != dataLC[i]['gia']) {
+            dataLC[i]['gia'] = dataDB[i]['gia'];
+        }
+    }
+    saveCart(dataLC);
+    return dataDB;
 }
