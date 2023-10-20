@@ -21,6 +21,15 @@
         public function index(){
             echo 'khong có gì';
         }
+        // thêm đơn hàng
+        public function addProduct(){
+            $res = $this->productModel->addProduct($_POST, $_FILES);
+            if ($res){
+                http_response_code(200);
+            } else{
+                http_response_code(400);
+            }
+        }
         // đổi trạng thái đơn hàng
         public function changeStatus(){
             $this->orderModel->changeStatusOrder($_POST['id'], $_POST['status']);

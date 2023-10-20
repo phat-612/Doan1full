@@ -202,10 +202,11 @@ async function loadCartPage() {
     let cartLC = loadCart();
     cartDB = checkDataCart(cartLC, cartDB);
     cartLC = loadCart();
+    console.log(cartDB);
     cartDB.forEach((pro, ind) => {
         let htmlIn = `<div class="card_item" idctsp="${pro["id"]}">
     <div class="photo_product">
-      <img src="./access/img/product/aothuntruoc.jpg" alt="">
+      <img src="${pro['hinhanh']}" alt="">
     </div>
     <div class="cont_right">
       <div class="card_title_dlt">
@@ -237,8 +238,6 @@ async function loadCartPage() {
 // lấy dữ liệu các sản phẩm trong giỏ hàng từ db
 async function getDataCart() {
     let dataCart = loadCart();
-    // let myHeaders = new Headers();
-    // myHeaders.append("Cookie", "PHPSESSID=3b59oun5flimj73i29lj8dnhau");
 
     let formdata = new FormData();
     dataCart.forEach((pro, ind) => {
@@ -248,7 +247,6 @@ async function getDataCart() {
     })
     let requestOptions = {
         method: 'POST',
-        // headers: myHeaders,
         body: formdata,
         redirect: 'follow'
     };
