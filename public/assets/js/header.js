@@ -1,11 +1,11 @@
 // khai báo biến
 const search_icon = document.querySelector(".search_btn");
 const search_input = document.querySelector(".search_btn input");
-const inpNumberPros = document.querySelectorAll(".myInput");
 const btnCart = document.querySelector(".js_cart");
 const mdCart = document.querySelector(".bg_shopping_bag");
 const mdCartClose = document.querySelector(".close_btn");
 const eleTotalPay = document.querySelector(".card_sub .num_price");
+let inpNumberPros = document.querySelectorAll(".myInput");
 let btnPlusPros = document.querySelectorAll(".js_plus");
 let btnMinusPros = document.querySelectorAll(".js_minus");
 let btnDeletePros = document.querySelectorAll(".js_dlt_pro");
@@ -60,55 +60,60 @@ document.querySelector(".bg_shopping_bag").addEventListener("click", (e) => {
     mdCart.style.display = "none";
 });
 // xử lý trong model giỏ hàng
-btnMinusPros.forEach((btnMinusPro) => {
-    btnMinusPro.addEventListener("click", (e) => {
-        let inpNumber = e.target.closest(".amount").querySelector(".myInput");
-        inpNumber.value = parseInt(inpNumber.value) - 1;
-        if (parseInt(inpNumber.value) <= 0) {
-            let cfDelPro = confirm("Bạn muốn xóa sản phẩm này không?");
-            if (cfDelPro) {
-                e.target.closest(".card_item").remove();
-            } else {
-                inpNumber.value = 1;
-            }
-            inpNumber.dispatchEvent(new Event("change"));
-        }
-        totalPay();
-    });
-});
-btnPlusPros.forEach((btnPlusPro) => {
-    btnPlusPro.addEventListener("click", (e) => {
-        let inpNumber = e.target.closest(".amount").querySelector(".myInput");
-        inpNumber.value = parseInt(inpNumber.value) + 1;
-        inpNumber.dispatchEvent(new Event("change"));
-        totalPay();
-    });
-});
-btnDeletePros.forEach((btnDeletePro) => {
-    btnDeletePro.addEventListener("click", (e) => {
-        let cfDelPro = confirm("Bạn muốn xóa sản phẩm này không?");
-        if (cfDelPro) {
-            e.target.closest(".card_item").remove();
+console.log('thêm sự kiện cho các nút');
 
-            totalPay();
-        }
-    });
-});
 // thay đổi trong localStorage
-inpNumberPros.forEach((inpQua) => {
-    inpQua.addEventListener("change", (e) => {
-        editCartQua(
-            "change",
-            e.target.closest(".card_item").getAttribute("idctsp"),
-            parseInt(e.target.value)
-        );
-    });
-});
+
 // function
 function loadEleCart() {
+    inpNumberPros = document.querySelectorAll(".myInput");
     btnPlusPros = document.querySelectorAll(".js_plus");
     btnMinusPros = document.querySelectorAll(".js_minus");
     btnDeletePros = document.querySelectorAll(".js_dlt_pro");
+    btnMinusPros.forEach((btnMinusPro) => {
+        btnMinusPro.addEventListener("click", (e) => {
+            let inpNumber = e.target.closest(".amount").querySelector(".myInput");
+            inpNumber.value = parseInt(inpNumber.value) - 1;
+            if (parseInt(inpNumber.value) <= 0) {
+                let cfDelPro = confirm("Bạn muốn xóa sản phẩm này không?");
+                if (cfDelPro) {
+                    e.target.closest(".card_item").remove();
+                } else {
+                    inpNumber.value = 1;
+                }
+                inpNumber.dispatchEvent(new Event("change"));
+            }
+            totalPay();
+        });
+    });
+    btnPlusPros.forEach((btnPlusPro) => {
+        btnPlusPro.addEventListener("click", (e) => {
+            console.log('nut cong');
+            let inpNumber = e.target.closest(".amount").querySelector(".myInput");
+            inpNumber.value = parseInt(inpNumber.value) + 1;
+            inpNumber.dispatchEvent(new Event("change"));
+            totalPay();
+        });
+    });
+    btnDeletePros.forEach((btnDeletePro) => {
+        btnDeletePro.addEventListener("click", (e) => {
+            let cfDelPro = confirm("Bạn muốn xóa sản phẩm này không?");
+            if (cfDelPro) {
+                e.target.closest(".card_item").remove();
+                totalPay();
+            }
+        });
+    });
+    inpNumberPros.forEach((inpQua) => {
+        inpQua.addEventListener("change", (e) => {
+            console.log('da thay doi gia tri');
+            editCartQua(
+                "change",
+                e.target.closest(".card_item").getAttribute("idctsp"),
+                parseInt(e.target.value)
+            );
+        });
+    });
 }
 function totalPay() {
     // vấn đề class total pay
@@ -191,7 +196,7 @@ async function loadCartPage() {
     let cartDB = await getDataCart();
     let cartLC = loadCart();
     cartDB.forEach((pro, ind) => {
-        let htmlIn = `<div class="card_item" idctsp="${pro["idchitietsanpham"]}">
+        let htmlIn = `<div class="card_item" idctsp="${pro["id"]}">
     <div class="photo_product">
       <img src="./access/img/product/aothuntruoc.jpg" alt="">
     </div>
@@ -221,6 +226,7 @@ async function loadCartPage() {
     });
     loadEleCart();
     totalPay();
+    console.log('load cart page thành công');
 }
 async function getDataCart() {
     let dataCart = loadCart();
