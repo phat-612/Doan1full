@@ -21,7 +21,7 @@
         public function index(){
             echo 'khong có gì';
         }
-        // thêm đơn hàng
+        // thêm sản phẩm
         public function addProduct(){
             $res = $this->productModel->addProduct($_POST, $_FILES);
             if ($res){
@@ -45,6 +45,7 @@
             }
             
         }
+        // thay đổi các giá trị thuộc tính của sản phẩm
         public function changeDetailValue(){
             $res = $this->productModel->updateDetailValue($_POST['name'], $_POST['value'], $_POST['id']);
             if ($res){
@@ -54,6 +55,7 @@
             }
             
         }
+        // xóa các giá trị thuộc tính của sản phẩm
         public function deleteDetailValue(){
             $res = $this->productModel->deleteDetailValue($_POST['name'], $_POST['id']);
             if ($res){
@@ -63,6 +65,7 @@
             }
             
         }
+        // thêm đơn hàng
         public function addOrder(){
             $res = $this->orderModel->addOrder($_POST);
             if ($res){
@@ -71,8 +74,8 @@
                 http_response_code(400);
             }
         }
+        // lấy dữ liệu cho trang giỏ hàng
         public function getDataCart(){
-            // inmang($_POST,true);
             $res = $this->cartModel->getDataCart($_POST['cart']);
             if ($res){
                 http_response_code(200);

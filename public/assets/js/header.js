@@ -9,14 +9,13 @@ let inpNumberPros = document.querySelectorAll(".myInput");
 let btnPlusPros = document.querySelectorAll(".js_plus");
 let btnMinusPros = document.querySelectorAll(".js_minus");
 let btnDeletePros = document.querySelectorAll(".js_dlt_pro");
-// code ví dụ render ra sản phẩm giỏ hàng
 
-if (loadCart().length > 0) {
-    loadCartPage();
-} else {
-}
+
 
 // sự kiện chạy khi load web
+if (loadCart().length > 0) {
+    loadCartPage();
+}
 totalPay();
 // xử lý sự kiện nút tìm kiếm
 search_input.addEventListener("click", (e) => {
@@ -44,7 +43,7 @@ inpNumberPros.forEach((element) => {
         }
     });
 });
-// xử lý mở giỏ hàng
+// xử lý mở, đóng giỏ hàng
 btnCart.addEventListener("click", (e) => {
     e.preventDefault();
     mdCart.style.display = "block";
@@ -60,9 +59,9 @@ document.querySelector(".bg_shopping_bag").addEventListener("click", (e) => {
 });
 
 
-// thay đổi trong localStorage
 
-// function
+// --------------------------function---------------------------------------
+// cập nhật các nút control sản phẩm và thêm sự kiện cho các nút
 function loadEleCart() {
     inpNumberPros = document.querySelectorAll(".myInput");
     btnPlusPros = document.querySelectorAll(".js_plus");
@@ -72,6 +71,7 @@ function loadEleCart() {
         btnMinusPro.addEventListener("click", (e) => {
             let inpNumber = e.target.closest(".amount").querySelector(".myInput");
             inpNumber.value = parseInt(inpNumber.value) - 1;
+            inpNumber.dispatchEvent(new Event("change"));
             if (parseInt(inpNumber.value) <= 0) {
                 let cfDelPro = confirm("Bạn muốn xóa sản phẩm này không?");
                 if (cfDelPro) {
@@ -83,13 +83,13 @@ function loadEleCart() {
                 } else {
                     inpNumber.value = 1;
                 }
-                inpNumber.dispatchEvent(new Event("change"));
             }
             totalPay();
         });
     });
     btnPlusPros.forEach((btnPlusPro) => {
         btnPlusPro.addEventListener("click", (e) => {
+            // console.log('tăng số lượng');
             let inpNumber = e.target.closest(".amount").querySelector(".myInput");
             inpNumber.value = parseInt(inpNumber.value) + 1;
             inpNumber.dispatchEvent(new Event("change"));
@@ -120,6 +120,7 @@ function loadEleCart() {
         });
     });
 }
+// tính tổng tiền, kiểm tra tình trạng giỏ hàng, cập số nhỏ ở icon
 function totalPay() {
     // vấn đề class total pay
     let eleAmountPrices = document.querySelectorAll(".amount_price");
@@ -160,16 +161,8 @@ function totalPay() {
 
 */
 // xử lý thêm sửa xóa sản phẩm trong giỏ hàng
-function addCart(idchitietsanpham, soluong, gia) {
-    let cart = loadCart();
-    console.log(cart);
-    cart.push({
-        idchitietsanpham,
-        soluong,
-        gia,
-    });
-    saveCart(cart);
-}
+
+// chỉnh sửa giỏ hàng (đổi số lượng hoặc xóa)
 function editCartQua(action, idchitietsanpham = -1, soluong = 1) {
     let cart = loadCart();
     if (action == "change" && idchitietsanpham != -1) {
@@ -185,9 +178,11 @@ function editCartQua(action, idchitietsanpham = -1, soluong = 1) {
         saveCart(cart);
     }
 }
+// lưu giỏ hàng (chuyển từ mảng thành chuỗi)
 function saveCart(cart) {
     localStorage.setItem("cart", JSON.stringify(cart));
 }
+// lấy dữ liệu trong giỏ hàng (chuyển từ chuỗi sang mảng)
 function loadCart() {
     let cart = localStorage.getItem("cart");
     if (cart) {
@@ -202,7 +197,7 @@ async function loadCartPage() {
     let cartLC = loadCart();
     cartDB = checkDataCart(cartLC, cartDB);
     cartLC = loadCart();
-    console.log(cartDB);
+    // console.log(cartDB); 
     cartDB.forEach((pro, ind) => {
         let htmlIn = `<div class="card_item" idctsp="${pro["id"]}">
     <div class="photo_product">
@@ -268,10 +263,74 @@ function checkDataCart(dataLC, dataDB) {
             dataLC.splice(i, 1);
             continue;
         }
+        // kiểm tra giá
         if (dataDB[i]['gia'] != dataLC[i]['gia']) {
             dataLC[i]['gia'] = dataDB[i]['gia'];
+        }
+        // kiểm tra số lượng
+        if (dataDB[i]['soluong'] < dataLC[i]['soluong']) {
+            dataLC[i]['soluong'] = parseInt(dataDB[i]['soluong'])
+            alert('Số lượng một số sản phẩm đã bị thay đổi do tồn kho bị giới hạn')
         }
     }
     saveCart(dataLC);
     return dataDB;
+}
+
+
+
+
+// ----------------------------js của trang chi tiết sản phẩm------------------------------------
+// -------------------------function----------------------------------
+// kiểm tra sản phẩm trong giỏ, nếu có thì cộng dồn vào
+function addCart(idchitietsanpham, soluong, gia) {
+    let cart = loadCart();
+    for (let i = 0; i < cart.length; i++) {
+        if (cart[i]['idchitietsanpham'] == idchitietsanpham) {
+            cart[i]['soluong'] += parseInt(soluong)
+            saveCart(cart);
+            return true;
+        }
+    }
+    cart.push({
+        idchitietsanpham,
+        soluong,
+        gia,
+    });
+    saveCart(cart);
+    return true;
+}
+// -----------------------js trang đặt hàng--------------------
+// -------------------------function----------------------------------
+function addOrder() {
+
+    let formdata = new FormData();
+    formdata.append("ghichu", "giao nhanh len");
+    formdata.append("tongtien", "1200000");
+    formdata.append("khachhang[hoten]", "Dương Minh luân 211023");
+    formdata.append("khachhang[sodienthoai]", "0123456789");
+    formdata.append("khachhang[diachi]", "an hoa can tho");
+    formdata.append("khachhang[email]", "0917916496luan@gmail.com");
+    formdata.append("chitietdonhang[0][idchitietsanpham]", "9");
+    formdata.append("chitietdonhang[0][soluong]", "7");
+    formdata.append("chitietdonhang[0][gia]", "60000");
+    formdata.append("chitietdonhang[1][idchitietsanpham]", "20");
+    formdata.append("chitietdonhang[1][soluong]", "4");
+    formdata.append("chitietdonhang[1][gia]", "1234567");
+
+    let requestOptions = {
+        method: 'POST',
+        body: formdata,
+        redirect: 'follow'
+    };
+
+    fetch("http://localhost/doan1full/api/addOrder", requestOptions)
+        .then(response => {
+            if (response.status == 200) {
+                alert('Đặt hàng thành công');
+            } else {
+                alert('Đặt hàng thất bại do lỗi gì đó');
+            }
+        })
+        .catch(error => alert('Đặt hàng lỗi tư lúc gủi xe'));
 }
