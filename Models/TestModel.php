@@ -36,28 +36,46 @@
             // print_r($size);
         }
         // lấy dữ liệu trang sản phẩm
-        // không biết tác dụng hàm này
         public function getDataProduct($id=''){
             $sql1 = "SELECT sp.id , sp.ten , sp.mota , sp.gia 
             FROM  sanpham AS sp WHERE sp.id = '$id'";
             $sql2 = "SELECT kt.kichthuoc,ms.mausac,ct.soluong
-            FROM chitietsanpham ct,mausac ms,kichthuoc kt,sanpham sp 
-            WHERE ms.id = ct.idsanpham AND kt.id = ct.idsanpham AND ct.idsanpham = sp.id AND sp.id ='$id'";
-            $sql3 = "SELECT DISTINCT ha.hinhanh
-            FROM chitietsanpham ct,sanpham sp ,hinhanh ha
-            WHERE sp.id = ct.idsanpham and sp.id = ha.idsanpham and ha.idsanpham ='$id'";
+            FROM chitietsanpham ct,mausac ms,kichthuoc kt
+            WHERE ct.idmausac = ms.id AND ct.idkichthuoc = kt.id AND ct.idsanpham ='$id'";
+            $sql3 = "SELECT ha.hinhanh
+            FROM hinhanh ha
+            WHERE ha.idsanpham ='$id'";
             $query1 = $this->select_by_sql($sql1);
-            $query2=$this->select_by_sql($sql2);
-            $query3=$this->select_by_sql($sql3);
             if (!$query1){
                 return false;
             }
-            foreach ($query1 as $value) {
-                $query1[0]['chitietsanpham'] = $this->arr2to1($query2);
-                $query1[0]['hinhanh']= $this->arr2to1($query3,true);  
-            }
-            return $query1;
+            $query2=$this->select_by_sql($sql2);
+            $query3=$this->select_by_sql($sql3);
+                $query1[0]['chitietsanpham'] = $query2;
+                $query1[0]['hinhanh']= $this->arr2to1($query3,true);
+                return $query1;
         }
+        // lấy thông tin trang chi tiết sản phẩm
+        // public function getDetailProduct($id){
+        //     $res = [];
+        //     if (!$id){
+        //         return false;
+        //     }
+        //     // lấy thông tin sản phẩm
+        //     $query = $this->select('sanpham', 'id, ten, mota, gia', "id = '$id'");
+        //     if (!$query){
+        //         return false;
+        //     } else{
+        //         $res = $this->arr2to1($query);
+        //     }
+        //     // lấy thông tin chi tiết
+        //     $query = $this->select('chitietsanpham c, mausac m, kichthuoc k', 'm.mausac, k.kichthuoc, c.soluong', "c.idsanpham = '$id' and c.idmausac = m.id and c.idkichthuoc = k.id");
+        //     $res['chitietsanpham']=$query;
+        //     // lấy hình ảnh
+        //     $query = $this->select('hinhanh', 'hinhanh', "idsanpham = '$id'");
+        //     $res['hinhanh'] = $this->arr2to1($query, true);
+        //     return $res; 
+        // }
         // lấy dữ liệu trang đơn hàng
         // chưa hoàn thành, tham số giống như trang lấy dữ liệu cho trang sản phẩm
         public function getDataOrder($id='') {
@@ -67,7 +85,7 @@
             $sql2 = "SELECT DISTINCT sp.ten , kt.kichthuoc , ms.mausac , ctdh.gia, ctdh.soluong 
             FROM sanpham sp , donhang dh , chitietdonhang ctdh,kichthuoc kt,mausac ms,chitietsanpham ct
             WHERE ct.idsanpham = ms.id AND ct.idsanpham = kt.id AND sp.id = ct.idsanpham 
-            AND dh.id = ctdh.iddonhang  AND sp.id=dh.id AND dh.id='$id'";
+            AND dh.id = ctdh.iddonhang AND sp.id=dh.id AND dh.id='$id'";
             $query1 = $this->select_by_sql($sql1);
             $query2 = $this->select_by_sql($sql2);
             if (!$query1){
@@ -75,24 +93,26 @@
             }
             foreach ($query1 as  $value) {
                 $query1[0]['chitietdonhang'] =$this->arr2to1($query2);
-            }      
+            }  
+            inmang($query1);   
             return $query1;
         }
         // lấy dữ liêu trang chủ
         // chưa hoàn thành còn 3 tham số chưa được sử dụng
-        public function getPageDataProduct($collection='',$category='', $sort='ten', $page='1', $limit='15'){
-            $sql1= "SELECT sp.id,sp.ten ,sp.gia 
-            FROM sanpham as sp
-            limit $limit offset ".(($page-1)*$limit).";";
-            $query1 = $this->select_by_sql($sql1);
-            foreach ($query1 as $key => $value) {
-                $sql2 = "SELECT hinhanh 
-                FROM hinhanh , sanpham as sp
-                WHERE hinhanh.idsanpham = sp.id AND sp.id=".$value['id']." limit 2";
-                $query2= $this->select_by_sql($sql2);
-                $query1[$key]['hinhanh']=$this->arr2to1 ($query2, true);  
-            } 
-            // return $query1;
-        }
+        // public function getPageDataProduct($collection='',$category='', $sort='ten', $page='1', $limit='15'){
+        //     $sql1= "SELECT sp.id,sp.ten ,sp.gia 
+        //     FROM sanpham as sp
+        //     limit $limit offset ".(($page-1)*$limit).";";
+        //     $query1 = $this->select_by_sql($sql1);
+        //     foreach ($query1 as $key => $value) {
+        //         $sql2 = "SELECT hinhanh 
+        //         FROM hinhanh , sanpham as sp
+        //         WHERE hinhanh.idsanpham = sp.id AND sp.id=".$value['id']." limit 2";
+        //         $query2= $this->select_by_sql($sql2);
+        //         $query1[$key]['hinhanh']=$this->arr2to1 ($query2, true);  
+        //     } 
+        //     // return $query1;
+        // }
+        
     }
 ?>

@@ -43,14 +43,14 @@
             echo $this->testModel->getSizes();
         }
         public function data(){
-          echo $this->testModel->getDataProduct('1');
+          inmang($this->testModel->getDataProduct($_POST['id'])) ;
         }
         public function dataOrder(){
-            echo $this->testModel->getDataOrder('2');
+            echo $this->testModel->getDataOrder($_POST['id']);
         }
-        public function dataPageProduct(){
-            inmang($this->testModel->getPageDataProduct());
-        }
+        // public function dataPageProduct(){
+        //     inmang($this->testModel->getPageDataProduct());
+        // }
         public function themKt(){
             if ($this->producModel->deleteDetailValue('kichthuoc', $_POST['id'])){
                 echo 'da them';
@@ -66,5 +66,13 @@
                 http_response_code(400);
             }
         }
+        // public function layCT(){
+        //     $res = $this->testModel->getDetailProduct($_POST['id']);
+        //     inmang($res);
+        // }
+        // public function layDSSP(){
+        //     $res = $this->testModel->getListProduct($_POST['bosuutap'],$_POST['danhmuc'], 'id', $_POST['page'], 5);
+        //     inmang($res);
+        // }
     }
 ?>

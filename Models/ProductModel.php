@@ -137,6 +137,37 @@
                 return false;
             }
         }
+        public function getListProduct($collection='',$category='', $sort='ten', $page='1', $limit='15'){
+            $output = [];
+            $sql = "SELECT s.id, s.ten, s.gia FROM sanpham s
+            LEFT JOIN chitietbosuutap cb ON s.id = cb.idsanpham
+            LEFT JOIN danhmuc d ON s.iddanhmuc = d.id
+            LEFT JOIN bosuutap b ON b.id = cb.idbosuutap";
+            if ($collection){
+                $sql .= " WHERE b.bosuutap = '$collection'";
+                if ($category){
+                    $sql .= " AND d.danhmuc = '$category'";
+                }
+            } else {
+                if ($category){
+                    $sql .= " WHERE d.danhmuc = '$category'";
+                }
+            }
+            $sql .= " GROUP by s.id
+            ORDER by s.$sort
+            LIMIT $limit
+            OFFSET ".($page-1)*$limit;
+            $query = $this->select_by_sql($sql);
+            if (!$query){
+                return false;
+            }
+            foreach ($query as $key => $value) {
+                $imgs = $this->select('hinhanh', 'hinhanh', "idsanpham = '".$value['id']."'");
+                $output[$key] = $value;
+                $output[$key]['hinhanh'] = $this->arr2to1($imgs, true);
+            }
+            return $output;
+        }
         public function deleteImgProduct($id){
             $query = $this->arr2to1($this->select('hinhanh', 'hinhanh', "idsanpham = $id"), true);
             if (!$query){
