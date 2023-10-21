@@ -43,10 +43,10 @@
             echo $this->testModel->getSizes();
         }
         public function data(){
-          echo $this->testModel->getDataProduct('2');
+          echo $this->testModel->getDataProduct('1');
         }
         public function dataOrder(){
-            echo $this->testModel->getDataOrder('4');
+            echo $this->testModel->getDataOrder('2');
         }
         public function dataPageProduct(){
             inmang($this->testModel->getPageDataProduct());
