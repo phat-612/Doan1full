@@ -2,19 +2,22 @@
 
     class TestController extends BaseController{
         private $orderModel;
-        private $producModel;
+        private $productModel;
         private $userModel;
         private $testModel;
+        private $sliderModel;
         public function __construct()
         {
-            $this -> importModel('OrderModel');
+            $this->importModel('OrderModel');
             $this->importModel('ProductModel');
             $this->importModel('UserModel');
             $this->importModel('TestModel');
+            $this->importModel('SliderModel');
             $this ->orderModel = new OrderModel();
-            $this->producModel = new ProductModel();
+            $this->productModel = new ProductModel();
             $this->userModel = new UserModel();
             $this->testModel = new TestModel();
+            $this->sliderModel = new SliderModel();
         }
         public function index(){
         }
@@ -31,10 +34,10 @@
             echo $this->orderModel->totalRevenue('Thành công','2023-10-04','2023-12-20');
         }
         public function themsp(){
-            $this->producModel->addProduct($_POST, $_FILES);
+            $this->productModel->addProduct($_POST, $_FILES);
         }
         public function suasp(){
-            $this->producModel->updateProduct($_POST, $_FILES, $_POST['id']);
+            $this->productModel->updateProduct($_POST, $_FILES, $_POST['id']);
         }
         public function product(){
             echo $this->testModel->getProduct();
@@ -43,16 +46,19 @@
             echo $this->testModel->getSizes();
         }
         public function data(){
-          inmang($this->testModel->getDataProduct($_POST['id'])) ;
+          inmang($this->testModel->getDataProduct($_POST['id']));
         }
         public function dataOrder(){
-            echo $this->testModel->getDataOrder($_POST['id']);
+           inmang($this->testModel->getDataOrder($_POST['id']));
+        }
+        public function get_ALL(){
+            inmang($this->testModel->getAll($_POST['mausac,kichthuoc']));
         }
         // public function dataPageProduct(){
         //     inmang($this->testModel->getPageDataProduct());
         // }
         public function themKt(){
-            if ($this->producModel->deleteDetailValue('kichthuoc', $_POST['id'])){
+            if ($this->productModel->deleteDetailValue('kichthuoc', $_POST['id'])){
                 echo 'da them';
             } else{
                 echo 'chua them';
@@ -70,9 +76,16 @@
         //     $res = $this->testModel->getDetailProduct($_POST['id']);
         //     inmang($res);
         // }
-        // public function layDSSP(){
-        //     $res = $this->testModel->getListProduct($_POST['bosuutap'],$_POST['danhmuc'], 'id', $_POST['page'], 5);
-        //     inmang($res);
-        // }
+        public function layDSSP(){
+            $res = $this->productModel->getListProduct($_POST['bosuutap'],$_POST['danhmuc'], 'id', $_POST['page'], 5, $_POST['tim']);
+            inmang($res);
+        }
+        public function layslider(){
+            $res = $this->sliderModel->getSlider();
+            inmang($res);
+        }
+        public function guimail(){
+            $res = $this->userModel->sendOrderToEmail($_POST['email']);
+        }
     }
 ?>

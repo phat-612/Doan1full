@@ -6,9 +6,9 @@
             extract($data);
             return include "Views/$path.php";
         }
-        public function importModel($path)
+        public function importModel($nameModel)
         {
-            return include "Models/$path.php";
+            return include "Models/$nameModel.php";
         }
         public function gotoPage($path){
             return header('Location: '. _WEB_ROOT . '/' . $path);

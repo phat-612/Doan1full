@@ -5,6 +5,7 @@ const btnCart = document.querySelector(".js_cart");
 const mdCart = document.querySelector(".bg_shopping_bag");
 const mdCartClose = document.querySelector(".close_btn");
 const eleTotalPay = document.querySelector(".card_sub .num_price");
+const imgSliders = document.querySelectorAll(".img_slider_js");
 let inpNumberPros = document.querySelectorAll(".myInput");
 let btnPlusPros = document.querySelectorAll(".js_plus");
 let btnMinusPros = document.querySelectorAll(".js_minus");
@@ -17,6 +18,7 @@ if (loadCart().length > 0) {
     loadCartPage();
 }
 totalPay();
+autoSlider(1);
 // xử lý sự kiện nút tìm kiếm
 search_input.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -57,8 +59,18 @@ document.querySelector(".shopping_bag").addEventListener("click", (e) => {
 document.querySelector(".bg_shopping_bag").addEventListener("click", (e) => {
     mdCart.style.display = "none";
 });
-
-
+// xử lý slider
+function autoSlider(showId) {
+    imgSliders.forEach(slider => {
+        slider.classList.remove("active");
+    });
+    imgSliders[showId].classList.add("active");
+    showId++;
+    if (showId > imgSliders.length - 1) {
+        showId = 0;
+    }
+    setTimeout(autoSlider, 2000, showId);
+}
 
 // --------------------------function---------------------------------------
 // cập nhật các nút control sản phẩm và thêm sự kiện cho các nút

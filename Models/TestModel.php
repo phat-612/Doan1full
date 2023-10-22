@@ -35,7 +35,7 @@
             $size =$this->arr2to1($this-> select('kichthuoc','kichthuoc'),true);
             // print_r($size);
         }
-        // lấy dữ liệu trang sản phẩm
+        // lấy dữ liệu trang chi tiết sản phẩm
         public function getDataProduct($id=''){
             $sql1 = "SELECT sp.id , sp.ten , sp.mota , sp.gia 
             FROM  sanpham AS sp WHERE sp.id = '$id'";
@@ -53,7 +53,7 @@
             $query3=$this->select_by_sql($sql3);
                 $query1[0]['chitietsanpham'] = $query2;
                 $query1[0]['hinhanh']= $this->arr2to1($query3,true);
-                return $query1;
+                return $this->arr2to1($query1);
         }
         // lấy thông tin trang chi tiết sản phẩm
         // public function getDetailProduct($id){
@@ -76,26 +76,34 @@
         //     $res['hinhanh'] = $this->arr2to1($query, true);
         //     return $res; 
         // }
-        // lấy dữ liệu trang đơn hàng
-        // chưa hoàn thành, tham số giống như trang lấy dữ liệu cho trang sản phẩm
+        // lấy dữ liệu chi tiết trang đơn hàng
         public function getDataOrder($id='') {
             $sql1 = "SELECT kh.hoten, kh.sodienthoai ,kh.diachi , kh.email , dh.ghichu,dh.tongtien,dh.trangthai,dh.thoigian 
             FROM donhang dh ,khachhang kh 
-            WHERE kh.id=dh.id and dh.id='$id'"; 
-            $sql2 = "SELECT DISTINCT sp.ten , kt.kichthuoc , ms.mausac , ctdh.gia, ctdh.soluong 
-            FROM sanpham sp , donhang dh , chitietdonhang ctdh,kichthuoc kt,mausac ms,chitietsanpham ct
-            WHERE ct.idsanpham = ms.id AND ct.idsanpham = kt.id AND sp.id = ct.idsanpham 
-            AND dh.id = ctdh.iddonhang AND sp.id=dh.id AND dh.id='$id'";
-            $query1 = $this->select_by_sql($sql1);
+            WHERE kh.id = dh.idkhachhang AND dh.id='$id'"; 
+            $sql2 = "SELECT sp.ten , kt.kichthuoc , ms.mausac , ctdh.gia, ctdh.soluong 
+            FROM sanpham sp ,chitietdonhang ctdh, kichthuoc kt,mausac ms ,chitietsanpham ctsp ,donhang dh
+            WHERE ms.id = ctsp.idmausac AND kt.id =ctsp.idkichthuoc AND ctdh.idchitietsanpham =ctsp.id AND dh.id = ctdh.iddonhang 
+            AND sp.id =ctsp.idsanpham AND ctdh.iddonhang='$id'";
+            $query1 = $this->select_by_sql($sql1,);
             $query2 = $this->select_by_sql($sql2);
             if (!$query1){
-                return "đơn hàng không tồn tại";
+                return false;
             }
-            foreach ($query1 as  $value) {
-                $query1[0]['chitietdonhang'] =$this->arr2to1($query2);
-            }  
-            inmang($query1);   
-            return $query1;
+            foreach ($query2 as $key => $value) {
+                $sql3="select hinhanh.hinhanh from hinhanh limit 1";
+                $query3 = $this->select_by_sql($sql3);
+                $query2[$key]['hinhanh']=$this->arr2to1($query3);
+            }
+            $query1[0]['chitietdonhang'] =$query2; 
+                return $this->arr2to1($query1);         
+        }   
+        public function getAll($color='',$size=''){
+            $sql1 ="select mausac from mausac WHERE mausac ='$color'";
+            $sql2 = "select kichthuoc from kichthuoc where kichthuoc='$size'";
+            $query1 = $this->select_by_sql($sql1);
+            $query2 = $this->select_by_sql($sql2);
+            inmang($query2);
         }
         // lấy dữ liêu trang chủ
         // chưa hoàn thành còn 3 tham số chưa được sử dụng
@@ -113,6 +121,5 @@
         //     } 
         //     // return $query1;
         // }
-        
     }
 ?>

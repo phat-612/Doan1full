@@ -6,7 +6,7 @@
     //Load Composer's autoloader
     require 'vendor/autoload.php';
     class UserModel extends BaseModel{
-        public function creatOtp($email, $dataOrder){
+        public function sendOrderToEmail($email, $dataOrder = []){
             /*
                 [
                     [
@@ -24,15 +24,7 @@
             if (!($this->isExistEmail($email))){
                 return false;
             }
-            $dataEmail = "
-
-            ";
             $mail = new PHPMailer(true);
-            $otp = $this->randomCode();
-            $data = [
-                'email' => $email,
-                'otp' => $otp,
-            ];
             try {
                 
                 //Server settings
@@ -50,16 +42,13 @@
 
                 // Cấu hình nội dung email
                 $mail->isHTML(true);
-                $mail->Subject ='=?UTF-8?B?' . base64_encode('Xác nhận đăng nhập') . '?=';
-                $mail->Body = "Mã xác nhận của bạn là $otp"; // Nội dung email
+                $mail->Subject ='=?UTF-8?B?' . base64_encode('Thông tin đơn hàng bạn đã đặt') . '?=';
+                $mail->Body = "<h1>Xin chào</h1>"; // Nội dung email
 
                 // Gửi email và kiểm tra kết quả
                 if (!$mail->send()) {
                     return false;
                 } else {
-                    $this->delete('xacnhanemail', "email = '$email'");
-                    $this->create('xacnhanemail', $data);
-                    $_SESSION['tempEmail'] = $_POST['email'];
                     return true;
                 }
             } catch (Exception $e) {
@@ -124,7 +113,7 @@
             return $decrypted;
         }
         public function isExistEmail($mail){
-            $query = $this->select('nguoidung', 'id', "mail = '$mail'");
+            $query = $this->select('khachhang', 'id', "email = '$mail'");
             if ($query){
                 return true;
             }

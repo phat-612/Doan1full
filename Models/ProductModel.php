@@ -137,21 +137,18 @@
                 return false;
             }
         }
-        public function getListProduct($collection='',$category='', $sort='ten', $page='1', $limit='15'){
+        public function getListProduct($collection='',$category='', $sort='ten', $page='1', $limit='15', $find = ''){
             $output = [];
             $sql = "SELECT s.id, s.ten, s.gia FROM sanpham s
             LEFT JOIN chitietbosuutap cb ON s.id = cb.idsanpham
             LEFT JOIN danhmuc d ON s.iddanhmuc = d.id
-            LEFT JOIN bosuutap b ON b.id = cb.idbosuutap";
+            LEFT JOIN bosuutap b ON b.id = cb.idbosuutap
+            WHERE s.ten like '%$find%'";
             if ($collection){
-                $sql .= " WHERE b.bosuutap = '$collection'";
-                if ($category){
-                    $sql .= " AND d.danhmuc = '$category'";
-                }
-            } else {
-                if ($category){
-                    $sql .= " WHERE d.danhmuc = '$category'";
-                }
+                $sql .= " AND b.bosuutap = '$collection'";
+            }
+            if ($category){
+                $sql .= " AND d.danhmuc = '$category'";
             }
             $sql .= " GROUP by s.id
             ORDER by s.$sort

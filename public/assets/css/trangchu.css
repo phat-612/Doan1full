@@ -7,9 +7,13 @@
 }
 
 #container .slider img {
-    display: block;
+    display: none;
     width: 100%;
     height: 585px;
+}
+
+#container .slider img.active {
+    display: block;
 }
 
 #container .product_heading {

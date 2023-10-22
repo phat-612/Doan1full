@@ -1,6 +1,11 @@
+
 <div class="slider">
     <div class="slider_img">
-        <img src="./access/img/Slider/slider2.jpg" alt="" />
+        <?php 
+            foreach ($sliders as $slider) {
+                echo "<img class='img_slider_js' src='$slider' alt='ảnh slider' />";
+            }
+        ?>
     </div>
 </div>
 <div class="product">
@@ -12,8 +17,8 @@
         <div class="product_card">
         <a href="/sanpham/chitietsanpham?id=<?php echo $product['id']?>">
             <div class="product_img">
-            <img class="before" src="<?php echo $product['hinhanh'][0]?>" alt="Ảnh sản phẩm" />
-            <img src="<?php echo $product['hinhanh'][1]?>" alt="Ảnh sản phẩm" class="after" />
+            <img class="before" src="<?php echo isset($product['hinhanh'][0])?$product['hinhanh'][0]:'public/assets/img/products/aothuntruoc.jpg';?>" alt="Ảnh sản phẩm" />
+            <img src="<?php echo isset($product['hinhanh'][1])?$product['hinhanh'][1]:'public/assets/img/products/aothunsau.jpg'; ?>" alt="Ảnh sản phẩm" class="after" />
             </div>
             <div class="card_content">
             <h5 class="product_name"><?php echo $product['ten']?></h5>
