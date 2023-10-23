@@ -16,7 +16,14 @@
         }
         // trang chủ
         public function index(){
-            $this->render('admins/trangchu');
+            $this->render('layouts/admin',[
+                'content'=> 'admins/index',
+                'title'=> 'Trang chủ',
+                'css'=> 'trangchu',
+                'subcontent'=> [
+                    
+                ]
+            ]);
             
         }
         public function login(){
@@ -61,8 +68,25 @@
             $this->userModel->adminLogout();
             $this->gotoPage('admin/login');
         }
-        public function sanpham(){
-            echo "Đây là trang quản lý sản phẩm";
+        public function product(){
+            $this->render('layouts/admin',[
+                'content'=> 'admins/sanpham',
+                'title'=> 'Quản lý sản phẩm',
+                'css'=> 'sanpham',
+                'subcontent'=> [
+                    
+                ]
+            ]);
+        }
+        public function detailProduct(){
+            $this->render('layouts/admin',[
+                'content'=> 'admins/chitietsanpham',
+                'title'=> 'Quản lý sản phẩm',
+                'css'=> 'chitietsanpham',
+                'subcontent'=> [
+                    
+                ]
+            ]);
         }
         private function _checkLogin(){
             $currentUrl = $_SERVER['REQUEST_URI'];

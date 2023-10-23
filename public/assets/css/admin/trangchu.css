@@ -1,0 +1,83 @@
+.Home-form {
+    width: 83%;
+    height: 500px;
+    background-color: rgb(210, 210, 210);
+    margin: 100px 16.5%;
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-around;
+}
+
+.left-box {
+    width: 49%;
+    height: 96%;
+    border: 1px black solid;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-around;
+}
+
+.mini-left-box {
+    height: 32%;
+    width: 98%;
+}
+
+.mini-left-box:hover {
+    background-color: rgb(210, 180, 180);
+}
+
+.mini-right-box:hover {
+    background-color: rgb(210, 180, 180);
+}
+
+#title {
+    font-weight: lighter;
+    font-size: 2rem;
+}
+
+#number {
+    font-weight: bold;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.right-box {
+    width: 49%;
+    height: 96%;
+    border: 1px black solid;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    align-content: flex-start;
+}
+
+.sel-date-box {
+    width: 38%;
+    padding: 2% 5%;
+    font-size: 1.5rem;
+}
+
+.sel-date-box input {
+    font: caption;
+}
+
+.bt {
+    width: 20%;
+    font-size: 1.5rem;
+}
+
+.bt button {
+    width: 70%;
+    height: 30%;
+    padding: 2%;
+}
+
+.mini-right-box {
+    width: 98%;
+    height: 40%;
+}

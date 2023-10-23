@@ -3,26 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="<?php echo _WEB_ROOT?>/public/assets/css/sanpham.css" />
-    <link rel="stylesheet" href="<?php echo _WEB_ROOT?>/public/assets/css/permanent.css" />
-    <link
-      href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
-      rel="stylesheet"
-    />
-    <title>Document</title>
+    <link rel="stylesheet" href="<?php echo _WEB_ROOT?>/public/assets/css/admin/admin.css" />
+    <?php 
+    if (is_array($css)){
+      foreach ($css as $value) {
+        echo "<link rel='stylesheet' href='"._WEB_ROOT."/public/assets/css/admin/$value.css' />";
+      }
+    } else{
+      echo "<link rel='stylesheet' href='"._WEB_ROOT."/public/assets/css/admin/$css.css' />";
+    }
+  ?>
+    <title><?php echo $title ?></title>
   </head>
   <body>
-    <script src="../javacript/sanpham.js"></script>
-    <div>
+    <div class="big-form">
       <div class="taskbar">
-        <div class="logo-img"><img src="/hinh anh/logo.png" alt="logo" /></div>
+        <div class="logo-img"><img src="<?php echo _WEB_ROOT?>/public/assets/img/logo.png" alt="logo" /></div>
         <div class="flex-box">
           <div class="flex">
             <a href="http://127.0.0.1:5500/html/trangchu.html">Trang chủ</a>
-          </div>
-          <div class="flex">></div>
-          <div class="flex">
-            <a href="http://127.0.0.1:5500/html/sanpham.html">Sản Phẩm</a>
           </div>
         </div>
       </div>
@@ -36,6 +35,9 @@
           </li>
           <li class="taskbar-item">
             <a href="http://127.0.0.1:5500/html/donhang.html">ĐƠN HÀNG</a>
+          </li>
+          <li class="taskbar-item">
+            <a href="http://127.0.0.1:5500/html/danhmuc.html">THÊM DANH MỤC</a>
           </li>
         </ul>
       </div>

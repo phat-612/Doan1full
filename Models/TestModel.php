@@ -98,12 +98,20 @@
             $query1[0]['chitietdonhang'] =$query2; 
                 return $this->arr2to1($query1);         
         }   
-        public function getAll($color='',$size=''){
-            $sql1 ="select mausac from mausac WHERE mausac ='$color'";
-            $sql2 = "select kichthuoc from kichthuoc where kichthuoc='$size'";
+        public function getAll($color='',$size='' ){
+            $sql1 ="select mausac from mausac ";
+            $sql2 = "select kichthuoc from kichthuoc";
             $query1 = $this->select_by_sql($sql1);
-            $query2 = $this->select_by_sql($sql2);
-            inmang($query2);
+            if ($color && $size) {
+                return $query1;
+                if($color && !$size){
+                    return $query1;
+                }
+            }
+            else{
+                $query2  = $this->select_by_sql($sql2);
+                return $query2;
+            }
         }
         // lấy dữ liêu trang chủ
         // chưa hoàn thành còn 3 tham số chưa được sử dụng

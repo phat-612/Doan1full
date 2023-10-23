@@ -18,6 +18,7 @@
                 'content'=> 'homes/index',
                 'title'=> 'Trang chủ',
                 'css'=> 'trangchu',
+                'js'=> 'trangchu',
                 'subcontent'=> [
                     'products'=>$products,
                     'sliders'=>$sliders

@@ -52,9 +52,9 @@
            inmang($this->testModel->getDataOrder($_POST['id']));
         }
         public function get_ALL(){
-            inmang($this->testModel->getAll($_POST['mausac,kichthuoc']));
+            inmang($this->testModel->getAll($_POST['mausac'],$_POST['kichthuoc']));
         }
-        // public function dataPageProduct(){
+        // public function dataPageProduct(){ ,$_POST['collection'],$_POST['category']
         //     inmang($this->testModel->getPageDataProduct());
         // }
         public function themKt(){

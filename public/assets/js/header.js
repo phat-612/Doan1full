@@ -18,7 +18,7 @@ if (loadCart().length > 0) {
     loadCartPage();
 }
 totalPay();
-autoSlider(1);
+
 // xử lý sự kiện nút tìm kiếm
 search_input.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -59,18 +59,7 @@ document.querySelector(".shopping_bag").addEventListener("click", (e) => {
 document.querySelector(".bg_shopping_bag").addEventListener("click", (e) => {
     mdCart.style.display = "none";
 });
-// xử lý slider
-function autoSlider(showId) {
-    imgSliders.forEach(slider => {
-        slider.classList.remove("active");
-    });
-    imgSliders[showId].classList.add("active");
-    showId++;
-    if (showId > imgSliders.length - 1) {
-        showId = 0;
-    }
-    setTimeout(autoSlider, 2000, showId);
-}
+
 
 // --------------------------function---------------------------------------
 // cập nhật các nút control sản phẩm và thêm sự kiện cho các nút
@@ -135,7 +124,7 @@ function loadEleCart() {
 // tính tổng tiền, kiểm tra tình trạng giỏ hàng, cập số nhỏ ở icon
 function totalPay() {
     // vấn đề class total pay
-    let eleAmountPrices = document.querySelectorAll(".amount_price");
+    let eleAmountPrices = document.querySelectorAll(".cont_sbag .amount_price");
     let quaPro = eleAmountPrices.length;
     let total = 0;
     eleAmountPrices.forEach((eleAmountPrice) => {
