@@ -97,19 +97,30 @@
             }
             $query1[0]['chitietdonhang'] =$query2; 
                 return $this->arr2to1($query1);         
-        }   
-        public function getAll($color='',$size='' ){
+        }
+        // t mới xóa cái dì đó ở đây, coi lại giùm
+        public function getAll($color='',$size='',$collection='',$category=''){
             $sql1 ="select mausac from mausac ";
             $sql2 = "select kichthuoc from kichthuoc";
+            $sql3="select bosuutap from bosuutap";
+            $sql4 = "select danhmuc from danhmuc";
             $query1 = $this->select_by_sql($sql1);
-            if ($color && $size) {
-                return $query1;
+            if ($color) {
+                return $this->$query1;
             }
-            else{
-                $query2  = $this->select_by_sql($sql2);
+            elseif (!$color && $size){
+                $query2 = $this->select_by_sql($sql2);
                 return $query2;
             }
+            elseif(!$color && !$size && $collection){
+                    $query3 = $this->select_by_sql($sql3);
+                    return $query3;
+            }
+            elseif(!$color && !$size && !$collection && $category){
+                $query4 = $this->select_by_sql($sql4);
+                return $query4;
         }
+    }
         // lấy dữ liêu trang chủ
         // chưa hoàn thành còn 3 tham số chưa được sử dụng
         // public function getPageDataProduct($collection='',$category='', $sort='ten', $page='1', $limit='15'){

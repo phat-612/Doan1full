@@ -1,0 +1,162 @@
+.Billing-Infor-form {
+    width: 83%;
+    height: 500px;
+    background-color: rgb(210, 210, 210);
+    margin: 100px 16.5%;
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+header {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.mother-box {
+    border: 1px black solid;
+    width: 98%;
+    height: 85%;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-around;
+    align-content: space-around;
+    flex-wrap: wrap;
+}
+
+.Infor-form {
+    width: 55%;
+    height: 90%;
+    border: 1px black solid;
+    border-radius: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+}
+
+.name {
+    width: 48%;
+    height: 15%;
+    border: 1px black solid;
+    padding: 1%;
+}
+
+.location {
+    width: 48%;
+    height: 15%;
+    border: 1px black solid;
+    padding: 1%;
+}
+
+.P-number {
+    width: 48%;
+    height: 15%;
+    border: 1px black solid;
+    padding: 1%;
+}
+
+.mail {
+    width: 48%;
+    height: 15%;
+    border: 1px black solid;
+    padding: 1%;
+}
+
+input {
+    width: 95%;
+    margin: 2% 0% 0% 0%;
+}
+
+.status {
+    width: 98%;
+    height: 17%;
+    border: 1px black solid;
+    padding: 1%;
+}
+
+select {
+    width: 98%;
+    text-align: center;
+    font: caption;
+    margin: 1% 0% 0% 0%;
+}
+
+.note {
+    width: 98%;
+    height: 40%;
+    border: 1px black solid;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1%;
+}
+
+.note .note-area-box {
+    width: 98%;
+    height: 95%;
+    margin: 1% 0% 0% 0%;
+}
+
+.note .note-area {
+    width: 100%;
+    height: 80%;
+    resize: none;
+    padding: 0.2rem 0.2rem;
+    text-align: left;
+    font-size: 1rem;
+}
+
+.list-item {
+    width: 40%;
+    height: 90%;
+    border: 1px black solid;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: flex-start;
+    padding: 1%;
+}
+
+.li-item {
+    width: 100%;
+    height: 20%;
+    border: 1px black solid;
+    padding: 1%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.li-img {
+    width: 15%;
+    height: 98%;
+}
+
+.li-img img {
+    height: -webkit-fill-available;
+    width: -webkit-fill-available;
+}
+
+.li-item-right {
+    width: 70%;
+    height: 98%;
+    padding: 1%;
+}
+
+.li-name {
+    font-weight: bold;
+}
+
+.li-describe {
+    font-size: 0.9rem;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+}

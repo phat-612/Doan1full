@@ -81,8 +81,50 @@
         public function detailProduct(){
             $this->render('layouts/admin',[
                 'content'=> 'admins/chitietsanpham',
-                'title'=> 'Quản lý sản phẩm',
+                'title'=> 'Chi tiết sản phẩm',
                 'css'=> 'chitietsanpham',
+                'subcontent'=> [
+                    
+                ]
+            ]);
+        }
+        public function editProduct(){
+            $this->render('layouts/admin',[
+                'content'=> 'admins/chinhsuasanpham',
+                'title'=> 'Chỉnh sửa sản phẩm',
+                'css'=> 'chinhsuasanpham',
+                'js'=> 'chinhsuasanpham',
+                'subcontent'=> [
+                    
+                ]
+            ]);
+        }
+        public function addProduct(){
+            $this->render('layouts/admin',[
+                'content'=> 'admins/themsanpham',
+                'title'=> 'Thêm sản phẩm',
+                'css'=> 'themsanpham',
+                'js'=> 'themsanpham',
+                'subcontent'=> [
+                    
+                ]
+            ]);
+        }
+        public function order(){
+            $this->render('layouts/admin',[
+                'content'=> 'admins/donhang',
+                'title'=> 'Đơn hàng',
+                'css'=> 'donhang',
+                'subcontent'=> [
+                    
+                ]
+            ]);
+        }
+        public function detailOrder(){
+            $this->render('layouts/admin',[
+                'content'=> 'admins/chitietdonhang',
+                'title'=> 'Chi tiết đơn hàng',
+                'css'=> 'chitietdonhang',
                 'subcontent'=> [
                     
                 ]

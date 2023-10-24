@@ -215,7 +215,18 @@
   </div>
   <!-- js icon -->
   <script src="https://kit.fontawesome.com/0a44fda8eb.js" crossorigin="anonymous"></script>
-  <script src="<?php echo _WEB_ROOT?>/public/assets/js/header.js"></script>
+  <script src="<?php echo _WEB_ROOT?>/public/assets/js/user/header.js"></script>
+  <?php 
+    if(isset($js)){
+      if (is_array($js)){
+        foreach ($js as $value) {
+          echo "<script src='"._WEB_ROOT."/public/assets/js/user/$value.js'></script>";
+        }
+      } else {
+        echo "<script src='"._WEB_ROOT."/public/assets/js/user/$js.js'></script>";
+      }
+    }
+  ?>
 </body>
 
 </html>

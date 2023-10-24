@@ -1,0 +1,485 @@
+body {
+    background-color: white;
+}
+
+header {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.AddProduct-form {
+    width: 83%;
+    height: 950px;
+    background-color: rgb(210, 210, 210);
+    margin: 100px 16.5%;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px black;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: space-around;
+}
+
+.title-ADDPRODUCT {
+    font-size: 30px;
+    margin: 10px 10px;
+}
+
+.mother-box-Add-Product {
+    display: flex;
+    height: 60%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.General-Information-box {
+    border-radius: 8px;
+    border: 1px black solid;
+    width: 48%;
+    display: flex;
+    height: 95%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.General-Information-box header {
+    width: 100%;
+    text-align: center;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.add {
+    background-color: white;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-meta {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-direction: row;
+}
+
+.header-meta span {
+    padding: 0 1% 0 0;
+}
+
+.Meta-Data-box {
+    border: 1px solid #000000;
+    width: 48%;
+    border-radius: 8px;
+    display: flex;
+    height: 95%;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: space-around;
+}
+
+.AddProduct-img {
+    border: 1px solid black;
+    border-radius: 8px;
+    width: 98%;
+    height: 28%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-around;
+}
+
+.Product-Name-box {
+    width: 98%;
+    height: 30%;
+    border: 1px solid black;
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.Product-Name-box .Product-Name {
+    margin: 20px 0px 0px 15px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.Product-Name-box .input-text-ProductName {
+    height: 30%;
+    width: 96%;
+    margin: 0% 0% 0% 2%;
+    padding: 0.2rem 0.2rem;
+    border-radius: 4px;
+    text-align: left;
+    font-size: 1rem;
+    border: 1px solid black;
+    background-color: rgb(230, 230, 230);
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+.Product-Category-box {
+    width: 32%;
+    height: 30%;
+    border: 1px solid black;
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.Product-Category-select {
+    height: 30%;
+    width: 90%;
+    margin: 0% 0% 0% 5%;
+    border-radius: 8px;
+    border: 1px solid black;
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+.Product-Category-box .Product-Category {
+    margin: 20px 0px 0px 15px;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.Product-Category-box .Product-Category-select {
+    height: 30%;
+    width: 90%;
+    margin: 1% 0% 0% 5%;
+    border-radius: 4px;
+    -webkit-appearance: none;
+    text-align: center;
+    font-size: 1rem;
+    border: 1px solid black;
+    background-color: rgb(230, 230, 230);
+}
+
+.Product-Price-box {
+    width: 32%;
+    height: 30%;
+    border: 1px solid black;
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.Product-Price-box .Product-Price-Nametag {
+    margin: 20px 0px 0px 15px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.Product-Price-box .Product-Price-input {
+    height: 30%;
+    width: 90%;
+    margin: 1% 0% 0% 5%;
+    border-radius: 4px;
+    -webkit-appearance: none;
+    text-align: center;
+    font-size: 1rem;
+    border: 1px solid black;
+    background-color: rgb(230, 230, 230);
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+.Product-Price-Nametag {
+    width: 100%;
+}
+
+.Product-Description-box {
+    border: 1px solid black;
+    border-radius: 8px;
+    width: 98%;
+    height: 30%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.colection-box {
+    width: 32%;
+    height: 30%;
+    border: 1px solid black;
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.colection-box .colect_name {
+    padding: 0% 0% 0% 10%;
+    font-weight: bold;
+    font-size: 1.1rem;
+    width: 100%;
+}
+
+.colection-box label {
+    padding: 0% 0% 0% 10%;
+    font-weight: 500;
+}
+
+.Product-Description-box .Product-Description {
+    margin: 20px 0px 0px 15px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.Product-Description-box .Product-Description-textarea {
+    width: 96%;
+    height: 50%;
+    resize: none;
+    margin: 0% 0% 0% 2%;
+    border-radius: 4px;
+    font-size: 1rem;
+    padding: 0.2rem 0.2rem;
+    text-align: left;
+    border: 1px solid black;
+    background-color: rgb(230, 230, 230);
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+.colect_hide-box {
+    z-index: 50;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.colect_hide-box-form {
+    padding: 1%;
+    top: 40%;
+    border: 1px black solid;
+    background-color: rgb(255, 255, 255);
+    width: 30%;
+    height: 30%;
+    position: fixed;
+    box-shadow: 4px 8px 15px 15px rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+.colect_hide-box h3 {
+    width: 100%;
+}
+
+.colect_hide-box span {
+    position: absolute;
+    top: 0;
+    right: 5px;
+}
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+.field {
+    border: 1px solid black;
+    width: 98%;
+    height: 12%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.chiTiet-box {
+    display: flex;
+}
+
+.scroll {
+    width: 100%;
+    height: 77%;
+    overflow-y: scroll;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.scroll::-webkit-scrollbar {
+    width: 10px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 8px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: rgb(150, 100, 100);
+}
+
+.color-select {
+    text-align: center;
+    width: 95%;
+    height: 50%;
+    -webkit-appearance: none;
+    font-size: 1rem;
+    border: 1px solid black;
+    background-color: rgb(230, 230, 230);
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+.size-select {
+    width: 95%;
+    height: 50%;
+    -webkit-appearance: none;
+    font-size: 1rem;
+    border: 1px solid black;
+    background-color: rgb(230, 230, 230);
+    text-align: center;
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+.quantity-input {
+    width: 95%;
+    height: 50%;
+    font-size: 1rem;
+    border: 1px solid black;
+    background-color: rgb(230, 230, 230);
+    padding: 0.1rem 0.1rem;
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+.color-box {
+    width: 27%;
+}
+
+.size-box {
+    width: 27%;
+}
+
+.quantity-box {
+    width: 27%;
+}
+
+.color-select option:nth-child(2) {
+    background-color: rgb(255, 255, 255);
+    color: black;
+}
+
+.color-select option:nth-child(3) {
+    background-color: black;
+    color: white;
+}
+
+.color-select option:nth-child(4) {
+    background-color: red;
+    color: white;
+}
+
+.color-select option:nth-child(5) {
+    background-color: rgb(198, 198, 39);
+    color: white;
+}
+
+.color-select option:nth-child(6) {
+    background-color: blue;
+    color: white;
+}
+
+.color-select option:nth-child(7) {
+    background-color: green;
+    color: white;
+}
+
+.color-select option:nth-child(8) {
+    background-color: rgb(216, 88, 109);
+    color: white;
+}
+
+.color-select option:nth-child(9) {
+    background-color: orange;
+    color: white;
+}
+
+.color-select option:nth-child(10) {
+    background-color: purple;
+    color: white;
+}
+
+h2 {
+    width: 100%;
+    height: 5%;
+}
+
+.container table {
+    width: 100%;
+    text-align: center;
+}
+
+#table {
+    padding: 1%;
+}
+
+.container table tbody tr:hover {
+    background-color: rgb(210, 180, 180);
+}
+
+.container table input {
+    width: 50px;
+}
+
+.container table thead tr {
+    font-weight: bold;
+}
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+.drag-area {
+    width: 98%;
+    height: 75%;
+    border: 2px dashed black;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.drag-area img {
+    height: 90%;
+}
+
+.text-lg {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.butt-addimg {
+    width: 100px;
+    height: 30px;
+    font: caption;
+    border-radius: 4px;
+    background-color: whitesmoke;
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+.save-bt {
+    z-index: 15;
+    padding-top: 1%;
+}
+
+.save-bt button {
+    width: 70px;
+    height: 25px;
+    background-color: white;
+}
+
+#displayImg {
+    width: 100%;
+    height: 65%;
+    display: flex;
+}
