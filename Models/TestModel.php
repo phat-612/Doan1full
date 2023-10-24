@@ -106,7 +106,7 @@
             $sql4 = "select danhmuc from danhmuc";
             $query1 = $this->select_by_sql($sql1);
             if ($color) {
-                return $this->$query1;
+                return $query1;
             }
             elseif (!$color && $size){
                 $query2 = $this->select_by_sql($sql2);
