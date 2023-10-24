@@ -115,12 +115,10 @@
             if ($collection) {
                 $query3 = $this->select_by_sql($sql3);
                 return $this->arr2to1($query3,true);
-
             }
             if ($category) {
                 $query4 = $this->select_by_sql($sql4);
                 return $this->arr2to1($query4,true);
-
             }
     }
         // lấy dữ liêu trang chủ
