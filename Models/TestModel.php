@@ -104,9 +104,6 @@
             $query1 = $this->select_by_sql($sql1);
             if ($color && $size) {
                 return $query1;
-                if($color && !$size){
-                    return $query1;
-                }
             }
             else{
                 $query2  = $this->select_by_sql($sql2);
