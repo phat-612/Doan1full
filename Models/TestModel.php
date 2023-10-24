@@ -99,7 +99,7 @@
                 return $this->arr2to1($query1);         
         }
         // t mới xóa cái dì đó ở đây, coi lại giùm
-        public function getAll($color=[],$size=[],$collection=[],$category=[]){
+        public function getAll($color='',$size='',$collection='',$category=''){
             $sql1 ="select mausac from mausac ";
             $sql2 = "select kichthuoc from kichthuoc";
             $sql3="select bosuutap from bosuutap";
