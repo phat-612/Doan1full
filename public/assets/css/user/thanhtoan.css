@@ -1,0 +1,123 @@
+.main_wrap {
+    display: flex;
+    position: relative;
+    margin-bottom: 50px;
+    gap: 50px;
+}
+
+.left_wrap,
+.right_wrap {
+    width: 50%;
+    padding: 0 10px;
+}
+
+.left_wrap::after {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 100%;
+    background-color: rgba(112, 112, 112, 0.3);
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+}
+
+.form_pay {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.sec_title {
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    font-size: 2rem;
+    padding: 0 8px;
+}
+
+.row {
+    width: 100%;
+    padding: 0 8px;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+}
+
+#cach_tra {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+}
+
+label {
+    font-size: 1.8rem;
+
+}
+
+.right_wrap .card_sub {
+    margin-top: 30px;
+}
+
+.row_2 {
+    width: 50%;
+    padding: 0 8px;
+}
+
+.left_wrap input {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    padding: 15px;
+}
+
+.pay2_btn {
+    float: right;
+    margin-right: 5px !important;
+}
+
+.nd_giohang {
+    display: flex;
+    margin-bottom: 25px;
+}
+
+.nd_giohang img {
+    width: 82px;
+    height: 100px;
+}
+
+.cont_bag {
+    width: 100%;
+    padding: 0px 15px;
+}
+
+.cont_bag .title_product {
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 1.6rem;
+    color: #877b64;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.5;
+}
+
+.cont_bag .card_title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cont_bag .detail_product {
+    cursor: context-menu;
+    padding: 12px 0;
+    text-transform: capitalize;
+    font-size: 1.8rem;
+}
+
+.thanhtoan_css {
+    padding-left: 5px;
+    font-size: 3rem !important;
+    font-weight: bold;
+}

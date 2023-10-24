@@ -137,7 +137,11 @@
                 return false;
             }
         }
-        public function getListProduct($collection='',$category='', $sort='ten', $page='1', $limit='15', $find = ''){
+        public function getDescProduct($name){
+            $query = $this->select($name, $name);
+            return $this->arr2to1($query, true);
+        }
+        public function getListProduct($collection='',$category='', $sort='ten', $find = '', $limit = ''){
             $output = [];
             $sql = "SELECT s.id, s.ten, s.gia FROM sanpham s
             LEFT JOIN chitietbosuutap cb ON s.id = cb.idsanpham
@@ -151,9 +155,11 @@
                 $sql .= " AND d.danhmuc = '$category'";
             }
             $sql .= " GROUP by s.id
-            ORDER by s.$sort
-            LIMIT $limit
-            OFFSET ".($page-1)*$limit;
+            ORDER by s.$sort";
+            if ($limit){
+                $sql .= " LIMIT $limit";
+            }
+            
             $query = $this->select_by_sql($sql);
             if (!$query){
                 return false;
@@ -164,6 +170,33 @@
                 $output[$key]['hinhanh'] = $this->arr2to1($imgs, true);
             }
             return $output;
+        }
+        // code ML
+        // lấy số lượng sản phẩm
+        public function getQuaProduct(){
+            $sql ="SELECT count(*) soluongsanpham FROM sanpham;";
+            $query = $this->select_by_sql($sql);
+            return $query[0]['soluongsanpham']; 
+        }
+        // lấy dữ liệu 1 sản phẩm
+        public function getDataProduct($id=''){
+            $sql1 = "SELECT sp.id , sp.ten , sp.mota , sp.gia 
+            FROM  sanpham AS sp WHERE sp.id = '$id'";
+            $sql2 = "SELECT kt.kichthuoc,ms.mausac,ct.soluong
+            FROM chitietsanpham ct,mausac ms,kichthuoc kt
+            WHERE ct.idmausac = ms.id AND ct.idkichthuoc = kt.id AND ct.idsanpham ='$id'";
+            $sql3 = "SELECT ha.hinhanh
+            FROM hinhanh ha
+            WHERE ha.idsanpham ='$id'";
+            $query1 = $this->select_by_sql($sql1);
+            if (!$query1){
+                return false;
+            }
+            $query2=$this->select_by_sql($sql2);
+            $query3=$this->select_by_sql($sql3);
+                $query1[0]['chitietsanpham'] = $query2;
+                $query1[0]['hinhanh']= $this->arr2to1($query3,true);
+                return $this->arr2to1($query1);
         }
         public function deleteImgProduct($id){
             $query = $this->arr2to1($this->select('hinhanh', 'hinhanh', "idsanpham = $id"), true);

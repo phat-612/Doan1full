@@ -13,10 +13,10 @@
           <label>Sắp Xếp : </label>
           <select name="Sort-select">
             <option value="">-------</option>
-            <option value="A->Z">A->Z</option>
-            <option value="Z->A">Z->A</option>
-            <option value="Giá-Thấp-đến-Cao">Giá Thấp đến Cao</option>
-            <option value="Giá-Cao-đến-Thấp">Giá Cao đến Thấp</option>
+            <option value="ten">A->Z</option>
+            <option value="ten desc">Z->A</option>
+            <option value="gia">Giá Thấp đến Cao</option>
+            <option value="gia desc">Giá Cao đến Thấp</option>
           </select>
         </div>
         <div class="Search">

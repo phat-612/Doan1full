@@ -29,4 +29,4 @@
     <?php } ?>
 </div>
 </div>
-<div class="loading_btn"><a href="">xem thêm</a></div>
+<div class="loading_btn"><a href="<?php echo _WEB_ROOT?>/product">xem thêm</a></div>

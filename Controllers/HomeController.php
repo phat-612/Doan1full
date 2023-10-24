@@ -12,7 +12,7 @@
         }
         public function index()
         {
-            $products = $this->productModel->getListProduct('', '', 'daban desc', 1, 8);
+            $products = $this->productModel->getListProduct('', '', 'daban desc', '', 8);
             $sliders = $this->sliderModel->getSlider();
             $this->render('layouts/user',[
                 'content'=> 'homes/index',

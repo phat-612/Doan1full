@@ -21,17 +21,17 @@
         }
         public function index(){
         }
-        // public function countProduct(){
-        //     echo $this->testModel->getNumberProduct(); 
-        // }
+        public function countP(){
+            echo $this->testModel->getNumberProduct(); 
+        }
         public function total() {
-            echo $this->testModel->total_customers();
+            echo $this->userModel->totalCustomers();
         }
-        public function oders(){
-            echo $this->testModel->getOrder('','2023-10-05','2023-12-05');
-        }
-        public function revenue() {
-            echo $this->orderModel->totalRevenue('Thành công','2023-10-04','2023-12-20');
+        // public function oders(){
+        //     echo $this->orderModel->getOrder('Chờ xử lý','','');
+        // }
+        public function revenue(){
+            echo $this->orderModel->totalRevenue('Thành công','','');
         }
         public function themsp(){
             $this->productModel->addProduct($_POST, $_FILES);
@@ -86,6 +86,9 @@
         }
         public function guimail(){
             $res = $this->userModel->sendOrderToEmail($_POST['email']);
+        }
+        public function layMota(){
+            inmang($this->testModel->getDescProduct($_POST['name']));
         }
     }
 ?>

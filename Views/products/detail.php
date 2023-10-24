@@ -4,7 +4,7 @@
           <li>&#47;</li>
           <li><a href="">Sản phẩm</a></li>
           <li>&#47;</li>
-          <li><a href="">Áo</a></li>
+          <li><a href=""><?php echo $product['ten']?></a></li>
       </ul>
       <div class="shop">
         <div class="wrap_shop">
@@ -37,10 +37,10 @@
           <div class="info_pro">
             <ul class="information">
               <li>
-                <h1 class="title_product">áo thun đẹp hết nước chấm</h1>
+                <h1 class="title_product"><?php echo $product['ten']?></h1>
               </li>
               <li class="price_item">
-                <p class="num_price">217.203<span>vnđ</span></p>
+                <p class="num_price"><?php echo $product['gia']?><span>vnđ</span></p>
               </li>
               <li>
                 <p>Màu sắc:</p>
@@ -73,11 +73,7 @@
               <div class="information">
                 <div class="detail_info">
                   <div class="head_info">Thông tin<i class="fa-solid fa-chevron-down down_btn"></i></div>
-                  <div class="info_main">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus repudiandae, provident, excepturi, itaque mollitia explicabo dolorum eum culpa sit molestias harum in ex totam beatae assumenda fugit hic? Ea, laboriosam?
-                    Sit similique maxime excepturi minima, omnis facere corrupti beatae incidunt repellendus reiciendis rem dolorem nesciunt veritatis ab enim eum vel mollitia a alias pariatur aliquam doloribus! Ad eveniet possimus ea.
-                    Sequi inventore quasi illum ea optio magnam repudiandae a, sint eligendi numquam quo delectus id et odio laboriosam cum alias expedita distinctio quaerat saepe veritatis pariatur mollitia nulla rerum? Obcaecati!
-                    Accusamus repellat perspiciatis quis veniam aliquam praesentium molestiae ducimus deserunt consequatur nulla fugit vero laudantium sint nihil, pariatur possimus quos voluptas magni repellendus sed odio. Nesciunt a id neque odio.
+                  <div class="info_main"><?php echo $product['mota']?>
                   </div>
                 </div>
               </div>

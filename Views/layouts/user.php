@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="<?php echo _WEB_ROOT?>/public/assets/css/head_foot.css" />
+  <link rel="stylesheet" href="<?php echo _WEB_ROOT?>/public/assets/css/user/head_foot.css" />
   <?php 
     if (is_array($css)){
       foreach ($css as $value) {
@@ -25,7 +25,7 @@
           <p>Sale all product</p>
         </div>
         <div class="mid">
-          <a href="">
+          <a href="<?php echo _WEB_ROOT?>">
             <img src="<?php echo _WEB_ROOT?>/public/assets/img/logo.png" alt="cái logo đây nè" /></a>
         </div>
         <ul class="right">
@@ -58,7 +58,7 @@
         <ul class="nav">
           <li><a href="">Thông tin cửa hàng</a></li>
           <li>
-            <a href="" class="isSubnav">Sản phẩm<i class="fa-solid fa-angle-down down_btn"></i></a>
+            <a href="<?php echo _WEB_ROOT?>/product" class="isSubnav">Sản phẩm<i class="fa-solid fa-angle-down down_btn"></i></a>
             <ul class="nav_list_item">
               <li><a href="">Tất cả</a></li>
               <li><a href="">Sản phẩm mới</a></li>

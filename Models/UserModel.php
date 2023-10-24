@@ -81,6 +81,13 @@
             }
             
         }
+        // tổng số khánh hàng
+        public function totalCustomers(){
+            $sql = "SELECT DISTINCT COUNT(DISTINCT sodienthoai) AS total_customers
+            FROM khachhang";
+            $query = $this->select_by_sql($sql);
+            return $query[0]['total_customers'];
+        }
         public function adminLogout(){
             if (isset($_COOKIE['verify_login'])){
                 setcookie('verify_login', '', time() - 10, '/');

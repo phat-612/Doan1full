@@ -16,15 +16,22 @@
         }
         // trang chủ
         public function index(){
+            $quaProduct = $this->productModel->getQuaProduct();
+            $numberOrder = $this->orderModel->getNumberOrder('Chờ Xử Lý','','');
+            $numberCustomers = $this -> userModel->totalCustomers();
+            $totalRevenue = $this->orderModel->totalRevenue('Thành Công','','');
             $this->render('layouts/admin',[
                 'content'=> 'admins/index',
-                'title'=> 'Trang chủ',
+                'title'=> 'Trang chủ Admin',
                 'css'=> 'trangchu',
+                'js'=> 'trangchu',
                 'subcontent'=> [
-                    
+                    'quaProduct' => $quaProduct,
+                    'numberOrder' => $numberOrder,
+                    'numberCustomers' => $numberCustomers,
+                    'totalRevenue' => $totalRevenue
                 ]
-            ]);
-            
+            ]);     
         }
         public function login(){
             // đã đăng nhập

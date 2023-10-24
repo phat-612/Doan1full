@@ -85,6 +85,17 @@
                 http_response_code(400);
             }
         }
+        //Lấy danh sách tất cả sản phẩm
+        public function getListProduct(){
+            $res = $this->productModel->getListProduct($_POST['collection'], $_POST['category'], $_POST['sort'], $_POST['find']);
+            if ($res){
+                http_response_code(200);
+                header('Content-Type: application/json');
+                echo json_encode($res);
+            } else{
+                http_response_code(400);
+            }
+        }
         // kiểm tra method
         private function _checkMethod($method = "POST"){
             if (!($this->reqMethod == $method)){

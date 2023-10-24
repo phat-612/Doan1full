@@ -116,6 +116,22 @@
             }
             return false;
         }
+        // lay đơn hàng bằng trạng thài & thời gian
+        public function getNumberOrder($status = '',$timeb='',$timee=''){
+            $sql = "SELECT COUNT(*) sodonhang FROM donhang";
+            if ($timeb && $timee){
+                $sql .=  " WHERE thoigian BETWEEN '$timeb' AND ('$timee' + INTERVAL 1 MONTH)";
+                if ($status){
+                $sql .= " AND trangthai='$status'";
+                }
+            } else {
+                if ($status){
+                $sql .= " WHERE trangthai='$status'";
+                }
+            }
+            $query = $this->select_by_sql($sql);
+            return $query[0]['sodonhang'];
+        }
         private function _checkPrice($idDetalPro, $price){
             $query = $this->select('chitietsanpham c, sanpham s', 's.gia', "c.id = '$idDetalPro' and c.idsanpham = s.id");
             if ($query){

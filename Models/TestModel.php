@@ -1,30 +1,9 @@
 <?php
     class TestModel extends BaseModel{
         public function getNumberProduct(){
-            $sql = "SELECT COUNT(*) AS total_count FROM sanpham;";
+            $sql = "SELECT COUNT(*) AS total_count FROM sanpham";
             $query = $this->select_by_sql($sql);
             return $query[0]['total_count'];
-        }
-        public function total_customers(){
-            $sql = "SELECT DISTINCT COUNT(DISTINCT sodienthoai) AS total_customers
-            FROM khachhang";
-            $query = $this->select_by_sql($sql);
-            return $query[0]['total_customers'];
-        }
-        public function getOrder($status = '',$timeb='',$timee=''){
-            $sql = "SELECT COUNT(*) sodonhang FROM donhang";
-            if ($timeb && $timee){
-                $sql .=  " WHERE thoigian BETWEEN '$timeb' AND ('$timee' + INTERVAL 1 MONTH)";
-                if ($status){
-                $sql .= " AND trangthai='$status'";
-                }
-            } else {
-                if ($status){
-                $sql .= " WHERE trangthai='$status'";
-                }
-            }
-            $query = $this->select_by_sql($sql);
-            return $query[0]['sodonhang'];
         }
         public function getProduct(){
             $sql ="SELECT count(*) soluongsanpham FROM sanpham;";
@@ -99,28 +78,30 @@
                 return $this->arr2to1($query1);         
         }
         // t mới xóa cái dì đó ở đây, coi lại giùm
-        public function getAll($color='',$size='',$collection='',$category=''){
-            $sql1 ="select mausac from mausac ";
-            $sql2 = "select kichthuoc from kichthuoc";
-            $sql3="select bosuutap from bosuutap";
-            $sql4 = "select danhmuc from danhmuc";
-            if ($color){
-                $query1 = $this->select_by_sql($sql1);
-                return $this->arr2to1($query1,true);
-            }
-            if ($size) {
-                $query2 = $this->select_by_sql($sql2);
-                return $this->arr2to1($query2,true);
-            }
-            if ($collection) {
-                $query3 = $this->select_by_sql($sql3);
-                return $this->arr2to1($query3,true);
-            }
-            if ($category) {
-                $query4 = $this->select_by_sql($sql4);
-                return $this->arr2to1($query4,true);
-            }
-    }
+        // public function getAll($color='',$size='',$collection='',$category=''){
+        //     $sql1 ="select mausac from mausac ";
+        //     $sql2 = "select kichthuoc from kichthuoc";
+        //     $sql3="select bosuutap from bosuutap";
+        //     $sql4 = "select danhmuc from danhmuc";
+        //     if ($color){
+        //         $query1 = $this->select_by_sql($sql1);
+        //         return $this->arr2to1($query1,true);
+        //     }
+        //     if ($size) {
+        //         $query2 = $this->select_by_sql($sql2);
+        //         return $this->arr2to1($query2,true);
+        //     }
+        //     if ($collection) {
+        //         $query3 = $this->select_by_sql($sql3);
+        //         return $this->arr2to1($query3,true);
+        //     }
+        //     if ($category) {
+        //         $query4 = $this->select_by_sql($sql4);
+        //         return $this->arr2to1($query4,true);
+        //     }
+        // }
+        // lấy màu , kich thuoc , danh muc , bo suu tap
+        
         // lấy dữ liêu trang chủ
         // chưa hoàn thành còn 3 tham số chưa được sử dụng
         // public function getPageDataProduct($collection='',$category='', $sort='ten', $page='1', $limit='15'){

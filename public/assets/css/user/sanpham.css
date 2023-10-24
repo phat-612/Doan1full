@@ -1,26 +1,3 @@
-.tag_comeback {
-    padding: 15px 20px;
-}
-
-.tag_comeback li {
-    display: inline-block;
-    font-size: 1.4rem;
-}
-
-.tag_comeback a {
-    padding: 10px 5px;
-    color: #898989;
-}
-
-.tag_comeback li:last-child a {
-    cursor: context-menu;
-    color: #000;
-}
-
-.tag_comeback li:hover a {
-    color: #000;
-}
-
 .content {
     padding: 0 15px;
 }
