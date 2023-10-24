@@ -104,23 +104,23 @@
             $sql2 = "select kichthuoc from kichthuoc";
             $sql3="select bosuutap from bosuutap";
             $sql4 = "select danhmuc from danhmuc";
-            if ($color){
-                $query1 = $this->select_by_sql($sql1);
-                return $this->arr2to1($query1,true);
+            $query1 = $this->select_by_sql($sql1);
+            if ($color) {
+                return $this->$query1;
             }
-            if ($size) {
+            elseif (!$color && $size){
                 $query2 = $this->select_by_sql($sql2);
-                return $this->arr2to1($query2,true);
+                return $query2;
             }
-            if ($collection) {
-                $query3 = $this->select_by_sql($sql3);
-                return $this->arr2to1($query3,true);
+            elseif(!$color && !$size && $collection){
+                    $query3 = $this->select_by_sql($sql3);
+                    return $query3;
             }
-            if ($category) {
+            elseif(!$color && !$size && !$collection && $category){
                 $query4 = $this->select_by_sql($sql4);
-                return $this->arr2to1($query4,true);
+                return $query4;
             }
-    }
+        }
         // lấy dữ liêu trang chủ
         // chưa hoàn thành còn 3 tham số chưa được sử dụng
         // public function getPageDataProduct($collection='',$category='', $sort='ten', $page='1', $limit='15'){
