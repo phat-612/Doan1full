@@ -26,19 +26,20 @@
         // thong tin chi tiet 1 san pham
         public function detail()
         {
-            if (!isset($_GET['id'])){
-                $this->gotoPage('product');
-            }
-            $product = $this->productModel->getDataProduct($_GET['id']);
-            if (!$product){
-                $this->gotoPage('product');
-            }
+            // if (!isset($_GET['id'])){
+            //     $this->gotoPage('product');
+            // }
+            // $product = $this->productModel->getDataProduct($_GET['id']);
+            // if (!$product){
+            //     $this->gotoPage('product');
+            // }
             $this->render('layouts/user',[
                 'content'=> 'products/detail',
-                'title'=> $product['ten'],
+                'title'=> 'Chi tiết sản phẩm',
                 'css'=> ['chitietsanpham', 'sanpham'],
+                'js' => 'chitietsanpham',
                 'subcontent'=> [
-                    'product'=> $product
+                    
                 ]
             ]);
         }

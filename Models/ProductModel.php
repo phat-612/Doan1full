@@ -23,7 +23,7 @@
             $dataProduct = array_slice($data, 0, 4, true);
             $dataImage = $this->saveImageProduct($file['hinhanh']);
             $dataDetail = $data["chitietsanpham"];
-            $dataCollection = $data["bosuutap"];
+            $dataCollection = isset($data["bosuutap"]) ? $data["bosuutap"] : [];
             
             $this->conn->begin_transaction();
             

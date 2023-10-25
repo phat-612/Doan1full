@@ -19,7 +19,9 @@
             $quaProduct = $this->productModel->getQuaProduct();
             $numberOrder = $this->orderModel->getNumberOrder('Chờ Xử Lý','','');
             $numberCustomers = $this -> userModel->totalCustomers();
-            $totalRevenue = $this->orderModel->totalRevenue('Thành Công','','');
+            $dateStart = isset($_GET['dateStart']) ? $_GET['dateStart'] : '';
+            $dateEnd = isset($_GET['dateEnd']) ? $_GET['dateEnd'] : '';
+            $totalRevenue = $this->orderModel->totalRevenue('Thành Công',$dateStart,$dateEnd);
             $this->render('layouts/admin',[
                 'content'=> 'admins/index',
                 'title'=> 'Trang chủ Admin',

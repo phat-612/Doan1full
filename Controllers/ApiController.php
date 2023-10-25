@@ -96,6 +96,17 @@
                 http_response_code(400);
             }
         }
+        //Lấy dữ liệu trang chi tiết sản phẩm
+        public function getDetailProduct(){
+            $res = $this->productModel->getDataProduct($_POST['id']);
+            if ($res){
+                http_response_code(200);
+                header('Content-Type: application/json');
+                echo json_encode($res);
+            } else{
+                http_response_code(400);
+            }
+        }
         // kiểm tra method
         private function _checkMethod($method = "POST"){
             if (!($this->reqMethod == $method)){

@@ -26,7 +26,7 @@
         </div>
         <div class="mid">
           <a href="<?php echo _WEB_ROOT?>">
-            <img src="<?php echo _WEB_ROOT?>/public/assets/img/logo.png" alt="cái logo đây nè" /></a>
+            <img src="<?php echo _WEB_ROOT?>/public/assets/img/core/logo.png" alt="cái logo đây nè" /></a>
         </div>
         <ul class="right">
           <li>

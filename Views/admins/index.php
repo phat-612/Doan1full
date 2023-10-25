@@ -16,14 +16,14 @@
     <div class="right-box">
         <div class="sel-date-box">
             <div>Từ Ngày</div>
-            <input type="date" name="" id="" />
+            <input type="date" name="" id="" class="js_date_start"/>
         </div>
         <div class="sel-date-box">
             <div>Đến Ngày</div>
-            <input type="date" name="" id="" />
+            <input type="date" name="" id="" class="js_date_end"/>
         </div>
         <div class="bt">
-        <center><button>Đến</button></center>
+        <center><button class="js_filter">Đến</button></center>
         </div>
         <div class="mini-right-box">
         <div id="title">Doanh Thu</div>
