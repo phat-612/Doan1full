@@ -21,9 +21,6 @@
         }
         public function index(){
         }
-        public function countP(){
-            echo $this->testModel->getNumberProduct(); 
-        }
         public function total() {
             echo $this->userModel->totalCustomers();
         }

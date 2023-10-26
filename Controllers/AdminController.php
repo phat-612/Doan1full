@@ -18,6 +18,7 @@
         public function index(){
             $quaProduct = $this->productModel->getQuaProduct();
             $numberOrder = $this->orderModel->getNumberOrder('Chờ Xử Lý','','');
+            $numberOrderSS = $this->orderModel->getNumberOrder('Thành Công','','');
             $numberCustomers = $this -> userModel->totalCustomers();
             $dateStart = isset($_GET['dateStart']) ? $_GET['dateStart'] : '';
             $dateEnd = isset($_GET['dateEnd']) ? $_GET['dateEnd'] : '';
@@ -31,7 +32,8 @@
                     'quaProduct' => $quaProduct,
                     'numberOrder' => $numberOrder,
                     'numberCustomers' => $numberCustomers,
-                    'totalRevenue' => $totalRevenue
+                    'totalRevenue' => $totalRevenue,
+                    'numberOrderSS'=> $numberOrderSS
                 ]
             ]);     
         }

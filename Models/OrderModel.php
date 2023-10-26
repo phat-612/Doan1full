@@ -75,11 +75,11 @@
                 $sql .= " WHERE trangthai='$status'";
                 }
             }
-            $query = $this->select_by_sql($sql);
-            foreach ($query as $row) {
-                $value = $row['tongtien'];
-                $total += $value;
-            }
+            $query = $this->select_by_sql($sql);     
+                foreach ($query as $row) {
+                    $value = $row['tongtien'];
+                    $total += $value;
+                }      
             return $total;
         }
         public function changeStatusOrder($id, $status){
