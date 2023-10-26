@@ -76,6 +76,77 @@ function loadPage() {
     listSize.forEach(size => {
         eleSize.innerHTML += `<span class="select size">${size}</span>`
     })
+    // xư lý chọn
+    let eleColors = document.querySelectorAll('.select.color');
+    let eleSizes = document.querySelectorAll('.select.size');
+    eleColors.forEach(color => {
+        color.addEventListener('click', (e) => {
+            eleColors.forEach(color => {
+                if (color == e.target && !e.target.classList.contains('bold_border') && !e.target.classList.contains('disabled')) {
+                    e.target.classList.add('bold_border');
+                    let tempSize = ctsp.filter((item) => item['mausac'] == e.target.textContent).map(item => item['kichthuoc']);
+                    eleSizes.forEach(item => {
+                        if (!tempSize.includes(item.textContent)) {
+                            item.classList.add('disabled');
+                            item.style.opacity = '0.5';
+                        } else {
+                            item.classList.remove('disabled');
+                            item.style.opacity = '1';
+                        }
+                    })
+
+                } else if (color == e.target && e.target.classList.contains('bold_border')) {
+                    eleSizes.forEach(item => {
+                        item.classList.remove('disabled');
+                        item.style.opacity = '1';
+
+                    })
+                    color.classList.remove('bold_border');
+                }
+
+
+                else {
+                    color.classList.remove('bold_border');
+                }
+            })
+
+        })
+    })
+    eleSizes.forEach(size => {
+        size.addEventListener('click', (e) => {
+            eleSizes.forEach(size => {
+                if (size == e.target && !e.target.classList.contains('bold_border') && !e.target.classList.contains('disabled')) {
+                    e.target.classList.add('bold_border');
+
+
+                    let tempColor = ctsp.filter((item) => item['kichthuoc'] == e.target.textContent).map(item => item['mausac']);
+                    eleColors.forEach(item => {
+                        if (!tempColor.includes(item.textContent)) {
+                            item.classList.add('disabled');
+                            item.style.opacity = '0.5';
+                        } else {
+                            item.classList.remove('disabled');
+                            item.style.opacity = '1';
+                        }
+                    })
+
+
+
+                } else if (size == e.target && e.target.classList.contains('bold_border')) {
+                    eleColors.forEach(item => {
+                        item.classList.remove('disabled');
+                        item.style.opacity = '1';
+
+                    })
+                    size.classList.remove('bold_border');
+                }
+
+                else {
+                    size.classList.remove('bold_border');
+                }
+            })
+        })
+    })
     // mô tả
     eleDescCtrl.addEventListener('click', (e) => {
         eleDescContent.classList.toggle('showElement');

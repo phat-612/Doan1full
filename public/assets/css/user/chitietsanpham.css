@@ -122,3 +122,7 @@ li .amount {
     cursor: pointer;
     display: none;
 }
+
+.bold_border {
+    border: 3px solid;
+}
