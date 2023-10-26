@@ -4,7 +4,7 @@ const mainImg = document.querySelector('.main_img img');
 
 const eleColor = document.querySelector('.choose.ccolor');
 const eleSize = document.querySelector('.choose.csize');
-
+const inpNumberCart = document.querySelector('.myInput_ct');
 const eleDescCtrl = document.querySelector('.js_desc_ctrl');
 const eleDescContent = document.querySelector('.js_desc_content');
 // lấy mảng 
@@ -141,6 +141,40 @@ function loadPage() {
         eleDescContent.classList.toggle('showElement');
     });
     eleDescContent.textContent = detailProduct['mota'];
+    // nút handle số lượng
+    inpNumberCart.addEventListener("keydown", (e) => {
+        if (e.key === "-") {
+            e.preventDefault();
+        }
+    });
+    inpNumberCart.addEventListener("change", (e) => {
+        if (inpNumberCart < 1) {
+            inpNumberCart = 1
+        }
+    });
+    document.querySelector('.js_minus_ct').addEventListener('click', () => {
+        inpNumberCart.value = parseInt(inpNumberCart.value) - 1 <= 0 ? 1 : parseInt(inpNumberCart.value) - 1;
+    })
+    document.querySelector('.js_plus_ct').addEventListener('click', () => {
+        inpNumberCart.value = parseInt(inpNumberCart.value) + 1;
+    })
+    // nút đặt hàng
+    document.querySelector('.js_btn_add_cart').addEventListener('click', () => {
+        let color = document.querySelector('.select.color.bold_border');
+        let size = document.querySelector('.select.size.bold_border');
+        let sl = parseInt(inpNumberCart.value);
+        if (color && size) {
+            ctsp.forEach(ct => {
+                if (color.textContent == ct['mausac'] && size.textContent == ct['kichthuoc']) {
+                    addCart(ct['id'], sl, detailProduct['gia']);
+                    alert('Thêm sản phẩm thành công');
+                }
+            })
+        } else {
+            alert('Vui lòng chọn màu sắc và kích thước');
+        }
+
+    })
 }
 
 
@@ -148,10 +182,3 @@ function loadPage() {
 
 
 
-
-
-
-
-
-
-// // render màu sắc kích thước

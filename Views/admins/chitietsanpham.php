@@ -8,6 +8,20 @@
               </div>
         </div>
         <form class="mother-box-Add-Product" action="" method="post">
+          <div id="hideField">
+            <span>Bộ Sưu Tập</span>
+            <span onclick="hideField()">Đóng</span>
+            <ul>
+              <li>mùa đông</li>
+              <li>mùa hè</li>
+              <li>mùa xuân</li>
+              <li>mùa thu</li>
+              <li>mùa đông</li>
+              <li>mùa hè</li>
+              <li>mùa xuân</li>
+              <li>mùa thu</li>
+            </ul>
+          </div>
             <div class="General-Information-box">
               <header style="width: 100%; text-align: center">
                 Thông tin chung
@@ -57,7 +71,7 @@
                   disabled
                 />
               </div>
-              <div class="Product-colection-box">
+              <div class="Product-colection-box" onclick="showField()">
                 <label for="" class="Product-colection-nametag">Bộ Sưu Tập</label>
                 <label for="colection" id="name-checkbox">Có Bộ Sưu Tập</label>
                 <input type="checkbox" name="" id="colection" checked disabled>

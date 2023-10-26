@@ -202,7 +202,7 @@ async function loadCartPage() {
     cartDB.forEach((pro, ind) => {
         let htmlIn = `<div class="card_item" idctsp="${pro["id"]}">
     <div class="photo_product">
-      <img src="${pro['hinhanh']}" alt="">
+      <img src="/doan1full/${pro['hinhanh']}" alt="">
     </div>
     <div class="cont_right">
       <div class="card_title_dlt">

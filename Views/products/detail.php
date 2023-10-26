@@ -44,13 +44,13 @@
               <li class="amount_price">
                 <span>Số lượng:</span>
                 <div class="amount">
-                  <div class="js_minus amount_icon"><i class="fa-solid fa-minus"></i></div>
-                  <div><input type="number" class="myInput" value="1" min="0"></div>
-                  <div class="js_plus amount_icon"><i class="fa-solid fa-plus"></i></div>
+                  <div class="js_minus_ct amount_icon"><i class="fa-solid fa-minus"></i></div>
+                  <div><input type="number" class="myInput_ct" value="1" min="0"></div>
+                  <div class="js_plus_ct amount_icon"><i class="fa-solid fa-plus"></i></div>
                 </div>
               </li>
               <div class="btn_addbag">
-                <button class="pay_btn">Thêm vào giỏ hàng</button>
+                <button class="pay_btn js_btn_add_cart">Thêm vào giỏ hàng</button>
               </div>
             </ul>
               <!--  info  -->

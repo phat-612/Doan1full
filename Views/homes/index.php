@@ -15,7 +15,7 @@
         foreach ($products as $product) {
     ?>
         <div class="product_card">
-        <a href="/sanpham/chitietsanpham?id=<?php echo $product['id']?>">
+        <a href="product/detail?id=<?php echo $product['id']?>">
             <div class="product_img">
             <img class="before" src="<?php echo isset($product['hinhanh'][0])?$product['hinhanh'][0]:'public/assets/img/products/aothuntruoc.jpg';?>" alt="Ảnh sản phẩm" />
             <img src="<?php echo isset($product['hinhanh'][1])?$product['hinhanh'][1]:'public/assets/img/products/aothunsau.jpg'; ?>" alt="Ảnh sản phẩm" class="after" />

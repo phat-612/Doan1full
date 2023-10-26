@@ -27,6 +27,7 @@ a {
 }
 
 .table-box {
+    height: 100%;
     width: 100%;
     text-align: center;
     font-size: 1.5rem;
@@ -64,16 +65,19 @@ input#search {
     background-color: rgb(210, 180, 180);
 }
 
-.pagination-forsm {
-    width: 100%;
-    text-align: center;
-    margin-top: 10px;
+/* pagination */
+.pagination-list {
+    display: flex;
+    justify-content: center;
+    list-style: none;
 }
 
-.pagination-forsm a {
-    padding: 0 30px;
-    background-color: white;
+.pagination_link {
+    color: #000;
+    display: block;
+    min-width: 30px;
+    text-align: center;
+    background-color: whitesmoke;
     border-radius: 4px;
-    color: black;
-    margin-right: 5px;
+    margin-right: 3px;
 }

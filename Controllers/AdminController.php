@@ -85,7 +85,7 @@
                 'title'=> 'Quản lý sản phẩm',
                 'css'=> 'sanpham',
                 'subcontent'=> [
-                    
+                               
                 ]
             ]);
         }
@@ -94,6 +94,7 @@
                 'content'=> 'admins/chitietsanpham',
                 'title'=> 'Chi tiết sản phẩm',
                 'css'=> 'chitietsanpham',
+                'js'=> 'chitietsanpham',
                 'subcontent'=> [
                     
                 ]

@@ -189,6 +189,39 @@ header {
     margin: 0% 0% 0% 5%;
 }
 
+#hideField {
+    height: 30%;
+    display: none;
+    position: absolute;
+    top: 50%;
+    background-color: whitesmoke;
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#hideField ul {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-content: space-around;
+    padding: 1%;
+}
+
+#hideField span {
+    font-weight: bold;
+    font-size: 1.2rem;
+    width: 50%;
+    text-align: center;
+}
+
+#hideField li {
+    font-size: 1.1rem;
+}
+
 .Product-Description-box {
     border: 1px solid black;
     border-radius: 8px;

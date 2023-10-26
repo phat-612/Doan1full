@@ -15,9 +15,6 @@
       echo "<link rel='stylesheet' href='"._WEB_ROOT."/public/assets/css/admin/$css.css' />";
     }
   ?>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
-        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
     <title><?php echo $title ?></title>
 </head>
@@ -35,13 +32,13 @@
         <div class="taskbar-menu">
             <ul>
                 <li class="taskbar-item">
-                    <a href="http://127.0.0.1:5500/html/trangchu.html">TRANG CHỦ</a>
+                    <a href="<?php echo _WEB_ROOT ?>/admin">TRANG CHỦ</a>
                 </li>
                 <li class="taskbar-item">
-                    <a href="http://127.0.0.1:5500/html/sanpham.html">SẢN PHẨM</a>
+                    <a href="<?php echo _WEB_ROOT ?>/admin/product">SẢN PHẨM</a>
                 </li>
                 <li class="taskbar-item">
-                    <a href="http://127.0.0.1:5500/html/donhang.html">ĐƠN HÀNG</a>
+                    <a href="<?php echo _WEB_ROOT ?>/admin/order">ĐƠN HÀNG</a>
                 </li>
                 <li class="taskbar-item">
                     <a href="http://127.0.0.1:5500/html/danhmuc.html">THÊM DANH MỤC</a>

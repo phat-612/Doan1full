@@ -198,6 +198,11 @@
                 $query1[0]['hinhanh']= $this->arr2to1($query3,true);
                 return $this->arr2to1($query1);
         }
+        public function getProductAdmin($collection='',$category='', $sort='ten', $find = '', $limit = ''){
+            $sql1 = "SELECT dm.danhmuc,sp.ten FROM danhmuc dm,sanpham sp WHERE sp.iddanhmuc=dm.id AND sp.iddanhmuc='$category'";
+            $query1 = $this->select_by_sql($sql1);
+
+        }
         public function deleteImgProduct($id){
             $query = $this->arr2to1($this->select('hinhanh', 'hinhanh', "idsanpham = $id"), true);
             if (!$query){
