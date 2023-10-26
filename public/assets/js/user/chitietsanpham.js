@@ -94,7 +94,6 @@ function loadPage() {
                             item.style.opacity = '1';
                         }
                     })
-
                 } else if (color == e.target && e.target.classList.contains('bold_border')) {
                     eleSizes.forEach(item => {
                         item.classList.remove('disabled');
@@ -103,13 +102,10 @@ function loadPage() {
                     })
                     color.classList.remove('bold_border');
                 }
-
-
                 else {
                     color.classList.remove('bold_border');
                 }
             })
-
         })
     })
     eleSizes.forEach(size => {
@@ -117,8 +113,6 @@ function loadPage() {
             eleSizes.forEach(size => {
                 if (size == e.target && !e.target.classList.contains('bold_border') && !e.target.classList.contains('disabled')) {
                     e.target.classList.add('bold_border');
-
-
                     let tempColor = ctsp.filter((item) => item['kichthuoc'] == e.target.textContent).map(item => item['mausac']);
                     eleColors.forEach(item => {
                         if (!tempColor.includes(item.textContent)) {
@@ -129,18 +123,13 @@ function loadPage() {
                             item.style.opacity = '1';
                         }
                     })
-
-
-
                 } else if (size == e.target && e.target.classList.contains('bold_border')) {
                     eleColors.forEach(item => {
                         item.classList.remove('disabled');
                         item.style.opacity = '1';
-
                     })
                     size.classList.remove('bold_border');
                 }
-
                 else {
                     size.classList.remove('bold_border');
                 }
