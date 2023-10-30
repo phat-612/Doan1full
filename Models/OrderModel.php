@@ -21,9 +21,9 @@
                         'hoten': 'Nguyen van a',
                         'sodienthoai': '0123456789',
                         'diachi': 'cna tho',
-                        'mail': '@gmail.com'
+                        'email': '@gmail.com'
                     ],
-                    'chitietdathang': [
+                    'chitietdonhang': [
                         [
                             'idchitietsanpham': '1',
                             'gia': 122000

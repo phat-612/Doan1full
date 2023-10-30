@@ -32,7 +32,6 @@ fetch("/doan1full/api/getDetailProduct", requestOptions)
     .then(res => res.json())
     .then(result => {
         detailProduct = result;
-        console.log(detailProduct);
         loadPage();
     });
 // FUNCTION
@@ -167,6 +166,7 @@ function loadPage() {
             ctsp.forEach(ct => {
                 if (color.textContent == ct['mausac'] && size.textContent == ct['kichthuoc']) {
                     addCart(ct['id'], sl, detailProduct['gia']);
+                    loadCartPage();
                     alert('Thêm sản phẩm thành công');
                 }
             })

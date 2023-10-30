@@ -1,10 +1,12 @@
+// biến toàn server
+const ROOTFOLDER = "/doan1full/";
 // khai báo biến
 const search_icon = document.querySelector(".search_btn");
 const search_input = document.querySelector(".search_btn input");
 const btnCart = document.querySelector(".js_cart");
 const mdCart = document.querySelector(".bg_shopping_bag");
 const mdCartClose = document.querySelector(".close_btn");
-const eleTotalPay = document.querySelector(".card_sub .num_price");
+const eleTotalPay = document.querySelectorAll(".card_sub .num_price");
 const imgSliders = document.querySelectorAll(".img_slider_js");
 let inpNumberPros = document.querySelectorAll(".myInput");
 let btnPlusPros = document.querySelectorAll(".js_plus");
@@ -59,7 +61,10 @@ document.querySelector(".shopping_bag").addEventListener("click", (e) => {
 document.querySelector(".bg_shopping_bag").addEventListener("click", (e) => {
     mdCart.style.display = "none";
 });
-
+// bấm nút thanh toán
+document.querySelector('.js_btn_pay').addEventListener("click", (e) => {
+    window.location.href = ROOTFOLDER + 'payment';
+})
 
 // --------------------------function---------------------------------------
 // cập nhật các nút control sản phẩm và thêm sự kiện cho các nút
@@ -124,16 +129,8 @@ function loadEleCart() {
 // tính tổng tiền, kiểm tra tình trạng giỏ hàng, cập số nhỏ ở icon
 function totalPay() {
     // vấn đề class total pay
-    let eleAmountPrices = document.querySelectorAll(".cont_sbag .amount_price");
-    let quaPro = eleAmountPrices.length;
-    let total = 0;
-    eleAmountPrices.forEach((eleAmountPrice) => {
-        let nbPro = parseInt(eleAmountPrice.querySelector(".myInput").value);
-        let nbPrice = parseInt(
-            eleAmountPrice.querySelector(".num_price").textContent
-        );
-        total += nbPro * nbPrice;
-    });
+    console.log("chạy hàm total pay");
+    let total = getTotalPay();
     if (total <= 0) {
         document.querySelector(".empty_sbag").style.display = "block";
         document.querySelector(".value_sbag").style.display = "none";
@@ -141,10 +138,19 @@ function totalPay() {
         document.querySelector(".empty_sbag").style.display = "none";
         document.querySelector(".value_sbag").style.display = "block";
     }
-    eleTotalPay.textContent = total;
-    document.querySelector(".js_nb_cart").textContent = quaPro;
+    eleTotalPay.forEach((ele) => {
+        ele.textContent = total;
+    })
+    document.querySelector(".js_nb_cart").textContent = loadCart().length;
 }
-
+function getTotalPay() {
+    let total = 0;
+    let cart = loadCart();
+    cart.forEach((item) => {
+        total += parseInt(item['gia']) * parseInt(item['soluong']);
+    });
+    return total;
+}
 /*
   key: cart
   [
@@ -198,7 +204,8 @@ async function loadCartPage() {
     let cartLC = loadCart();
     cartDB = checkDataCart(cartLC, cartDB);
     cartLC = loadCart();
-    // console.log(cartDB); 
+    // clear cart element
+    document.querySelector(".value_sbag").innerHTML = '';
     cartDB.forEach((pro, ind) => {
         let htmlIn = `<div class="card_item" idctsp="${pro["id"]}">
     <div class="photo_product">

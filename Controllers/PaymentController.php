@@ -7,9 +7,10 @@
         public function index()
         {
             $this->render('layouts/user',[
-                'content'=> 'payments/thanhtoan',
+                'content'=> 'payments/index',
                 'title'=> 'Thanh toán',
                 'css'=> 'thanhtoan',
+                'js'=> 'thanhtoan',
                 'subcontent'=> [
                     
                 ]

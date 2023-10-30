@@ -7,28 +7,32 @@
 <div class="left_wrap">
     <section>
     <h1 class="sec_title">thông tin giao hàng</h1>
-    <form action="">
+    <form action="" class="js_form_order">
         <div class="form_pay">
         <div class="row">
-            <input type="text" name="full_name" class="form" placeholder="Họ và tên" value="" required>
+            <input type="text" name="khachhang[hoten]" class="form" placeholder="Họ và tên" value="" required>
         </div>
         <div class="row_2">
-            <input type="email" name="email" class="form" placeholder="Email" value="" required>
+            <input type="email" name="khachhang[email]" class="form" placeholder="Email" value="" required>
         </div>
         <div class="row_2">
-            <input type="tel" name="phone_number" pattern="^\d{10}$" class="form valid_phone"
-            placeholder="Số điện thoại" value="">
+            <input type="tel" name="khachhang[sodienthoai]" pattern="^\d{10}$" class="form valid_phone"
+            placeholder="Số điện thoại" value="" required>
         </div>
         <div class="row">
-            <input type="text" name="address" class="form" placeholder="Địa chỉ chi tiết" value="">
+            <input type="text" name="khachhang[diachi]" class="form" placeholder="Địa chỉ chi tiết" value="" required>
         </div>
         <div class="row">
+            <textarea name="ghichu" id="note" placeholder="Ghi chú" rows="4" cols="100"></textarea>
+        </div>
+        <!-- <div class="row">
             <input type="checkbox" name="" id="cach_tra">
             <label for="cach_tra">Thanh toán khi nhận hàng</label>
+        </div> -->
         </div>
-        </div>
-        <div class="pay2_btn btn_css">
-        <a href="">thanh toán</a></div>
+        <div class="pay2_btn btn_css js_btn_order">
+        <input type="submit" name="" id="" value="Thanh toán"></div>
+        <!-- <a href="">thanh toán</a> -->
     </form>
     </section>
 </div>
@@ -126,5 +130,16 @@
         </div>
     </div>
     </section>
+</div>
+</div>
+    <!-- thông báo đặt hàng -->
+<div class="modal">
+<div class="congratulate">
+    <div class="modal_main">
+    <div class="hinhanh">
+        <img src="./access/img/congratulation.png" alt="">
+    </div>
+    <p>đặt hàng thành công</p>
+    </div>
 </div>
 </div>
