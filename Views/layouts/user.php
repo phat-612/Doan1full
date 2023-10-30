@@ -62,12 +62,13 @@
             <ul class="nav_list_item">
               <li><a href="">Tất cả</a></li>
               <li><a href="">Sản phẩm mới</a></li>
-              <li>
+              <?php print_r($_SESSION)?>
+              <!-- <li>
                 <a href="">Quần</a>
               </li>
               <li>
                 <a href="">Áo</a>
-              </li>
+              </li> -->
             </ul>
           </li>
           <li>

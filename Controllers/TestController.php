@@ -27,9 +27,7 @@
         public function total() {
             echo $this->userModel->totalCustomers();
         }
-        public function productsAdmin() {
-            inmang($this->productModel->getProductAdmin());
-        }
+
         // public function oders(){
         //     echo $this->orderModel->getOrder('Chờ xử lý','','');
         // }
@@ -83,7 +81,8 @@
         //     inmang($res);
         // }
         public function layDSSP(){
-            $res = $this->productModel->getListProduct($_POST['bosuutap'],$_POST['danhmuc'], 'id', $_POST['page'], 5, $_POST['tim']);
+            $res = $this->productModel->getListProduct($_POST['bosuutap'],$_POST['danhmuc'], 
+            'id', $_POST['page'], 5, $_POST['tim']);
             inmang($res);
         }
         public function layslider(){
@@ -92,9 +91,6 @@
         }
         public function guimail(){
             $res = $this->userModel->sendOrderToEmail($_POST['email']);
-        }
-        public function layMota(){
-            inmang($this->testModel->getDescProduct($_POST['name']));
         }
     }
 ?>

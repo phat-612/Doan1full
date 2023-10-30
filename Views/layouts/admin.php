@@ -22,7 +22,7 @@
 <body>
     <div class="big-form">
         <div class="taskbar">
-            <div class="logo-img"><img src="<?php echo _WEB_ROOT?>/public/assets/img/logo.png" alt="logo" /></div>
+            <div class="logo-img"><img src="<?php echo _WEB_ROOT?>/public/assets/img/core/logo.png" alt="logo" /></div>
             <div class="flex-box">
                 <div class="flex">
                     <a href="http://127.0.0.1:5500/html/trangchu.html">Trang chủ</a>

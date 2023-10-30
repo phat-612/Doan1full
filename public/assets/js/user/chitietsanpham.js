@@ -15,8 +15,7 @@ searchParams.forEach(function (value, key) {
 
 // kiểm tra id sản phẩm
 if (!seaParams.hasOwnProperty('id')) {
-    console.log('có id');
-    window.location.href = '/doan1full/product';
+    window.location.href = ROOTFOLDER + 'product';
 }
 // lấy dữ liệu sản phẩm
 let formdata = new FormData();
@@ -35,6 +34,24 @@ fetch("/doan1full/api/getDetailProduct", requestOptions)
         loadPage();
     });
 // FUNCTION
+// kiểm tra sản phẩm trong giỏ, nếu có thì cộng dồn vào
+function addCart(idchitietsanpham, soluong, gia) {
+    let cart = loadCart();
+    for (let i = 0; i < cart.length; i++) {
+        if (cart[i]['idchitietsanpham'] == idchitietsanpham) {
+            cart[i]['soluong'] += parseInt(soluong)
+            saveCart(cart);
+            return true;
+        }
+    }
+    cart.push({
+        idchitietsanpham,
+        soluong,
+        gia,
+    });
+    saveCart(cart);
+    return true;
+}
 function loadPage() {
     // nav
     document.querySelector('.tag_comeback li:last-child a').textContent = detailProduct['ten'];

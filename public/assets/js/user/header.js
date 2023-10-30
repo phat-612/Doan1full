@@ -83,9 +83,9 @@ function loadEleCart() {
                 if (cfDelPro) {
                     editCartQua(
                         "delete",
-                        e.target.closest(".card_item").getAttribute("idctsp")
+                        e.target.closest(".js_card_item").getAttribute("idctsp")
                     );
-                    e.target.closest(".card_item").remove();
+                    e.target.closest(".js_card_item").remove();
                 } else {
                     inpNumber.value = 1;
                 }
@@ -106,10 +106,10 @@ function loadEleCart() {
         btnDeletePro.addEventListener("click", (e) => {
             let cfDelPro = confirm("Bạn muốn xóa sản phẩm này không?");
             if (cfDelPro) {
-                e.target.closest(".card_item").remove();
+                e.target.closest(".js_card_item").remove();
                 editCartQua(
                     "delete",
-                    e.target.closest(".card_item").getAttribute("idctsp")
+                    e.target.closest(".js_card_item").getAttribute("idctsp")
                 );
                 totalPay();
             }
@@ -119,7 +119,7 @@ function loadEleCart() {
         inpQua.addEventListener("change", (e) => {
             editCartQua(
                 "change",
-                e.target.closest(".card_item").getAttribute("idctsp"),
+                e.target.closest(".js_card_item").getAttribute("idctsp"),
                 parseInt(e.target.value)
             );
             totalPay();
@@ -129,7 +129,6 @@ function loadEleCart() {
 // tính tổng tiền, kiểm tra tình trạng giỏ hàng, cập số nhỏ ở icon
 function totalPay() {
     // vấn đề class total pay
-    console.log("chạy hàm total pay");
     let total = getTotalPay();
     if (total <= 0) {
         document.querySelector(".empty_sbag").style.display = "block";
@@ -207,9 +206,9 @@ async function loadCartPage() {
     // clear cart element
     document.querySelector(".value_sbag").innerHTML = '';
     cartDB.forEach((pro, ind) => {
-        let htmlIn = `<div class="card_item" idctsp="${pro["id"]}">
+        let htmlIn = `<div class="card_item js_card_item" idctsp="${pro["id"]}">
     <div class="photo_product">
-      <img src="/doan1full/${pro['hinhanh']}" alt="">
+      <img src="${ROOTFOLDER + pro['hinhanh']}" alt="">
     </div>
     <div class="cont_right">
       <div class="card_title_dlt">
@@ -283,62 +282,4 @@ function checkDataCart(dataLC, dataDB) {
     }
     saveCart(dataLC);
     return dataDB;
-}
-
-
-
-
-// ----------------------------js của trang chi tiết sản phẩm------------------------------------
-// -------------------------function----------------------------------
-// kiểm tra sản phẩm trong giỏ, nếu có thì cộng dồn vào
-function addCart(idchitietsanpham, soluong, gia) {
-    let cart = loadCart();
-    for (let i = 0; i < cart.length; i++) {
-        if (cart[i]['idchitietsanpham'] == idchitietsanpham) {
-            cart[i]['soluong'] += parseInt(soluong)
-            saveCart(cart);
-            return true;
-        }
-    }
-    cart.push({
-        idchitietsanpham,
-        soluong,
-        gia,
-    });
-    saveCart(cart);
-    return true;
-}
-// -----------------------js trang đặt hàng--------------------
-// -------------------------function----------------------------------
-function addOrder() {
-
-    let formdata = new FormData();
-    formdata.append("ghichu", "giao nhanh len");
-    formdata.append("tongtien", "1200000");
-    formdata.append("khachhang[hoten]", "Dương Minh luân 211023");
-    formdata.append("khachhang[sodienthoai]", "0123456789");
-    formdata.append("khachhang[diachi]", "an hoa can tho");
-    formdata.append("khachhang[email]", "0917916496luan@gmail.com");
-    formdata.append("chitietdonhang[0][idchitietsanpham]", "9");
-    formdata.append("chitietdonhang[0][soluong]", "7");
-    formdata.append("chitietdonhang[0][gia]", "60000");
-    formdata.append("chitietdonhang[1][idchitietsanpham]", "20");
-    formdata.append("chitietdonhang[1][soluong]", "4");
-    formdata.append("chitietdonhang[1][gia]", "1234567");
-
-    let requestOptions = {
-        method: 'POST',
-        body: formdata,
-        redirect: 'follow'
-    };
-
-    fetch("http://localhost/doan1full/api/addOrder", requestOptions)
-        .then(response => {
-            if (response.status == 200) {
-                alert('Đặt hàng thành công');
-            } else {
-                alert('Đặt hàng thất bại do lỗi gì đó');
-            }
-        })
-        .catch(error => alert('Đặt hàng lỗi tư lúc gủi xe'));
 }

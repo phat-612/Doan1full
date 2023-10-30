@@ -1,4 +1,4 @@
-<ul class="tag_comeback">
+    <ul class="tag_comeback">
 <li><a href="">Trang chủ</a></li>
 <li>&#47;</li>
 <li><a href="">Thanh toán</a></li>
@@ -39,9 +39,12 @@
 <div class="right_wrap">
     <section>
     <h1 class="sec_title">giỏ hàng</h1>
-    <div class="nd_giohang">
+    <div class="container_product"></div>
+
+
+    <!-- <div class="nd_giohang">
         <div class="photo_product">
-        <img src="./access/img/product/aothuntruoc.jpg" alt="">
+            <img src="./access/img/product/aothuntruoc.jpg" alt="">
         </div>
         <div class="cont_bag">
         <div class="card_title">
@@ -62,62 +65,12 @@
             <p class="num_price">200000<span>vnđ</span></p>
         </div>
         </div>
+        </div>
+    </div> -->
 
-        </div>
-    </div>
-    <div class="nd_giohang">
-        <div class="photo_product">
-        <img src="./access/img/product/aothuntruoc.jpg" alt="">
-        </div>
-        <div class="cont_bag">
-        <div class="card_title">
-            <h1 class="title_product">áo thun đẹp hết nước chấm</h1>
-        </div>
-        <div class="detail_product">
-            <span class="size">Size <span>M</span></span>
-            <span class="color">&#47; Màu <span>trắng</span></span>
-        </div>
-        <div class="amount_price">
-            <div class="amount">
-            <div class="js_minus amount_icon"><i class="fa-solid fa-minus"></i></div>
-            <div><input type="number" class="myInput" value="1" min="0" idctsp="12"></div>
-            <div class="js_plus amount_icon"><i class="fa-solid fa-plus"></i></div>
-            </div>
-        
-        <div class="price_item">
-            <p class="num_price">200000<span>vnđ</span></p>
-        </div>
-        </div>
 
-        </div>
-    </div>
-    <div class="nd_giohang">
-        <div class="photo_product">
-        <img src="./access/img/product/aothuntruoc.jpg" alt="">
-        </div>
-        <div class="cont_bag">
-        <div class="card_title">
-            <h1 class="title_product">áo thun đẹp hết nước chấm</h1>
-        </div>
-        <div class="detail_product">
-            <span class="size">Size <span>M</span></span>
-            <span class="color">&#47; Màu <span>trắng</span></span>
-        </div>
-        <div class="amount_price">
-            <div class="amount">
-            <div class="js_minus amount_icon"><i class="fa-solid fa-minus"></i></div>
-            <div><input type="number" class="myInput" value="1" min="0" idctsp="12"></div>
-            <div class="js_plus amount_icon"><i class="fa-solid fa-plus"></i></div>
-            </div>
-        
-        <div class="price_item">
-            <p class="num_price">200000<span>vnđ</span></p>
-        </div>
-        </div>
 
-        </div>
-    </div>
-    
+
     <hr>
     <div class="card_sub">
         <div class="pay_card">
@@ -137,7 +90,7 @@
 <div class="congratulate">
     <div class="modal_main">
     <div class="hinhanh">
-        <img src="./access/img/congratulation.png" alt="">
+        <img src="<?php echo _WEB_ROOT?>/public/assets/img/core/congratulation.png" alt="">
     </div>
     <p>đặt hàng thành công</p>
     </div>
