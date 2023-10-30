@@ -21,8 +21,14 @@
         }
         public function index(){
         }
+        public function sr(){
+            inmang($this->productModel->srProduct($_POST['name']));
+        }
         public function total() {
             echo $this->userModel->totalCustomers();
+        }
+        public function productsAdmin() {
+            inmang($this->productModel->getProductAdmin());
         }
         // public function oders(){
         //     echo $this->orderModel->getOrder('Chờ xử lý','','');
@@ -47,6 +53,9 @@
         }
         public function dataOrder(){
            inmang($this->testModel->getDataOrder($_POST['id']));
+        }
+        public function addPro(){
+            inmang($this->productModel->addProduct(['ten']));
         }
         public function get_ALL(){
             // inmang($this->testModel->getAll(size: ));

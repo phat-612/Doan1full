@@ -30,6 +30,7 @@
                 $query1[0]['hinhanh']= $this->arr2to1($query3,true);
                 return $this->arr2to1($query1);
         }
+   
         // lấy thông tin trang chi tiết sản phẩm
         // public function getDetailProduct($id){
         //     $res = [];

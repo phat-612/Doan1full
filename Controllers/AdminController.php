@@ -80,12 +80,16 @@
             $this->gotoPage('admin/login');
         }
         public function product(){
+            $dmPros= $this->productModel->getDescProduct('danhmuc');
+            $argerPr = $this->productModel->argePro('');
             $this->render('layouts/admin',[
                 'content'=> 'admins/sanpham',
                 'title'=> 'Quản lý sản phẩm',
                 'css'=> 'sanpham',
+                'js'=> 'sanpham',
                 'subcontent'=> [
-                               
+                    'dmPros'=>$dmPros,
+                    'arger' => $argerPr
                 ]
             ]);
         }
@@ -112,6 +116,7 @@
             ]);
         }
         public function addProduct(){
+          
             $this->render('layouts/admin',[
                 'content'=> 'admins/themsanpham',
                 'title'=> 'Thêm sản phẩm',
