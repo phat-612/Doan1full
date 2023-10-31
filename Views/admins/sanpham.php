@@ -3,6 +3,7 @@
     <div class="filtering-box">
         <label for="filtering-select">Lọc Sản Phẩm :</label>
         <select name="filtering-select" id="filtering-select" class="js_filPro">
+            <option value=''>Tất cả</option>
             <?php
           foreach ($dmPros as $dmPro) {
             echo "<option value='$dmPro'>$dmPro</option>";
@@ -15,8 +16,8 @@
         <select name="Sort-select" id="Sort-select" class="js_arrProduct" >   
             <option value="A->Z">A->Z</option>
             <option value="Z->A">Z->A</option>
-            <option value="Giá-Thấp-đến-Cao">Giá Thấp đến Cao</option>
-            <option value="Giá-Cao-đến-Thấp">Giá Cao đến Thấp</option>
+            <option class="js_arrPro" value="Giá-Thấp-đến-Cao">Giá Thấp đến Cao</option>
+            <option class="js_arrProDesc" value="Giá-Cao-đến-Thấp">Giá Cao đến Thấp</option>
         </select>   
     </div>
     <div class="Search">

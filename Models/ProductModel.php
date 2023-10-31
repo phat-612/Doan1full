@@ -159,7 +159,10 @@
             $query = $this->select($name, $name);
             return $this->arr2to1($query, true);
         }
-        public function getListProduct($collection='',$category='', $sort='ten', $find = '', $limit = ''){
+        public function getListProduct($collection='',$category='', $sort='ten', $find = '', $limit = '', $page = '', $isImg = true){
+            if (!$sort){
+                $sort = 'ten';
+            }
             $output = [];
             $sql = "SELECT s.id, s.ten, s.gia FROM sanpham s
             LEFT JOIN chitietbosuutap cb ON s.id = cb.idsanpham
@@ -174,20 +177,26 @@
             }
             $sql .= " GROUP by s.id
             ORDER by s.$sort";
-            if ($limit){
+            if ($limit && !$page){
                 $sql .= " LIMIT $limit";
             }
-            
+            if ($limit && $page){
+                $sql .= " LIMIT $limit offset ". ($page-1)*$limit;
+            }
             $query = $this->select_by_sql($sql);
             if (!$query){
                 return false;
             }
-            foreach ($query as $key => $value) {
-                $imgs = $this->select('hinhanh', 'hinhanh', "idsanpham = '".$value['id']."'");
-                $output[$key] = $value;
-                $output[$key]['hinhanh'] = $this->arr2to1($imgs, true);
+            if ($isImg){
+                foreach ($query as $key => $value) {
+                    $imgs = $this->select('hinhanh', 'hinhanh', "idsanpham = '".$value['id']."'");
+                    $output[$key] = $value;
+                    $output[$key]['hinhanh'] = $this->arr2to1($imgs, true);
+                }
+                return $output;
+            } else {
+                return $query;
             }
-            return $output;
         }
         // code ML
         // lấy số lượng sản phẩm

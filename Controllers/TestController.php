@@ -82,7 +82,7 @@
         // }
         public function layDSSP(){
             $res = $this->productModel->getListProduct($_POST['bosuutap'],$_POST['danhmuc'], 
-            'id', $_POST['page'], 5, $_POST['tim']);
+            'id',5, $_POST['tim']);
             inmang($res);
         }
         public function layslider(){
@@ -91,6 +91,10 @@
         }
         public function guimail(){
             $res = $this->userModel->sendOrderToEmail($_POST['email']);
+        }
+        public function laySPAdmin(){
+            $data = $this->productModel->getListProduct('', $_GET['danhmuc'], $_GET['sapxep'], $_GET['timkiem'], 5, $_GET['page'], false);
+            inmang($data);
         }
     }
 ?>

@@ -1,10 +1,12 @@
 <div id="container">
       <ul class="tag_comeback">
-          <li><a href="">Trang chủ</a></li>
+          <li><a href="<?php echo _WEB_ROOT ?>">Trang chủ</a></li>
           <li>&#47;</li>
-          <li><a href="">Sản phẩm</a></li>
+          <li><a href="<?php echo _WEB_ROOT.'/product' ?>">Sản phẩm</a></li>
           <li>&#47;</li>
           <li><a href=""></a></li>
+          
+          
       </ul>
       <div class="shop">
         <div class="wrap_shop">

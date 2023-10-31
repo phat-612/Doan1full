@@ -1,7 +1,19 @@
 <ul class="tag_comeback">
-    <li><a href="">Trang chủ</a></li>
+    <li><a href="<?php echo _WEB_ROOT ?>">Trang chủ</a></li>
     <li>&#47;</li>
-    <li><a href="">Sản phẩm</a></li>
+    <li><a href="<?php echo _WEB_ROOT.'/product' ?>">Sản phẩm</a></li>
+    <?php
+        if (isset($_GET['collection'])){
+          $collection = $_GET['collection'];
+          echo "<li>&#47;</li>";
+          echo "<li><a href=''>$collection</a></li>";
+        }
+        if (isset($_GET['find'])){
+          $find = $_GET['find'];
+          echo "<li>&#47;</li>";
+          echo "<li><a href=''>$find</a></li>";
+        }
+      ?>
 </ul>
 <div class="content">
   <div class="filter_sort">

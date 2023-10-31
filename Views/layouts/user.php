@@ -60,9 +60,14 @@
           <li>
             <a href="<?php echo _WEB_ROOT?>/product" class="isSubnav">Sản phẩm<i class="fa-solid fa-angle-down down_btn"></i></a>
             <ul class="nav_list_item">
-              <li><a href="">Tất cả</a></li>
-              <li><a href="">Sản phẩm mới</a></li>
-              <?php print_r($_SESSION)?>
+              <li><a href="<?php echo _WEB_ROOT. "/product"; ?>">Tất cả</a></li>
+              <li><a href="<?php echo _WEB_ROOT. "/product?sort=thoigian+desc"; ?>">Sản phẩm mới</a></li>
+              <?php
+                foreach ($_SESSION['categorys'] as $key) {
+                  $tempLink = _WEB_ROOT. "/product?category=$key" ;
+                  echo "<li><a href='$tempLink'>$key</a></li>";
+                }
+              ?>
               <!-- <li>
                 <a href="">Quần</a>
               </li>
@@ -72,7 +77,21 @@
             </ul>
           </li>
           <li>
-            <a href="">Bộ sưu tập</i></a>
+            <a href="">Bộ sưu tập<i class="fa-solid fa-angle-down down_btn"></i></a>
+            <ul class="nav_list_item">
+              <?php
+                foreach ($_SESSION['collection'] as $key) {
+                  $tempLink = _WEB_ROOT. "/product?collection=$key" ;
+                  echo "<li><a href='$tempLink'>$key</a></li>";
+                }
+              ?>
+              <!-- <li>
+                <a href="">Quần</a>
+              </li>
+              <li>
+                <a href="">Áo</a>
+              </li> -->
+            </ul>
           </li>
           <li><a href="">Liên hệ</a></li>
           <li>

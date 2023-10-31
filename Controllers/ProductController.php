@@ -4,8 +4,8 @@
         private $productModel;
         public function __construct()
         {
+            parent::__construct();
             $this->importModel('ProductModel');
-            
             $this->productModel = new ProductModel();
             
         }

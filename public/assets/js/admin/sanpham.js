@@ -15,16 +15,15 @@ document.querySelector(".js_filPro").addEventListener("change", () => {
   let newUrl = urlObject.toString();
   window.location.href = newUrl;
 });
-
-// if (seaParams.hasOwnProperty('js_arrPro', 'arrProDesc')) {
-//   document.querySelector("js_arrProduct").value = seaParams['js_arrPro']['arrProDesc'];
-// }
-// document.querySelector(".js_arrProduct").addEventListener("change", () => {
-//   let arrPro = document.querySelector(".js_arrPro").value;
-//   let arrProDesc = document.querySelector(".js_arrProDesc").value;
-//   let urlObject = new URL(window.location.href);
-//   urlObject.searchParams.set("js_arrPro", arrPro);
-//   urlObject.searchParams.set("js_arrProDesc", arrProDesc);
-//   let newUrl = urlObject.toString();
-//   window.location.href = newUrl;
-// });
+if (seaParams.hasOwnProperty('js_arrPro', 'arrProDesc')) {
+  document.querySelector("js_arrProduct").value = seaParams['js_arrPro']['arrProDesc'];
+}
+document.querySelector(".js_arrProduct").addEventListener("change", () => {
+  let arrPro = document.querySelector(".js_arrPro").value;
+  let arrProDesc = document.querySelector(".js_arrProDesc").value;
+  let urlObject = new URL(window.location.href);
+  urlObject.searchParams.set("js_arrPro", arrPro);
+  urlObject.searchParams.set("js_arrProDesc", arrProDesc);
+  let newUrl = urlObject.toString();
+  window.location.href = newUrl;
+});

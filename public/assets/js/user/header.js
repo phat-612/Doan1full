@@ -27,13 +27,23 @@ search_input.addEventListener("click", (e) => {
     e.preventDefault();
 });
 search_input.addEventListener("blur", (e) => {
-    search_input.classList.remove("active");
+    setTimeout(() => {
+        search_input.classList.remove("active");
+    }, 500);
+});
+search_input.addEventListener("keydown", (e) => {
+    if (e.key == 'Enter') {
+        if (search_input.value) {
+            window.location.href = ROOTFOLDER + "product?find=" + encodeURIComponent(search_input.value);
+        }
+    }
 });
 search_icon.onclick = function (e) {
     e.preventDefault();
     if (search_input.classList.contains("active")) {
-        window.location.href =
-            "sanpham?timkiem=" + encodeURIComponent(search_input);
+        if (search_input.value) {
+            window.location.href = ROOTFOLDER + "product?find=" + encodeURIComponent(search_input.value);
+        }
     } else {
         search_input.classList.add("active");
         search_input.focus();

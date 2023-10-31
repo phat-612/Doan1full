@@ -5,6 +5,7 @@
         private $sliderModel;
         public function __construct()
         {
+            parent::__construct();
             $this->importModel('ProductModel');
             $this->importModel('SliderModel');
             $this->productModel = new ProductModel();

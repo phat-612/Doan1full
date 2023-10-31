@@ -6,8 +6,8 @@
         public function __construct(){
             $this->importModel('ProductModel');
             $this->productModel = new ProductModel();
-            
             $_SESSION['categorys'] = $this->productModel->getDescProduct('danhmuc');
+            $_SESSION['collection'] = $this->productModel->getDescProduct('bosuutap');
         }
         public function render($path, $data = [])
         {
@@ -16,7 +16,7 @@
         }
         public function importModel($nameModel)
         {
-            return include "Models/$nameModel.php";
+            return include_once "Models/$nameModel.php";
         }
         public function gotoPage($path){
             return header('Location: '. _WEB_ROOT . '/' . $path);

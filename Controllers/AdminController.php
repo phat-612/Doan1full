@@ -81,9 +81,9 @@
         }
         public function product(){
             $dmPros= $this->productModel->getDescProduct('danhmuc');
-            $arrPro = isset($_GET['arrPro']) ? $_GET['arrPro'] : '';
-            $arrProDesc = isset($_GET['arrProDesc']) ? $_GET['arrProDesc'] : '';
-            $argePro = $this->productModel->argePro($arrPro, $arrProDesc);
+            // $arrPro = isset($_GET['arrPro']) ? $_GET['arrPro'] : '';
+            // $arrProDesc = isset($_GET['arrProDesc']) ? $_GET['arrProDesc'] : '';
+            $argePro = $this->productModel->argePro('');
             $this->render('layouts/admin',[
                 'content'=> 'admins/sanpham',
                 'title'=> 'Quản lý sản phẩm',

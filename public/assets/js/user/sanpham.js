@@ -44,10 +44,11 @@ btnPage.addEventListener('click', (e) => {
 })
 // lấy dữ liệu sản phẩm
 let formdata = new FormData();
-formdata.append("collection", "");
-formdata.append("category", !seaParams['category'] ? '' : seaParams['category']);
+console.log(seaParams['find'] ?? '');
+formdata.append("collection", seaParams['collection'] ?? "");
+formdata.append("category", seaParams['category'] ?? '');
 formdata.append("sort", !seaParams['sort'] ? 'ten' : seaParams['sort']);
-formdata.append("find", "");
+formdata.append("find", seaParams['find'] ?? '');
 
 let requestOptions = {
     method: 'POST',
