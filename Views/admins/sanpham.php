@@ -13,12 +13,12 @@
     </div>
     <div class="Sort-box">
         <label for="Sort-select">Sắp Xếp :</label>
-        <select name="Sort-select" id="Sort-select" class="js_arrProduct" >   
+        <select name="Sort-select" id="Sort-select" class="js_arrProduct">
             <option value="A->Z">A->Z</option>
             <option value="Z->A">Z->A</option>
-            <option class="js_arrPro" value="Giá-Thấp-đến-Cao">Giá Thấp đến Cao</option>
-            <option class="js_arrProDesc" value="Giá-Cao-đến-Thấp">Giá Cao đến Thấp</option>
-        </select>   
+            <option value="Giá-Thấp-đến-Cao">Giá Thấp đến Cao</option>
+            <option value="Giá-Cao-đến-Thấp">Giá Cao đến Thấp</option>
+        </select>
     </div>
     <div class="Search">
         <span class="icon"><i class="fa fa-search"></i></span>

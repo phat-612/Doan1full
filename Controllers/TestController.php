@@ -21,9 +21,7 @@
         }
         public function index(){
         }
-        public function sr(){
-            inmang($this->productModel->srProduct($_POST['name']));
-        }
+
         public function total() {
             echo $this->userModel->totalCustomers();
         }

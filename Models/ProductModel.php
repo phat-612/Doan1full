@@ -105,22 +105,6 @@
             }
         }
         // tìm sản phẩm
-        public function srProduct($name){
-            $sql = "SELECT ten FROM sanpham WHERE ten LIKE '%$name%'";
-            $query = $this->select_by_sql($sql);
-            return $query;  
-        }
-        public function argePro($name=''){
-            $sql="SELECT sp.ten , sp.gia FROM sanpham sp";
-            if($name){
-                $sql.= "ORDER BY sp.ten";
-            }
-            else{
-                $sql .= " ORDER BY sp.gia desc";    
-            }
-            $query=$this->select_by_sql($sql);
-            return $this->arr2to1($query);
-        }
         public function addDetailValue($name, $value){
             $data = [
                 $name => $value
