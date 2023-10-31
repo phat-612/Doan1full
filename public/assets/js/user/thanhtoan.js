@@ -79,3 +79,6 @@ function showModalSuccess() {
         modal.style.display = "none";
     }, 2000);
 };
+function saveProfiles() {
+
+}

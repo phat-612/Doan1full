@@ -79,7 +79,6 @@
             } else{
                 return false;
             }
-            
         }
         // tổng số khánh hàng
         public function totalCustomers(){
