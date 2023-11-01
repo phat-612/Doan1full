@@ -80,8 +80,8 @@
             $this->gotoPage('admin/login');
         }
         public function product(){
-            $dmPros= $this->productModel->getDescProduct('danhmuc');
-            $rdProduct = $this->productModel->getListProduct();
+            $dmPros= $this->productModel->getDescProduct('danhmuc');  
+            $rdProduct = $this->productModel->getListProduct('','danhmuc','ten','timkiem',5,1,false);
             $this->render('layouts/admin',[
                 'content'=> 'admins/sanpham',
                 'title'=> 'Quản lý sản phẩm',
