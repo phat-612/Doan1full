@@ -6,7 +6,7 @@
     //Load Composer's autoloader
     require 'vendor/autoload.php';
     class UserModel extends BaseModel{
-        public function sendOrderToEmail($email, $dataOrder = []){
+        public function sendOrderToEmail($email, $dataOrders = []){
             /*
                 [
                     [
@@ -24,6 +24,84 @@
             if (!($this->isExistEmail($email))){
                 return false;
             }
+            $contentEmail = "
+                <html>
+                    <head>
+                        <style>
+                            *{
+                                color: #000;
+                            }
+                            h1 {
+                            color: blue;
+                            font-size: 24px;
+                            }
+                            h2 {
+                                font-size: 20px;
+                                }
+                            p {
+                            font-family: Arial, sans-serif;
+                            font-size: 16px;
+                            }
+                            table {
+                            border-collapse: collapse;
+                            }
+                            tr:nth-child(odd){
+                                background-color:#ddd;
+                            }
+                            tr:nth-child(even){
+                                background-color:#fff;
+                            }
+                            th {
+                            background-color: #ccc;
+                            font-weight: bold;
+                            }
+                            td {
+                            padding: 5px;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <h1>Thông tin các đơn hàng của bạn</h1>
+            ";
+            foreach ($dataOrders as $key => $order) {
+                $contentEmail.= "
+                    <h2>Thông tin đơn hàng thứ ". $key + 1 . "</h2>
+                    <p>Thời gian đặt hàng: ".$order['thoigian']."</p>
+                    <p>Tổng giá trị đơn hàng: ".$order['tongtien']." VNĐ</p>
+                    <p>Họ tên: ".$order['hoten']."</p>
+                    <p>Số điện thoại: ".$order['sodienthoai']."</p>
+                    <p>Địa chỉ: ".$order['diachi']."</p>
+                    <p>Ghi chú: ".$order['ghichu']."</p>
+                    <p>Trạng thái: ".$order['trangthai']."</p>
+                    <table>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Màu sắc</th>
+                            <th>Size</th>
+                            <th>Số lượng</th>
+                            <th>Giá</th>
+                        </tr>";
+                foreach ($order['chitietdonhang'] as $key => $value) {
+                    $contentEmail .= "
+                        <tr>
+                            <td>".$key."</td>
+                            <td><a href='"._WEB_ROOT."/product/detail?id=".$value['id']."'>".$value['ten']."</a></td>
+                            <td>".$value['mausac']."</td>
+                            <td>".$value['kichthuoc']."</td>
+                            <td>".$value['soluong']."</td>
+                            <td>".$value['gia']."</td>
+                        </tr>";
+                }
+                        
+                $contentEmail.= "
+                    </table>";
+            }
+            $contentEmail .= "
+                        <p>Cảm ơn bạn đã mua hàng của chúng tôi!</p>
+                    </body>
+                </html>
+            ";
             $mail = new PHPMailer(true);
             try {
                 
@@ -43,7 +121,8 @@
                 // Cấu hình nội dung email
                 $mail->isHTML(true);
                 $mail->Subject ='=?UTF-8?B?' . base64_encode('Thông tin đơn hàng bạn đã đặt') . '?=';
-                $mail->Body = "<h1>Xin chào</h1>"; // Nội dung email
+                
+                $mail->Body = $contentEmail; // Nội dung email
 
                 // Gửi email và kiểm tra kết quả
                 if (!$mail->send()) {

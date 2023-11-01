@@ -9,6 +9,19 @@
             }
             return $dataOrder;
         }
+        public function getOrderForEmail($email){
+            $output = [];
+            $dataUsers = $this->select('khachhang k, donhang d', '*', "k.id = d.idkhachhang and k.email = '$email'", 'd.id desc');
+            if (!$dataUsers){
+                return false;
+            }
+            foreach ($dataUsers as $key => $dataUser){
+                $idOrder = $dataUser['id'];
+                $output[$key] = $dataUser;
+                $output[$key]['chitietdonhang'] = $this->select('chitietdonhang cd, chitietsanpham cs, sanpham s, mausac m, kichthuoc k', 's.id, s.ten, cd.gia, cd.soluong, m.mausac, k.kichthuoc', "cd.idchitietsanpham = cs.id and cs.idsanpham = s.id and cs.idmausac = m.id and cs.idkichthuoc = k.id and cd.iddonhang = '$idOrder'");
+            }
+            return $output;
+        }
         public function getOneOrder($column = '*', $id){
             return $this->getAllOrder($column, "id = $id", '', 1);
         }

@@ -75,7 +75,30 @@ document.querySelector(".bg_shopping_bag").addEventListener("click", (e) => {
 document.querySelector('.js_btn_pay').addEventListener("click", (e) => {
     window.location.href = ROOTFOLDER + 'payment';
 })
-
+// nút gửi các đơn hàng đã đặt về email
+document.querySelector('.js_send_email').addEventListener("click", (e) => {
+    let email = document.querySelector('.js_inp_email').value;
+    let isEmail = email.match(/[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/);
+    if (isEmail) {
+        let formData = new FormData();
+        formData.append('email', email);
+        let requestOptions = {
+            method: 'POST',
+            body: formData,
+            redirect: 'follow'
+        };
+        fetch(`${ROOTFOLDER}api/sendOrderToEmail`, requestOptions)
+            .then(res => {
+                if (res.status == 200) {
+                    alert('Đã gủi thông tin đặt hàng về email!');
+                } else {
+                    alert('Email chưa mua hàng ở website');
+                }
+            })
+    } else {
+        alert('Vui lòng nhập email!');
+    }
+});
 // --------------------------function---------------------------------------
 // cập nhật các nút control sản phẩm và thêm sự kiện cho các nút
 function loadEleCart() {

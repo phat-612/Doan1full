@@ -167,8 +167,8 @@
         <li>
           <h2>tra cứu lịch sử mua hàng</h2>
         </li>
-        <li><input type="email" placeholder="Nhập email" required>
-          <button class="send_btn">gửi</button>
+        <li><input class="js_inp_email" type="email" placeholder="Nhập email" required>
+          <button class="send_btn js_send_email">gửi</button>
         </li>
       </ul>
     </footer>

@@ -89,10 +89,16 @@
         }
         public function guimail(){
             $res = $this->userModel->sendOrderToEmail($_POST['email']);
+            if ($res){
+                echo "Gửi mail thành công";
+            } else{
+                echo "Gửi mail thất bại";
+            }
         }
         public function laySPAdmin(){
             $data = $this->productModel->getListProduct('', $_GET['danhmuc'], $_GET['sapxep'], $_GET['timkiem'], 5, $_GET['page'], false);
             inmang($data);
         }
+        
     }
 ?>
