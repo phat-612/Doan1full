@@ -35,7 +35,7 @@
               <i class="fa-solid fa-magnifying-glass"></i>
             </a>
           </li>
-          <li>
+          <li class="dp_none">
             <a href="" class="nhunnhin">
               <i class="fa-solid fa-bell"></i>
               <span class="number_annou">0</span>
@@ -47,7 +47,7 @@
               <span class="js_nb_cart number_annou">0</span>
             </a>
           </li>
-          <li>
+          <li class="dp_none">
             <a href="" class="head_user">
               <i class="fa-regular fa-circle-user"></i>
             </a>
@@ -146,9 +146,12 @@
           <h2>danh mục sản phẩm</h2>
         </li>
         <li><a href="">Tất cả</a></li>
-        <li><a href="">Sản phẩm mới</a></li>
-        <li><a href="">Quần</a></li>
-        <li><a href="">Áo</a></li>
+        <?php
+          foreach ($_SESSION['categorys'] as $key) {
+            $tempLink = _WEB_ROOT. "/product?category=$key" ;
+            echo "<li><a href='$tempLink'>$key</a></li>";
+          }
+        ?>
       </ul>
       <ul class="card_footer">
         <li>

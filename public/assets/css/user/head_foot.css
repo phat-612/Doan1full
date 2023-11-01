@@ -74,6 +74,10 @@ header {
     align-items: center;
 }
 
+.header .right li.dp_none {
+    display: none;
+}
+
 .header .right a {
     display: inline-block;
     position: relative;

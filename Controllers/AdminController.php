@@ -80,8 +80,13 @@
             $this->gotoPage('admin/login');
         }
         public function product(){
-            $dmPros= $this->productModel->getDescProduct('danhmuc');  
-            $rdProduct = $this->productModel->getListProduct('','danhmuc','ten','timkiem',5,1,false);
+            $dmPros= $this->productModel->getDescProduct('danhmuc');   
+            $category = isset($_GET['category']) ? $_GET['category'] : '';
+            $sort = isset($_GET['sort']) ? $_GET['sort'] : 'ten';
+            $search = isset($_GET['search']) ? $_GET['search'] : '';
+            $page = isset($_GET['page']) ? $_GET['page'] : 1;
+            $listProduct = $this->productModel->getListProduct('',$category, $sort, $search, 8, $page, false);
+            $qualProduct = $this->productModel->getQuaProduct();
             $this->render('layouts/admin',[
                 'content'=> 'admins/sanpham',
                 'title'=> 'Quản lý sản phẩm',
@@ -89,7 +94,8 @@
                 'js'=> 'sanpham',
                 'subcontent'=> [
                     'dmPros'=> $dmPros,
-                    'rdProduct'=>$rdProduct
+                    'listProduct'=> $listProduct,
+                    'qualProduct'=> $qualProduct
                 ]
             ]);
         }

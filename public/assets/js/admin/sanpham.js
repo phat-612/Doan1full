@@ -5,13 +5,13 @@ searchParams.forEach(function (value, key) {
   seaParams[key] = value;
 });
 // kiểm tra key tồn tại không
-if (seaParams.hasOwnProperty("js_filPro")) {
-  document.querySelector(".js_filPro").value = seaParams["js_filPro"];
+if (seaParams.hasOwnProperty("category")) {
+  document.querySelector(".js_filPro").value = seaParams["category"];
 }
 document.querySelector(".js_filPro").addEventListener("change", () => {
   let fillPro = document.querySelector(".js_filPro").value;
   let urlObject = new URL(window.location.href);
-  urlObject.searchParams.set("js_filPro", fillPro);
+  urlObject.searchParams.set("category", fillPro);
   let newUrl = urlObject.toString();
   window.location.href = newUrl;
 });
@@ -21,13 +21,20 @@ let searchParams1 = new URLSearchParams(window.location.search);
 searchParams1.forEach(function (value, key) {
   seaParams1[key] = value;
 });
-if (seaParams1.hasOwnProperty("js_arrProduct")) {
-  document.querySelector(".js_arrProduct").value = seaParams1["js_arrProduct"];
+if (seaParams1.hasOwnProperty("sort")) {
+  document.querySelector(".js_arrProduct").value = seaParams1["sort"];
 }
 document.querySelector(".js_arrProduct").addEventListener("change", () => {
   let arrPro = document.querySelector(".js_arrProduct").value;
   let urlObject = new URL(window.location.href);
-  urlObject.searchParams.set("js_arrProduct", arrPro);
+  urlObject.searchParams.set("sort", arrPro);
+  let newUrl = urlObject.toString();
+  window.location.href = newUrl;
+});
+document.querySelector(".js_butSrPro").addEventListener("click", () => {
+  let srPro = document.querySelector(".js_srPro").value;
+  let urlObject = new URL(window.location.href);
+  urlObject.searchParams.set("search", srPro);
   let newUrl = urlObject.toString();
   window.location.href = newUrl;
 });

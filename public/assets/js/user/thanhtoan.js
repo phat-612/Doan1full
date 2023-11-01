@@ -9,6 +9,10 @@ if (loadCart().length > 0) {
 formOrder.addEventListener('submit', (e) => {
     e.preventDefault();
     let cart = loadCart();
+    if (cart.length <= 0) {
+        alert('Không có sản phẩm');
+        return;
+    }
     let formData = new FormData(e.target);
     cart.forEach((item, index) => {
         formData.append(`chitietdonhang[${index}][idchitietsanpham]`, item['idchitietsanpham']);
@@ -26,7 +30,11 @@ formOrder.addEventListener('submit', (e) => {
     fetch("api/addOrder", requestOptions)
         .then(res => {
             if (res.status == 200) {
+                saveCart([]);
                 showModalSuccess();
+                setTimeout(() => {
+                    window.location.href = ROOTFOLDER;
+                }, 2000);
             } else {
                 alert("Đặt hàng thất bại");
             }

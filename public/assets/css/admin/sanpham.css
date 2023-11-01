@@ -26,15 +26,40 @@ a {
     font-size: 1.3rem;
 }
 
-.table-box {
+.mother-box.table-box {
     height: 100%;
     width: 100%;
     text-align: center;
-    font-size: 1.5rem;
+}
+
+.table-box {
+    width: 100%;
+    font-size: 24px;
+}
+
+.table-box tbody tr:nth-child(odd) {
+    background-color: rgb(171, 162, 162);
 }
 
 .table-box td {
-    padding: 1% 0%;
+    padding: 5px 0%;
+}
+
+.table-box tr td:last-child {
+    width: 65px;
+    font-size: 15px;
+}
+
+.table-box tr th:nth-child(2) {
+    width: 100px;
+    font-size: 1.2rem;
+}
+
+.table-box tr td:first-child {
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
 }
 
 header {

@@ -1,19 +1,33 @@
 <ul class="tag_comeback">
     <li><a href="<?php echo _WEB_ROOT ?>">Trang chủ</a></li>
-    <li>&#47;</li>
-    <li><a href="<?php echo _WEB_ROOT.'/product' ?>">Sản phẩm</a></li>
     <?php
-        if (isset($_GET['collection'])){
-          $collection = $_GET['collection'];
-          echo "<li>&#47;</li>";
-          echo "<li><a href=''>$collection</a></li>";
-        }
-        if (isset($_GET['find'])){
-          $find = $_GET['find'];
-          echo "<li>&#47;</li>";
-          echo "<li><a href=''>$find</a></li>";
-        }
-      ?>
+      if (isset($_GET['collection'])){
+        $collection = $_GET['collection'];
+        echo "<li>&#47;</li>";
+        echo "<li><a href='"._WEB_ROOT."'>Bộ sưu tập</a></li>";
+        echo "<li>&#47;</li>";
+        echo "<li><a href=''>$collection</a></li>";
+      }else if (isset($_GET['find'])){
+        $find = $_GET['find'];
+        echo "<li>&#47;</li>";
+        echo "<li><a href='"._WEB_ROOT."'>Tìm kiếm</a></li>";
+        echo "<li>&#47;</li>";
+        echo "<li><a href=''># $find</a></li>";
+      }else if (isset($_GET['category'])){
+        $category = $_GET['category'];
+        echo "<li>&#47;</li>";
+        echo "<li><a href='"._WEB_ROOT."/product'>Sản phẩm</a></li>";
+        echo "<li>&#47;</li>";
+        echo "<li><a href=''>$category</a></li>";
+      }else{
+        echo "<li>&#47;</li>";
+        echo "<li><a href=" . _WEB_ROOT.'/product' . ">Sản phẩm</a></li>";
+      }
+    
+    
+    ?>
+
+
 </ul>
 <div class="content">
   <div class="filter_sort">
@@ -27,13 +41,13 @@
           }
         ?>
         
-        <!-- <option value="quần">Quần</option> -->
       </select>
     </div>
     <div class="sort">
       <span class="title">Sắp xếp</span>
       <select class="choosen">
-        <option value="ten">Tên </option>
+        <option value="ten">A - Z</option>
+        <option value="thoigian desc">Mới nhất</option>
         <option value="daban desc">Phổ biến</option>
         <option value="gia">Giá thấp nhất</option>
         <option value="gia desc">Giá cao nhất</option>

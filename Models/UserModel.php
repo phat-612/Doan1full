@@ -85,7 +85,7 @@
                 foreach ($order['chitietdonhang'] as $key => $value) {
                     $contentEmail .= "
                         <tr>
-                            <td>".$key."</td>
+                            <td>".$key + 1 . "</td>
                             <td><a href='"._WEB_ROOT."/product/detail?id=".$value['id']."'>".$value['ten']."</a></td>
                             <td>".$value['mausac']."</td>
                             <td>".$value['kichthuoc']."</td>
