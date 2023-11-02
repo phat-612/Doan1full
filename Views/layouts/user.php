@@ -61,7 +61,6 @@
             <a href="<?php echo _WEB_ROOT?>/product" class="isSubnav">Sản phẩm<i class="fa-solid fa-angle-down down_btn"></i></a>
             <ul class="nav_list_item">
               <li><a href="<?php echo _WEB_ROOT. "/product"; ?>">Tất cả</a></li>
-              <li><a href="<?php echo _WEB_ROOT. "/product?sort=thoigian+desc"; ?>">Sản phẩm mới</a></li>
               <?php
                 foreach ($_SESSION['categorys'] as $key) {
                   $tempLink = _WEB_ROOT. "/product?category=$key" ;
