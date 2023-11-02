@@ -9,7 +9,7 @@
 #container .slider img {
     display: none;
     width: 100%;
-    height: 585px;
+    /* height: 585px; */
 }
 
 #container .product_heading {

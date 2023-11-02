@@ -87,12 +87,12 @@
             $res = $this->sliderModel->getSlider();
             inmang($res);
         }
-        public function guimail(){
-            $res = $this->userModel->sendOrderToEmail($_POST['email']);
+        public function guiotp(){
+            $res = $this->userModel->sendOtpMail($_POST['email']);
             if ($res){
-                echo "Gửi mail thành công";
+                echo "Gửi otp thành công";
             } else{
-                echo "Gửi mail thất bại";
+                echo "Gửi otp thất bại";
             }
         }
         public function laySPAdmin(){
