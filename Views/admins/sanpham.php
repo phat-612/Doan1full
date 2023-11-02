@@ -25,7 +25,7 @@
         <input type="search" id="search" placeholder="Search..." class="js_srPro" />
         <button class="js_butSrPro">tìm</button>
     </div>
-    <div class="add-product">   
+    <div class="add-product">
         <a href="<?php echo _WEB_ROOT?>/admin/addProduct">Thêm sản Phẩm</a>
     </div>
     <div class="mother-box">
@@ -39,17 +39,21 @@
             </thead>
             <tbody id="product-tbody  ">
                 <?php
+                if (empty($listProduct)) {
+                   echo "Không có sản phẩm";
+                } else {    
                     foreach ($listProduct as $product) {?>
-                    <tr>
-                        <td><?= $product['ten']?></td>
-                        <td>1</td>
-                        <td><?= $product['gia']?></td>
-                        <td>
-                            <a href="<?= _WEB_ROOT."admin/detailProduct?id=".$product['id']?>">Chi Tiết</a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td><?= $product['ten']?></td>
+                    <td>1</td>
+                    <td><?= $product['gia']?></td>
+                    <td>
+                        <a href="<?= _WEB_ROOT."admin/detailProduct?id=".$product['id']?>">Chi Tiết</a>
+                    </td>
+                </tr>
                 <?php
                     }
+                }
                 ?>
         </table>
     </div>
@@ -58,26 +62,40 @@
     <div id="pagination" class="pagination">
         <ul class="pagination-list">
             <?php   
-                $qualProduct = 125;
+                $qualProduct = 50;
                 $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
                 $limit = 5;
-                if ($currentPage <= 3 && $qualProduct/$limit >= 5){
-                    for ($i = 1; $i < 6; $i++){
-                        echo "<li><a class='pagination_link' href='?page=$i'>$i</a></li>";
-                    }
-                }else if ($currentPage > 3 && $qualProduct/$limit >= 5 + $currentPage) {
-                    echo "<li><a class='pagination_link' href='?page=1'>1</a></li>";
-                    echo "<li>...</li>";
-                    for ($i = $currentPage-2; $i < $currentPage+3; $i++){
-                        echo "<li><a class='pagination_link' href='?page=$i'>$i</a></li>";
-                    }
+                $totalPages = $qualProduct / $limit;    
+                if ($currentPage > 1) {
+                    $backPage = $currentPage - 1;
+                    echo "<li><a class='pagination_link' href='?page=$backPage'>&lt;</a></li>";
                 }
-            
+                if ($currentPage <= 2 && $qualProduct/$limit >= 5){
+                    for ($i = 1; $i <=5; $i++){
+                        echo "<li><a class='pagination_link' href='?page=$i'>$i</a></li>";
+                    }
+                }else 
+                    if ($currentPage > 2 && $totalPages >= 5 + $currentPage) {
+                        echo "<li><a class='pagination_link' href='?page=1'>1</a></li>";
+                        echo "<li>...</li>";
+                            for ($i = $currentPage; $i < $currentPage+4; $i++){
+                                echo "<li><a class='pagination_link' href='?page=$i'>$i</a></li>";
+                            } 
+                        }  
+                            else {
+                                echo "<li><a class='pagination_link' href='?page=1'>1</a></li>";
+                                echo "<li>...</li>";
+                                for ($i = $totalPages-4; $i <= $totalPages; $i++) {
+                                    echo "<li><a class='pagination_link' href='?page=$i'>$i</a></li>";
+                                }
+                            }
+                    if ($currentPage < $totalPages) {
+                        $nextPage = $currentPage + 1;
+                        echo "<li><a class='pagination_link' href='?page=$nextPage'>&gt;</a></li>";
+                }
+               
+                
             ?>
-            <!-- <li><a class="pagination_link" href="#">1</a></li>
-            <li><a class="pagination_link" href="#">2</a></li>
-            <li><a class="pagination_link" href="#">3</a></li>
-            <li><a class="pagination_link" href="#">4</a></li> -->
         </ul>
     </div>
 </div>
