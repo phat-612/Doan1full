@@ -76,24 +76,24 @@
                     }
                 }
                 else 
-                    if ($currentPage > 2 && $currentPage <= $totalPages) {
+                    if ($currentPage > 2 &&  $currentPage+6 <= $totalPages ) {
                         echo "<li><a class='pagination_link' href='?page=1'>1</a></li>";
                         echo "<li>...</li>";
-                            for ($i = $currentPage; $i < $currentPage+4; $i++){
+                            for ($i = $currentPage; $i <= $currentPage+4; $i++){
                                 echo "<li><a class='pagination_link' href='?page=$i'>$i</a></li>";
                             } 
                         }  
-                    else if($currentPage > 2 && $currentPage <= $totalPages) {
-                        echo "<li><a class='pagination_link' href='?page=1'>1</a></li>";
-                        echo "<li>...</li>";
-                        for ($i = $currentPage; $i < $totalPages; $i++){ 
-                                echo "<li><a class='pagination_link' href='?page=$i'>$i</a></li>";                     
+                        else if ($currentPage <= $totalPages) { 
+                            echo "<li><a class='pagination_link' href='?page=1'>1</a></li>";
+                            echo "<li>...</li>";
+                            for($i =$totalPages-4; $i <= $totalPages; $i++){
+                                echo "<li><a class='pagination_link' href='?page=$i'>$i</a></li>";
+                            }
                         }
-                    }
                     if ($currentPage < $totalPages) {   
                         $nextPage = $currentPage +1;
                         echo "<li><a class='pagination_link' href='?page=$nextPage'>&gt;</a></li>";
-                }
+                    }
                
                 
             ?>
