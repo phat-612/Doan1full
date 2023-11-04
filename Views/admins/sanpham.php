@@ -65,32 +65,33 @@
                 $qualProduct = 50;
                 $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
                 $limit = 5;
-                $totalPages = $qualProduct / $limit;    
+                $totalPages = ceil($qualProduct / $limit);    
                 if ($currentPage > 1) {
                     $backPage = $currentPage - 1;
                     echo "<li><a class='pagination_link' href='?page=$backPage'>&lt;</a></li>";
                 }
-                if ($currentPage <= 2 && $qualProduct/$limit >= 5){
+                if ($currentPage <= 2 && $totalPages >= 5){
                     for ($i = 1; $i <=5; $i++){
                         echo "<li><a class='pagination_link' href='?page=$i'>$i</a></li>";
                     }
-                }else 
-                    if ($currentPage > 2 && $totalPages >= 5 + $currentPage) {
+                }
+                else 
+                    if ($currentPage > 2 && $currentPage <= $totalPages) {
                         echo "<li><a class='pagination_link' href='?page=1'>1</a></li>";
                         echo "<li>...</li>";
                             for ($i = $currentPage; $i < $currentPage+4; $i++){
                                 echo "<li><a class='pagination_link' href='?page=$i'>$i</a></li>";
                             } 
                         }  
-                            else {
-                                echo "<li><a class='pagination_link' href='?page=1'>1</a></li>";
-                                echo "<li>...</li>";
-                                for ($i = $totalPages-4; $i <= $totalPages; $i++) {
-                                    echo "<li><a class='pagination_link' href='?page=$i'>$i</a></li>";
-                                }
-                            }
-                    if ($currentPage < $totalPages) {
-                        $nextPage = $currentPage + 1;
+                    else if($currentPage > 2 && $currentPage <= $totalPages) {
+                        echo "<li><a class='pagination_link' href='?page=1'>1</a></li>";
+                        echo "<li>...</li>";
+                        for ($i = $currentPage; $i < $totalPages; $i++){ 
+                                echo "<li><a class='pagination_link' href='?page=$i'>$i</a></li>";                     
+                        }
+                    }
+                    if ($currentPage < $totalPages) {   
+                        $nextPage = $currentPage +1;
                         echo "<li><a class='pagination_link' href='?page=$nextPage'>&gt;</a></li>";
                 }
                

@@ -62,9 +62,10 @@
             <ul class="nav_list_item">
               <li><a href="<?php echo _WEB_ROOT. "/product"; ?>">Tất cả</a></li>
               <?php
-                foreach ($_SESSION['categorys'] as $key) {
-                  $tempLink = _WEB_ROOT. "/product?category=$key" ;
-                  echo "<li><a href='$tempLink'>$key</a></li>";
+                foreach ($_SESSION['category'] as $category) {
+                  $ten = $category['danhmuc'];
+                  $tempLink = _WEB_ROOT. "/product?category=$ten" ;
+                  echo "<li><a href='$tempLink'>$ten</a></li>";
                 }
               ?>
               <!-- <li>
@@ -79,9 +80,10 @@
             <a href="">Bộ sưu tập<i class="fa-solid fa-angle-down down_btn"></i></a>
             <ul class="nav_list_item">
               <?php
-                foreach ($_SESSION['collection'] as $key) {
-                  $tempLink = _WEB_ROOT. "/product?collection=$key" ;
-                  echo "<li><a href='$tempLink'>$key</a></li>";
+                foreach ($_SESSION['collection'] as $collection) {
+                  $ten = $collection['bosuutap'];
+                  $tempLink = _WEB_ROOT. "/product?collection=$ten";
+                  echo "<li><a href='$tempLink'>$ten</a></li>";
                 }
               ?>
               <!-- <li>
@@ -146,9 +148,10 @@
         </li>
         <li><a href="">Tất cả</a></li>
         <?php
-          foreach ($_SESSION['categorys'] as $key) {
-            $tempLink = _WEB_ROOT. "/product?category=$key" ;
-            echo "<li><a href='$tempLink'>$key</a></li>";
+          foreach ($_SESSION['category'] as $category) {
+            $ten = $category['danhmuc'];
+            $tempLink = _WEB_ROOT. "/product?category=$ten" ;
+            echo "<li><a href='$tempLink'>$ten</a></li>";
           }
         ?>
       </ul>

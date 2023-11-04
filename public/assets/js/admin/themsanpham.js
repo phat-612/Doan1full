@@ -1,49 +1,4 @@
-// const dropArea = document.querySelector(".drag-area");
-// const dragText = dropArea.querySelector("header");
-// const button = dropArea.querySelector("button");
-// const input = dropArea.querySelector("input");
-
-// button.addEventListener("click", () => {
-//   input.click();
-// });
-
-// input.addEventListener("change", function () {
-//   const file = this.files[0];
-//   showFile(file);
-// });
-
-// dropArea.addEventListener("dragover", (event) => {
-//   event.preventDefault();
-//   dragText.textContent = "Thả để Tải Ảnh lên";
-// });
-
-// dropArea.addEventListener("dragleave", (event) => {
-//   event.preventDefault();
-//   dragText.textContent = "Kéo và Thả để Tải Ảnh lên";
-// });
-
-// dropArea.addEventListener("drop", (event) => {
-//   event.preventDefault();
-//   const file = event.dataTransfer.files[0];
-//   showFile(file);
-// });
-
-// function showFile(file) {
-//   const fileType = file.type;
-//   const validExtensions = ["image/jpeg", "image/jpg", "image/png"];
-//   if (validExtensions.includes(fileType)) {
-//     const fileReader = new FileReader();
-//     fileReader.onload = () => {
-//       const fileUrl = fileReader.result;
-//       const imgTag = `<img src="${fileUrl}">`;
-//       dropArea.innerHTML = imgTag;
-//     };
-//     fileReader.readAsDataURL(file);
-//   } else {
-//     alert("Đây không phải là file ảnh");
-//     dragText.textContent = "Kéo và Thả để Tải Ảnh lên";
-//   }
-// }
+let uploadImgs = [];
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -148,42 +103,40 @@ displayProductData();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function ImagesFileAsURL() {
-    // Lấy danh sách các tệp hình ảnh đã được chọn
-    var fileSelected = document.getElementById("upload").files;
+const uploadInput = document.getElementById("upload");
+const displayImg = document.getElementById("displayImg");
 
-    // Kiểm tra nếu có ít nhất một tệp hình ảnh được chọn
-    if (fileSelected.length > 0) {
-        for (var i = 0; i < fileSelected.length; i++) {
-            var fileToLoad = fileSelected[i];
-            var fileReader = new FileReader();
-
-            // Định nghĩa một hàm xử lý khi tệp hình ảnh được tải
-            fileReader.onload = function (fileLoaderEvent) {
-                var srcData = fileLoaderEvent.target.result;
-                var newImage = document.createElement("img");
-
-                // Đặt đường dẫn URL cho hình ảnh mới
-                newImage.src = srcData;
-
-                // Tạo nút xóa và gắn sự kiện xóa
-                var deleteButton = document.createElement("button");
-                deleteButton.innerHTML = "Xóa";
-                deleteButton.addEventListener("click", function () {
-                    // Xóa hình ảnh và nút xóa khi nút xóa được nhấn
-                    newImage.remove();
-                    deleteButton.remove();
-                });
-
-                // Hiển thị hình ảnh và nút xóa trên trang web
-                var imageContainer = document.createElement("div");
-                imageContainer.appendChild(newImage);
-                imageContainer.appendChild(deleteButton);
-                document.getElementById("displayImg").appendChild(imageContainer);
-            };
-
-            // Bắt đầu quá trình tải tệp hình ảnh dưới dạng URL
-            fileReader.readAsDataURL(fileToLoad);
+uploadInput.addEventListener("change", (e) => {
+    let uploades = e.target.files;
+    for (let i = 0; i < uploades.length; i++) {
+        if (uploades[i].type.includes("image")) {
+            uploadImgs.push(uploades[i]);
         }
+    }
+    loadImgUpload();
+});
+
+// function
+function deleteImage(index) {
+    uploadImgs.splice(index, 1);
+    loadImgUpload();
+}
+
+// Hàm hiển thị và xóa hình ảnh
+function loadImgUpload() {
+    displayImg.innerHTML = "";
+    let fileList = new DataTransfer();
+    for (let j = 0; j < uploadImgs.length; j++) {
+        fileList.items.add(uploadImgs[j]);
+    }
+    fileList = fileList.files;
+    uploadInput.files = fileList;
+    for (let i = 0; i < fileList.length; i++) {
+        let file = fileList[i];
+        let html = `
+      <img src="${URL.createObjectURL(file)}" alt="">
+      <button onclick="deleteImage(${i})">Xóa</button>
+    `;
+        displayImg.innerHTML += html;
     }
 }

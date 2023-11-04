@@ -9,7 +9,7 @@ header {
 
 .AddProduct-form {
     width: 83%;
-    height: 950px;
+    height: 1100px;
     background-color: rgb(210, 210, 210);
     margin: 100px 16.5%;
     overflow: hidden;
@@ -28,7 +28,7 @@ header {
 
 .mother-box-Add-Product {
     display: flex;
-    height: 60%;
+    height: 55%;
     flex-wrap: wrap;
     justify-content: space-around;
 }
@@ -91,7 +91,7 @@ a {
     border: 1px solid black;
     border-radius: 8px;
     width: 98%;
-    height: 28%;
+    height: 65%;
     display: flex;
     flex-wrap: wrap;
     align-content: space-around;
@@ -266,6 +266,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .colect_hide-box-form {
     padding: 1%;
     top: 40%;
+    left: 40%;
     border: 1px black solid;
     background-color: rgb(255, 255, 255);
     width: 30%;
@@ -366,57 +367,16 @@ input[type="number"]::-webkit-outer-spin-button {
     width: 27%;
 }
 
-.color-select option:nth-child(2) {
-    background-color: rgb(255, 255, 255);
-    color: black;
-}
-
-.color-select option:nth-child(3) {
-    background-color: black;
-    color: white;
-}
-
-.color-select option:nth-child(4) {
-    background-color: red;
-    color: white;
-}
-
-.color-select option:nth-child(5) {
-    background-color: rgb(198, 198, 39);
-    color: white;
-}
-
-.color-select option:nth-child(6) {
-    background-color: blue;
-    color: white;
-}
-
-.color-select option:nth-child(7) {
-    background-color: green;
-    color: white;
-}
-
-.color-select option:nth-child(8) {
-    background-color: rgb(216, 88, 109);
-    color: white;
-}
-
-.color-select option:nth-child(9) {
-    background-color: orange;
-    color: white;
-}
-
-.color-select option:nth-child(10) {
-    background-color: purple;
-    color: white;
-}
-
 h2 {
     width: 100%;
     height: 5%;
 }
 
-.container table {
+.container {
+    width: 100%;
+}
+
+.table {
     width: 100%;
     text-align: center;
 }
@@ -445,12 +405,25 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
+    justify-content: flex-start;
+}
+
+.drag-area input {
+    align-self: center;
 }
 
 .drag-area img {
-    height: 90%;
+    height: 100px;
+}
+
+.drag-area img~img {
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+.drag-area button {
+    height: 20px;
+    margin: 0 0 0 -25px;
 }
 
 .text-lg {
@@ -480,6 +453,7 @@ h2 {
 
 #displayImg {
     width: 100%;
-    height: 65%;
+    height: 75%;
     display: flex;
+    flex-wrap: wrap;
 }

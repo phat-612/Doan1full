@@ -6,6 +6,7 @@
         private $productModel;
         public function __construct()
         {
+            parent::__construct();
             $this->importModel('OrderModel');
             $this->orderModel = new OrderModel();
             $this->importModel('UserModel');

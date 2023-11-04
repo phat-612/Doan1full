@@ -140,8 +140,8 @@
         }
         // lấy mô tả sản phẩm
         public function getDescProduct($name){
-            $query = $this->select($name, $name);
-            return $this->arr2to1($query, true);
+            $query = $this->select($name, '*');
+            return $query;
         }
         public function getListProduct($collection='',$category='', $sort='ten', $find = '', $limit = '', $page = '', $isImg = true){
             if (!$sort){
