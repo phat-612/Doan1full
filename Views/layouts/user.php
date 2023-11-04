@@ -230,7 +230,7 @@
               <span>vnđ</span>
             </div>
           </div>
-          <button class="pay_btn js_btn_pay">thanh toán</button>
+          <button class="pay_btn js_btn_pay">Đặt hàng</button>
         </div>
       </div>
     </div>

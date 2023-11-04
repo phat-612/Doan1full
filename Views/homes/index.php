@@ -14,17 +14,18 @@
     <?php
         foreach ($products as $product) {
     ?>
+        <!-- tạo ra các thẻ sản phẩm -->
         <div class="product_card">
-        <a href="product/detail?id=<?php echo $product['id']?>">
-            <div class="product_img">
-            <img class="before" src="<?php echo isset($product['hinhanh'][0])?$product['hinhanh'][0]:'public/assets/img/products/aothuntruoc.jpg';?>" alt="Ảnh sản phẩm" />
-            <img src="<?php echo isset($product['hinhanh'][1])?$product['hinhanh'][1]:'public/assets/img/products/aothunsau.jpg'; ?>" alt="Ảnh sản phẩm" class="after" />
-            </div>
-            <div class="card_content">
-            <h5 class="product_name"><?php echo $product['ten']?></h5>
-            <p class="product_price"><?php echo $product['gia']?><span>vnđ</span></p>
-            </div>
-        </a>
+            <a href="product/detail?id=<?php echo $product['id']?>">
+                <div class="product_img">
+                <img class="before" src="<?php echo isset($product['hinhanh'][0])?$product['hinhanh'][0]:'public/assets/img/products/aothuntruoc.jpg';?>" alt="Ảnh sản phẩm" />
+                <img src="<?php echo isset($product['hinhanh'][1])?$product['hinhanh'][1]:'public/assets/img/products/aothunsau.jpg'; ?>" alt="Ảnh sản phẩm" class="after" />
+                </div>
+                <div class="card_content">
+                <h5 class="product_name"><?php echo $product['ten']?></h5>
+                <p class="product_price"><?php echo number_format($product['gia'], 0, '.', ' ') ?><span> vnđ</span></p>
+                </div>
+            </a>
         </div>
     <?php } ?>
 </div>

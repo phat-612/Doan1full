@@ -99,8 +99,17 @@ document.querySelector('.js_send_email').addEventListener("click", (e) => {
         alert('Vui lòng nhập email!');
     }
 });
-// --------------------------function---------------------------------------
+// --------------------------FUNCTION---------------------------------------
 // cập nhật các nút control sản phẩm và thêm sự kiện cho các nút
+function formatPrice(price) {
+    let arrPrice = price.toString().split('');
+    let lengthPrice = arrPrice.length;
+    while (lengthPrice > 3) {
+        lengthPrice -= 3;
+        arrPrice.splice(lengthPrice, 0, ' ');
+    }
+    return arrPrice.join('');
+}
 function loadEleCart() {
     inpNumberPros = document.querySelectorAll(".myInput");
     btnPlusPros = document.querySelectorAll(".js_plus");
@@ -171,7 +180,7 @@ function totalPay() {
         document.querySelector(".value_sbag").style.display = "block";
     }
     eleTotalPay.forEach((ele) => {
-        ele.textContent = total;
+        ele.textContent = formatPrice(total);
     })
     document.querySelector(".js_nb_cart").textContent = loadCart().length;
 }
@@ -259,7 +268,7 @@ async function loadCartPage() {
           <div class="js_plus amount_icon"><i class="fa-solid fa-plus"></i></div>
         </div>
         <div class="price_item">
-          <span class="num_price">${pro["gia"]}</span>
+          <span class="num_price">${formatPrice(pro["gia"])}</span>
           <span>vnđ</span>
         </div>
       </div>

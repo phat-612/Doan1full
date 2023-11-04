@@ -31,7 +31,7 @@
         </div> -->
         </div>
         <div class="pay2_btn btn_css js_btn_order">
-        <input type="submit" name="" id="" value="Thanh toán"></div>
+        <input type="submit" name="" id="" value="Đặt hàng"></div>
         <!-- <a href="">thanh toán</a> -->
     </form>
     </section>

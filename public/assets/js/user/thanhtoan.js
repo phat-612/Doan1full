@@ -69,7 +69,7 @@ async function loadProductPayment() {
                 <div class="js_plus amount_icon"><i class="fa-solid fa-plus"></i></div>
                 </div>
             <div class="price_item">
-                <p class="num_price">${pro["gia"]}<span>vnđ</span></p>
+                <p class="num_price">${formatPrice(pro["gia"])}<span>vnđ</span></p>
             </div>
             </div>
             </div>

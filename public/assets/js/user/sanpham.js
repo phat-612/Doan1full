@@ -78,7 +78,7 @@ function loadProduct() {
             </div>
             <div class="card_content">
                 <h5 class="product_name">${product['ten']}</h5>
-                <p class="product_price">${product['gia']}<span>vnđ</span></p>
+                <p class="product_price">${formatPrice(product['gia'])}<span> vnđ</span></p>
             </div>
             </a>
         </div>

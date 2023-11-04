@@ -75,7 +75,7 @@ function loadPage() {
     // tên
     document.querySelector('.title_product').textContent = detailProduct['ten'];
     // giá
-    document.querySelector('.js_price_pro').innerHTML = detailProduct['gia'] + ` vnđ`;
+    document.querySelector('.js_price_pro').innerHTML = formatPrice(detailProduct['gia']) + ` vnđ`;
     // chi tiết
     let ctsp = detailProduct['chitietsanpham'];
     let listColor = new Set();
