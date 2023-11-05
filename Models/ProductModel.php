@@ -37,17 +37,22 @@
                     $this->create("chitietsanpham", array_merge(array("idsanpham"=> $id), $value));
                 }
                 foreach($dataCollection as $value){
-                    $query = $this->select('bosuutap', 'id', "bosuutap = '$value'");
-                    if ($query){
-                        $idCollection = $this->arr2to1($query)['id'];
-                        $data = [
-                            'idsanpham' => $id,
-                            'idbosuutap' => $idCollection
-                        ];
-                        $this->create('chitietbosuutap', $data);
-                    } else{
-                        echo "bộ sưu tập không tồn tại";
-                    }
+                    // $query = $this->select('bosuutap', 'id', "bosuutap = '$value'");
+                    // if ($query){
+                    //     $idCollection = $this->arr2to1($query)['id'];
+                    //     $data = [
+                    //         'idsanpham' => $id,
+                    //         'idbosuutap' => $idCollection
+                    //     ];
+                    //     $this->create('chitietbosuutap', $data);
+                    // } else{
+                    //     echo "bộ sưu tập không tồn tại";
+                    // }
+                    $data = [
+                        'idsanpham' => $id,
+                        'idbosuutap' => $value
+                    ];
+                    $this->create('chitietbosuutap', $data);
                 }
                 echo "thêm sản phẩm thành công";
                 $this->conn->commit();

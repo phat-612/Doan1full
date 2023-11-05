@@ -108,19 +108,19 @@
             }
         }
         // gửi đơn hàng đã đặt về email khách hàng
-        public function sendOrderToEmail(){
-            $res = $this->orderModel->getOrderForEmail($_POST['email']);
-            if ($res){
-                $res = $this->userModel->sendOrderToEmail($_POST['email'], $res);
-                    if ($res){
-                        http_response_code(200);
-                    } else{
-                        http_response_code(400);
-                    }
-            } else{
-                http_response_code(400);
-            }
-        }
+        // public function sendOrderToEmail(){
+        //     $res = $this->orderModel->getOrderForEmail($_POST['email']);
+        //     if ($res){
+        //         $res = $this->userModel->sendOrderToEmail($_POST['email'], $res);
+        //             if ($res){
+        //                 http_response_code(200);
+        //             } else{
+        //                 http_response_code(400);
+        //             }
+        //     } else{
+        //         http_response_code(400);
+        //     }
+        // }
         // kiểm tra method
         private function _checkMethod($method = "POST"){
             if (!($this->reqMethod == $method)){

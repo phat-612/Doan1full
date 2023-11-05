@@ -1,4 +1,4 @@
-<form action="" method="post" class="AddProduct-form">
+<form action="" method="post" class="AddProduct-form" enctype="multipart/form-data">
   <div class="title-ADDPRODUCT">
     <header>THÊM SẢN PHẨM</header>
   </div>
@@ -7,12 +7,12 @@
       <header>Thông tin chung</header>
       <div class="Product-Name-box">
         <label class="Product-Name" for="Product-Name">Tên sản phẩm *</label>
-        <input spellcheck="false" class="input-text-ProductName" type="text" id="Product-Name"
+        <input spellcheck="false" name="ten" class="input-text-ProductName" type="text" id="Product-Name"
           placeholder="Nhập tên sản phẩm" required />
       </div>
       <div class="Product-Category-box">
         <label class="Product-Category" for="Product-Category">Danh mục sản phẩm *</label>
-        <select class="Product-Category-select" name="Product-Category" id="Product-Category" required>
+        <select class="Product-Category-select" name="iddanhmuc" id="Product-Category" required>
           <!-- <option value="chọn-danh-mục">chọn danh mục</option> -->
           <?php
             foreach ($_SESSION['category'] as $category) {
@@ -27,7 +27,7 @@
         <div class="Product-Price-Nametag">
           <label for="Product-Price">Giá Sảm Phẩm *</label>
         </div>
-        <input spellcheck="false" class="Product-Price-input" type="number" name="Product-Price" min="0"
+        <input spellcheck="false" class="Product-Price-input" type="number" name="gia" min="0"
           oninput="validity.valid||(value='');" id="Product-Price" placeholder="Nhập giá sản phẩm" required />
       </div>
       <div class="colection-box">
@@ -37,7 +37,7 @@
       </div>
       <div class="Product-Description-box">
         <label class="Product-Description" for="Product-Description">Mô tả sản phẩm</label>
-        <textarea spellcheck="false" class="Product-Description-textarea" placeholder="Nhập mô tả sản phẩm" name=""
+        <textarea spellcheck="false" class="Product-Description-textarea" placeholder="Nhập mô tả sản phẩm" name="mota"
           id="Product-Description" cols="30" rows="10"></textarea>
       </div>
     </div>
@@ -53,7 +53,7 @@
           <label class="color-nametag" for="color">Màu</label>
           <div class="color">
             <select class="color-select" name="" id="color">
-              <!-- <option value="Chọn-màu">Chọn màu</option> -->
+              <option value="">Chọn màu</option>
               <?php
                 foreach ($_SESSION['color'] as $color) {
                   $ten = $color['mausac'];
@@ -67,7 +67,7 @@
         <div class="size-box">
           <label class="size-nametag" for="size">Size</label>
           <select class="size-select" name="" id="size">
-            <!-- <option value="S">S</option> -->
+            <option value="">Chọn size</option>
             <?php
                 foreach ($_SESSION['size'] as $size) {
                   $ten = $size['kichthuoc'];
@@ -79,7 +79,7 @@
         </div>
         <div class="quantity-box">
           <label class="quantity-nametag" for="quantity">Số lượng</label>
-          <input class="quantity-input" type="number" id="quantity" min="0" oninput="validity.valid||(value='');"/>
+          <input class="quantity-input" type="number" id="quantity" min="0" oninput="validity.valid||(value='');" />
         </div>
         <button type="button" id="btn-lappy" class="btn btn-success" onclick="addOnClick()">
           Thêm
@@ -96,7 +96,7 @@
         Thêm ảnh sản Phẩm
       </header>
       <div class="drag-area">
-        <input type="file" name="upload" id="upload" multiple />
+        <input type="file" name="hinhanh[]" id="upload" multiple />
         <div id="displayImg"></div>
       </div>
     </div>
@@ -111,8 +111,10 @@
         $id = $collection['id'];
         ?>
     <div>
-      <input type="checkbox" name="bosuutap[]" id="muaDong" class="collection-checkbox" value="<?= $id ?>" />
-      <label for="muaDong"><?= $ten ?></label>
+      <input type="checkbox" name="bosuutap[]" id="bst<?= $id?>" class="collection-checkbox" value="<?= $id ?>" />
+      <label for="bst<?= $id?>">
+        <?= $ten ?>
+      </label>
     </div>
     <?php }?>
   </div>

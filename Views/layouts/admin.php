@@ -57,6 +57,7 @@
             <div class="contact">contact: blablablabla@gmail.com</div>
         </div>
     </div>
+    <script src="<?= _WEB_ROOT?>/public/assets/js/admin/admin.js"></script>
     <?php 
     if(isset($js)){
       if (is_array($js)){

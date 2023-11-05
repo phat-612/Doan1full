@@ -2,18 +2,30 @@ let uploadImgs = [];
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const chooseBST = document.querySelector("checkbox");
+const chooseBST = document.getElementById("chooseBST")
 const closeBST = document.querySelector("#closeBST");
-document.getElementById("chooseBST").onclick = function (e) {
-    if (this.checked) {
-        document.querySelector(".colect_hide-box-form").style.display = "block";
-    } else {
-        alert("Bạn vừa bỏ Bộ Sưu Tập");
-    }
+const listCollectionCb = document.querySelectorAll("input[name='bosuutap[]']");
+chooseBST.onclick = function (e) {
+    e.preventDefault();
+    document.querySelector(".colect_hide-box-form").style.display = "block";
 };
 closeBST.addEventListener("click", function () {
     document.querySelector(".colect_hide-box-form").style.display = "none";
 });
+listCollectionCb.forEach(cb => {
+    cb.addEventListener("click", (e) => {
+        checkCollection();
+    })
+})
+function checkCollection() {
+    chooseBST.checked = false;
+    listCollectionCb.forEach(cb => {
+        if (cb.checked) {
+            chooseBST.checked = true;
+        }
+
+    });
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -32,8 +44,8 @@ function displayProductData() {
 
     for (var i = 0; i < productData.length; i++) {
         html += "<tr>";
-        html += "<td>" + productData[i].color + "</td>";
-        html += "<td>" + productData[i].size + "</td>";
+        html += "<td>" + productData[i].colorText + "</td>";
+        html += "<td>" + productData[i].sizeText + "</td>";
         html +=
             "<td><input type='number' value='" +
             productData[i].quantity +
@@ -52,15 +64,18 @@ function displayProductData() {
 }
 
 function addOnClick() {
-    var color = document.getElementById("color").value;
-    var size = document.getElementById("size").value;
-    var quantity = document.getElementById("quantity").value;
 
-    if (color !== "Chọn-màu" && size !== "Chọn-size" && quantity !== "") {
+    let selColor = document.getElementById("color");
+    let selSize = document.getElementById("size");
+    let quantity = document.getElementById("quantity").value;
+
+    if (color.value && size.value && quantity) {
         let id = productData.length + 1;
         productData.push({
-            color: color,
-            size: size,
+            colorText: selColor.options[selColor.selectedIndex].innerText,
+            sizeText: selSize.options[selSize.selectedIndex].innerText,
+            color: selColor.value,
+            size: selSize.value,
             quantity: quantity,
             id: id,
         });
@@ -94,8 +109,8 @@ function updateQuantity(id) {
 }
 
 function clearItems() {
-    document.getElementById("color").value = "Chọn-màu";
-    document.getElementById("size").value = "Chọn-size";
+    document.getElementById("color").value = "";
+    document.getElementById("size").value = "";
     document.getElementById("quantity").value = "";
 }
 
@@ -140,3 +155,25 @@ function loadImgUpload() {
         displayImg.innerHTML += html;
     }
 }
+
+
+// sự kiện gửi form
+document.querySelector('form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    let formData = new FormData(document.querySelector('form'));
+    productData.forEach((ct, ind) => {
+        formData.append(`chitietsanpham[${ind}][idmausac]`, ct.color);
+        formData.append(`chitietsanpham[${ind}][idkichthuoc]`, ct.size);
+        formData.append(`chitietsanpham[${ind}][soluong]`, ct.quantity);
+    })
+    let requestOptions = {
+        method: 'POST',
+        body: formData,
+        redirect: 'follow'
+    }
+    fetch(`${ROOTFOLDER}api/addProduct`, requestOptions)
+        .then(res => {
+            console.log(res.status);
+        })
+
+})
