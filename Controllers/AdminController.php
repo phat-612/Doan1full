@@ -90,7 +90,7 @@
             $qualProduct = $this->productModel->getQuaProduct();
             $this->render('layouts/admin',[
                 'content'=> 'admins/sanpham',
-                'title'=> 'Quản lý sản phẩm',
+                'title'=> 'Quản lý sản phẩm',       
                 'css'=> 'sanpham',
                 'js'=> 'sanpham',
                 'subcontent'=> [
@@ -135,10 +135,13 @@
             ]);
         }
         public function order(){
+            $staPro = isset($_POST['status']) ? $_POST['status'] :'';
+            $fillPr = $this->orderModel->totalRevenue($staPro,'','');
             $this->render('layouts/admin',[
                 'content'=> 'admins/donhang',
                 'title'=> 'Đơn hàng',
                 'css'=> 'donhang',
+                'js'=>'donhang',
                 'subcontent'=> [
                     
                 ]

@@ -1,53 +1,29 @@
-<div class="Billing-Infor-form">
+<form action="" class="Billing-Infor-form">
         <header>Chi Tiết Đơn Hàng</header>
         <div class="mother-box">
           <div class="Infor-form">
             <div class="name">
-              <div><label for="name-input">Nhập Tên</label></div>
+              <div><label for="name-input">Tên :</label></div>
               <div>
-                <input
-                  type="text"
-                  name=""
-                  id="name-input"
-                  disabled
-                  value="Cam Đại Hưng"
-                />
+                <p>Cam Đại Hưng</p>
               </div>
             </div>
             <div class="location">
-              <div><label for="name-input">Địa Chỉ</label></div>
+              <div><label for="name-input">Địa Chỉ :</label></div>
               <div>
-                <input
-                  type="text"
-                  name=""
-                  id="name-input"
-                  disabled
-                  value="123 hung vuong ninh kieu can tho"
-                />
+                <p>123, Hùng Vương, Ninh Kiều</p>
               </div>
             </div>
             <div class="P-number">
-              <div><label for="name-input">Số Điện Thoại</label></div>
+              <div><label for="name-input">Số Điện Thoại:</label></div>
               <div>
-                <input
-                  type="text"
-                  name=""
-                  id="name-input"
-                  disabled
-                  value="0354514832"
-                />
+                <p>0354514832</p>
               </div>
             </div>
             <div class="mail">
               <div><label for="name-input">Email</label></div>
               <div>
-                <input
-                  type="text"
-                  name=""
-                  id="name-input"
-                  disabled
-                  value="camdaica20003@gmail.com"
-                />
+                <p>camdaica20003@gmail.com</p>
               </div>
             </div>
             <div class="status">
@@ -68,11 +44,10 @@
                   class="note-area"
                   name=""
                   id="note-area"
-                  cols="30"
-                  rows="10"
+                  list-item
                   disabled
                 >
-                blablablablablabalaalbalbalabablaalbabalbalbabl</textarea
+blablablablablabalaalbalbalabablaalbabalbalbabl</textarea
                 >
               </div>
             </div>
@@ -116,4 +91,4 @@
             </div>
           </div>
         </div>
-      </div>
+      </form>

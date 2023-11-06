@@ -43,6 +43,10 @@ input#search {
     background-color: rgb(210, 180, 180);
 }
 
+.table tbody tr:nth-child(odd) {
+    background-color: rgb(171, 162, 162);
+}
+
 .mother-box {
     width: 98%;
     height: 70%;
@@ -51,10 +55,18 @@ input#search {
 }
 
 .table {
-    width: 98%;
+    width: 100%;
     text-align: center;
     vertical-align: middle;
     overflow-x: auto;
+}
+
+.table tr td:first-child {
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    max-height: 35px;
 }
 
 a {
@@ -87,4 +99,20 @@ tr td input {
 .table td {
     padding: 1% 0%;
     font-size: 1.3rem;
+}
+
+.oder-form .pagination-list {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+.oder-form .pagination_link {
+    display: block;
+    min-width: 30px;
+    text-align: center;
+    background-color: whitesmoke;
+    border-radius: 4px;
+    margin-right: 3px;
+    color: black;
 }

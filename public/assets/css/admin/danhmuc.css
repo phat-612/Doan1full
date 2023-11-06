@@ -1,0 +1,106 @@
+.catalogue-field {
+    width: 83%;
+    min-height: 500px;
+    height: auto;
+    background-color: rgb(210, 210, 210);
+    margin: 100px 16.5%;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.box {
+    border: 1px black solid;
+    min-width: 325px;
+    width: 325px;
+    height: 490px;
+    border-radius: 4px;
+    text-align: center;
+    margin: 5px;
+}
+
+.scroll {
+    overflow-y: auto;
+    height: 90%;
+}
+
+.scroll table {
+    table-layout: fixed;
+}
+
+.scroll table tbody tr td:nth-child(1) {
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+}
+
+.scroll table tbody tr {
+    font-size: 25px;
+}
+
+.scroll table tbody tr:nth-child(odd) {
+    background-color: rgb(171, 162, 162);
+}
+
+.scroll table tbody tr:hover {
+    background-color: rgb(210, 180, 180);
+}
+
+.scroll table tbody tr td {
+    padding: 2%;
+}
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+.hidden-field {
+    background-color: white;
+    border-radius: 8px;
+    width: 25%;
+    height: 25%;
+    position: fixed;
+    top: 30%;
+    left: 40%;
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 10;
+}
+
+.tableDM-container table {
+    width: 100%;
+}
+
+.tableMS-container table {
+    width: 100%;
+}
+
+.tableKT-container table {
+    width: 100%;
+}
+
+.tableBST-container table {
+    width: 100%;
+}
+
+.hidden-field input {
+    padding: 1%;
+    width: 90%;
+    height: 25%;
+    font-size: larger;
+}
+
+.hidden-field button {
+    height: 25%;
+}
+
+.closeField {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */

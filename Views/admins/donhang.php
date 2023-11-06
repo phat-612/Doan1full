@@ -1,8 +1,8 @@
-<div class="oder-form">
+<form action="" class="oder-form">
         <header>Đơn Hàng</header>
         <div class="filtering-box">
           <label>Lọc Sản Phẩm : </label>
-          <select name="filtering-select">
+          <select name="filtering-select" class="js_filPro">
             <option value="">-------</option>
             <option value="Waiting">Chờ Xử Lý</option>
             <option value="Processing">Đang Xử Lý</option>
@@ -12,16 +12,16 @@
         </div>
         <div class="Sort-box">
           <label>Sắp Xếp : </label>
-          <select name="Sort-select">
+          <select name="Sort-select" class="js_arrProduct">
             <option value="">-------</option>
             <option value="old-new">Cũ -> Mới</option>
             <option value="new-old">Mới -> Cũ</option>
           </select>
         </div>
         <div class="Search">
-          <span class="icon"><i class="fa fa-search"></i></span>
-          <input type="search" id="search" placeholder="Search..." />
-          <button>tìm</button>
+            <span class="icon"><i class="fa fa-search"></i></span>
+            <input type="search" id="search" placeholder="Search..." class="js_srPro" />
+            <button class="js_butSrPro">tìm</button>
         </div>
         <div class="mother-box">
           <table class="table">
@@ -33,7 +33,7 @@
             </thead>
             <tbody>
               <tr>
-                <td>Nguyen Van A</td>
+                <td>Nguyen Van AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</td>
                 <td><p>16/09/2003</p></td>
                 <td>789.000</td>
                 <td>
@@ -45,13 +45,13 @@
                   </select>
                 </td>
                 <td>
-                  <a href="http://127.0.0.1:5500/html/chitietdonhang.html"
+                  <a href="detailOrder"
                     >Chi Tiết</a
                   >
                 </td>
               </tr>
               <tr>
-                <td>Nguyen van B</td>
+                <td>Nguyen van BAAAAAAAAAAAAAAAAAAAAAAAAAAAA</td>
                 <td><p>16/09/2003</p></td>
                 <td>300.000</td>
                 <td>
@@ -63,7 +63,7 @@
                   </select>
                 </td>
                 <td>
-                  <a href="http://127.0.0.1:5500/html/chitietdonhang.html"
+                  <a href="detailOrder"
                     >Chi Tiết</a
                   >
                 </td>
@@ -71,4 +71,12 @@
             </tbody>
           </table>
         </div>
-      </div>
+        <div id="pagination" class="pagination">
+          <ul class="pagination-list">
+            <li><a class="pagination_link" href="#">1</a></li>
+            <li><a class="pagination_link" href="#">2</a></li>
+            <li><a class="pagination_link" href="#">3</a></li>
+            <li><a class="pagination_link" href="#">4</a></li>
+          </ul>
+        </div>
+      </form>

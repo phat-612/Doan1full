@@ -103,18 +103,17 @@ select {
     height: 80%;
     resize: none;
     padding: 0.2rem 0.2rem;
-    text-align: left;
     font-size: 1rem;
 }
 
 .list-item {
+    overflow-y: auto;
     width: 40%;
     height: 90%;
     border: 1px black solid;
     border-radius: 4px;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
     align-content: space-around;
     justify-content: flex-start;
     padding: 1%;
@@ -130,6 +129,10 @@ select {
     flex-wrap: nowrap;
     justify-content: space-around;
     align-items: center;
+}
+
+.list-item .li-item~.li-item {
+    margin-top: 5px;
 }
 
 .li-img {

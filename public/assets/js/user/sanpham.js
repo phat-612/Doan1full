@@ -60,6 +60,7 @@ fetch("api/getListProduct", requestOptions)
     .then(res => res.json())
     .then(result => {
         listProduct = result;
+        console.log(listProduct);
         loadProduct();
     });
 

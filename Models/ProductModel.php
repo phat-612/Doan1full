@@ -176,16 +176,19 @@
             if (!$query){
                 return false;
             }
+            foreach ($query as $key => $value) {
+                $output[$key] = $value;
+                $sql = "SELECT SUM(ct.soluong) as soluong FROM sanpham s, chitietsanpham ct WHERE s.id = ct.idsanpham AND s.id ='".$value['id']."' GROUP BY s.id";
+                $soluong = $this->select_by_sql($sql);
+                $output[$key]['soluong'] = $soluong[0]['soluong'];
+            }
             if ($isImg){
                 foreach ($query as $key => $value) {
                     $imgs = $this->select('hinhanh', 'hinhanh', "idsanpham = '".$value['id']."'");
-                    $output[$key] = $value;
                     $output[$key]['hinhanh'] = $this->arr2to1($imgs, true);
                 }
-                return $output;
-            } else {
-                return $query;
             }
+            return $output;
         }
         // code ML
         // lấy số lượng sản phẩm
