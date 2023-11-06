@@ -106,3 +106,8 @@ input#search {
   border-radius: 4px;
   margin-right: 3px;
 }
+.pagination .active {
+  background-color: #f00;
+  color: #fff;
+  font-weight: bold;
+}
