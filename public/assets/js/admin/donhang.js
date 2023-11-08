@@ -31,10 +31,10 @@ document.querySelector(".js_arrProduct").addEventListener("change", () => {
     let newUrl = urlObject.toString();
     window.location.href = newUrl;
 });
-document.querySelector(".js_butSrPro").addEventListener("click", () => {
-    let srPro = document.querySelector(".js_srPro").value;
+document.querySelector(".js_butSrOrder").addEventListener("click", () => {
+    let srOrder = document.querySelector(".js_srOrder").value;
     let urlObject = new URL(window.location.href);
-    urlObject.searchParams.set("search", srPro);
+    urlObject.searchParams.set("search", srOrder);
     let newUrl = urlObject.toString();
     window.location.href = newUrl;
 });

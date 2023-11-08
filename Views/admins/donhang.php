@@ -20,8 +20,8 @@
         </div>
         <div class="Search">
             <span class="icon"><i class="fa fa-search"></i></span>
-            <input type="search" id="search" placeholder="Search..." class="js_srPro" />
-            <button class="js_butSrPro">tìm</button>
+            <input type="search" id="search" placeholder="Search..." class="js_srOrder" />
+            <button class="js_butSrOrder">tìm</button>
         </div>
         <div class="mother-box">
           <table class="table">

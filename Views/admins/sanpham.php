@@ -110,8 +110,6 @@
                     $nextPage = $currentPage +1;
                     echo "<li><a class='pagination_link' href='?page=$nextPage'>&gt;</a></li>";
                 }
-               
-                
             ?>
         </ul>
     </div>

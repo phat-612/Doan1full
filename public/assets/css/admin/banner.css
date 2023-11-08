@@ -1,0 +1,47 @@
+.banner-form {
+    width: 83%;
+    min-height: 500px;
+    height: auto;
+    background-color: rgb(210, 210, 210);
+    margin: 100px 16.5%;
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: space-around;
+}
+
+.banner-form h1 {
+    text-align: center;
+    width: 100%;
+}
+
+.banner-form input[type="file"] {}
+
+.banner-form .drag-area {
+    border-radius: 8px;
+    border: 1px black solid;
+    width: 95%;
+    min-height: 400px;
+    height: auto;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.banner-form .displayImg {
+    width: 100%;
+    min-height: 400px;
+    height: auto;
+}
+
+.banner-form .displayImg img {
+    z-index: 4;
+    width: 120px;
+    margin: 5px;
+}
+
+.banner-form .displayImg button {
+    z-index: 5;
+}
