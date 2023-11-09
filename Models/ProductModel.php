@@ -148,7 +148,7 @@
             $query = $this->select($name, '*');
             return $query;
         }
-        public function getListProduct($collection='',$category='', $sort='ten', $find = '', $limit = '', $page = '', $isImg = true){
+            public function getListProduct($collection='',$category='', $sort='ten', $find = '', $limit = '', $page = '', $isImg = true){
             if (!$sort){
                 $sort = 'ten';
             }

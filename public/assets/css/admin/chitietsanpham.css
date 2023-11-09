@@ -194,7 +194,7 @@ header {
 }
 
 #hideField {
-    height: 30%;
+    height: 3auto;
     display: none;
     position: absolute;
     top: 50%;
@@ -206,13 +206,7 @@ header {
 }
 
 #hideField ul {
-    width: 100%;
     list-style: none;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    align-content: space-around;
-    padding: 1%;
 }
 
 #hideField span {
@@ -223,7 +217,7 @@ header {
 }
 
 #hideField li {
-    font-size: 1.1rem;
+    font-size: 25px;
 }
 
 .Product-Description-box {

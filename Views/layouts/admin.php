@@ -21,11 +21,9 @@
 <body>
     <div class="big-form">
         <div class="taskbar">
-            <div class="logo-img"><img src="<?php echo _WEB_ROOT?>/public/assets/img/core/logo.png" alt="logo" /></div>
-            <div class="flex-box">
-                <div class="flex">
-                    <a href="<?php echo _WEB_ROOT ?>/admin">Trang chủ</a>
-                </div>
+            <div class="logo-img"><img src="<?php echo _WEB_ROOT?>/public/assets/img/core/logo.png" alt="logo" /></div>  
+            <div class="log-out">
+                <a href="">Đăng Xuất</a>
             </div>
         </div>
         <div class="taskbar-menu">
@@ -40,10 +38,10 @@
                     <a href="<?php echo _WEB_ROOT ?>/admin/order">ĐƠN HÀNG</a>
                 </li>
                 <li class="taskbar-item">
-                    <a href="<?php echo _WEB_ROOT ?>/admin/category">THÊM DANH MỤC</a>
+                    <a href="<?php echo _WEB_ROOT ?>/admin/danhmuc">THÊM DANH MỤC</a>
                 </li>
                 <li class="taskbar-item">
-                    <a href="<?php echo _WEB_ROOT ?>/admin/category">BANNER</a>
+                    <a href="<?php echo _WEB_ROOT ?>/admin/banner">BANNER</a>
                 </li>
             </ul>
         </div>
@@ -53,9 +51,6 @@
             }
             $this -> render($content, $subcontent);
         ?>
-        <div class="footer">
-            <div class="contact">contact: blablablabla@gmail.com</div>
-        </div>
     </div>
     <script src="<?= _WEB_ROOT?>/public/assets/js/admin/admin.js"></script>
     <?php 

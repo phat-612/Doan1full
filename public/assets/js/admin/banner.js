@@ -30,8 +30,10 @@ function loadImgUpload() {
     for (let i = 0; i < fileList.length; i++) {
         let file = fileList[i];
         let html = `
-      <img src="${URL.createObjectURL(file)}" alt="">
-      <button onclick="deleteImage(${i})">Xóa</button>
+      <div class="box">
+        <img src="${URL.createObjectURL(file)}" alt="">
+        <button onclick="deleteImage(${i})">Xóa</button>
+      </div>
     `;
         displayImg.innerHTML += html;
     }

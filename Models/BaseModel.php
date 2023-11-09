@@ -76,7 +76,6 @@
         protected function delete($table, $cond){
             $sql = "DELETE FROM $table WHERE $cond";
             return $this->_query($sql);
-
         }
         protected function generateUUIDv4() {
             $data = random_bytes(16);
@@ -104,6 +103,17 @@
                     foreach($values as $key => $value){
                         $result[$key]= $value;
                     }
+                }
+            }
+            return $result;
+        }
+        protected function saveImage($dir, $files){
+            // $dirSaveImage = "public/assets/img/products/";
+            $result = array();
+            foreach ($files['tmp_name'] as $key => $tmp_name){
+                $targetPath = $dir . $this->generateUUIDv4() . '.png';
+                if (move_uploaded_file($tmp_name, $targetPath)){
+                    $result[] = $targetPath;
                 }
             }
             return $result;

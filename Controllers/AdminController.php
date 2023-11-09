@@ -135,15 +135,20 @@
             ]);
         }
         public function order(){
-            $staPro = isset($_POST['status']) ? $_POST['status'] :'';
-            $fillPr = $this->orderModel->totalRevenue($staPro,'','');
+            $status = isset($_GET['status']) ? $_GET['status'] :'';
+            $sort = isset($_GET['sort']) ? $_GET['sort'] :'thoigian desc';
+            $search = isset($_GET['search']) ? $_GET['search'] : '';
+            $page = isset($_GET['page']) ? $_GET['page'] : 1;
+            $orders = $this->orderModel->getDataOrderAdmin($status,$sort,$search,8,$page);
+            $getOrder = $this->orderModel->getNumberOrder($status,'','');
             $this->render('layouts/admin',[
                 'content'=> 'admins/donhang',
                 'title'=> 'Đơn hàng',
                 'css'=> 'donhang',
                 'js'=>'donhang',
                 'subcontent'=> [
-                    
+                    'orders' => $orders,
+                    'getOrder'=>$getOrder
                 ]
             ]);
         }
@@ -152,6 +157,28 @@
                 'content'=> 'admins/chitietdonhang',
                 'title'=> 'Chi tiết đơn hàng',
                 'css'=> 'chitietdonhang',
+                'subcontent'=> [
+                    
+                ]
+            ]);
+        }
+        public function banner(){
+            $this->render('layouts/admin',[
+                'content'=> 'admins/banner',
+                'title'=> 'Banner',
+                'css'=> 'banner',
+                'js'=>'banner',
+                'subcontent'=> [
+                    
+                ]
+            ]); 
+        }
+        public function danhmuc(){
+            $this->render('layouts/admin',[
+                'content'=>'admins/danhmuc',
+                'title'=>'Thêm Danh Mục',
+                'css'=> 'danhmuc',
+                'js'=> 'danhmuc',
                 'subcontent'=> [
                     
                 ]

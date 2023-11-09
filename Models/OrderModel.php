@@ -129,6 +129,27 @@
             }
             return false;
         }
+        public function getDataOrderAdmin($status='', $sort='thoigian desc', $find = '', $limit = '', $page = ''){
+            if (!$sort){
+                $sort = 'thoigian';
+            }
+            $sql = "SELECT dh.id, kh.hoten, dh.thoigian, dh.tongtien, dh.trangthai
+            FROM khachhang kh
+            JOIN donhang dh ON kh.id = dh.idkhachhang
+            WHERE kh.hoten LIKE '%$find%'";
+            if($status){
+                $sql .= " AND dh.trangthai = '$status'";
+            }
+            $sql .= " ORDER BY $sort"; 
+            if ($limit && !$page){
+                $sql .= " LIMIT $limit";
+            }
+            if ($limit && $page){
+                $sql .= " LIMIT $limit offset ". ($page-1)*$limit;
+            }
+            $query = $this->select_by_sql($sql);
+                return $query; 
+        }
         // lay đơn hàng bằng trạng thài & thời gian
         public function getNumberOrder($status = '',$timeb='',$timee=''){
             $sql = "SELECT COUNT(*) sodonhang FROM donhang";

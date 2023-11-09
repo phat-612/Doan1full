@@ -39,14 +39,7 @@ input#search {
     width: 20%;
 }
 
-.table tbody tr:hover {
-    background-color: rgb(210, 180, 180);
-}
-
-.table tbody tr:nth-child(odd) {
-    background-color: rgb(171, 162, 162);
-}
-
+/* //////////////////////////////// */
 .mother-box {
     width: 98%;
     height: 70%;
@@ -54,20 +47,49 @@ input#search {
     border-radius: 8px;
 }
 
-.table {
+.mother-box.table-box {
+    height: 100%;
     width: 100%;
     text-align: center;
-    vertical-align: middle;
-    overflow-x: auto;
 }
 
-.table tr td:first-child {
-    overflow: hidden;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    display: -webkit-box;
-    max-height: 35px;
+.table-box {
+    width: 100%;
+    font-size: 24px;
+    border-collapse: collapse;
 }
+
+.table-box tbody tr:nth-child(odd) {
+    background-color: rgb(171, 162, 162);
+}
+
+.table-box thead {
+    font-size: 30px;
+}
+
+.table-box td {
+    text-align: center;
+    padding: 0.35% 0;
+}
+
+.table-box tbody tr td:nth-child(1) {
+    text-align: left;
+}
+
+.table-box tbody tr:hover {
+    background-color: rgb(210, 180, 180);
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: rgb(171, 162, 162);
+}
+
+
+
+/* //////////////////////////////////////// */
+
+
+
 
 a {
     text-decoration: none;
@@ -85,20 +107,6 @@ select {
     appearance: none;
     font: caption;
     padding: 1% 1%;
-}
-
-tr td input {
-    font: caption;
-}
-
-.table th {
-    padding: 1% 0%;
-    font-size: 1.1rem;
-}
-
-.table td {
-    padding: 1% 0%;
-    font-size: 1.3rem;
 }
 
 .oder-form .pagination-list {

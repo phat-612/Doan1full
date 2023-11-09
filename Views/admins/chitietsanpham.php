@@ -128,13 +128,7 @@
               Ảnh sản Phẩm
             </header>
             <div class="displayImg">
-              <img src="../hinh anh/mattruocquan.jpg" alt="">
-              <img src="../hinh anh/matsauquan.webp" alt="">
-              <img src="../hinh anh/anhmau.webp" alt="">
-              <img src="../hinh anh/anhmau1.webp" alt="">
-              <img src="../hinh anh/mattruocquan.jpg" alt="">
-              <img src="../hinh anh/mattruocquan.jpg" alt="">
-              <img src="../hinh anh/matsauquan.webp" alt="">
+                <img src="https://d1hjkbq40fs2x4.cloudfront.net/2016-01-31/files/1045.jpg" alt="">
             </div>
           </div>
         </div>

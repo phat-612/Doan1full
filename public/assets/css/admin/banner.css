@@ -16,8 +16,6 @@
     width: 100%;
 }
 
-.banner-form input[type="file"] {}
-
 .banner-form .drag-area {
     border-radius: 8px;
     border: 1px black solid;
@@ -34,14 +32,23 @@
     width: 100%;
     min-height: 400px;
     height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .banner-form .displayImg img {
-    z-index: 4;
-    width: 120px;
-    margin: 5px;
+    width: 100%;
 }
 
-.banner-form .displayImg button {
-    z-index: 5;
+.banner-form .displayImg .box button {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.banner-form .box {
+    position: relative;
+    width: 140px;
 }

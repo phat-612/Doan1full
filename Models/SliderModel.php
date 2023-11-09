@@ -11,5 +11,12 @@
             }
             return $output;
         }
+        public function addSlider($file){
+            $path = 'public/assets/img/slider';
+            $this->saveImage($path, $file);
+        }
+        public function deleteSlider(){
+            
+        }
     }
 ?>

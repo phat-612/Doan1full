@@ -6,35 +6,29 @@ searchParams.forEach(function (value, key) {
 });
 // kiểm tra key tồn tại không
 if (seaParams.hasOwnProperty("status")) {
-    document.querySelector(".js_filPro").value = seaParams["status"];
+    document.querySelector(".js_status").value = seaParams["status"];
 }
-document.querySelector(".js_filPro").addEventListener("change", () => {
-    let fillPro = document.querySelector(".js_filPro").value;
+document.querySelector(".js_status").addEventListener("change", () => {
+    let status = document.querySelector(".js_status").value;
     let urlObject = new URL(window.location.href);
-    urlObject.searchParams.set("status", fillPro);
+    urlObject.searchParams.set("status", status);
     let newUrl = urlObject.toString();
     window.location.href = newUrl;
 });
 /////////////////////////////////////////////////////
-let seaParams1 = {};
-let searchParams1 = new URLSearchParams(window.location.search);
-searchParams1.forEach(function (value, key) {
-    seaParams1[key] = value;
-});
-if (seaParams1.hasOwnProperty("sort")) {
-    document.querySelector(".js_arrProduct").value = seaParams1["sort"];
-}
-document.querySelector(".js_arrProduct").addEventListener("change", () => {
-    let arrPro = document.querySelector(".js_arrProduct").value;
+document.querySelector(".js_sort").addEventListener("change", () => {
+    let sort = document.querySelector(".js_sort").value;
     let urlObject = new URL(window.location.href);
-    urlObject.searchParams.set("sort", arrPro);
+    urlObject.searchParams.set("sort", sort);
     let newUrl = urlObject.toString();
     window.location.href = newUrl;
+
 });
-document.querySelector(".js_butSrOrder").addEventListener("click", () => {
+document.querySelector(".js_btnSrOrder").addEventListener("click", () => {
     let srOrder = document.querySelector(".js_srOrder").value;
     let urlObject = new URL(window.location.href);
     urlObject.searchParams.set("search", srOrder);
     let newUrl = urlObject.toString();
+    console.log(newUrl);
     window.location.href = newUrl;
 });

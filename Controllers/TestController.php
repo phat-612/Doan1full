@@ -74,10 +74,18 @@
                 http_response_code(400);
             }
         }
+        public function getAdmin(){
+            $res = $this->orderModel->getDataOrderAdmin($_GET['status'],$_GET['sort'],$_GET['$find'],6,$_GET['page']);
+            inmang($res);
+        }
         // public function layCT(){
         //     $res = $this->testModel->getDetailProduct($_POST['id']);
         //     inmang($res);
         // }
+        public function orderAdmin(){
+            $res = $this->orderModel->getNumberOrder($_POST['status'],$_POST['timeb'],$_POST['timee']);
+            inmang($res);
+        }
         public function layDSSP(){
             $res = $this->productModel->getListProduct($_POST['bosuutap'],$_POST['danhmuc'], 
             'id',5, $_POST['tim']);
