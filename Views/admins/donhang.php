@@ -8,39 +8,39 @@
     }
 ?>
 <div class="oder-form">
-<header>Đơn Hàng</header>
-        <div class="filtering-box">
-          <label>Trạng Thái : </label>
-          <select id="filtering-select" class="js_status">
+    <header>Đơn Hàng</header>
+    <div class="filtering-box">
+        <label>Trạng Thái : </label>
+        <select id="filtering-select" class="js_status">
             <option value="">Tất cả</option>
             <option value="Chờ xử lý">Chờ Xử Lý</option>
             <option value="Đang Xử Lý">Đang Xử Lý</option>
             <option value="Thành Công">Thành Công</option>
             <option value="Thất Bại">Thất Bại</option>
-          </select>
-        </div>
-        <div class="Sort-box">
-          <label>Sắp Xếp : </label>
-          <select class="js_sort">
+        </select>
+    </div>
+    <div class="Sort-box">
+        <label>Sắp Xếp : </label>
+        <select class="js_sort">
             <option value="thoigian desc">Mới -> Cũ</option>
             <option value="thoigian">Cũ -> Mới</option>
-          </select>
-        </div>
-          <div class="Search">
-              <span class="icon"><i class="fa fa-search"></i></span>
-              <input type="search" id="search" placeholder="Search..." class="js_srOrder" />
-              <button class="js_btnSrOrder">tìm</button>
-          </div>
-        <div class="mother-box">
-          <table class="table-box">
+        </select>
+    </div>
+    <div class="Search">
+        <span class="icon"><i class="fa fa-search"></i></span>
+        <input type="search" id="search" placeholder="Search..." class="js_srOrder" />
+        <button class="js_btnSrOrder">tìm</button>
+    </div>
+    <div class="mother-box">
+        <table class="table-box">
             <thead>
-              <th>Tên hách hàng</th>
-              <th>Thời gian</th>
-              <th>Tổng</th>
-              <th>Trạng thái</th>
+                <th>Tên hách hàng</th>
+                <th>Thời gian</th>
+                <th>Tổng</th>
+                <th>Trạng thái</th>
             </thead>
             <tbody>
-            <?php
+                <?php
                 if (empty($orders)) {
                    echo "Không có sản phẩm";
                 } else {    
@@ -59,11 +59,11 @@
                 }
                 ?>
             </tbody>
-          </table>
-        </div>
-        <div id="pagination" class="pagination">
-          <ul class="pagination-list">
-          <?php   
+        </table>
+    </div>
+    <div id="pagination" class="pagination">
+        <ul class="pagination-list">
+            <?php   
                 if ($currentPage > 1) {
                     $backPage = $currentPage - 1;
                     echo "<li><a class='pagination_link' href='?page=$backPage'>&lt;</a></li>";
@@ -104,6 +104,6 @@
                     echo "<li><a class='pagination_link' href='?page=$nextPage'>&gt;</a></li>";
                 }
             ?>
-          </ul>
-        </div>
+        </ul>
+    </div>
 </div>

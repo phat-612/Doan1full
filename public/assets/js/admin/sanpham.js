@@ -16,13 +16,9 @@ document.querySelector(".js_filPro").addEventListener("change", () => {
   window.location.href = newUrl;
 });
 ////////////////////////////////////////////////////////////////
-let seaParams1 = {};
-let searchParams1 = new URLSearchParams(window.location.search);
-searchParams1.forEach(function (value, key) {
-  seaParams1[key] = value;
-});
-if (seaParams1.hasOwnProperty("sort")) {
-  document.querySelector(".js_arrProduct").value = seaParams1["sort"];
+
+if (seaParams.hasOwnProperty("sort")) {
+  document.querySelector(".js_arrProduct").value = seaParams["sort"];
 }
 document.querySelector(".js_arrProduct").addEventListener("change", () => {
   let arrPro = document.querySelector(".js_arrProduct").value;
