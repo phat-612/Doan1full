@@ -4,17 +4,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="<?php echo _WEB_ROOT?>/public/assets/css/user/head_foot.css" />
-  <?php 
-    if (is_array($css)){
-      foreach ($css as $value) {
-        echo "<link rel='stylesheet' href='"._WEB_ROOT."/public/assets/css/user/$value.css' />";
-      }
-    } else{
-      echo "<link rel='stylesheet' href='"._WEB_ROOT."/public/assets/css/user/$css.css' />";
+  <link rel="stylesheet" href="<?php echo _WEB_ROOT ?>/public/assets/css/user/head_foot.css" />
+  <?php
+  if (is_array($css)) {
+    foreach ($css as $value) {
+      echo "<link rel='stylesheet' href='" . _WEB_ROOT . "/public/assets/css/user/$value.css' />";
     }
+  } else {
+    echo "<link rel='stylesheet' href='" . _WEB_ROOT . "/public/assets/css/user/$css.css' />";
+  }
   ?>
-  <title><?php echo $title ?></title>
+  <title>
+    <?php echo $title ?>
+  </title>
 </head>
 
 <body>
@@ -25,8 +27,8 @@
           <p>Sale all product</p>
         </div>
         <div class="mid">
-          <a href="<?php echo _WEB_ROOT?>">
-            <img src="<?php echo _WEB_ROOT?>/public/assets/img/core/logo.png" alt="cái logo đây nè" /></a>
+          <a href="<?php echo _WEB_ROOT ?>">
+            <img src="<?php echo _WEB_ROOT ?>/public/assets/img/core/logo.png" alt="cái logo đây nè" /></a>
         </div>
         <ul class="right">
           <li>
@@ -48,7 +50,7 @@
             </a>
           </li>
           <li class="dp_none">
-            <a href="<?php echo _WEB_ROOT?>/user" class="head_user">
+            <a href="<?php echo _WEB_ROOT ?>/user" class="head_user">
               <i class="fa-regular fa-circle-user"></i>
             </a>
           </li>
@@ -57,16 +59,17 @@
       <div class="sub_header">
         <ul class="nav">
           <li><a href="">Giới thiệu</a></li>
-          <li>
-            <a href="<?php echo _WEB_ROOT?>/product" class="isSubnav">Sản phẩm<i class="fa-solid fa-angle-down down_btn"></i></a>
+          <li class="drop-down_menu">
+            <a href="<?php echo _WEB_ROOT ?>/product" class="isSubnav">Sản phẩm<i
+                class="fa-solid fa-angle-down down_btn"></i></a>
             <ul class="nav_list_item">
-              <li><a href="<?php echo _WEB_ROOT. "/product"; ?>">Tất cả</a></li>
+              <li><a href="<?php echo _WEB_ROOT . "/product"; ?>">Tất cả</a></li>
               <?php
-                foreach ($_SESSION['category'] as $category) {
-                  $ten = $category['danhmuc'];
-                  $tempLink = _WEB_ROOT. "/product?category=$ten" ;
-                  echo "<li><a href='$tempLink'>$ten</a></li>";
-                }
+              foreach ($_SESSION['category'] as $category) {
+                $ten = $category['danhmuc'];
+                $tempLink = _WEB_ROOT . "/product?category=$ten";
+                echo "<li><a href='$tempLink'>$ten</a></li>";
+              }
               ?>
               <!-- <li>
                 <a href="">Quần</a>
@@ -80,11 +83,11 @@
             <a href="">Bộ sưu tập<i class="fa-solid fa-angle-down down_btn"></i></a>
             <ul class="nav_list_item">
               <?php
-                foreach ($_SESSION['collection'] as $collection) {
-                  $ten = $collection['bosuutap'];
-                  $tempLink = _WEB_ROOT. "/product?collection=$ten";
-                  echo "<li><a href='$tempLink'>$ten</a></li>";
-                }
+              foreach ($_SESSION['collection'] as $collection) {
+                $ten = $collection['bosuutap'];
+                $tempLink = _WEB_ROOT . "/product?collection=$ten";
+                echo "<li><a href='$tempLink'>$ten</a></li>";
+              }
               ?>
               <!-- <li>
                 <a href="">Quần</a>
@@ -108,12 +111,12 @@
       </div>
     </header>
     <div id="container">
-    <?php
-            if (!isset($subcontent)){
-                $subcontent =[];
-            }
-            $this -> render($content, $subcontent);
-        ?>
+      <?php
+      if (!isset($subcontent)) {
+        $subcontent = [];
+      }
+      $this->render($content, $subcontent);
+      ?>
     </div>
     <footer id="footer">
       <ul class="card_footer lien_he">
@@ -148,11 +151,11 @@
         </li>
         <li><a href="">Tất cả</a></li>
         <?php
-          foreach ($_SESSION['category'] as $category) {
-            $ten = $category['danhmuc'];
-            $tempLink = _WEB_ROOT. "/product?category=$ten" ;
-            echo "<li><a href='$tempLink'>$ten</a></li>";
-          }
+        foreach ($_SESSION['category'] as $category) {
+          $ten = $category['danhmuc'];
+          $tempLink = _WEB_ROOT . "/product?category=$ten";
+          echo "<li><a href='$tempLink'>$ten</a></li>";
+        }
         ?>
       </ul>
       <ul class="card_footer">
@@ -167,7 +170,7 @@
           <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
           <li><a href=""><i class="fa-brands fa-tiktok"></i></a></li>
         </ul>
-      <!-- </ul>
+        <!-- </ul>
       <ul class="card_footer">
         <li>
           <h2>tra cứu lịch sử mua hàng</h2>
@@ -244,17 +247,17 @@
   </div>
   <!-- js icon -->
   <script src="https://kit.fontawesome.com/0a44fda8eb.js" crossorigin="anonymous"></script>
-  <script src="<?php echo _WEB_ROOT?>/public/assets/js/user/header.js"></script>
-  <?php 
-    if(isset($js)){
-      if (is_array($js)){
-        foreach ($js as $value) {
-          echo "<script src='"._WEB_ROOT."/public/assets/js/user/$value.js'></script>";
-        }
-      } else {
-        echo "<script src='"._WEB_ROOT."/public/assets/js/user/$js.js'></script>";
+  <script src="<?php echo _WEB_ROOT ?>/public/assets/js/user/header.js"></script>
+  <?php
+  if (isset($js)) {
+    if (is_array($js)) {
+      foreach ($js as $value) {
+        echo "<script src='" . _WEB_ROOT . "/public/assets/js/user/$value.js'></script>";
       }
+    } else {
+      echo "<script src='" . _WEB_ROOT . "/public/assets/js/user/$js.js'></script>";
     }
+  }
   ?>
 </body>
 
