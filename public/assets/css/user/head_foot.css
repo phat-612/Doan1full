@@ -37,6 +37,12 @@ body {
     /* Màu của thanh cuộn khi hover */
 }
 
+/* .no_hover:hover {
+    color: initial !important;
+    background-color: inherit !important;
+    cursor: context-menu;
+  } */
+
 header {
     position: fixed;
     top: 0;
@@ -72,10 +78,6 @@ header {
     display: flex;
     list-style-type: none;
     align-items: center;
-}
-
-.header .right li.dp_none {
-    display: none;
 }
 
 .header .right a {
@@ -211,6 +213,7 @@ header {
 
 #container {
     margin-top: 111px;
+    min-height: calc(50vh - 111px);
 }
 
 .search_btn {
@@ -222,7 +225,7 @@ header {
     border: none;
     border-bottom: 2px solid #7f7f7f;
     position: absolute;
-    left: -431%;
+    left: -415%;
     top: 10%;
     outline: none;
     padding: 8px 10px 5px 8px;
@@ -237,6 +240,7 @@ footer {
     display: flex;
     justify-content: space-around;
     padding: 50px 20px;
+    width: 100%;
     height: 380px;
     background-color: #b3b3b3;
 }
@@ -252,14 +256,14 @@ a {
 }
 
 #footer .card_footer {
-    font-size: 1.5rem;
+    font-size: 2rem;
     width: calc(20% - 30px);
     margin: 0 25px;
 }
 
 #footer .card_footer h2 {
     text-transform: uppercase;
-    font-size: 1.8rem;
+    font-size: 2.4rem;
 }
 
 #footer .card_footer a {
@@ -274,52 +278,6 @@ a {
 
 #footer .card_footer .listic_footer li {
     display: inline-block;
-}
-
-#footer input {
-    width: 100%;
-    border: none;
-    border-bottom: 2px solid #3b3b3b;
-    outline: none;
-    padding: 8px 10px 5px 8px;
-    font-size: 1.5rem;
-}
-
-#footer button {
-    margin-top: 10px;
-    padding: 6px 14px;
-    cursor: pointer;
-    background-color: #212121;
-    color: #fff;
-    text-transform: capitalize;
-}
-
-#footer button:hover {
-    opacity: 0.8;
-}
-
-.bg_shopping_bag {
-    display: none;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    /* height: 100vh;
-    width: 100vw; */
-    z-index: 20;
-}
-
-.shopping_bag {
-    position: fixed;
-    top: 0;
-    right: 0;
-    padding: 30px;
-    background-color: #ffffff;
-    height: 100vh;
-    width: 33vw;
-    z-index: 21;
 }
 
 hr {
@@ -473,17 +431,6 @@ hr {
     margin-left: 5px;
 }
 
-input[type="number"] {
-    -webkit-appearance: textfield;
-    -moz-appearance: textfield;
-    appearance: textfield;
-}
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-}
-
 .price {
     cursor: context-menu;
     padding: 8px 22px 5px 0;
@@ -536,7 +483,6 @@ input[type="number"]::-webkit-outer-spin-button {
 .tag_comeback li:last-child a {
     cursor: context-menu;
     color: #000;
-    pointer-events: none;
 }
 
 .tag_comeback li:hover a {
@@ -544,28 +490,214 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 /* mọi loại nút */
-#container .btn_css {
-    margin: 15px 0 30px;
+.btn_css {
+    margin: 15px 0;
 }
 
-#container .btn_css a {
+.btn_css a {
     display: block;
     margin: 0 auto;
     padding: 8px 55px;
     width: max-content;
     font-size: 1.5rem;
     text-transform: capitalize;
-    background: #353535;
+    background: #686868;
     color: #ffffff;
+    transition: 0.2s linear;
     border: 1px solid #7f7f7f;
-    transition: 0.3s linear;
 }
 
-#container .btn_css a:hover {
+.btn_css a:hover {
     background-color: #000000;
     color: #fff;
 }
 
-.showElement {
-    display: block !important;
+/* modal layout */
+.modal {
+    /* đổi none thành flex */
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 15;
+}
+
+.modal_overplay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal_body-center {
+    margin: auto;
+    background: #fff;
+    z-index: 20;
+}
+
+.modal_body-left {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 30px;
+    background-color: #fff;
+    height: 100vh;
+    width: 33vw;
+    z-index: 20;
+}
+
+/* authen form */
+input[type="number"] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+.auth-form_content {
+    padding: 0 10px;
+}
+
+.auth-form_heading {
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    font-size: 2rem;
+}
+
+.auth-form_group {
+    width: 100%;
+    margin-top: 18px;
+    padding: 0 8px;
+}
+
+.auth-form_input {
+    width: 100%;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #c0c0c0;
+    padding: 12px 0;
+    font-size: 1.5rem;
+    transition: 0.2s linear;
+}
+
+.auth-form_content label {
+    font-size: 1.6rem;
+}
+
+p.error {
+    display: block;
+    padding-top: 5px;
+    font-size: 1.2rem;
+    color: rgb(245, 1, 1);
+}
+
+/* nút */
+.btn {
+    margin: 8px 0;
+    padding: 8px 10px;
+    font-size: 1.5rem;
+    background: #565656;
+    color: #ffffff;
+    transition: 0.2s linear;
+    border: none;
+}
+
+.btn:hover {
+    background-color: #000000;
+}
+
+.btn.sub_btn {
+    margin-right: 12px;
+    background-color: #fff;
+    color: #212121;
+}
+
+.btn.sub_btn:hover {
+    background-color: #ebebeb;
+    opacity: 0.8;
+}
+
+/* sold out */
+.sold-out_cover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #dadadab3;
+}
+
+p.sold-out_text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+}
+
+/* card sp */
+.product_section {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 20px;
+}
+
+.product_card {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 25%;
+    padding: 0px 15px;
+    margin-bottom: 20px;
+    flex-direction: column;
+    align-items: center;
+    gap: 53.367px;
+}
+
+.product_card .after,
+.product_card .product_img:hover .before {
+    display: none;
+}
+
+.product_card .product_img:hover .after {
+    display: block;
+}
+
+.product_card .product_img {
+    display: flex;
+}
+
+.product_card img {
+    width: 100%;
+    height: 390px;
+}
+
+.product_card .product_name {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.5;
+    text-transform: uppercase;
+    color: #877b64;
+    font-size: 2rem;
+}
+
+.product_card .product_price {
+    font-size: 1.8rem;
+    color: black;
+}
+
+.product_card .card_content {
+    text-align: center;
+    line-height: 24px;
+    padding: 20px;
+}
+
+.product_price {
+    margin-top: 10px;
 }

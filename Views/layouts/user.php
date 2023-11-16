@@ -48,7 +48,7 @@
             </a>
           </li>
           <li class="dp_none">
-            <a href="" class="head_user">
+            <a href="<?php echo _WEB_ROOT?>/user" class="head_user">
               <i class="fa-regular fa-circle-user"></i>
             </a>
           </li>
@@ -56,7 +56,7 @@
       </div>
       <div class="sub_header">
         <ul class="nav">
-          <li><a href="">Thông tin cửa hàng</a></li>
+          <li><a href="">Giới thiệu</a></li>
           <li>
             <a href="<?php echo _WEB_ROOT?>/product" class="isSubnav">Sản phẩm<i class="fa-solid fa-angle-down down_btn"></i></a>
             <ul class="nav_list_item">
@@ -167,7 +167,7 @@
           <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
           <li><a href=""><i class="fa-brands fa-tiktok"></i></a></li>
         </ul>
-      </ul>
+      <!-- </ul>
       <ul class="card_footer">
         <li>
           <h2>tra cứu lịch sử mua hàng</h2>
@@ -175,65 +175,69 @@
         <li><input class="js_inp_email" type="email" placeholder="Nhập email" required>
           <button class="send_btn js_send_email">gửi</button>
         </li>
-      </ul>
+      </ul> -->
     </footer>
   </div>
-  <div class="bg_shopping_bag">
-    <div class="shopping_bag">
-      <div class="header_sbag">
-        <h1>giỏ hàng</h1>
-        <div class="close_btn"><i class="fa-solid fa-xmark"></i></div>
-      </div>
-      <hr>
-      <div class="cont_sbag">
-        <div class="list_card">
-          <div class="empty_sbag">
-            <img src="./access/img/bag/empty_cart.webp" alt="">
-            <p>Không có sản phẩm nào trong giỏ hàng</p>
-          </div>
-          <div class="value_sbag">
-            <!-- Đừng có xóaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-            <!-- <div class="card_item">
-              <div class="photo_product">
-                <img src="./access/img/product/aothuntruoc.jpg" alt="">
-              </div>
-              <div class="cont_right">
-                <div class="card_title_dlt">
-                  <h1 class="title_product">áo thun đẹp hết nước chấm</h1>
-                  <span class="js_dlt_pro dlt_product">xóa</span>
-                </div>
-                <div class="detail_product">
-                  <span class="size">Size <span>M</span></span>
-                  <span class="color">&#47; Màu <span>trắng</span></span>
-                </div>
-                <div class="amount_price">
-                  <div class="amount">
-                    <div class="js_minus amount_icon"><i class="fa-solid fa-minus"></i></div>
-                    <div><input type="number" class="myInput" value="1" min="0" idctsp="12"></div>
-                    <div class="js_plus amount_icon"><i class="fa-solid fa-plus"></i></div>
-                  </div>
-                  <div class="price_item">
-                    <span class="num_price">200000</span>
-                    <span>vnđ</span>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-            
-          </div>
+  <div class="modal js_bag">
+    <div class="modal_overplay"></div>
+    <div class="modal_body-left">
+      <div class="modal_body_content">
+        <div class="header_sbag">
+          <h1>giỏ hàng</h1>
+          <div class="close_btn"><i class="fa-solid fa-xmark"></i></div>
         </div>
-      </div>
-      <hr>
-      <div class="card_sub">
-        <div class="pay_card">
-          <div class="price">
-            <span class="title">tổng</span>
-            <div class="total_pay">
-              <span class="num_price">0</span>
-              <span>vnđ</span>
+        <hr>
+        <div class="cont_sbag">
+          <div class="list_card">
+            <div class="empty_sbag">
+              <img src="./access/img/bag/empty_cart.webp" alt="">
+              <p>Không có sản phẩm nào trong giỏ hàng</p>
+            </div>
+            <div class="value_sbag">
+              <!-- Đừng có xóaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+              <div class="card_item">
+                <div class="photo_product">
+                  <img src="./access/img/product/aothuntruoc.jpg" alt="">
+                </div>
+                <div class="cont_right">
+                  <div class="card_title_dlt">
+                    <h1 class="title_product">áo thun đẹp hết nước chấm</h1>
+                    <span class="js_dlt_pro dlt_product">xóa</span>
+                  </div>
+                  <div class="detail_product">
+                    <span class="size">Size <span>M</span></span>
+                    <span class="color">&#47; Màu <span>trắng</span></span>
+                  </div>
+                  <div class="amount_price">
+                    <div class="amount">
+                      <div class="js_minus amount_icon"><i class="fa-solid fa-minus"></i></div>
+                      <div><input type="number" class="myInput" value="1" min="0" idctsp="12">
+                      </div>
+                      <div class="js_plus amount_icon"><i class="fa-solid fa-plus"></i></div>
+                    </div>
+                    <div class="price_item">
+                      <span class="num_price">200000</span>
+                      <span>vnđ</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
-          <button class="pay_btn js_btn_pay">Đặt hàng</button>
+        </div>
+        <hr>
+        <div class="card_sub">
+          <div class="pay_card">
+            <div class="price">
+              <span class="title">tổng</span>
+              <div class="total_pay">
+                <span class="num_price">0</span>
+                <span>vnđ</span>
+              </div>
+            </div>
+            <button class="pay_btn js_pay_btn">thanh toán</button>
+          </div>
         </div>
       </div>
     </div>

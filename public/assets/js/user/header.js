@@ -4,7 +4,7 @@ const ROOTFOLDER = "/doan1full/";
 const search_icon = document.querySelector(".search_btn");
 const search_input = document.querySelector(".search_btn input");
 const btnCart = document.querySelector(".js_cart");
-const mdCart = document.querySelector(".bg_shopping_bag");
+const mdCart = document.querySelector(".js_bag");
 const mdCartClose = document.querySelector(".close_btn");
 const eleTotalPay = document.querySelectorAll(".card_sub .num_price");
 const imgSliders = document.querySelectorAll(".img_slider_js");
@@ -60,45 +60,21 @@ inpNumberPros.forEach((element) => {
 // xử lý mở, đóng giỏ hàng
 btnCart.addEventListener("click", (e) => {
     e.preventDefault();
-    mdCart.style.display = "block";
+    mdCart.style.display = "flex";
 });
 mdCartClose.addEventListener("click", (e) => {
     mdCart.style.display = "none";
 });
-document.querySelector(".shopping_bag").addEventListener("click", (e) => {
+document.querySelector(".modal_body-left").addEventListener("click", (e) => {
     e.stopPropagation();
 });
-document.querySelector(".bg_shopping_bag").addEventListener("click", (e) => {
+document.querySelector(".js_bag").addEventListener("click", (e) => {
     mdCart.style.display = "none";
 });
 // bấm nút thanh toán
-document.querySelector('.js_btn_pay').addEventListener("click", (e) => {
+document.querySelector('.js_pay_btn').addEventListener("click", (e) => {
     window.location.href = ROOTFOLDER + 'payment';
 })
-// nút gửi các đơn hàng đã đặt về email
-document.querySelector('.js_send_email').addEventListener("click", (e) => {
-    let email = document.querySelector('.js_inp_email').value;
-    let isEmail = email.match(/[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/);
-    if (isEmail) {
-        let formData = new FormData();
-        formData.append('email', email);
-        let requestOptions = {
-            method: 'POST',
-            body: formData,
-            redirect: 'follow'
-        };
-        fetch(`${ROOTFOLDER}api/sendOrderToEmail`, requestOptions)
-            .then(res => {
-                if (res.status == 200) {
-                    alert('Đã gủi thông tin đặt hàng về email!');
-                } else {
-                    alert('Email chưa mua hàng ở website');
-                }
-            })
-    } else {
-        alert('Vui lòng nhập email!');
-    }
-});
 // --------------------------FUNCTION---------------------------------------
 // cập nhật các nút control sản phẩm và thêm sự kiện cho các nút
 function formatPrice(price) {

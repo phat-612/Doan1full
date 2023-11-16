@@ -53,12 +53,6 @@
     border: 1px solid #ccc;
 }
 
-#cach_tra {
-    width: 25px;
-    height: 25px;
-    margin-right: 10px;
-}
-
 label {
     font-size: 1.8rem;
 }
@@ -69,9 +63,10 @@ label {
 
 .row_2 {
     width: 50%;
-    padding: 0 8px;
+    /* padding: 0 8px; */
 }
 
+/* .auth-form_input  */
 .left_wrap input {
     outline: none;
     border: none;
@@ -131,49 +126,28 @@ label {
     font-weight: bold;
 }
 
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 20;
+.modal_body_content {
+    padding: 25px;
 }
 
-.congratulate {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 30px;
-    background-color: #ffffff;
-    height: 276px;
-    width: 500px;
-    z-index: 21;
-}
-
-.modal_main {
+.dp_center {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
-.modal_main .hinhanh {
+.modal_body_content .hinhanh {
     width: 30%;
 }
 
-.modal_main .hinhanh img {
+.modal_body_content .hinhanh img {
     display: block;
     width: 100%;
     margin: 0 auto;
-
 }
 
-.modal_main p {
-    padding: 30px 0;
+.modal_body_content p {
+    padding-top: 20px;
     text-transform: uppercase;
     font-size: 3.2rem;
     color: #b9a275;

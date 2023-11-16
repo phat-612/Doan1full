@@ -1,0 +1,42 @@
+.authen-form {
+    padding-top: 60px;
+    width: 480px;
+    margin: auto;
+}
+
+.auth-form_header {
+    text-align: center;
+}
+
+.auth-form_controls {
+    float: right;
+    margin: 20px 0;
+}
+
+.auth-form_policy-check {
+    width: 12px;
+    height: 10px;
+    margin-right: 8px;
+}
+
+.modal_body_content {
+    padding: 18px 40px;
+}
+
+.goto_signup {
+    padding-bottom: 15px;
+    font-size: 1.6rem;
+}
+
+.auth-form_controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.forget {
+    font-size: 1.6rem;
+}

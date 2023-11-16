@@ -31,12 +31,12 @@ formOrder.addEventListener('submit', (e) => {
         .then(res => {
             if (res.status == 200) {
                 saveCart([]);
-                showModalSuccess();
+                showModalfStatus(true);
                 setTimeout(() => {
                     window.location.href = ROOTFOLDER;
                 }, 2000);
             } else {
-                alert("Đặt hàng thất bại");
+                showModalfStatus(false);
             }
         })
     // in form dữ liệu test
@@ -80,9 +80,16 @@ async function loadProductPayment() {
     });
 }
 // thong bao đặt hàng thành công
-function showModalSuccess() {
-    let modal = document.querySelector(".modal");
-    modal.style.display = "block";
+function showModalfStatus(status) {
+    let modal = document.querySelector(".js_check");
+    modal.style.display = "flex";
+    if (status) {
+        modal.querySelector('img').src = `${ROOTFOLDER}public/assets/img/core/congratulation.png`;
+        modal.querySelector('p').textContent = 'đặt hàng thành công';
+    } else {
+        modal.querySelector('img').src = `${ROOTFOLDER}public/assets/img/core/cancel.jpg`;
+        modal.querySelector('p').textContent = 'đặt hàng thất bại';
+    }
     setTimeout(function () {
         modal.style.display = "none";
     }, 2000);

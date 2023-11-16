@@ -9,7 +9,7 @@
             <div id="number"><?php echo $numberOrder?></div>
         </div>
         <div class="mini-left-box">
-            <div id="title">Khách Hàng</div>
+            <div id="title">Tài Khoản</div>
             <div id="number"><?php echo $numberCustomers?></div>
         </div>
     </div>

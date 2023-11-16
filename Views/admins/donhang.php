@@ -28,7 +28,7 @@
     </div>
     <div class="Search">
         <span class="icon"><i class="fa fa-search"></i></span>
-        <input type="search" id="search" placeholder="Search..." class="js_srOrder" />
+        <input type="search" id="search" placeholder="Tên khách Hàng" class="js_srOrder" />
         <button class="js_btnSrOrder">tìm</button>
     </div>
     <div class="mother-box">
@@ -41,9 +41,7 @@
             </thead>
             <tbody>
                 <?php
-                if (empty($orders)) {
-                   echo "Không có sản phẩm";
-                } else {    
+                if ($orders){ 
                     foreach ($orders as $order) {?>
                 <tr>
                     <td><?= $order['hoten']?></td>
@@ -51,7 +49,9 @@
                     <td><?= $order['tongtien']?></td>
                     <td><?= $order['trangthai']?></td>
                     <td>
-                        <a href="<?= _WEB_ROOT."/admin/detailOrder?id=".$order['id']?>">Chi Tiết</a>
+                        <a href="<?= _WEB_ROOT."/admin/detailOrder?id=".$order['id']?>"><span class="material-symbols-outlined">
+info
+</span></a>
                     </td>
                 </tr>
                 <?php
@@ -90,13 +90,13 @@
                                 $isCurrent=$currentPage == $i ?"active":"";
                                 echo "<li><a class='pagination_link $isCurrent' href='?page=$i'>$i</a></li>";
                             } 
-                        }  
+                        }
                 else if ($currentPage > 2 &&  $currentPage+5 >= $totalPages) {
                     echo "<li><a class='pagination_link' href='?page=1'>1</a></li>";
                     echo "<li>...</li>";
                     for($i = $totalPages-4 ; $i <= $totalPages ; $i++){
                         $isCurrent=$currentPage == $i ?"active":"";
-                        echo "<li><a class='pagination_link $isCurrent' href='?page=$i'>$i</a></li>";    
+                        echo "<li><a class='pagination_link $isCurrent' href='?page=$i'>$i</a></li>";
                     }
                 }
                 if ($currentPage < $totalPages) {   

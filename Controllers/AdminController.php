@@ -13,7 +13,7 @@
             $this->userModel = new UserModel();
             $this->importModel('ProductModel');
             $this->productModel = new ProductModel();
-            $this->_checkLogin();
+            // $this->_checkLogin();
         }
         // trang chủ
         public function index(){
@@ -46,7 +46,7 @@
             // yêu cầu đăng nhập bằng mật khẩu
             if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 if (isset($_POST['taikhoan']) && $_POST['matkhau']){
-                    $res = $this->userModel->adminLogin($_POST['taikhoan'], $_POST['matkhau']);
+                    $res = $this->userModel->login($_POST['taikhoan'], $_POST['matkhau']);
                     if ($res){
                         $this->gotoPage('admin');
                     } else{
@@ -61,24 +61,21 @@
                 $dataUser = json_decode($this->userModel->decodeData($_COOKIE['verify_login']), true);
                 $taikhoan= $dataUser['taikhoan'];
                 $matkhau= $dataUser['matkhau'];
-                $res = $this->userModel->adminLogin($taikhoan, $matkhau);
+                $res = $this->userModel->login($taikhoan, $matkhau);
                 if ($res){
                     $this->gotoPage('admin');
                 } else{
                     $this->gotoPage('admin/login');
                 }
             }
-            $this->render('admins/login');
-            // $this->render('layouts/admin',[
-            //     'content'=> 'admins/login',
-            //     'title'=> 'Đăng nhập',
-            //     'subcontent'=> [
-            //     ]
-            // ]);
+            // $this->render('admins/login');
+            $this->render('admins/login',[
+                'title'=> 'Đăng nhập',
+                'css'=> 'admins/login.css',
+            ]);
         }
         public function logout(){
-            $this->userModel->adminLogout();
-            $this->gotoPage('admin/login');
+            $this->userModel->logout();
         }
         public function product(){
             $dmPros= $this->productModel->getDescProduct('danhmuc');   

@@ -41,6 +41,10 @@
         public function product(){
             echo $this->testModel->getProduct();
         }
+        public function a(){
+            $res = $this->productModel->getDescProduct($_POST['name']);
+            inmang($res);
+        }
         public function size(){
             echo $this->testModel->getSizes();
         }
@@ -95,14 +99,7 @@
             $res = $this->sliderModel->getSlider();
             inmang($res);
         }
-        public function guiotp(){
-            $res = $this->userModel->sendOtpMail($_POST['email']);
-            if ($res){
-                echo "Gửi otp thành công";
-            } else{
-                echo "Gửi otp thất bại";
-            }
-        }
+    
         public function laySPAdmin(){
             $data = $this->productModel->getListProduct('', $_GET['danhmuc'], $_GET['sapxep'], $_GET['timkiem'], 5, $_GET['page'], false);
             inmang($data);

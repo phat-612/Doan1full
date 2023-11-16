@@ -4,7 +4,13 @@ a {
 
 .add-product {
   padding: 1.1% 0%;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
+}
+
+.add-product a {
+  border: 1px solid black;
+  box-shadow: 7px 7px 7px gray;
+  border-radius: 4px;
 }
 
 .Product-list-form {

@@ -1,11 +1,10 @@
 <?php
-    // $qualProduct = 50;
     $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
     $limit = 8; 
     $totalPages = ceil($qualProduct / $limit);
     if ($currentPage < 1 || $currentPage > $totalPages) {
         header("Location: ?page=1");
-        exit();
+        exit();     
     }
 ?>
 
@@ -16,10 +15,11 @@
         <select name="filtering-select" id="filtering-select" class="js_filPro">
             <option value=''>Tất cả</option>
             <?php
-          foreach ($dmPros as $dmPro) {
-            echo "<option value='$dmPro'>$dmPro</option>";
-          }
-        ?>
+            foreach ($_SESSION['category'] as $dmPro) {
+                $tenDm = $dmPro['danhmuc'];
+                echo "<option value='$tenDm'>$tenDm</option>";
+            }
+            ?>
         </select>
     </div>
     <div class="Sort-box">
@@ -33,7 +33,7 @@
     </div>
     <div class="Search">
         <span class="icon"><i class="fa fa-search"></i></span>
-        <input type="search" id="search" placeholder="Search..." class="js_srPro" />
+        <input type="search" id="search" placeholder="Tên Sản Phẩm" class="js_srPro" />
         <button class="js_butSrPro">tìm</button>
     </div>
     <div class="add-product">
@@ -50,16 +50,19 @@
             </thead>
             <tbody id="product-tbody  ">
                 <?php
-                if (empty($listProduct)) {
-                   echo "Không có sản phẩm";
-                } else {    
+                if ($listProduct) {    
                     foreach ($listProduct as $product) {?>
                 <tr>
                     <td><?= $product['ten']?></td>
                     <td><?= $product['soluong']?></td>
                     <td><?= $product['gia']?></td>
                     <td>
-                        <a href="<?= _WEB_ROOT."/admin/detailProduct?id=".$product['id']?>">Chi Tiết</a>
+                        <a href="<?= _WEB_ROOT."/admin/detailProduct?id=".$product['id']?>"><span class="material-symbols-outlined">
+info
+</span></a>
+<a href=""><span class="material-symbols-outlined">
+delete
+</span></a>
                     </td>
                 </tr>
                 <?php
@@ -75,6 +78,7 @@
                     $backPage = $currentPage - 1;
                     echo "<li><a class='pagination_link' href='?page=$backPage'>&lt;</a></li>";
                 }
+              
                 if ($currentPage <= 2 && $totalPages >= 5){
                     for ($i = 1; $i <=6; $i++){
                         $isCurrent=$currentPage == $i ?"active":"";

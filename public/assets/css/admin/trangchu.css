@@ -75,6 +75,8 @@
     width: 70%;
     height: 30%;
     padding: 2%;
+    box-shadow: 7px 7px 7px gray;
+
 }
 
 .mini-right-box {

@@ -17,8 +17,12 @@
                 <tr>
                   <td>quần</td>
                   <td>
-                    <button type="button" onclick="editRow(this)">sửa</button>
-                    <button type="button" onclick="deleteRow(this)">xóa</button>
+                    <button type="button" onclick="editRow(this)"><span class="material-symbols-outlined">
+edit
+</span></button>
+                    <button type="button" onclick="deleteRow(this)"><span class="material-symbols-outlined">
+delete
+</span></button>
                   </td>
                 </tr>
               </tbody>
@@ -43,8 +47,12 @@
                 <tr>
                   <td>đỏ</td>
                   <td>
-                    <button type="button" onclick="editRow(this)">sửa</button>
-                    <button type="button" onclick="deleteRow(this)">xóa</button>
+                    <button type="button" onclick="editRow(this)"><span class="material-symbols-outlined">
+edit
+</span></button>
+                    <button type="button" onclick="deleteRow(this)"><span class="material-symbols-outlined">
+delete
+</span></button>
                   </td>
                 </tr>
               </tbody>
@@ -67,8 +75,12 @@
                 <tr>
                   <td>M</td>
                   <td>
-                    <button type="button" onclick="editRow(this)">sửa</button>
-                    <button type="button" onclick="deleteRow(this)">xóa</button>
+                    <button type="button" onclick="editRow(this)"><span class="material-symbols-outlined">
+edit
+</span></button>
+                    <button type="button" onclick="deleteRow(this)"><span class="material-symbols-outlined">
+delete
+</span></button>
                   </td>
                 </tr>
               </tbody>
@@ -91,8 +103,12 @@
                 <tr>
                   <td>Mùa đông</td>
                   <td>
-                    <button type="button" onclick="editRow(this)">sửa</button>
-                    <button type="button" onclick="deleteRow(this)">xóa</button>
+                    <button type="button" onclick="editRow(this)"><span class="material-symbols-outlined">
+edit
+</span></button>
+                    <button type="button" onclick="deleteRow(this)"><span class="material-symbols-outlined">
+delete
+</span></button>
                   </td>
                 </tr>
               </tbody>

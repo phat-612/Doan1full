@@ -1,0 +1,206 @@
+.account_container {
+    width: 100%;
+    padding-top: 50px;
+    margin: auto;
+    max-width: 1600px;
+}
+
+.account_flex-wrap {
+    display: flex;
+    justify-content: space-around;
+}
+
+.account_siba {
+    width: 20%;
+    padding: 0 12px;
+}
+
+.account_siba-header {
+    padding-bottom: 10px;
+    font-size: 1.6rem;
+    cursor: context-menu;
+}
+
+.account_siba-header,
+.account_content-header {
+    min-height: 82px;
+}
+
+.account_content {
+    width: 75%;
+}
+
+.siba_acc-name {
+    margin-bottom: 9px;
+    font-weight: 500;
+    font-size: 2rem;
+}
+
+.siba_acc-email {
+    opacity: 0.7;
+}
+
+.siba_list {
+    padding-top: 6px;
+}
+
+.siba_list li {
+    margin: 12px 0;
+}
+
+.siba_list li a {
+    color: rgba(93, 93, 93, 0.936);
+    padding: 12px 0;
+    font-size: 1.6rem;
+}
+
+.siba_list li:hover a {
+    color: #4996d2;
+}
+
+.account_content-header {
+    display: flex;
+    align-items: flex-end;
+}
+
+.account_content-header p {
+    font-size: 3rem;
+    font-weight: 100;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.acc_infor .auth-form_content {
+    padding-top: 10px;
+}
+
+.auth-form_select {
+    width: 100%;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #c0c0c0;
+    padding: 12px 0;
+    font-size: 1.5rem;
+    transition: 0.2s linear;
+}
+
+.auth-form_group label {
+    padding-bottom: 10px;
+    font-size: 1.8rem;
+}
+
+.btn.sp_btn {
+    margin: 32px 8px;
+    padding: 8px 16px;
+}
+
+.active {
+    color: #4996d2 !important;
+}
+
+.no_order {
+    padding-left: 5px;
+    background-color: #c0c0c0;
+}
+
+.no_order-tb {
+    font-size: 1.6rem;
+    padding: 10px 0;
+}
+
+.no_order-tb i {
+    padding-right: 5px;
+}
+
+.filter_sort {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 40px;
+    font-size: 1.5rem;
+}
+
+.filter_sort .filter {
+    margin-right: 10px;
+}
+
+.filter_sort .choosen {
+    width: max-content;
+    padding: 8px 25px 8px 10px;
+    border: 1px solid #d9d9d9;
+    outline: none;
+}
+
+.order {
+    border: 3.5px solid #fefbf6;
+}
+
+.order-cont {
+    padding: 8px;
+}
+
+.card_item .soluonghang {
+    font-size: 1.5rem;
+}
+
+.order-footer {
+    display: flex;
+    margin-top: 14px;
+    padding: 10px 15px;
+    background-color: #faebd737;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.order-footer_right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.gia {
+    font-size: 2.5rem;
+    padding: 8px 0;
+}
+
+.order-footer_stt {
+    font-size: 1.8rem;
+}
+
+.order-footer_stt span {
+    padding-left: 5px;
+}
+
+.p10-order {
+    padding: 10px 0;
+}
+
+.xem-chi-tiet-dh {
+    width: 410px;
+    padding: 10px;
+    font-size: 1.8rem;
+    line-height: 1.6;
+}
+
+.change_pass {
+    width: 650px;
+    margin: 0 auto;
+}
+
+.change_pass button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+}
+
+/* ẩn để css */
+.acc_infor {
+    display: none;
+}
+
+.no_order {
+    display: none;
+}
+
+.acc_my-order {
+    display: none;
+}

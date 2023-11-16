@@ -1,22 +1,20 @@
-// láy key value url
 let seaParams = {};
 let searchParams = new URLSearchParams(window.location.search);
 searchParams.forEach(function (value, key) {
   seaParams[key] = value;
 });
-// kiểm tra key tồn tại không
 if (seaParams.hasOwnProperty("category")) {
   document.querySelector(".js_filPro").value = seaParams["category"];
 }
 document.querySelector(".js_filPro").addEventListener("change", () => {
   let fillPro = document.querySelector(".js_filPro").value;
+  localStorage.setItem("category", fillPro);
   let urlObject = new URL(window.location.href);
   urlObject.searchParams.set("category", fillPro);
   let newUrl = urlObject.toString();
-  window.location.href = newUrl;
+  window.history.replaceState({ path: newUrl }, '', newUrl);
 });
 ////////////////////////////////////////////////////////////////
-
 if (seaParams.hasOwnProperty("sort")) {
   document.querySelector(".js_arrProduct").value = seaParams["sort"];
 }

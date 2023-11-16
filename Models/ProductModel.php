@@ -148,48 +148,48 @@
             $query = $this->select($name, '*');
             return $query;
         }
-            public function getListProduct($collection='',$category='', $sort='ten', $find = '', $limit = '', $page = '', $isImg = true){
-            if (!$sort){
-                $sort = 'ten';
-            }
-            $output = [];
-            $sql = "SELECT s.id, s.ten, s.gia FROM sanpham s
-            LEFT JOIN chitietbosuutap cb ON s.id = cb.idsanpham
-            LEFT JOIN danhmuc d ON s.iddanhmuc = d.id
-            LEFT JOIN bosuutap b ON b.id = cb.idbosuutap
-            WHERE s.ten like '%$find%'";
-            if ($collection){
-                $sql .= " AND b.bosuutap = '$collection'";
-            }
-            if ($category){
-                $sql .= " AND d.danhmuc = '$category'";
-            }
-            $sql .= " GROUP by s.id
-            ORDER by s.$sort";
-            if ($limit && !$page){
-                $sql .= " LIMIT $limit";
-            }
-            if ($limit && $page){
-                $sql .= " LIMIT $limit offset ". ($page-1)*$limit;
-            }
-            $query = $this->select_by_sql($sql);
-            if (!$query){
-                return false;
-            }
-            foreach ($query as $key => $value) {
-                $output[$key] = $value;
-                $sql = "SELECT SUM(ct.soluong) as soluong FROM sanpham s, chitietsanpham ct WHERE s.id = ct.idsanpham AND s.id ='".$value['id']."' GROUP BY s.id";
-                $soluong = $this->select_by_sql($sql);
-                $output[$key]['soluong'] = $soluong[0]['soluong'];
-            }
-            if ($isImg){
-                foreach ($query as $key => $value) {
-                    $imgs = $this->select('hinhanh', 'hinhanh', "idsanpham = '".$value['id']."'");
-                    $output[$key]['hinhanh'] = $this->arr2to1($imgs, true);
-                }
-            }
-            return $output;
+        public function getListProduct($collection='',$category='', $sort='ten', $find = '', $limit = '', $page = '', $isImg = true){
+        if (!$sort){
+            $sort = 'ten';
         }
+        $output = [];
+        $sql = "SELECT s.id, s.ten, s.gia FROM sanpham s
+        LEFT JOIN chitietbosuutap cb ON s.id = cb.idsanpham
+        LEFT JOIN danhmuc d ON s.iddanhmuc = d.id
+        LEFT JOIN bosuutap b ON b.id = cb.idbosuutap
+        WHERE s.ten like '%$find%'";
+        if ($collection){
+            $sql .= " AND b.bosuutap = '$collection'";
+        }
+        if ($category){
+            $sql .= " AND d.danhmuc = '$category'";
+        }
+        $sql .= " GROUP by s.id
+        ORDER by s.$sort";
+        if ($limit && !$page){
+            $sql .= " LIMIT $limit";
+        }
+        if ($limit && $page){
+            $sql .= " LIMIT $limit offset ". ($page-1)*$limit;
+        }
+        $query = $this->select_by_sql($sql);
+        if (!$query){
+            return false;
+        }
+        foreach ($query as $key => $value) {
+            $output[$key] = $value;
+            $sql = "SELECT SUM(ct.soluong) as soluong FROM sanpham s, chitietsanpham ct WHERE s.id = ct.idsanpham AND s.id ='".$value['id']."' GROUP BY s.id";
+            $soluong = $this->select_by_sql($sql);
+            $output[$key]['soluong'] = $soluong[0]['soluong'];
+        }
+        if ($isImg){
+            foreach ($query as $key => $value) {
+                $imgs = $this->select('hinhanh', 'hinhanh', "idsanpham = '".$value['id']."'");
+                $output[$key]['hinhanh'] = $this->arr2to1($imgs, true);
+            }
+        }
+        return $output;
+    }
         // code ML
         // lấy số lượng sản phẩm
         public function getQuaProduct(){

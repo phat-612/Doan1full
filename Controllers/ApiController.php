@@ -107,20 +107,24 @@
                 http_response_code(400);
             }
         }
-        // gửi đơn hàng đã đặt về email khách hàng
-        // public function sendOrderToEmail(){
-        //     $res = $this->orderModel->getOrderForEmail($_POST['email']);
-        //     if ($res){
-        //         $res = $this->userModel->sendOrderToEmail($_POST['email'], $res);
-        //             if ($res){
-        //                 http_response_code(200);
-        //             } else{
-        //                 http_response_code(400);
-        //             }
-        //     } else{
-        //         http_response_code(400);
-        //     }
-        // }
+        // xử lý tài khoản
+        public function getOtp(){
+            $res = $this->userModel->sendOtpEmail($_POST['email'], false);
+            if ($res){
+                http_response_code(200);
+            } else{
+                http_response_code(400);
+            }
+        }
+        public function signup(){
+            // inmang($_POST, true);
+            $res = $this->userModel->signup();
+            if ($res){
+                http_response_code(200);
+            } else{
+                http_response_code(400);
+            }
+        }
         // kiểm tra method
         private function _checkMethod($method = "POST"){
             if (!($this->reqMethod == $method)){

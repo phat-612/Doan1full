@@ -133,10 +133,10 @@
             if (!$sort){
                 $sort = 'thoigian';
             }
-            $sql = "SELECT dh.id, kh.hoten, dh.thoigian, dh.tongtien, dh.trangthai
-            FROM khachhang kh
-            JOIN donhang dh ON kh.id = dh.idkhachhang
-            WHERE kh.hoten LIKE '%$find%'";
+            $sql = "SELECT dh.id, tk.hoten, dh.thoigian, dh.tongtien, dh.trangthai
+            FROM taikhoan tk
+            JOIN donhang dh ON tk.id = dh.idgiaohang
+            WHERE tk.hoten LIKE '%$find%'";
             if($status){
                 $sql .= " AND dh.trangthai = '$status'";
             }

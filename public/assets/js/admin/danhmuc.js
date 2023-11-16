@@ -1,7 +1,7 @@
 ///////////////////////////////////*DANH MUC*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function showDanhMucField() {
-    document.getElementById("field-danhmuc").style.display = "block";
+    document.getElementById("field-danhmuc").style.display = "flex";
 }
 
 function closeDanhMucField() {
@@ -20,7 +20,9 @@ function addToDMTable() {
         cell1.innerHTML = inputValue;
         var cell2 = newRow.insertCell(1);
         cell2.innerHTML =
-            '<button type="button" onclick="editRow(this)">sửa</button> <button type="button" onclick="deleteRow(this)">xóa</button>';
+            `<button type="button" onclick="editRow(this)"><span class='material-symbols-outlined'>edit</span></button> <button type="button" onclick="deleteRow(this)"><span class="material-symbols-outlined">
+            delete
+            </span></button>`;
 
         input.value = ""; // xóa input sau khi thêm danh mục
         closeDanhMucField()
@@ -43,7 +45,7 @@ function deleteRow(btn) {
 }
 /////////////////////////////*MAU SAC*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function showMauSacField() {
-    document.getElementById("field-mausac").style.display = "block";
+    document.getElementById("field-mausac").style.display = "flex";
 }
 
 function closeMauSacField() {
@@ -86,7 +88,7 @@ function deleteRow(btn) {
 ///////////////////////////////* KICH THUOC */////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function showKichThuocField() {
-    document.getElementById("field-kichthuoc").style.display = "block";
+    document.getElementById("field-kichthuoc").style.display = "flex";
 }
 
 function closeKichThuocField() {
@@ -128,7 +130,7 @@ function deleteRow(btn) {
 }
 /////////////////////////////////////* BO SUU TAP *///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function showBoSuuTapField() {
-    document.getElementById("field-bosuutap").style.display = "block";
+    document.getElementById("field-bosuutap").style.display = "flex";
 }
 
 function closeBoSuuTapField() {

@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="<?php echo _WEB_ROOT?>/public/assets/css/admin/admin.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <!-- set css cho trang web -->
     <?php 
     if (is_array($css)){
@@ -21,7 +22,9 @@
 <body>
     <div class="big-form">
         <div class="taskbar">
-            <div class="logo-img"><img src="<?php echo _WEB_ROOT?>/public/assets/img/core/logo.png" alt="logo" /></div>  
+            <div class="logo-img">
+              <img src="<?php echo _WEB_ROOT?>/public/assets/img/core/logo.png" alt="logo" />
+            </div>  
             <div class="log-out">
                 <a href="">Đăng Xuất</a>
             </div>
