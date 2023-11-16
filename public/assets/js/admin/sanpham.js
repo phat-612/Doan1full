@@ -8,11 +8,12 @@ if (seaParams.hasOwnProperty("category")) {
 }
 document.querySelector(".js_filPro").addEventListener("change", () => {
   let fillPro = document.querySelector(".js_filPro").value;
-  localStorage.setItem("category", fillPro);
+  // localStorage.setItem("category", fillPro);
   let urlObject = new URL(window.location.href);
   urlObject.searchParams.set("category", fillPro);
   let newUrl = urlObject.toString();
-  window.history.replaceState({ path: newUrl }, '', newUrl);
+  window.location.href = newUrl;
+  // window.history.replaceState({ path: newUrl }, '', newUrl);
 });
 ////////////////////////////////////////////////////////////////
 if (seaParams.hasOwnProperty("sort")) {

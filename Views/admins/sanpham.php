@@ -6,6 +6,19 @@
         header("Location: ?page=1");
         exit();     
     }
+    $category = isset($_GET['category']) ? $_GET['category'] : '';
+    $sort = isset($_GET['sort']) ? $_GET['sort'] : 'ten';
+    $search = isset($_GET['search']) ? $_GET['search'] : '';
+    $arrSearch = [
+        'category'=>$category,
+        'sort'=>$sort,
+        'search'=>$search
+    ];
+    $arrSearch = array_filter($arrSearch, function($value, $key) {
+        return !empty($value);
+    }, ARRAY_FILTER_USE_BOTH);
+    $queryString = http_build_query($arrSearch);
+
 ?>
 
 <div class="Product-list-form">
@@ -76,43 +89,43 @@ delete
             <?php   
                 if ($currentPage > 1) {
                     $backPage = $currentPage - 1;
-                    echo "<li><a class='pagination_link' href='?page=$backPage'>&lt;</a></li>";
+                    echo "<li><a class='pagination_link' href='?$queryString&page=$backPage'>&lt;</a></li>";
                 }
               
                 if ($currentPage <= 2 && $totalPages >= 5){
                     for ($i = 1; $i <=6; $i++){
                         $isCurrent=$currentPage == $i ?"active":"";
-                        echo "<li><a class='pagination_link $isCurrent' href='?page=$i'>$i</a></li>";
+                        echo "<li><a class='pagination_link $isCurrent' href='?$queryString&page=$i'>$i</a></li>";
                     }
                 }
                 else if ($totalPages <= 5){
                     for ($i = 1; $i <= $totalPages; $i++){
                         $isCurrent=$currentPage == $i ?"active":"";
-                        echo "<li><a class='pagination_link $isCurrent' href='?page=$i'>$i</a></li>";
+                        echo "<li><a class='pagination_link $isCurrent' href='?$queryString&page=$i'>$i</a></li>";
                     }
                     if ($totalPages <= 1){
                         echo "<style>.pagination_link:first-child { display: none; }</style>";
                     }
                 }
                 else if ($currentPage > 2 &&  $currentPage+5 <= $totalPages ) {
-                        echo "<li><a class='pagination_link' href='?page=1'>1</a></li>";
+                        echo "<li><a class='pagination_link' href='?$queryString&page=1'>1</a></li>";
                         echo "<li>...</li>";
                             for ($i = $currentPage; $i <= $currentPage+4; $i++){
                                 $isCurrent=$currentPage == $i ?"active":"";
-                                echo "<li><a class='pagination_link $isCurrent' href='?page=$i'>$i</a></li>";
+                                echo "<li><a class='pagination_link $isCurrent' href='?$queryString&page=$i'>$i</a></li>";
                             } 
                         }  
                 else if ($currentPage > 2 &&  $currentPage+5 >= $totalPages) {
-                    echo "<li><a class='pagination_link' href='?page=1'>1</a></li>";
+                    echo "<li><a class='pagination_link' href='?$queryString&page=1'>1</a></li>";
                     echo "<li>...</li>";
                     for($i = $totalPages-4 ; $i <= $totalPages ; $i++){
                         $isCurrent=$currentPage == $i ?"active":"";
-                        echo "<li><a class='pagination_link $isCurrent' href='?page=$i'>$i</a></li>";    
+                        echo "<li><a class='pagination_link $isCurrent' href='?$queryString&page=$i'>$i</a></li>";    
                     }
                 }
                 if ($currentPage < $totalPages) {   
                     $nextPage = $currentPage +1;
-                    echo "<li><a class='pagination_link' href='?page=$nextPage'>&gt;</a></li>";
+                    echo "<li><a class='pagination_link' href='?$queryString&page=$nextPage'>&gt;</a></li>";
                 }
             ?>
         </ul>

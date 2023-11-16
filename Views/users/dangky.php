@@ -3,12 +3,12 @@
         <div class="auth-form_header">
         <h2 class="auth-form_heading">đăng ký tài khoản</h2>
         </div>
-        <form action="" method="post" class="auth-form_form">
+        <form action="/doan1full/api/signup" method="post" class="auth-form_form" onsubmit="return checkForm();">
         <div class="auth-form_group">
             <input type="text" name="ten" id="ten" placeholder="Họ và tên" class="auth-form_input" required>
         </div>
         <div class="auth-form_group">
-            <input type="email" name="mail" id="mail" placeholder="Email" class="auth-form_input" required>
+            <input type="email" name="email" id="email" placeholder="Email" class="auth-form_input" required>
         </div>
         <div class="auth-form_group">
             <input type="tel" name="phone" id="phone" minlength="10" maxlength="10" placeholder="Số điện thoại"
@@ -23,7 +23,7 @@
         <div class="auth-form_group">
             <input type="password" name="repass" id="repass" placeholder="Xác nhận mật khẩu" class="auth-form_input"
             required>
-            <p class="error">*hi</p>
+            <p class="error"></p>
         </div>
         <div class="auth-form_group">
             <input type="checkbox" name="policy" value="yes" id="policy" required="" class="auth-form_policy-check">

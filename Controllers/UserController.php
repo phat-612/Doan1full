@@ -23,12 +23,37 @@ class UserController extends BaseController{
             'content'=> 'users/dangky',
             'title'=> 'Đăng ký',
             'css'=> 'dangky',
+            'js'=> 'dangky',
             'subcontent'=> [
             ]
         ]);
     }
     public function profile(){
-
+        $this->render('layouts/user_account',[
+            'content'=> 'users/thongtincanhan',
+            'title'=> 'Thông tin cá nhân',
+            'css'=> 'taikhoan',
+            'subcontent'=> [
+            ]
+        ]);
+    }
+    public function history(){
+        $this->render('layouts/user_account',[
+            'content'=> 'users/lichsudonhang',
+            'title'=> 'Lịch sử đơn hàng',
+            'css'=> 'taikhoan',
+            'subcontent'=> [
+            ]
+        ]);
+    }
+    public function changePassword(){
+        $this->render('layouts/user_account',[
+            'content'=> 'users/doimatkhau',
+            'title'=> 'Đổi mật khẩu',
+            'css'=> 'taikhoan',
+            'subcontent'=> [
+            ]
+        ]);
     }
 }
 ?>

@@ -117,16 +117,16 @@
                         </div>
                         <hr>
                         <ul class="siba_list">
-                            <li><a href="" class="active">Thông tin cá nhân</a></li>
+                            <li><a href="profile" class="active">Thông tin cá nhân</a></li>
                             <li><a href="">Danh mục địa chỉ</a></li>
-                            <li><a href="">Đơn hàng của tôi</a></li>
-                            <li><a href="">Đổi mật khẩu</a></li>
-                            <li><a href="">Đăng xuất</a></li>
+                            <li><a href="history">Đơn hàng của tôi</a></li>
+                            <li><a href="changePassword">Đổi mật khẩu</a></li>
+                            <li><a href="logout">Đăng xuất</a></li>
                         </ul>
                     </div>
                     <div class="account_content">
                         <div class="account_content-header">
-                            <p>thông tin cá nhân</p>
+                            <p><?= $title?></p>
                         </div>
                         <hr>
                     <!-- content -->
@@ -193,15 +193,6 @@
           <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
           <li><a href=""><i class="fa-brands fa-tiktok"></i></a></li>
         </ul>
-      <!-- </ul>
-      <ul class="card_footer">
-        <li>
-          <h2>tra cứu lịch sử mua hàng</h2>
-        </li>
-        <li><input class="js_inp_email" type="email" placeholder="Nhập email" required>
-          <button class="send_btn js_send_email">gửi</button>
-        </li>
-      </ul> -->
     </footer>
   </div>
   <div class="modal js_bag">
