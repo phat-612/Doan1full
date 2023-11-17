@@ -88,11 +88,12 @@
         //Lấy danh sách tất cả sản phẩm
         public function getListProduct(){
             $res = $this->productModel->getListProduct($_POST['collection'], $_POST['category'], $_POST['sort'], $_POST['find']);
+            header('Content-Type: application/json');
             if ($res){
                 http_response_code(200);
-                header('Content-Type: application/json');
                 echo json_encode($res);
             } else{
+                echo json_encode([]);
                 http_response_code(400);
             }
         }
@@ -124,6 +125,9 @@
             } else{
                 http_response_code(400);
             }
+        }
+        public function login(){
+            $this->userModel->login($_POST['email'], $_POST['pass']);
         }
         // kiểm tra method
         private function _checkMethod($method = "POST"){

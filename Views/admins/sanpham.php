@@ -1,22 +1,28 @@
 <?php
+    $qualProduct = count($listProduct2);
     $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
-    $limit = 8; 
+    $limit=8;
     $totalPages = ceil($qualProduct / $limit);
-    if ($currentPage < 1 || $currentPage > $totalPages) {
-        header("Location: ?page=1");
-        exit();     
+    if ( $currentPage > $totalPages || $currentPage < 1) {  
+            header("Location: ?page=1");
+            exit();
+        
     }
     $category = isset($_GET['category']) ? $_GET['category'] : '';
-    $sort = isset($_GET['sort']) ? $_GET['sort'] : 'ten';
+    $sort = isset($_GET['sort']) ? $_GET['sort'] : '';
     $search = isset($_GET['search']) ? $_GET['search'] : '';
+    // tạo mảng mấy thuộc tính cần giữ lại
     $arrSearch = [
         'category'=>$category,
         'sort'=>$sort,
         'search'=>$search
     ];
+    // xóa mấy thuộc tính rỗng
     $arrSearch = array_filter($arrSearch, function($value, $key) {
         return !empty($value);
     }, ARRAY_FILTER_USE_BOTH);
+    // tạo string query url
+    // category=áo&sort=ten
     $queryString = http_build_query($arrSearch);
 
 ?>
@@ -86,7 +92,8 @@ delete
     </div>
     <div id="pagination" class="pagination">
         <ul class="pagination-list">
-            <?php   
+            <?php  
+             
                 if ($currentPage > 1) {
                     $backPage = $currentPage - 1;
                     echo "<li><a class='pagination_link' href='?$queryString&page=$backPage'>&lt;</a></li>";

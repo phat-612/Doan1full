@@ -10,7 +10,7 @@
             if (!(($this->isExistEmail($email)) == $isExist)){
                 return false;
             }
-            $otp = $this->randomCode(4);
+            $otp = $this->randomCode(6);
             $data = [
                 'email'=>$email,
                 'otp'=>$otp

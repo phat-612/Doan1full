@@ -174,7 +174,7 @@
         }
         $query = $this->select_by_sql($sql);
         if (!$query){
-            return false;
+            return [];
         }
         foreach ($query as $key => $value) {
             $output[$key] = $value;

@@ -5,7 +5,7 @@
         </div>
         <form action="" method="post" class="auth-form_form">
             <div class="auth-form_group">
-                <input type="email" name="mail" id="mail" placeholder="Email" class="auth-form_input"
+                <input type="email" name="email" id="mail" placeholder="Email" class="auth-form_input"
                     required>
             </div>
             <div class="auth-form_group">

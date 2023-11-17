@@ -50,7 +50,7 @@
             </a>
           </li>
           <li class="dp_none">
-            <a href="<?php echo _WEB_ROOT ?>/user" class="head_user">
+            <a href="<?php echo _WEB_ROOT ?>/user/login" class="head_user">
               <i class="fa-regular fa-circle-user"></i>
             </a>
           </li>

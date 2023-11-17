@@ -7,7 +7,10 @@ class UserController extends BaseController{
             $this->importModel('UserModel');
             $this->userModel = new UserModel();
     }
-    public function index(){
+    public function login(){
+        if (isset($_SESSION['isLogin']) && $_SESSION['role'] == 0){
+            $this->gotoPage('user/profile');
+        }
         $this->render('layouts/user',[
             'content'=> 'users/dangnhap',
             'title'=> 'Đăng nhập',
@@ -19,6 +22,9 @@ class UserController extends BaseController{
         ]);
     }
     public function signup(){
+        if (isset($_SESSION['isLogin']) && $_SESSION['role'] == 0){
+            $this->gotoPage('user/profile');
+        }
         $this->render('layouts/user',[
             'content'=> 'users/dangky',
             'title'=> 'Đăng ký',

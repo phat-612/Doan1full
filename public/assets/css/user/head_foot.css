@@ -146,7 +146,7 @@ header {
   padding: 0px 10px;
 }
 
-.nav > li > a {
+.nav>li>a {
   display: flex;
   padding: 6px 10px;
   line-height: 2rem;
@@ -160,17 +160,17 @@ header {
   margin-top: 2px;
 }
 
-.nav li:hover > a {
+.nav li:hover>a {
   color: #4996d2;
   box-shadow: 0 1px #4996d2;
 }
 
-.nav > li {
+.nav>li {
   position: relative;
   cursor: pointer;
 }
 
-.nav > li::after {
+.nav>li::after {
   content: "";
   padding: 10px 50px;
   position: absolute;
@@ -199,7 +199,7 @@ header {
   list-style-type: none;
 }
 
-.nav li:hover > .nav_list_item {
+.nav li:hover>.nav_list_item {
   display: block;
 }
 
@@ -210,9 +210,11 @@ header {
   color: #212121;
   font-size: 1.5rem;
 }
+
 .drop-down_menu ul {
   padding-right: 30px !important;
 }
+
 .drop-down_menu ul li a {
   width: 55px;
 }
@@ -231,7 +233,7 @@ header {
   border: none;
   border-bottom: 2px solid #7f7f7f;
   position: absolute;
-  left: -415%;
+  left: -440%;
   top: 10%;
   outline: none;
   padding: 8px 10px 5px 8px;
@@ -327,7 +329,7 @@ hr {
   width: 100%;
 }
 
-.cont_sbag .list_card > p {
+.cont_sbag .list_card>p {
   padding-top: 20px;
   opacity: 0.8;
   text-align: center;
