@@ -20,7 +20,7 @@
         </div>
         <div class="sel-date-box">
             <div>Đến Ngày</div>
-            <input type="date" name="" id="" class="js_date_end" />
+            <input type="date" name="" id="" class="js_date_end" disabled/>
         </div>
         <div class="bt">
             <center><button class="js_filter">Đến</button></center>

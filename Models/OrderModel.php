@@ -9,19 +9,6 @@
         //     }
         //     return $dataOrder;
         // }
-        public function getOrderForEmail($email){
-            $output = [];
-            $dataUsers = $this->select('khachhang k, donhang d', '*', "k.id = d.idkhachhang and k.email = '$email'", 'd.id desc');
-            if (!$dataUsers){
-                return false;
-            }
-            foreach ($dataUsers as $key => $dataUser){
-                $idOrder = $dataUser['id'];
-                $output[$key] = $dataUser;
-                $output[$key]['chitietdonhang'] = $this->select('chitietdonhang cd, chitietsanpham cs, sanpham s, mausac m, kichthuoc k', 's.id, s.ten, cd.gia, cd.soluong, m.mausac, k.kichthuoc', "cd.idchitietsanpham = cs.id and cs.idsanpham = s.id and cs.idmausac = m.id and cs.idkichthuoc = k.id and cd.iddonhang = '$idOrder'");
-            }
-            return $output;
-        }
         // public function getOneOrder($column = '*', $id){
         //     return $this->getAllOrder($column, "id = $id", '', 1);
         // }
@@ -50,7 +37,7 @@
                 'ghichu'=>$data['ghichu'],
                 'tongtien'=>$data['tongtien'],
                 'trangthai'=>'Chờ xử lý',
-                'idtaikhoan'=> isset($_SESSION['id']) ? $_SESSION['id'] : null
+                'idtaikhoan'=> isset($_SESSION['id']) ? $_SESSION['id'] : '-1'
             ];
             $this->conn->begin_transaction();
             try{
@@ -72,6 +59,14 @@
                 $this->conn->rollback();
                 return false;
             }
+        }
+        // lấy danh sách đơn hàng cho trang lịch sử
+        public function getListOrder($status = '', $sort = ''){
+            $table = "taikhoan tk, thongtingiaohang ttgh, donhang dh, chitietdonhang ctdh, chitietsanpham ctsp, kichthuoc kt, mausac ms";
+            $collumn = "ttgh.hoten, ttgh.sodienthoai, ttgh.diachi, dh.ghichu, dh.tongtien, dh.trangthai, dh.thoigian, ctdh.gia, ctdh.soluong, ctdh.gia, kt.kichthuoc, ms.mausac, ctsp.id";
+            $condition = "tk.id = dh.idtaikhoan and dh.idgiaohang = ttgh.id and dh.id = ctdh.iddonhang and ctdh.idchitietsanpham = ctsp.id and ctsp.idmausac = ms.id and ctsp.idkichthuoc = kt.id";
+            
+            // $sql = $this->select($table);
         }
         public function totalRevenue($status='',$timet='',$timee='')
         {
