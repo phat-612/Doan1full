@@ -11,6 +11,7 @@ class UserController extends BaseController{
         if (isset($_SESSION['isLogin']) && $_SESSION['role'] == 0){
             $this->gotoPage('user/profile');
         }
+
         $this->render('layouts/user',[
             'content'=> 'users/dangnhap',
             'title'=> 'Đăng nhập',
@@ -20,6 +21,10 @@ class UserController extends BaseController{
                 
             ]
         ]);
+    }
+    public function logout(){
+        $this->userModel->logout();
+        $this->gotoPage('user/login');
     }
     public function signup(){
         if (isset($_SESSION['isLogin']) && $_SESSION['role'] == 0){
@@ -35,15 +40,22 @@ class UserController extends BaseController{
         ]);
     }
     public function profile(){
+        $this->checkLogin();
+        if (isset($_POST['changeInfo'])){
+            $this->userModel->changeUserInfo();
+        }
+        $user = $this->userModel->getUserInfo($_SESSION['email']);
         $this->render('layouts/user_account',[
             'content'=> 'users/thongtincanhan',
             'title'=> 'Thông tin cá nhân',
             'css'=> 'taikhoan',
             'subcontent'=> [
+                'user'=> $user
             ]
         ]);
     }
     public function history(){
+        $this->checkLogin();
         $this->render('layouts/user_account',[
             'content'=> 'users/lichsudonhang',
             'title'=> 'Lịch sử đơn hàng',
@@ -53,6 +65,7 @@ class UserController extends BaseController{
         ]);
     }
     public function changePassword(){
+        $this->checkLogin();
         $this->render('layouts/user_account',[
             'content'=> 'users/doimatkhau',
             'title'=> 'Đổi mật khẩu',
@@ -60,6 +73,11 @@ class UserController extends BaseController{
             'subcontent'=> [
             ]
         ]);
+    }
+    private function checkLogin() {
+        if (!$_SESSION['isLogin']){
+            $this->gotoPage('user/login');
+        }
     }
 }
 ?>

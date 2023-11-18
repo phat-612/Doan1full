@@ -112,13 +112,12 @@
                 <div class="account_flex-wrap">
                     <div class="account_siba">
                         <div class="account_siba-header">
-                            <p class="siba_acc-name">Nguyen Lung Linh Lap Lanh</p>
-                            <p class="siba_acc-email">hahaha@gmail.com</p>
+                            <p class="siba_acc-name"><?= $_SESSION['hoten'] ?></p>
+                            <p class="siba_acc-email"><?= $_SESSION['email'] ?></p>
                         </div>
                         <hr>
                         <ul class="siba_list">
                             <li><a href="profile" class="active">Thông tin cá nhân</a></li>
-                            <li><a href="">Danh mục địa chỉ</a></li>
                             <li><a href="history">Đơn hàng của tôi</a></li>
                             <li><a href="changePassword">Đổi mật khẩu</a></li>
                             <li><a href="logout">Đăng xuất</a></li>

@@ -159,6 +159,7 @@ function totalPay() {
         ele.textContent = formatPrice(total);
     })
     document.querySelector(".js_nb_cart").textContent = loadCart().length;
+    // loadCartPage();
 }
 function getTotalPay() {
     let total = 0;

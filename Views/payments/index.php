@@ -12,21 +12,21 @@
             <form action="" method="post" class="auth-form_form js_form_order">
               <div class="form_pay">
                 <div class="auth-form_group">
-                  <input type="text" name="ten" id="ten" placeholder="Họ và tên" class="auth-form_input" required>
+                  <input type="text" name="thongtingiaohang[hoten]" id="ten" placeholder="Họ và tên" class="auth-form_input" required>
                 </div>
                 <div class="auth-form_group row_2">
-                  <input type="email" name="mail" id="mail" placeholder="Email" class="auth-form_input" required>
+                  <input type="email" name="mail" id="mail" placeholder="Email" class="auth-form_input" disabled value="<?= isset($_SESSION['email']) ? $_SESSION['email'] : '' ?>">
                 </div>
                 <div class="auth-form_group row_2">
-                  <input type="tel" name="phone" id="phone" minlength="10" maxlength="10" placeholder="Số điện thoại"
+                  <input type="tel" name="thongtingiaohang[sodienthoai]" id="phone" minlength="10" maxlength="10" placeholder="Số điện thoại"
                     class="auth-form_input" required>
                 </div>
                 <div class="auth-form_group">
-                  <input type="text" name="address" class="auth-form_input" placeholder="Địa chỉ chi tiết" value=""
+                  <input type="text" name="thongtingiaohang[diachi]" class="auth-form_input" placeholder="Địa chỉ chi tiết" value=""
                     required>
                 </div>
                 <div class="row">
-                  <textarea name="note" id="note" placeholder="Ghi chú" rows="4" cols="100"></textarea>
+                  <textarea name="ghichu" id="note" placeholder="Ghi chú" rows="4" cols="100"></textarea>
                 </div>
               </div>
               <div class="pay2_btn btn_css">

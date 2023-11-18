@@ -16,19 +16,20 @@ document.querySelector(".js_status").addEventListener("change", () => {
     window.location.href = newUrl;
 });
 /////////////////////////////////////////////////////
+if (seaParams.hasOwnProperty("sort")) {
+    document.querySelector(".js_sort").value = seaParams["sort"];
+}
 document.querySelector(".js_sort").addEventListener("change", () => {
     let sort = document.querySelector(".js_sort").value;
     let urlObject = new URL(window.location.href);
     urlObject.searchParams.set("sort", sort);
     let newUrl = urlObject.toString();
     window.location.href = newUrl;
-
 });
 document.querySelector(".js_btnSrOrder").addEventListener("click", () => {
     let srOrder = document.querySelector(".js_srOrder").value;
     let urlObject = new URL(window.location.href);
     urlObject.searchParams.set("search", srOrder);
     let newUrl = urlObject.toString();
-    console.log(newUrl);
     window.location.href = newUrl;
 });

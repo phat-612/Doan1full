@@ -1,4 +1,5 @@
 <?php
+    $getOrder = 50;
     $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
     $limit = 8; 
     $totalPages = ceil($getOrder / $limit);
@@ -6,6 +7,23 @@
         header("Location: ?page=1");
         exit();
     }
+    $status= isset($_GET['status']) ? $_GET['status'] : '';
+    $sort = isset($_GET['sort']) ? $_GET['sort'] : '';
+    $search = isset($_GET['search']) ? $_GET['search'] : '';
+    // tạo mảng mấy thuộc tính cần giữ lại
+    $arrSearch = [
+        'status'=>$status,
+        'sort'=>$sort,
+        'search'=>$search
+    ];
+    // xóa mấy thuộc tính rỗng
+    $arrSearch = array_filter($arrSearch, function($value, $key) {
+        return !empty($value);
+    }, ARRAY_FILTER_USE_BOTH);
+    // tạo string query url
+    // category=áo&sort=ten
+    $queryString = http_build_query($arrSearch);
+
 ?>
 <div class="oder-form">
     <header>Đơn Hàng</header>
@@ -20,7 +38,7 @@
         </select>
     </div>
     <div class="Sort-box">
-        <label>Sắp Xếp : </label>
+        <label >Sắp Xếp : </label>
         <select class="js_sort">
             <option value="thoigian desc">Mới -> Cũ</option>
             <option value="thoigian">Cũ -> Mới</option>

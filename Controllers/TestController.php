@@ -104,6 +104,13 @@
             $data = $this->productModel->getListProduct('', $_GET['danhmuc'], $_GET['sapxep'], $_GET['timkiem'], 5, $_GET['page'], false);
             inmang($data);
         }
-        
+        public function laychitietdonhang(){
+            $res = $this->orderModel->getDetailOrder($_GET['id']);
+            inmang($res);
+        }
+        public function infoUser(){
+            $res = $this->userModel->getUserInfo($_GET['email']);
+            inmang($res);
+        }
     }
 ?>

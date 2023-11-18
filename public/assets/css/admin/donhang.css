@@ -43,8 +43,6 @@ input#search {
 .mother-box {
     width: 98%;
     height: 70%;
-    border: 1px solid black;
-    border-radius: 8px;
 }
 
 .mother-box.table-box {
@@ -57,6 +55,8 @@ input#search {
     width: 100%;
     font-size: 24px;
     border-collapse: collapse;
+    border: 1px solid black;
+
 }
 
 .table-box tbody tr:nth-child(odd) {

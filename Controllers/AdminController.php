@@ -19,7 +19,7 @@
         public function index(){
             $quaProduct = $this->productModel->getQuaProduct();
             $numberOrder = $this->orderModel->getNumberOrder('Chờ Xử Lý','','');
-            $numberOrderSS = $this->orderModel->getNumberOrder('Thành Công','','');
+            $numberOrderSS = $this->orderModel->getNumberOrder('','','');
             $numberCustomers = $this -> userModel->totalCustomers();
             $dateStart = isset($_GET['dateStart']) ? $_GET['dateStart'] : '';
             $dateEnd = isset($_GET['dateEnd']) ? $_GET['dateEnd'] : '';
@@ -151,12 +151,13 @@
             ]);
         }
         public function detailOrder(){
+            $order = $this->orderModel->getDetailOrder($_GET['id']);
             $this->render('layouts/admin',[
                 'content'=> 'admins/chitietdonhang',
                 'title'=> 'Chi tiết đơn hàng',
                 'css'=> 'chitietdonhang',
                 'subcontent'=> [
-                    
+                    'order' => $order
                 ]
             ]);
         }

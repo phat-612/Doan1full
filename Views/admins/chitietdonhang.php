@@ -2,25 +2,25 @@
         <header>Chi Tiết Đơn Hàng</header>
         <div class="mother-box">
           <div class="Infor-form">
-            <div class="name">
+            <div class="name act">
               <div><label for="name-input">Tên :</label></div>
               <div>
                 <p>Cam Đại Hưng</p>
               </div>
             </div>
-            <div class="location">
+            <div class="location act">
               <div><label for="name-input">Địa Chỉ :</label></div>
               <div>
-                <p>123, Hùng Vương, Ninh Kiều</p>
+                <p>55 Đ. 3 Tháng 2, Xuân Khánh, Ninh Kiều, Cần Thơ, Việt Nam</p>
               </div>
             </div>
-            <div class="P-number">
+            <div class="P-number act">
               <div><label for="name-input">Số Điện Thoại:</label></div>
               <div>
                 <p>0354514832</p>
               </div>
             </div>
-            <div class="mail">
+            <div class="mail act">
               <div><label for="name-input">Email</label></div>
               <div>
                 <p>camdaica20003@gmail.com</p>
@@ -61,25 +61,7 @@ blablablablablabalaalbalbalabablaalbabalbalbabl</textarea
                 />
               </div>
               <div class="li-item-right">
-                <div class="li-name">ten san pham</div>
-                <div class="li-describe">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Recusandae, nostrum. Quae, adipisci, modi sed magnam nihil
-                  accusamus expedita error magni aut laborum, veniam cumque
-                  quisquam velit nam debitis temporibus corrupti?
-                </div>
-              </div>
-              <div class="li-price">30.000</div>
-            </div>
-            <div class="li-item">
-              <div class="li-img">
-                <img
-                  src="https://www.elle.vn/wp-content/uploads/2017/07/25/hinh-anh-dep-1.jpg"
-                  alt=""
-                />
-              </div>
-              <div class="li-item-right">
-                <div class="li-name">ten san pham</div>
+                <div class="li-name"><a href="">Tên Sản Phẩm Tên Sản Phẩm Tên Sản Phẩm Tên Sản Phẩm</a></div>
                 <div class="li-describe">
                   Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                   Recusandae, nostrum. Quae, adipisci, modi sed magnam nihil

@@ -76,4 +76,8 @@
     <div class="loading_btn"><a href="">xem thêm</a></div>
 
   </div>
+  <section class="none-found_product">
+    <div class="not-found">Không tìm thấy sản phẩm nào!</div> 
+  </section>
+  </div>
 </div>

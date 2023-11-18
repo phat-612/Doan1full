@@ -1,14 +1,14 @@
 <?php
     class OrderModel extends BaseModel{
         const TABLE = 'donhang';
-        public function getAllOrder($column = "*", $condition = "", $order = "", $limit = ""){
-            $dataOrder = $this->select(self::TABLE, $column, $condition, $order, $limit);
-            foreach ($dataOrder as $value){
-                $idOrder = $value['id'];
-                $value['chitietdathang'] = $this->select('chitietdathang', '*', "iddonhang = $idOrder", $order, $limit);
-            }
-            return $dataOrder;
-        }
+        // public function getAllOrder($column = "*", $condition = "", $order = "", $limit = ""){
+        //     $dataOrder = $this->select(self::TABLE, $column, $condition, $order, $limit);
+        //     foreach ($dataOrder as $value){
+        //         $idOrder = $value['id'];
+        //         $value['chitietdathang'] = $this->select('chitietdathang', '*', "iddonhang = $idOrder", $order, $limit);
+        //     }
+        //     return $dataOrder;
+        // }
         public function getOrderForEmail($email){
             $output = [];
             $dataUsers = $this->select('khachhang k, donhang d', '*', "k.id = d.idkhachhang and k.email = '$email'", 'd.id desc');
@@ -22,19 +22,18 @@
             }
             return $output;
         }
-        public function getOneOrder($column = '*', $id){
-            return $this->getAllOrder($column, "id = $id", '', 1);
-        }
+        // public function getOneOrder($column = '*', $id){
+        //     return $this->getAllOrder($column, "id = $id", '', 1);
+        // }
         public function addOrder($data = []){
             /*
                 [
                     'ghichu': 'giao nhanh len',
                     'tongtien': 120000,
-                    'khachhang': [
+                    'thongtingiaohang': [
                         'hoten': 'Nguyen van a',
                         'sodienthoai': '0123456789',
                         'diachi': 'cna tho',
-                        'email': '@gmail.com'
                     ],
                     'chitietdonhang': [
                         [
@@ -46,16 +45,17 @@
                 ]
             */
             $dataOrderDetail = $data['chitietdonhang'];
-            $dataUser = $data['khachhang'];
+            $dataTran = $data['thongtingiaohang'];
             $dataOrder = [
                 'ghichu'=>$data['ghichu'],
                 'tongtien'=>$data['tongtien'],
                 'trangthai'=>'Chờ xử lý',
+                'idtaikhoan'=> isset($_SESSION['id']) ? $_SESSION['id'] : null
             ];
             $this->conn->begin_transaction();
             try{
-                $idUser = $this->create('khachhang', $dataUser);
-                $dataOrder['idkhachhang'] = $idUser;
+                $idTran = $this->create('thongtingiaohang', $dataTran);
+                $dataOrder['idgiaohang'] = $idTran;
                 $idOrder = $this->create('donhang', $dataOrder);
                 foreach ($dataOrderDetail as $value) {
                    $value['iddonhang'] = $idOrder;
@@ -135,8 +135,9 @@
             }
             $sql = "SELECT dh.id, tk.hoten, dh.thoigian, dh.tongtien, dh.trangthai
             FROM taikhoan tk
-            JOIN donhang dh ON tk.id = dh.idgiaohang
-            WHERE tk.hoten LIKE '%$find%'";
+            JOIN donhang dh ON tk.id = dh.idtaikhoan
+            WHERE tk.hoten
+            LIKE '%$find%'";
             if($status){
                 $sql .= " AND dh.trangthai = '$status'";
             }
@@ -149,6 +150,12 @@
             }
             $query = $this->select_by_sql($sql);
                 return $query; 
+        }
+        // lấy chi tiết đơn hàng
+        public function getDetailOrder($id){
+            $sql = "Select * from donhang";
+            $query = $this->select_by_sql($sql);
+            return $query;
         }
         // lay đơn hàng bằng trạng thài & thời gian
         public function getNumberOrder($status = '',$timeb='',$timee=''){

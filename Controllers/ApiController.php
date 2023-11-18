@@ -127,7 +127,12 @@
             }
         }
         public function login(){
-            $this->userModel->login($_POST['email'], $_POST['pass']);
+            $res = $this->userModel->login($_POST['email'], $_POST['pass']);
+            if ($res){
+                http_response_code(200);
+            } else{
+                http_response_code(400);
+            }
         }
         // kiểm tra method
         private function _checkMethod($method = "POST"){

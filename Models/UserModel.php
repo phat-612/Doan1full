@@ -79,7 +79,7 @@
             }
         }
         public function login($taikhoan, $matkhau){
-            $dataUser = $this->select('taikhoan', 'taikhoan, matkhau', "taikhoan = '$taikhoan'");
+            $dataUser = $this->select('taikhoan', '*', "taikhoan = '$taikhoan'");
             if (!$dataUser){
                 return false;
             }
@@ -89,6 +89,9 @@
                 setcookie('verify_login', $dataCookie, time() + 3600, '/');
                 $_SESSION['isLogin'] = true;
                 $_SESSION['role'] = $dataUser['quyen'];
+                $_SESSION['email'] = $dataUser['taikhoan'];
+                $_SESSION['hoten'] = $dataUser['hoten'];
+                $_SESSION['id'] = $dataUser['id'];
                 return true;
             } else{
                 return false;
@@ -112,14 +115,6 @@
             }
             return false;
         }
-
-        // tổng số khánh hàng
-        public function totalCustomers(){
-            $sql = "SELECT DISTINCT COUNT(id) AS total_customers
-            FROM taikhoan";
-            $query = $this->select_by_sql($sql);
-            return $query[0]['total_customers'];
-        }
         public function logout(){
             if (isset($_COOKIE['verify_login'])){
                 setcookie('verify_login', '', time() - 10, '/');
@@ -129,6 +124,26 @@
             }
             return true;
         }
+        public function getUserInfo($email){
+            $res = $this->select('taikhoan', 'hoten, taikhoan, ngaysinh, sodienthoai, gioitinh', "taikhoan='$email'");
+            return $this->arr2to1($res);
+        }
+        public function changeUserInfo(){
+            $data = [
+                'hoten'=>$_POST['hoten'],
+                'ngaysinh'=>$_POST['ngaysinh'],
+                'gioitinh'=>$_POST['gioitinh'],
+            ];
+            return $this->update('taikhoan', $data, $_SESSION['id']);
+        }
+        // tổng số khánh hàng
+        public function totalCustomers(){
+            $sql = "SELECT DISTINCT COUNT(id) AS total_customers
+            FROM taikhoan";
+            $query = $this->select_by_sql($sql);
+            return $query[0]['total_customers'];
+        }
+        
         public function randomCode($length) {
             $code = '';
             for ($i = 0; $i < $length; $i++){

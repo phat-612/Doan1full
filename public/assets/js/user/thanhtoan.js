@@ -77,6 +77,7 @@ async function loadProductPayment() {
         `;
         document.querySelector(".right_wrap .container_product").innerHTML += htmlIn;
         loadEleCart();
+
     });
 }
 // thong bao đặt hàng thành công

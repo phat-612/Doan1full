@@ -23,12 +23,11 @@ a {
   flex-wrap: wrap;
   align-content: flex-start;
   justify-content: space-around;
+  position: relative;
 }
 
 .mother-box {
   width: 98%;
-  height: 70%;
-  border: 1px solid black;
   border-radius: 8px;
 }
 
@@ -44,6 +43,7 @@ a {
   width: 100%;
   font-size: 24px;
   border-collapse: collapse;
+  border: 1px solid black;
 }
 
 .table-box tbody tr:nth-child(odd) {
@@ -112,6 +112,11 @@ input#search {
 }
 
 /* pagination */
+.pagination {
+  position: absolute;
+  bottom: 15px;
+}
+
 .pagination-list {
   display: flex;
   justify-content: center;
