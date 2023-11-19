@@ -41,7 +41,6 @@
             }
             return $data;
         }
-
         protected function create($table, $data){
             /*
                 $data = [

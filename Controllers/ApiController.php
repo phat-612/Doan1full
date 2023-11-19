@@ -134,6 +134,14 @@
                 http_response_code(400);
             }
         }
+        public function changePassword(){
+            $res = $this->userModel->changePassword();
+            if ($res){
+                http_response_code(200);
+            } else{
+                http_response_code(400);
+            }
+        }
         public function getListOrderUser(){
             $res = $this->orderModel->getListOrder();
             header('Content-Type: application/json');

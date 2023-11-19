@@ -71,6 +71,7 @@ class UserController extends BaseController{
             'content'=> 'users/doimatkhau',
             'title'=> 'Đổi mật khẩu',
             'css'=> 'taikhoan',
+            'js'=>'doimatkhau',
             'subcontent'=> [
             ]
         ]);

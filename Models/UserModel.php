@@ -136,6 +136,26 @@
             ];
             return $this->update('taikhoan', $data, $_SESSION['id']);
         }
+        // đổi mật khẩu
+        public function changePassword(){
+            if (!isset($_SESSION['isLogin'])){
+                return false;
+            }
+            $user = $_SESSION['email'];
+            $oldPass = $_POST['oldPass'];
+            $newPass = $_POST['newPass'];
+            $sql = "select * from taikhoan where taikhoan='$user'";
+            $query = $this->select_by_sql($sql);
+            if (!$query){
+                return false;
+            }
+            if ($query[0]['matkhau'] != $oldPass){
+                return false;
+            }
+            $sql = "UPDATE taikhoan SET matkhau='$newPass' where taikhoan='$user'";
+            $this->select_by_sql($sql);
+            return true;
+        }
         // tổng số khánh hàng
         public function totalCustomers(){
             $sql = "SELECT DISTINCT COUNT(id) AS total_customers
