@@ -112,5 +112,9 @@
             $res = $this->userModel->getUserInfo($_GET['email']);
             inmang($res);
         }
+        public function layLSDH(){
+            $res = $this->orderModel->getListOrder();
+            inmang($res);
+        }
     }
 ?>

@@ -17,13 +17,14 @@
         }
         // trang chủ
         public function index(){
-            $quaProduct = $this->productModel->getQuaProduct();
-            $numberOrder = $this->orderModel->getNumberOrder('Chờ Xử Lý','','');
-            $numberOrderSS = $this->orderModel->getNumberOrder('','','');
-            $numberCustomers = $this -> userModel->totalCustomers();
             $dateStart = isset($_GET['dateStart']) ? $_GET['dateStart'] : '';
             $dateEnd = isset($_GET['dateEnd']) ? $_GET['dateEnd'] : '';
+            
+            $quaProduct = $this->productModel->getQuaProduct();
+            $numberOrder = $this->orderModel->getNumberOrder('Chờ Xử Lý','','');
+            $numberCustomers = $this -> userModel->totalCustomers();
             $totalRevenue = $this->orderModel->totalRevenue('Thành Công',$dateStart,$dateEnd);
+            $numberOrderSS = $this->orderModel->getNumberOrder('',$dateStart,$dateEnd);
             $this->render('layouts/admin',[
                 'content'=> 'admins/index',
                 'title'=> 'Trang chủ Admin',

@@ -61,12 +61,24 @@
             }
         }
         // lấy danh sách đơn hàng cho trang lịch sử
-        public function getListOrder($status = '', $sort = ''){
-            $table = "taikhoan tk, thongtingiaohang ttgh, donhang dh, chitietdonhang ctdh, chitietsanpham ctsp, kichthuoc kt, mausac ms";
-            $collumn = "ttgh.hoten, ttgh.sodienthoai, ttgh.diachi, dh.ghichu, dh.tongtien, dh.trangthai, dh.thoigian, ctdh.gia, ctdh.soluong, ctdh.gia, kt.kichthuoc, ms.mausac, ctsp.id";
-            $condition = "tk.id = dh.idtaikhoan and dh.idgiaohang = ttgh.id and dh.id = ctdh.iddonhang and ctdh.idchitietsanpham = ctsp.id and ctsp.idmausac = ms.id and ctsp.idkichthuoc = kt.id";
-            
-            // $sql = $this->select($table);
+        public function getListOrder(){
+            $email = isset($_SESSION['email']) ? $_SESSION['email'] : false;
+            $table = 'taikhoan tk, thongtingiaohang ttgh, donhang dh';
+            $collumn = "ttgh.*, dh.*";
+            $condition = "tk.id = dh.idtaikhoan and ttgh.id = dh.idgiaohang and tk.taikhoan = '$email'";
+            if (!$email){
+                return [];
+            }
+            $query = $this->select($table, $collumn, $condition);
+            if (!$query){
+                return [];
+            }
+            foreach ($query as $key => $value) {
+                $iddonhang = $value['id'];
+                $sql = "SELECT ctdh.gia, ctdh.soluong, ctsp.idsanpham, ms.mausac, kt.kichthuoc, sp.ten, ha.hinhanh FROM chitietdonhang ctdh, chitietsanpham ctsp, kichthuoc kt, mausac ms, sanpham sp, hinhanh ha WHERE ctdh.idchitietsanpham = ctsp.id and ctsp.idmausac = ms.id and ctsp.idkichthuoc = kt.id and ctsp.idsanpham = sp.id and sp.id = ha.idsanpham and ctdh.iddonhang = '$iddonhang' GROUP BY ctsp.id";
+                $query[$key]['chitietdonhang'] = $this->select_by_sql($sql);
+            }
+            return $query;
         }
         public function totalRevenue($status='',$timet='',$timee='')
         {

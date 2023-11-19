@@ -60,6 +60,7 @@ class UserController extends BaseController{
             'content'=> 'users/lichsudonhang',
             'title'=> 'Lịch sử đơn hàng',
             'css'=> 'taikhoan',
+            'js'=> 'lichsudonhang',
             'subcontent'=> [
             ]
         ]);

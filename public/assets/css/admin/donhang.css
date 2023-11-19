@@ -10,6 +10,7 @@
     justify-content: space-around;
     flex-wrap: wrap;
     align-content: flex-start;
+    position: relative;
 }
 
 header {
@@ -37,6 +38,10 @@ input#search {
     padding: 1% 0;
     font: caption;
     width: 20%;
+}
+
+.oder-form .del-filter {
+    padding: 1% 0;
 }
 
 /* //////////////////////////////// */
@@ -107,6 +112,11 @@ select {
     appearance: none;
     font: caption;
     padding: 1% 1%;
+}
+
+.oder-form .pagination {
+    position: absolute;
+    bottom: 15px;
 }
 
 .oder-form .pagination-list {

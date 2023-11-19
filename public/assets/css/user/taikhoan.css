@@ -104,12 +104,17 @@
 }
 
 .no_order-tb {
+    display: none;
     font-size: 1.6rem;
     padding: 10px 0;
 }
 
 .no_order-tb i {
     padding-right: 5px;
+}
+
+.cont_my-order {
+    display: none;
 }
 
 .filter_sort {

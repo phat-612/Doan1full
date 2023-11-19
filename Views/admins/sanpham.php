@@ -55,6 +55,9 @@
         <input type="search" id="search" placeholder="Tên Sản Phẩm" class="js_srPro" />
         <button class="js_butSrPro">tìm</button>
     </div>
+    <div class="del-filter">
+        <button class="btn-del-filter">Xóa Bộ Lọc</button>
+    </div>
     <div class="add-product">
         <a href="<?php echo _WEB_ROOT?>/admin/addProduct">Thêm sản Phẩm</a>
     </div>

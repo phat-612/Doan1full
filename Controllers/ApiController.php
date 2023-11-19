@@ -134,6 +134,17 @@
                 http_response_code(400);
             }
         }
+        public function getListOrderUser(){
+            $res = $this->orderModel->getListOrder();
+            header('Content-Type: application/json');
+            if ($res){
+                http_response_code(200);
+                echo json_encode($res);
+            } else{
+                echo json_encode([]);
+                http_response_code(400);
+            }
+        }
         // kiểm tra method
         private function _checkMethod($method = "POST"){
             if (!($this->reqMethod == $method)){

@@ -49,6 +49,9 @@
         <input type="search" id="search" placeholder="Tên khách Hàng" class="js_srOrder" />
         <button class="js_btnSrOrder">tìm</button>
     </div>
+    <div class="del-filter">
+        <button class="btn-del-filter">Xóa Bộ Lọc</button>
+    </div>
     <div class="mother-box">
         <table class="table-box">
             <thead>

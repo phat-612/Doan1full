@@ -31,3 +31,7 @@ document.querySelector(".js_butSrPro").addEventListener("click", () => {
   let newUrl = urlObject.toString();
   window.location.href = newUrl;
 });
+/////////////////////////////////////////////////////////////////////
+document.querySelector(".btn-del-filter").addEventListener("click", () => {
+  clearSearchQuery();
+});

@@ -107,6 +107,10 @@ input#search {
   font: caption;
 }
 
+.Product-list-form .del-filter {
+  padding: 1% 0;
+}
+
 .table-box tbody tr:hover {
   background-color: rgb(210, 180, 180);
 }
