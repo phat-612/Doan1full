@@ -1,18 +1,27 @@
 const otpInputs = document.querySelectorAll('.otp_input input');
+const btnSignup = document.querySelector('.js_btn_dk');
+const eleTimeOtp = document.querySelector('.time .time_out');
+const eleReSendTime = document.querySelector('.send_again .again');
+const btnReSend = document.querySelector('.send_again .send');
 
+let idTimeOtp;
+let idTimeResOtp;
 
-
-function checkForm() {
+function checkPass() {
     let isTrue = true;
     let inpPw = document.querySelector('#pass');
     let inpRePw = document.querySelector('#repass');
-    if (inpPw.value != inpRePw.value) {
-        document.querySelector('.error').textContent = '*Mật khẩu và xác nhận mật khẩu không chính xác';
-        isTrue = false;
+    // xử lý nhập repass trước
+    if (inpRePw.value) {
+        if (inpPw.value != inpRePw.value) {
+            document.querySelector('.error').textContent = '*Mật khẩu và xác nhận mật khẩu không chính xác';
+            isTrue = false;
+        } else {
+            document.querySelector('.error').textContent = '';
+        }
     } else {
-        document.querySelector('.error').textContent = '';
+        isTrue = false;
     }
-
     return isTrue;
 }
 // xử lý nhập otp
@@ -26,31 +35,16 @@ otpInputs.forEach((input, index) => {
         }
     });
 });
-document.querySelector('.js_btn_dk').addEventListener('click', (e) => {
+document.querySelector('form').addEventListener('submit', (e) => {
     e.preventDefault();
-    if (!checkForm()) {
+    if (!checkPass()) {
         return false;
     }
 
-    // xử lý gửi otp đến email - xử lý trùng email
-    let formData = new FormData();
-    formData.append('email', document.querySelector('#email').value);
-    let requestOptions = {
-        method: 'POST',
-        body: formData,
-        redirect: 'follow'
-    };
-    fetch(`${ROOTFOLDER}api/getOtp`, requestOptions)
-        .then((res) => {
-            if (res.status == 200) {
-                // xử lý đúng otp khi submit
-                document.querySelector('.js_otp').style.display = 'flex';
-                document.querySelector('.error').textContent = '';
-            } else {
-                // xử lý sai otp khi submit
-                document.querySelector('.error').textContent = '*Email đã được đăng ký';
-            }
-        });
+    btnSignup.disabled = true;
+
+    // xử lý gửi otp đến email
+    sendOtp();
 });
 // hủy bỏ otp
 document.querySelector('.cancel a').addEventListener('click', (e) => {
@@ -87,10 +81,65 @@ document.querySelector('.acpt a').addEventListener('click', (e) => {
             }
         });
 });
+// nút gửi lại otp
+btnReSend.style.pointerEvents = "none";
+btnReSend.addEventListener('click', (e) => {
+    e.preventDefault();
+    sendOtp();
+});
 // FUNCTION
 function resetOtp() {
     otpInputs.forEach((input) => {
         input.value = '';
     });
     otpInputs[0].focus();
+}
+function sendOtp() {
+    btnReSend.style.pointerEvents = "none";
+    let formData = new FormData();
+    formData.append('email', document.querySelector('#email').value);
+    let requestOptions = {
+        method: 'POST',
+        body: formData,
+        redirect: 'follow'
+    };
+    fetch(`${ROOTFOLDER}api/getOtp`, requestOptions)
+        .then((res) => {
+            if (res.status == 200) {
+                // xử lý đúng otp khi submit
+                document.querySelector('.js_otp').style.display = 'flex';
+                document.querySelector('.error').textContent = '';
+                timeOtp();
+                timeReSendOtp();
+
+            } else {
+                // xử lý sai otp khi submit
+                document.querySelector('.error').textContent = '*Email đã được đăng ký';
+            }
+            btnSignup.disabled = false;
+        });
+
+}
+function timeReSendOtp() {
+    clearInterval(idTimeResOtp);
+    let time = 60;
+    idTimeResOtp = setInterval(() => {
+        time--;
+        eleReSendTime.textContent = time;
+        if (time <= 0) {
+            clearInterval(idTimeResOtp);
+            btnReSend.style.pointerEvents = 'auto';
+        }
+    }, 1000)
+}
+function timeOtp() {
+    clearInterval(idTimeOtp);
+    let time = 180;
+    idTimeOtp = setInterval(() => {
+        time--;
+        eleTimeOtp.textContent = time;
+        if (time <= 0) {
+            clearInterval(idTimeOtp);
+        }
+    }, 1000)
 }

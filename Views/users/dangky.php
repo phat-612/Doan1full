@@ -18,10 +18,10 @@
             <input type="date" name="ngaysinh" id="sn" placeholder="Ngày sinh" class="auth-form_input" required>
         </div>
         <div class="auth-form_group">
-            <input type="password" name="matkhau" id="pass" placeholder="Mật khẩu" class="auth-form_input" required>
+            <input type="password" name="matkhau" id="pass" placeholder="Mật khẩu" class="auth-form_input" onblur="checkPass();" required>
         </div>
         <div class="auth-form_group">
-            <input type="password" name="repass" id="repass" placeholder="Xác nhận mật khẩu" class="auth-form_input"
+            <input type="password" name="repass" id="repass" placeholder="Xác nhận mật khẩu" class="auth-form_input" onblur="checkPass();"
             required>
             <p class="error"></p>
         </div>
@@ -54,7 +54,7 @@
     </div>
     <div class="inf_otp">
         <div class="send_again">
-        <a href="" class="send">Gửi lại mã</a><span class="again">(1:00)</span>
+        <a href="" class="send" disabled>Gửi lại mã</a><span class="again">(1:00)</span>
         </div>
         <p class="time">Thời gian:<span class="time_out">3:00</span></p>
     </div>
