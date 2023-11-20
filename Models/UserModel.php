@@ -85,8 +85,8 @@
             }
             $dataUser = $dataUser[0];
             if ($dataUser['taikhoan'] == $taikhoan && $dataUser['matkhau'] == $matkhau){
-                $dataCookie =  $this->encodeData(json_encode($dataUser));
-                setcookie('verify_login', $dataCookie, time() + 3600, '/');
+                // $dataCookie =  $this->encodeData(json_encode($dataUser));
+                // setcookie('verify_login', $dataCookie, time() + 3600, '/');
                 $_SESSION['isLogin'] = true;
                 $_SESSION['role'] = $dataUser['quyen'];
                 $_SESSION['email'] = $dataUser['taikhoan'];

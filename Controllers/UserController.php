@@ -8,8 +8,10 @@ class UserController extends BaseController{
             $this->userModel = new UserModel();
     }
     public function login(){
-        if (isset($_SESSION['isLogin']) && $_SESSION['role'] == 0){
-            $this->gotoPage('user/profile');
+        if (isset($_SESSION['isLogin'])){
+            if ($_SESSION['role'] == 0){
+                $this->gotoPage('user/profile');
+            }
         }
 
         $this->render('layouts/user',[

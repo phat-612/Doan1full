@@ -15,6 +15,7 @@
                 type="text"
                 id="Product-Name"
                 placeholder="Nhập tên sản phẩm"
+                value="<?= $product['ten'] ?>"
                 required
               />
             </div>
@@ -47,6 +48,7 @@
                 oninput="validity.valid||(value='');"
                 id="Product-Price"
                 placeholder="Nhập giá sản phẩm"
+                value="<?= $product['gia'] ?>"
                 required
               />
             </div>
@@ -67,7 +69,7 @@
                 id="Product-Description"
                 cols="30"
                 rows="10"
-              ></textarea>
+              ><?= $product['mota'] ?></textarea>
             </div>
           </div>
           <div class="Meta-Data-box">

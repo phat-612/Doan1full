@@ -116,5 +116,9 @@
             $res = $this->orderModel->getListOrder();
             inmang($res);
         }
+        public function layCTSP(){
+            $res = $this->productModel->getDetailProduct($_GET['id']);
+            inmang($res);
+        }
     }
 ?>

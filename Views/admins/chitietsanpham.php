@@ -4,7 +4,7 @@
               <header>Chi Tiết Sản Phẩm</header>
             </div>
             <div>
-                <a href="http://127.0.0.1:5500/html/chinhsua.html">Chỉnh Sửa</a>
+                <a href="editProduct?id=<?= $_GET['id'] ?>">Chỉnh Sửa</a>
             </div>
       </div>
       <div class="mother-box-Add-Product">
@@ -12,14 +12,12 @@
           <span>Bộ Sưu Tập</span>
           <span onclick="hideField()">Đóng</span>
           <ul>
-            <li>mùa đông</li>
-            <li>mùa hè</li>
-            <li>mùa xuân</li>
-            <li>mùa thu</li>
-            <li>mùa đông</li>
-            <li>mùa hè</li>
-            <li>mùa xuân</li>
-            <li>mùa thu</li>
+            <?php
+                foreach ($product['bosuutap'] as $value) {
+              ?>
+                <li><?= $value ?></li>
+            <?php } ?>
+            
           </ul>
         </div>
           <div class="General-Information-box">
@@ -37,7 +35,7 @@
                 id="Product-Name"
                 placeholder="Nhập tên sản phẩm"
                 disabled
-                value="Quần kaki ống rộng"
+                value="<?= $product['ten'] ?>"
                 
               />
             </div>
@@ -51,7 +49,7 @@
                 id="Product-Category"
                 disabled
               >
-                <option selected value="Danh-Mục">Quần</option>
+                <option selected value="Danh-Mục"><?= $product['danhmuc'] ?></option>
               </select>
             </div>
             <div class="Product-Price-box">
@@ -61,13 +59,13 @@
               <input
                 spellcheck="false"
                 class="Product-Price-input"
-                type="number"
+                type="text"
                 name="Product-Price"
                 min="0"
                 oninput="validity.valid||(value='');"
                 id="Product-Price"
                 placeholder="Nhập giá sản phẩm"
-                value="250.000"
+                value="<?= number_format($product['gia'], 0, ' ', ' ') ?>"
                 disabled
               />
             </div>
@@ -89,7 +87,7 @@
                 cols="30"
                 rows="10"
                 disabled
-              >Chất liệu kaki, form quần đẹp</textarea>
+              ><?= $product['mota'] ?></textarea>
             </div>
           </div>
           <div class="Meta-Data-box">
@@ -104,21 +102,15 @@
                     <td>Số lượng</td>
                 </thead>
                 <tbody>
+                  <?php
+                    foreach ($product['chitietsanpham'] as $value) {
+                  ?>
                   <tr>
-                    <td>Trắng</td>
-                    <td>M</td>
-                    <td>10</td>
+                    <td><?= $value['mausac'] ?></td>
+                    <td><?= $value['kichthuoc'] ?></td>
+                    <td><?= $value['soluong'] ?></td>
                   </tr>
-                  <tr>
-                    <td>Trắng</td>
-                    <td>L</td>
-                    <td>10</td>
-                  </tr>
-                  <tr>
-                    <td>Trắng</td>
-                    <td>XL</td>
-                    <td>10</td>
-                  </tr>
+                  <?php } ?>
                 </tbody>
               </table>
             
@@ -128,7 +120,11 @@
               Ảnh sản Phẩm
             </header>
             <div class="displayImg">
-                <img src="https://d1hjkbq40fs2x4.cloudfront.net/2016-01-31/files/1045.jpg" alt="">
+              <?php
+                foreach ($product['hinhanh'] as $value) {
+              ?>
+                <img src="<?= _WEB_ROOT . '/' . $value ?>" alt="">
+              <?php } ?>
             </div>
           </div>
         </div>

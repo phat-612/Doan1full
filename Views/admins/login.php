@@ -9,17 +9,18 @@
 <body>
     <form class="login" method="POST" action="<?php echo _WEB_ROOT?>/admin/login">
       <h1>Đăng Nhập</h1>
-      <p class="error">Lỗi Đăng Nhập</p>
+      <p class="error"></p>
       <div class="account">
         <label for="account">Tên Đăng Nhập:</label>
-        <input type="text" name="taikhoan" id="account" placeholder="Tên Đăng Nhập" />
+        <input type="text" name="email" id="account" placeholder="Tên Đăng Nhập" />
       </div>
       <div class="password">
         <label for="password">Mật Khẩu:</label>
-        <input type="password" name="matkhau" id="" placeholder="Nhập Mật Khẩu" />      </div>
+        <input type="password" name="pass" id="" placeholder="Nhập Mật Khẩu" />      </div>
       <div class="btn-box">
         <button type="submit">Đăng Nhập</button>
       </div>
     </form>
+    <script src="<?php echo _WEB_ROOT ?>/public/assets/js/admin/dangnhap.js"></script>
 </body>
 </html>

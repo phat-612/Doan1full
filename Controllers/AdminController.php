@@ -42,33 +42,35 @@
         public function login(){
             // đã đăng nhập
             if (isset($_SESSION['isLogin'])){
-                $this->gotoPage('admin');
+                if ($_SESSION['role'] == 1){
+                    $this->gotoPage('admin');
+                }
             }
             // yêu cầu đăng nhập bằng mật khẩu
-            if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-                if (isset($_POST['taikhoan']) && $_POST['matkhau']){
-                    $res = $this->userModel->login($_POST['taikhoan'], $_POST['matkhau']);
-                    if ($res){
-                        $this->gotoPage('admin');
-                    } else{
-                        $this->gotoPage('admin/login?error=1');
-                    }
-                }
+            // if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+            //     if (isset($_POST['taikhoan']) && $_POST['matkhau']){
+            //         $res = $this->userModel->login($_POST['taikhoan'], $_POST['matkhau']);
+            //         if ($res){
+            //             $this->gotoPage('admin');
+            //         } else{
+            //             $this->gotoPage('admin/login?error=1');
+            //         }
+            //     }
                     
-            }
+            // }
             // tự động đăng nhập
-            if (isset($_COOKIE['verify_login'])){
-                echo"Kiem tra coookie";
-                $dataUser = json_decode($this->userModel->decodeData($_COOKIE['verify_login']), true);
-                $taikhoan= $dataUser['taikhoan'];
-                $matkhau= $dataUser['matkhau'];
-                $res = $this->userModel->login($taikhoan, $matkhau);
-                if ($res){
-                    $this->gotoPage('admin');
-                } else{
-                    $this->gotoPage('admin/login');
-                }
-            }
+            // if (isset($_COOKIE['verify_login'])){
+            //     echo"Kiem tra coookie";
+            //     $dataUser = json_decode($this->userModel->decodeData($_COOKIE['verify_login']), true);
+            //     $taikhoan= $dataUser['taikhoan'];
+            //     $matkhau= $dataUser['matkhau'];
+            //     $res = $this->userModel->login($taikhoan, $matkhau);
+            //     if ($res){
+            //         $this->gotoPage('admin');
+            //     } else{
+            //         $this->gotoPage('admin/login');
+            //     }
+            // }
             // $this->render('admins/login');
             $this->render('admins/login',[
                 'title'=> 'Đăng nhập',
@@ -100,24 +102,33 @@
             ]);
         }
         public function detailProduct(){
+            $id = isset($_GET['id']) ? $_GET['id'] : '';
+            if (!$id){
+                $this->gotoPage('admin/product');
+            }
+
             $this->render('layouts/admin',[
                 'content'=> 'admins/chitietsanpham',
                 'title'=> 'Chi tiết sản phẩm',
                 'css'=> 'chitietsanpham',
                 'js'=> 'chitietsanpham',
                 'subcontent'=> [
-                    
+                    'product'=>$this->productModel->getDetailProduct($id)
                 ]
             ]);
         }
         public function editProduct(){
+            $id = isset($_GET['id']) ? $_GET['id'] : '';
+            if (!$id){
+                $this->gotoPage('admin/product');
+            }
             $this->render('layouts/admin',[
-                'content'=> 'admins/chinhsuasanpham',
+                'content'=> 'admins/chinhsua',
                 'title'=> 'Chỉnh sửa sản phẩm',
-                'css'=> 'chinhsuasanpham',
-                'js'=> 'chinhsuasanpham',
+                'css'=> 'chinhsua',
+                'js'=> 'chinhsua',
                 'subcontent'=> [
-                    
+                    'product'=> $this->productModel->getDetailProduct($id)
                 ]
             ]);
         }
@@ -139,6 +150,7 @@
             $search = isset($_GET['search']) ? $_GET['search'] : '';
             $page = isset($_GET['page']) ? $_GET['page'] : 1;
             $orders = $this->orderModel->getDataOrderAdmin($status,$sort,$search,8,$page);
+            $orders1 = $this->orderModel->getDataOrderAdmin($status,$sort,$search,'',$page);
             $getOrder = $this->orderModel->getNumberOrder($status,'','');
             $this->render('layouts/admin',[
                 'content'=> 'admins/donhang',
@@ -147,7 +159,8 @@
                 'js'=>'donhang',
                 'subcontent'=> [
                     'orders' => $orders,
-                    'getOrder'=>$getOrder
+                    'getOrder'=>$getOrder,
+                    'orders1'=>$orders1
                 ]
             ]);
         }
@@ -190,7 +203,9 @@
             $pageNameWithQuery = end($uriSegments);
             $pageName = strtok($pageNameWithQuery, '?');
             if (!isset($_SESSION['isLogin']) && $pageName != 'login'){
-                $this->gotoPage('admin/login');
+                if ($_SESSION['role'] != 1){
+                    $this->gotoPage('admin/login');
+                }
             }
         }
     }

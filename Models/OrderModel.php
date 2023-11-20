@@ -140,10 +140,10 @@
             if (!$sort){
                 $sort = 'thoigian';
             }
-            $sql = "SELECT dh.id, tk.hoten, dh.thoigian, dh.tongtien, dh.trangthai
-            FROM taikhoan tk
-            JOIN donhang dh ON tk.id = dh.idtaikhoan
-            WHERE tk.hoten
+            $sql = "SELECT dh.id, tt.hoten, dh.thoigian, dh.tongtien, dh.trangthai
+            FROM thongtingiaohang tt
+            JOIN donhang dh ON dh.idgiaohang = tt.id
+            WHERE tt.hoten 
             LIKE '%$find%'";
             if($status){
                 $sql .= " AND dh.trangthai = '$status'";
@@ -160,10 +160,9 @@
         }
         // lấy chi tiết đơn hàng
         public function getDetailOrder($id){
-            $sql = "Select * from donhang";
-            $query = $this->select_by_sql($sql);
-            return $query;
+            
         }
+        
         // lay đơn hàng bằng trạng thài & thời gian
         public function getNumberOrder($status = '',$timeb='',$timee=''){
             $sql = "SELECT COUNT(*) sodonhang FROM donhang";
