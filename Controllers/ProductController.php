@@ -23,6 +23,7 @@
                 ]
             ]);
         }
+        
         // thong tin chi tiet 1 san pham
         public function detail()
         {

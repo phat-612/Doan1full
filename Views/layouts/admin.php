@@ -26,7 +26,7 @@
               <img src="<?php echo _WEB_ROOT?>/public/assets/img/core/logo.png" alt="logo" />
             </div>  
             <div class="log-out">
-                <a href="">Đăng Xuất</a>
+                <a href="<?php echo _WEB_ROOT ?>/admin/logout">Đăng Xuất</a>
             </div>
         </div>
         <div class="taskbar-menu">

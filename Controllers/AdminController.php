@@ -13,17 +13,16 @@
             $this->userModel = new UserModel();
             $this->importModel('ProductModel');
             $this->productModel = new ProductModel();
-            // $this->_checkLogin();
+            $this->_checkLogin();
         }
         // trang chủ
         public function index(){
             $dateStart = isset($_GET['dateStart']) ? $_GET['dateStart'] : '';
-            $dateEnd = isset($_GET['dateEnd']) ? $_GET['dateEnd'] : '';
-            
+            $dateEnd = isset($_GET['dateEnd']) ? $_GET['dateEnd'] : '';     
             $quaProduct = $this->productModel->getQuaProduct();
             $numberOrder = $this->orderModel->getNumberOrder('Chờ Xử Lý','','');
             $numberCustomers = $this -> userModel->totalCustomers();
-            $totalRevenue = $this->orderModel->totalRevenue('Thành Công',$dateStart,$dateEnd);
+            $totalRevenue = $this->orderModel->totalRevenue('Hoàn Thành',$dateStart,$dateEnd);
             $numberOrderSS = $this->orderModel->getNumberOrder('',$dateStart,$dateEnd);
             $this->render('layouts/admin',[
                 'content'=> 'admins/index',
@@ -79,8 +78,16 @@
         }
         public function logout(){
             $this->userModel->logout();
+            $this->gotoPage('admin/login');
         }
         public function product(){
+            $delete = isset($_GET['delete']) ? $_GET['delete'] :'';
+            if ($delete){
+                $res = $this->productModel->deleteProduct($delete);
+                if ($res){
+                    $this->gotoPage('admin/product');
+                }
+            }
             $dmPros= $this->productModel->getDescProduct('danhmuc');   
             $category = isset($_GET['category']) ? $_GET['category'] : '';
             $sort = isset($_GET['sort']) ? $_GET['sort'] : 'ten';
@@ -88,7 +95,7 @@
             $page = isset($_GET['page']) ? $_GET['page'] : 1;
             $limit = isset($_GET['limit']) ? $_GET['limit'] : '';
             $listProduct = $this->productModel->getListProduct('',$category, $sort, $search, 8, $page, false);
-            $listProduct2 = $this->productModel->getListProduct('',$category, $sort, $search, $limit, '' , false);
+            $listProduct2 = $this->productModel->getListProduct('',$category, $sort, $search, '', '' , false);
             $this->render('layouts/admin',[
                 'content'=> 'admins/sanpham',
                 'title'=> 'Quản lý sản phẩm',       
@@ -97,7 +104,7 @@
                 'subcontent'=> [
                     'dmPros'=> $dmPros,
                     'listProduct'=> $listProduct,
-                    'listProduct2'=> $listProduct2,
+                    'listProduct2'=> $listProduct2
                 ]
             ]);
         }
@@ -202,10 +209,14 @@
             $uriSegments = explode('/', $currentUrl);
             $pageNameWithQuery = end($uriSegments);
             $pageName = strtok($pageNameWithQuery, '?');
-            if (!isset($_SESSION['isLogin']) && $pageName != 'login'){
-                if ($_SESSION['role'] != 1){
-                    $this->gotoPage('admin/login');
-                }
+            if ($pageName == 'login'){
+                return false;
+            }
+            if (!isset($_SESSION['isLogin'])){
+                $this->gotoPage('admin/login');
+            }
+            if ($_SESSION['role'] != 1){
+                $this->gotoPage('admin/login');
             }
         }
     }

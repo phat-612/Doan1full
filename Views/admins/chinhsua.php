@@ -29,10 +29,14 @@
                 id="Product-Category"
                 required
               >
-                <option value="chọn-danh-mục">chọn danh mục</option>
-                <option value="Danh-Mục-1">Danh Mục 1</option>
-                <option value="Danh-Mục-2">Danh Mục 2</option>
-                <option value="Danh-Mục-3">Danh Mục 3</option>
+                <?php foreach($_SESSION['category'] as $value){
+                  $id = $value['id'];
+                  $ten = $value['danhmuc'];
+                  $selected = $product['danhmuc'] == $ten ? 'selected' : '';
+                  echo "<option value='$id' $selected>$ten</option>";
+                } 
+                ?>
+                
               </select>
             </div>
             <div class="Product-Price-box">
@@ -84,28 +88,28 @@
                 <label class="color-nametag" for="color">Màu</label>
                 <div class="color">
                   <select class="color-select" name="" id="color">
-                    <option value="Chọn-màu">Chọn màu</option>
-                    <option value="Trắng">Trắng</option>
-                    <option value="Đen">Đen</option>
-                    <option value="Đỏ">Đỏ</option>
-                    <option value="Vàng">Vàng</option>
-                    <option value="Xanh dương">Xanh dương</option>
-                    <option value="Xanh lá">Xanh lá</option>
-                    <option value="Hồng">Hồng</option>
-                    <option value="Cam">Cam</option>
-                    <option value="Tím">Tím</option>
+                    <option value="">Chọn màu</option>
+                    <?php
+                      foreach ($_SESSION['color'] as $color) {
+                        $ten = $color['mausac'];
+                        $id = $color['id'];
+                        echo "<option value='$id'>$ten</option>";
+                      }
+                    ?>
                   </select>
                 </div>
               </div>
               <div class="size-box">
                 <label class="size-nametag" for="size">Size</label>
                 <select class="size-select" name="" id="size">
-                  <option value="Chọn-size">Chọn size</option>
-                  <option value="S">S</option>
-                  <option value="M">M</option>
-                  <option value="L">L</option>
-                  <option value="XL">XL</option>
-                  <option value="XXL">XXL</option>
+                  <option value="">Chọn size</option>
+                  <?php
+                    foreach ($_SESSION['size'] as $size) {
+                      $ten = $size['kichthuoc'];
+                      $id = $size['id'];
+                      echo "<option value='$id'>$ten</option>";
+                    }
+                  ?>
                 </select>
               </div>
               <div class="quantity-box">
@@ -140,7 +144,9 @@
             </header>
             <div class="drag-area">
               <input type="file" name="upload" id="upload" multiple />
-              <div id="displayImg"></div>
+              <div id="displayImg">
+                
+              </div>
             </div>
           </div>
           <div class="save-bt"><button type="submit">Lưu</button></div>
@@ -148,33 +154,17 @@
         <div class="colect_hide-box-form">
           <span id="closeBST">X Đóng</span>
           <h3>Chọn Bộ Sưu Tập:</h3>
-          <div>
-            <input
-              type="checkbox"
-              id="muaDong"
-              class="collection-checkbox"
-              checked
-              required
-            />
-            <label for="muaDong">Mùa Đông</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              id="muaHe"
-              class="collection-checkbox"
-              required
-            />
-            <label for="muaHe">Mùa Hè</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              id="muaThu"
-              class="collection-checkbox"
-              required
-            />
-            <label for="muaThu">Mùa Thu</label>
-          </div>
+          <?php
+            foreach ($_SESSION['collection'] as $collection) {
+              $ten = $collection['bosuutap'];
+              $id = $collection['id'];
+              ?>
+              <div>
+                <input type="checkbox" name="bosuutap[]" id="bst<?= $id?>" class="collection-checkbox" value="<?= $id ?>" checked/>
+                <label for="bst<?= $id?>">
+                  <?= $ten ?>
+                </label>
+              </div>
+          <?php }?>
         </div>
       </form>

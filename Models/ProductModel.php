@@ -153,7 +153,7 @@
                 $sort = 'ten';
             }
             $output = [];
-            $sql = "SELECT s.id, s.ten, s.gia FROM sanpham s
+            $sql = "SELECT s.id, s.ten, s.gia, s.daban FROM sanpham s
             LEFT JOIN chitietbosuutap cb ON s.id = cb.idsanpham
             LEFT JOIN danhmuc d ON s.iddanhmuc = d.id
             LEFT JOIN bosuutap b ON b.id = cb.idbosuutap
@@ -233,7 +233,24 @@
                 $query1[0]['hinhanh']= $this->arr2to1($query3,true);
                 return $this->arr2to1($query1);
         }
-
+        // xoa san pham
+        public function deleteProduct($id=''){
+            $sql = "select daban from sanpham where sanpham.id = '$id'";
+            $query = $this->select_by_sql($sql);
+            if (!$query){
+                return false;
+            }
+            $res=$this->arr2to1($query);
+            if($res['daban'] != 0){
+                return false;
+            }
+            $this ->delete('hinhanh', "idsanpham = '$id'");
+            $this ->delete('chitietsanpham',"idsanpham = '$id'");
+            $this ->delete('chitietbosuutap',"idsanpham = '$id'");
+            $this ->delete('sanpham',"id = '$id'");
+            return true; 
+        
+        } 
         public function deleteImgProduct($id){
             $query = $this->arr2to1($this->select('hinhanh', 'hinhanh', "idsanpham = $id"), true);
             if (!$query){

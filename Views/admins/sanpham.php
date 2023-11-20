@@ -1,5 +1,6 @@
 <?php
     $qualProduct = count($listProduct2);
+    // $qualProduct=50;
     $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
     $limit=8;
     $totalPages = ceil($qualProduct / $limit);
@@ -79,12 +80,8 @@
                     <td><?= $product['soluong']?></td>
                     <td><?= $product['gia']?></td>
                     <td>
-                        <a href="<?= _WEB_ROOT."/admin/detailProduct?id=".$product['id']?>"><span class="material-symbols-outlined">
-info
-</span></a>
-<a href=""><span class="material-symbols-outlined">
-delete
-</span></a>
+                        <a href="<?= _WEB_ROOT."/admin/detailProduct?id=".$product['id']?>"><span class="material-symbols-outlined">info</span></a>
+                        <a href="<?= "?delete=".$product['id']?>" <?= $product['daban'] != 0 ? "style='pointer-events: none'" : '' ?>><span class="material-symbols-outlined">delete</span></a>
                     </td>
                 </tr>
                 <?php

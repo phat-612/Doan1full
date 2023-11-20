@@ -160,6 +160,26 @@
         }
         // lấy chi tiết đơn hàng
         public function getDetailOrder($id){
+            $sql = "SELECT ttgh.hoten,ttgh.diachi,ttgh.sodienthoai,trangthai,ghichu 
+            FROM donhang dh,thongtingiaohang ttgh
+            WHERE dh.idgiaohang = ttgh.id AND
+                  dh.id = '$id'";
+            $order = $this->select_by_sql($sql);
+            if(!$order){
+                return false;
+            } else {
+                $order = $order[0];
+            }
+            $sql = "SELECT ten,kichthuoc,mausac,hinhanh
+            FROM sanpham sp,hinhanh ha,kichthuoc kt,mausac ms,chitietdonhang ctdh,chitietsanpham ctsp
+            WHERE ctdh.idchitietsanpham = ctsp.id AND
+                  sp.id = ctsp.idsanpham AND
+                  ctsp.idkichthuoc = kt.id AND
+                  ctsp.idmausac = ms.id AND
+                  ha.idsanpham = sp.id AND
+                  ctdh.iddonhang = '$id'";
+            $order['chitietdonhang'] = $this->select_by_sql($sql);
+            return $order;
             
         }
         

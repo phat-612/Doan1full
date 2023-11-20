@@ -22,8 +22,9 @@
         public function index(){
         }
 
-        public function total() {
-            echo $this->userModel->totalCustomers();
+        public function delePro() {
+            $res= $this->productModel->deleteProduct($_POST['id']);
+            inmang($res);
         }
 
         // public function oders(){
@@ -118,6 +119,10 @@
         }
         public function layCTSP(){
             $res = $this->productModel->getDetailProduct($_GET['id']);
+            inmang($res);
+        }
+        public function layCTDH(){
+            $res = $this->orderModel->getDetailOrder($_GET['id']);
             inmang($res);
         }
     }
