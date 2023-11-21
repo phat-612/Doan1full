@@ -445,13 +445,15 @@ h2 {
     padding-top: 1%;
 }
 
-.save-bt button {
+.new_img_area .save-bt button {
     width: 70px;
     height: 25px;
     background-color: white;
 }
 
-#displayImg {
+#displayImg,
+.new_img_area,
+.old_img_area {
     width: 100%;
     height: 75%;
     display: flex;

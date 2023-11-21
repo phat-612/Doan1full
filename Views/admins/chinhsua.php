@@ -134,7 +134,29 @@
             </div>
             <div class="scroll">
               <div class="container">
-                <div id="table"></div>
+                <div id="table">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Màudsas</th>
+                        <th>Size</th>
+                        <th>Số Lượng</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <div class="old_ct">
+                        <tr>
+                          <td>Vàng</td>
+                          <td>M</td>
+                          <td><input type="number" value="132" id="quantity-1"></td>
+                          <td><button type="button" class="btn btn-danger" onclick="removeItem(1)">Xóa</button></td>
+                        </tr>
+                      </div>
+                      <div class="new_ct"></div>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
@@ -145,7 +167,21 @@
             <div class="drag-area">
               <input type="file" name="upload" id="upload" multiple />
               <div id="displayImg">
-                
+                <!-- ảnh sản phẩm -->
+                <div class="old_img_area">
+                <?php
+                  foreach ($product['hinhanh'] as $value) {
+                ?>
+                  <div>
+                    <input type="text" name="old_img[]" id="" value="<?= $value ?>" hidden>
+                    <img src="<?= _WEB_ROOT . '/' . $value ?>" alt="">
+                    <button>Xóa</button>
+                  </div>
+                <?php } ?>
+                </div>
+                <div class="new_img_area">
+
+                </div>
               </div>
             </div>
           </div>
@@ -158,9 +194,10 @@
             foreach ($_SESSION['collection'] as $collection) {
               $ten = $collection['bosuutap'];
               $id = $collection['id'];
+
               ?>
               <div>
-                <input type="checkbox" name="bosuutap[]" id="bst<?= $id?>" class="collection-checkbox" value="<?= $id ?>" checked/>
+                <input type="checkbox" name="bosuutap[]" id="bst<?= $id?>" class="collection-checkbox" value="<?= $id ?>"/>
                 <label for="bst<?= $id?>">
                   <?= $ten ?>
                 </label>

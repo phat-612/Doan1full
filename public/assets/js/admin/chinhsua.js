@@ -20,16 +20,16 @@ closeBST.addEventListener("click", function () {
 var productData = [];
 
 function displayProductData() {
-    var html = "<table class='table'>";
-    html += "<thead>";
-    html += "<tr>";
-    html += "<th>Màu</th>";
-    html += "<th>Size</th>";
-    html += "<th>Số Lượng</th>";
-    html += "<th>Action</th>";
-    html += "</tr>";
-    html += "</thead>";
-
+    // var html = "<table class='table'>";
+    // html += "<thead>";
+    // html += "<tr>";
+    // html += "<th>Màu</th>";
+    // html += "<th>Size</th>";
+    // html += "<th>Số Lượng</th>";
+    // html += "<th>Action</th>";
+    // html += "</tr>";
+    // html += "</thead>";
+    html = '';
     for (var i = 0; i < productData.length; i++) {
         html += "<tr>";
         html += "<td>" + productData[i].color + "</td>";
@@ -47,8 +47,8 @@ function displayProductData() {
         html += "</tr>";
     }
 
-    html += "</table>";
-    document.getElementById("table").innerHTML = html;
+    // html += "</table>";
+    document.querySelector("#table .new_ct").innerHTML = html;
 }
 
 function addOnClick() {
@@ -104,7 +104,7 @@ displayProductData();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const uploadInput = document.getElementById("upload");
-const displayImg = document.getElementById("displayImg");
+const displayImgNew = document.querySelector("#displayImg .new_img_area");
 
 uploadInput.addEventListener("change", (e) => {
     let uploades = e.target.files;
@@ -124,7 +124,7 @@ function deleteImage(index) {
 
 // Hàm hiển thị và xóa hình ảnh
 function loadImgUpload() {
-    displayImg.innerHTML = "";
+    displayImgNew.innerHTML = "";
     let fileList = new DataTransfer();
     for (let j = 0; j < uploadImgs.length; j++) {
         fileList.items.add(uploadImgs[j]);
@@ -137,6 +137,6 @@ function loadImgUpload() {
       <img src="${URL.createObjectURL(file)}" alt="">
       <button onclick="deleteImage(${i})">Xóa</button>
     `;
-        displayImg.innerHTML += html;
+        displayImgNew.innerHTML += html;
     }
 }
