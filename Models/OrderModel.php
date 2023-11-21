@@ -106,6 +106,28 @@
             $this->update('donhang', [
                 "trangthai"=>$status
             ], $id);
+            if ($status == "đã hủy"){
+                $detailOrder = $this->select('chitietdonhang', 'idchitietsanpham, soluong', "iddonhang = '$id'");
+                foreach ($detailOrder as $value){
+                    $idDetailPro = $value['idchitietsanpham'];
+                    $soluong = $this->select('chitietsanpham', 'soluong', "id = '$idDetailPro'")[0]['soluong'];
+                    $data = [
+                        'soluong' => $value['soluong'] + $soluong
+                    ];
+                    $this->update('chitietsanpham', $data, $idDetailPro);
+                }
+            }
+            if ($status == 'hoàn thành'){
+                $detailOrder = $this->select('chitietdonhang ctdh, chitietsanpham ctsp', 'ctsp.idsanpham, ctdh.soluong', "ctdh.idchitietsanpham = ctsp.id and iddonhang = '$id'");
+                foreach ($detailOrder as $value){
+                    $idPro = $value['idsanpham'];
+                    $daban = $this->select('sanpham', 'daban', "id = '$idPro'")[0]['daban'];
+                    $data = [
+                        'daban' => $daban + $value['soluong']
+                    ];
+                    $this->update('sanpham', $data, $idPro);
+                }
+            }
             return true;
         }
         private function _getPriceOrder($dataOrderDetail){

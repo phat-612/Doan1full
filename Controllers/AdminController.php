@@ -98,8 +98,8 @@
             $listProduct2 = $this->productModel->getListProduct('',$category, $sort, $search, '', '' , false);
             $this->render('layouts/admin',[
                 'content'=> 'admins/sanpham',
-                'title'=> 'Quản lý sản phẩm',       
-                'css'=> 'sanpham',
+                'title'=> 'Quản lý sản phẩm',
+                'css'=> 'sanpham',  
                 'js'=> 'sanpham',
                 'subcontent'=> [
                     'dmPros'=> $dmPros,

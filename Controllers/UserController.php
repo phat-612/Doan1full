@@ -9,9 +9,9 @@ class UserController extends BaseController{
     }
     public function login(){
         if (isset($_SESSION['isLogin'])){
-            if ($_SESSION['role'] == 0){
+            // if ($_SESSION['role'] == 0){
                 $this->gotoPage('user/profile');
-            }
+            // }
         }
 
         $this->render('layouts/user',[

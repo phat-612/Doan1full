@@ -244,6 +244,7 @@
             if($res['daban'] != 0){
                 return false;
             }
+            $this ->deleteImgProduct($id);
             $this ->delete('hinhanh', "idsanpham = '$id'");
             $this ->delete('chitietsanpham',"idsanpham = '$id'");
             $this ->delete('chitietbosuutap',"idsanpham = '$id'");
