@@ -23,7 +23,7 @@
         }
 
         public function delePro() {
-            $res= $this->productModel->deleteProduct($_POST['id']);
+            $res= $this->productModel->deleteProduct($_POST['id'],$_POST['status']);
             inmang($res);
         }
 
@@ -96,11 +96,6 @@
             'id',5, $_POST['tim']);
             inmang($res);
         }
-        public function layslider(){
-            $res = $this->sliderModel->getSlider();
-            inmang($res);
-        }
-    
         public function laySPAdmin(){
             $data = $this->productModel->getListProduct('', $_GET['danhmuc'], $_GET['sapxep'], $_GET['timkiem'], 5, $_GET['page'], false);
             inmang($data);
@@ -124,6 +119,9 @@
         public function layCTDH(){
             $res = $this->orderModel->getDetailOrder($_GET['id']);
             inmang($res);
+        }
+        public function showData(){
+            inmang($_POST);
         }
     }
 ?>

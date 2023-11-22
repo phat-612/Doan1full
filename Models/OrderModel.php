@@ -182,7 +182,7 @@
         }
         // lấy chi tiết đơn hàng
         public function getDetailOrder($id){
-            $sql = "SELECT ttgh.hoten,ttgh.diachi,ttgh.sodienthoai,trangthai,ghichu 
+            $sql = "SELECT ttgh.hoten,ttgh.diachi,ttgh.sodienthoai,trangthai,ghichu ,dh.id
             FROM donhang dh,thongtingiaohang ttgh
             WHERE dh.idgiaohang = ttgh.id AND
                   dh.id = '$id'";
@@ -192,19 +192,18 @@
             } else {
                 $order = $order[0];
             }
-            $sql = "SELECT ten,kichthuoc,mausac,hinhanh
+            $sql = "SELECT ten,kichthuoc,mausac,hinhanh,ctdh.gia,sp.id
             FROM sanpham sp,hinhanh ha,kichthuoc kt,mausac ms,chitietdonhang ctdh,chitietsanpham ctsp
             WHERE ctdh.idchitietsanpham = ctsp.id AND
                   sp.id = ctsp.idsanpham AND
                   ctsp.idkichthuoc = kt.id AND
                   ctsp.idmausac = ms.id AND
                   ha.idsanpham = sp.id AND
-                  ctdh.iddonhang = '$id'";
+                  ctdh.iddonhang = '$id'
+            GROUP BY ctsp.id" ;
             $order['chitietdonhang'] = $this->select_by_sql($sql);
             return $order;
-            
         }
-        
         // lay đơn hàng bằng trạng thài & thời gian
         public function getNumberOrder($status = '',$timeb='',$timee=''){
             $sql = "SELECT COUNT(*) sodonhang FROM donhang";

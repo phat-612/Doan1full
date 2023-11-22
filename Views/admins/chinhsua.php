@@ -1,4 +1,5 @@
 <form action="" class="AddProduct-form">
+  <input type="text" name="id" id="id" value="<?= $product['id'] ?>" hidden>
         <div class="title-ADDPRODUCT">
           <header>SỬA SẢN PHẨM</header>
         </div>
@@ -14,6 +15,7 @@
                 class="input-text-ProductName"
                 type="text"
                 id="Product-Name"
+                name="ten"
                 placeholder="Nhập tên sản phẩm"
                 value="<?= $product['ten'] ?>"
                 required
@@ -25,7 +27,7 @@
               >
               <select
                 class="Product-Category-select"
-                name="Product-Category"
+                name="iddanhmuc"
                 id="Product-Category"
                 required
               >
@@ -47,7 +49,7 @@
                 spellcheck="false"
                 class="Product-Price-input"
                 type="number"
-                name="Product-Price"
+                name="gia"
                 min="0"
                 oninput="validity.valid||(value='');"
                 id="Product-Price"
@@ -59,7 +61,7 @@
             <div class="colection-box">
               <div class="colect_name">Bộ Sưu Tập</div>
               <label for="chooseBST">Có bộ sưu tập</label>
-              <input type="checkbox" id="chooseBST" required />
+              <input type="checkbox" id="chooseBST" <?= $product['bosuutap'] ? 'checked' : '' ?>/>
             </div>
             <div class="Product-Description-box">
               <label class="Product-Description" for="Product-Description"
@@ -69,7 +71,7 @@
                 spellcheck="false"
                 class="Product-Description-textarea"
                 placeholder="Nhập mô tả sản phẩm"
-                name=""
+                name="mota"
                 id="Product-Description"
                 cols="30"
                 rows="10"
@@ -120,7 +122,6 @@
                   id="quantity"
                   min="0"
                   oninput="validity.valid||(value='');"
-                  required
                 />
               </div>
               <button
@@ -134,29 +135,7 @@
             </div>
             <div class="scroll">
               <div class="container">
-                <div id="table">
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th>Màudsas</th>
-                        <th>Size</th>
-                        <th>Số Lượng</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <div class="old_ct">
-                        <tr>
-                          <td>Vàng</td>
-                          <td>M</td>
-                          <td><input type="number" value="132" id="quantity-1"></td>
-                          <td><button type="button" class="btn btn-danger" onclick="removeItem(1)">Xóa</button></td>
-                        </tr>
-                      </div>
-                      <div class="new_ct"></div>
-                    </tbody>
-                  </table>
-                </div>
+                <div id="table"></div>
               </div>
             </div>
           </div>
@@ -197,7 +176,7 @@
 
               ?>
               <div>
-                <input type="checkbox" name="bosuutap[]" id="bst<?= $id?>" class="collection-checkbox" value="<?= $id ?>"/>
+                <input type="checkbox" name="bosuutap[]" id="bst<?= $id?>" class="collection-checkbox" value="<?= $ten ?>" <?= in_array($ten, $product['bosuutap']) ? 'checked' : '' ?>/>
                 <label for="bst<?= $id?>">
                   <?= $ten ?>
                 </label>

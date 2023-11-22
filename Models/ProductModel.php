@@ -67,7 +67,13 @@
             $this->conn->begin_transaction();
             try{
                 // cập nhật sản phẩm
-                $dataProduct = array_slice($data, 0, 4, true);
+                // $dataProduct = array_slice($data, 0, 4, true);
+                $dataProduct = [
+                    'ten'=>$data['ten'],
+                    'gia'=>$data['gia'],
+                    'mota'=>$data['mota'],
+                    'iddanhmuc'=>$data['iddanhmuc']
+                ];
                 $this->update(self::TABLE, $dataProduct, $id);
                 // cập nhật chi tiết
                 $dataDetail = $data["chitietsanpham"];
@@ -80,25 +86,28 @@
                     }
                 }
                 // cập nhật hình ảnh
-                $dataImage = $this->saveImageProduct($file['hinhanh']);
-                $this->deleteImgProduct($id);
-                foreach($dataImage as $key => $value){
-                    $this->create("hinhanh", array("idsanpham"=> $id, "hinhanh"=> $value));
-                }
+                // $dataImage = $this->saveImageProduct($file['hinhanh']);
+                // $this->deleteImgProduct($id);
+                // foreach($dataImage as $key => $value){
+                //     $this->create("hinhanh", array("idsanpham"=> $id, "hinhanh"=> $value));
+                // }
                 // cập nhật bộ sưu tập
-                $dataCollection = $data["bosuutap"];
-                $this->delete('chitietbosuutap', "idsanpham = '$id'");
-                foreach($dataCollection as $value){
-                    $query = $this->select('bosuutap', 'id', "bosuutap = '$value'");
-                    if ($query){
-                        $idCollection = $this->arr2to1($query)['id'];
-                        $data = [
-                            'idsanpham' => $id,
-                            'idbosuutap' => $idCollection
-                        ];
-                        $this->create('chitietbosuutap', $data);
-                    } else{
-                        echo "bộ sưu tập không tồn tại";
+                if (isset($data["bosuutap"])){
+                    $dataCollection = $data["bosuutap"];
+                    $this->delete('chitietbosuutap', "idsanpham = '$id'");
+                    foreach($dataCollection as $value){
+                        $query = $this->select('bosuutap', 'id', "bosuutap = '$value'");
+                        inmang($query);
+                        if ($query){
+                            $idCollection = $this->arr2to1($query)['id'];
+                            $data = [
+                                'idsanpham' => $id,
+                                'idbosuutap' => $idCollection
+                            ];
+                            $this->create('chitietbosuutap', $data);
+                        } else{
+                            echo "bộ sưu tập không tồn tại";
+                        }
                     }
                 }
                 // hoàn thành cập nhật
@@ -192,7 +201,7 @@
         }
         // lấy chi tiết sản phẩm
         public function getDetailProduct($id){
-            $product = $this->select('sanpham sp, danhmuc dm', 'sp.ten, sp.mota, sp.gia, sp.daban, dm.danhmuc', "sp.iddanhmuc = dm.id and sp.id = '$id'");
+            $product = $this->select('sanpham sp, danhmuc dm', 'sp.id ,sp.ten, sp.mota, sp.gia, sp.daban, dm.danhmuc', "sp.iddanhmuc = dm.id and sp.id = '$id'");
             if (!$product){
                 return false;
             } else{
@@ -203,7 +212,7 @@
             // lấy hình ảnh
             $product['hinhanh'] = $this->arr2to1($this->select('hinhanh', 'hinhanh', "idsanpham = '$id'"), true);
             // lấy bộ sưu tập
-            $product['bosuutap'] = $this->arr2to1($this->select('bosuutap bst, chitietbosuutap ct', 'bst.bosuutap', "ct.idsanpham = '$id'"), true);
+            $product['bosuutap'] = $this->arr2to1($this->select('bosuutap bst, chitietbosuutap ct', 'bst.bosuutap', "ct.idbosuutap = bst.id and ct.idsanpham = '$id'"), true);
             return $product;
         }
         // code ML
@@ -235,22 +244,28 @@
         }
         // xoa san pham
         public function deleteProduct($id=''){
-            $sql = "select daban from sanpham where sanpham.id = '$id'";
+            $sql = "SELECT sp.daban
+            FROM sanpham sp
+            WHERE sp.id='$id'";
             $query = $this->select_by_sql($sql);
             if (!$query){
                 return false;
             }
             $res=$this->arr2to1($query);
-            if($res['daban'] != 0){
+            if($res['daban'] != 0 ){
+                return false;
+            }
+
+            try {
+                $this ->delete('chitietsanpham',"idsanpham = '$id'");
+            } catch (\Throwable $th) {
                 return false;
             }
             $this ->deleteImgProduct($id);
             $this ->delete('hinhanh', "idsanpham = '$id'");
-            $this ->delete('chitietsanpham',"idsanpham = '$id'");
             $this ->delete('chitietbosuutap',"idsanpham = '$id'");
             $this ->delete('sanpham',"id = '$id'");
             return true; 
-        
         } 
         public function deleteImgProduct($id){
             $query = $this->arr2to1($this->select('hinhanh', 'hinhanh', "idsanpham = $id"), true);

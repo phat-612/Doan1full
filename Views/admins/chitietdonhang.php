@@ -1,39 +1,34 @@
 <form action="" class="Billing-Infor-form">
+  <input type="text" name="iddonhang" id="iddonhang" value="<?= $order['id']?>" hidden>
         <header>Chi Tiết Đơn Hàng</header>
         <div class="mother-box">
           <div class="Infor-form">
             <div class="name act">
               <div><label for="name-input">Tên :</label></div>
               <div>
-                <p>Cam Đại Hưng</p>
+                <p><?php echo $order['hoten']?></p>
               </div>
             </div>
             <div class="location act">
               <div><label for="name-input">Địa Chỉ :</label></div>
               <div>
-                <p>55 Đ. 3 Tháng 2, Xuân Khánh, Ninh Kiều, Cần Thơ, Việt Nam</p>
+                <p><?php echo $order['diachi']?></p>
               </div>
             </div>
             <div class="P-number act">
               <div><label for="name-input">Số Điện Thoại:</label></div>
               <div>
-                <p>0354514832</p>
+                <p><?php echo $order['sodienthoai']?></p>
               </div>
             </div>
-            <div class="mail act">
-              <div><label for="name-input">Email</label></div>
-              <div>
-                <p>camdaica20003@gmail.com</p>
-              </div>
-            </div>
-            <div class="status">
+            <div class="status act">
               <div><label for="status-select">Trạng Thái</label></div>
               <div>
                 <select name="" id="status-select">
-                  <option value="">Chờ Xử Lý</option>
-                  <option value="">Đang Xử Lý</option>
-                  <option value="">Thành Công</option>
-                  <option value="">Thất Bại</option>
+                  <option value="chờ xử lý" <?= $order['trangthai'] =='chờ xử lý' ? 'selected' : ''?> >Chờ Xử Lý</option>
+                  <option value="đang giao hàng" <?= $order['trangthai'] =='đang giao hàng' ? 'selected' : ''?>>Đang Giao Hàng</option>
+                  <option value="bị hủy" <?= $order['trangthai'] =='bị hủy' ? 'selected' : ''?>>Bị Hủy</option>
+                  <option value="hoàn thành" <?= $order['trangthai'] =='hoàn thành' ? 'selected' : ''?>>Hoàn Thành</option>
                 </select>
               </div>
             </div>
@@ -46,31 +41,32 @@
                   id="note-area"
                   list-item
                   disabled
-                >
-blablablablablabalaalbalbalabablaalbabalbalbabl</textarea
+                ><?php echo $order['ghichu']?></textarea
                 >
               </div>
             </div>
           </div>
+          
           <div class="list-item">
+          <?php 
+           foreach ($order['chitietdonhang'] as $value) {
+          ?>
             <div class="li-item">
               <div class="li-img">
                 <img
-                  src="https://www.elle.vn/wp-content/uploads/2017/07/25/hinh-anh-dep-1.jpg"
+                  src="<?php echo _WEB_ROOT.'/'.$value['hinhanh']?>"
                   alt=""
                 />
               </div>
               <div class="li-item-right">
-                <div class="li-name"><a href="">Tên Sản Phẩm Tên Sản Phẩm Tên Sản Phẩm Tên Sản Phẩm</a></div>
+                <div class="li-name"><a href="<?php echo _WEB_ROOT.'/product/detail?id='.$value['id'] ?>"><?php echo $value['ten'] ?></a></div>
                 <div class="li-describe">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Recusandae, nostrum. Quae, adipisci, modi sed magnam nihil
-                  accusamus expedita error magni aut laborum, veniam cumque
-                  quisquam velit nam debitis temporibus corrupti?
+                 Màu sắc:<?php echo $value['mausac']?>/Kích Thước<?php echo $value['kichthuoc']?>
                 </div>
               </div>
-              <div class="li-price">30.000</div>
+              <div class="li-price"><?php echo $value['gia'] ?></div>
             </div>
+            <?php } ?>
           </div>
         </div>
       </form>

@@ -30,6 +30,10 @@
                 http_response_code(400);
             }
         }
+        // sửa sản phẩm
+        public function editProduct(){
+            $this->productModel->updateProduct($_POST, $_FILES, $_POST['id']);
+        }
         // đổi trạng thái đơn hàng
         public function changeStatus(){
             $this->orderModel->changeStatusOrder($_POST['id'], $_POST['status']);

@@ -2,44 +2,83 @@ let uploadImgs = [];
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const chooseBST = document.querySelector("checkbox");
+const chooseBST = document.getElementById("chooseBST")
 const closeBST = document.querySelector("#closeBST");
-document.getElementById("chooseBST").onclick = function (e) {
-    if (this.checked) {
-        document.querySelector(".colect_hide-box-form").style.display = "block";
-    } else {
-        alert("Bạn vừa bỏ Bộ Sưu Tập");
-    }
+const listCollectionCb = document.querySelectorAll("input[name='bosuutap[]']");
+chooseBST.onclick = function (e) {
+    e.preventDefault();
+    document.querySelector(".colect_hide-box-form").style.display = "block";
 };
 closeBST.addEventListener("click", function () {
     document.querySelector(".colect_hide-box-form").style.display = "none";
 });
+listCollectionCb.forEach(cb => {
+    cb.addEventListener("click", (e) => {
+        checkCollection();
+    })
+})
+function checkCollection() {
+    chooseBST.checked = false;
+    listCollectionCb.forEach(cb => {
+        if (cb.checked) {
+            chooseBST.checked = true;
+        }
+
+    });
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+
 var productData = [];
+let formData = new FormData();
+formData.append('id', document.querySelector('#id').value);
+let requestOptions = {
+    method: 'POST',
+    body: formData,
+    redirect: 'follow'
+};
+fetch(`${ROOTFOLDER}api/getDetailProduct`, requestOptions)
+    .then(res => res.json())
+    .then(data => {
+        // console.log(data['chitietsanpham']);
+        let id = 0;
+        productData = data['chitietsanpham'].map((value) => {
+            id++;
+            return {
+                idchitiet: value['id'],
+                colorText: value['mausac'],
+                sizeText: value['kichthuoc'],
+                quantity: value['soluong'],
+                id
+            }
+        });
+        // console.log(productData);
+        displayProductData();
+    })
+
 
 function displayProductData() {
-    // var html = "<table class='table'>";
-    // html += "<thead>";
-    // html += "<tr>";
-    // html += "<th>Màu</th>";
-    // html += "<th>Size</th>";
-    // html += "<th>Số Lượng</th>";
-    // html += "<th>Action</th>";
-    // html += "</tr>";
-    // html += "</thead>";
-    html = '';
+    var html = "<table class='table'>";
+    html += "<thead>";
+    html += "<tr>";
+    html += "<th>Màu</th>";
+    html += "<th>Size</th>";
+    html += "<th>Số Lượng</th>";
+    html += "<th>Action</th>";
+    html += "</tr>";
+    html += "</thead>";
     for (var i = 0; i < productData.length; i++) {
         html += "<tr>";
-        html += "<td>" + productData[i].color + "</td>";
-        html += "<td>" + productData[i].size + "</td>";
+        html += "<td>" + productData[i].colorText + "</td>";
+        html += "<td>" + productData[i].sizeText + "</td>";
         html +=
             "<td><input type='number' value='" +
             productData[i].quantity +
             "' id='quantity-" +
             productData[i].id +
-            "'></td>";
+            "' onblur='changeValue(" + productData[i].id + ", event)' ></td>";
         html +=
             "<td><button type='button' class='btn btn-danger' onclick='removeItem(" +
             productData[i].id +
@@ -47,20 +86,25 @@ function displayProductData() {
         html += "</tr>";
     }
 
-    // html += "</table>";
-    document.querySelector("#table .new_ct").innerHTML = html;
+    html += "</table>";
+    document.querySelector("#table").innerHTML = html;
 }
-
+function changeValue(id, event) {
+    productData[id - 1]['quantity'] = event.target.value;
+}
 function addOnClick() {
-    var color = document.getElementById("color").value;
-    var size = document.getElementById("size").value;
-    var quantity = document.getElementById("quantity").value;
 
-    if (color !== "Chọn-màu" && size !== "Chọn-size" && quantity !== "") {
+    let selColor = document.getElementById("color");
+    let selSize = document.getElementById("size");
+    let quantity = document.getElementById("quantity").value;
+
+    if (color.value && size.value && quantity) {
         let id = productData.length + 1;
         productData.push({
-            color: color,
-            size: size,
+            colorText: selColor.options[selColor.selectedIndex].innerText,
+            sizeText: selSize.options[selSize.selectedIndex].innerText,
+            color: selColor.value,
+            size: selSize.value,
             quantity: quantity,
             id: id,
         });
@@ -99,7 +143,7 @@ function clearItems() {
     document.getElementById("quantity").value = "";
 }
 
-displayProductData();
+// displayProductData();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -140,3 +184,31 @@ function loadImgUpload() {
         displayImgNew.innerHTML += html;
     }
 }
+
+
+// sự kiện gửi form
+document.querySelector('form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    let formData = new FormData(document.querySelector('form'));
+    productData.forEach((ct, ind) => {
+        if (ct.hasOwnProperty('idchitiet')) {
+            formData.append(`chitietsanpham[${ind}][id]`, ct.idchitiet);
+            formData.append(`chitietsanpham[${ind}][soluong]`, ct.quantity);
+        } else {
+            formData.append(`chitietsanpham[${ind}][idmausac]`, ct.color);
+            formData.append(`chitietsanpham[${ind}][idkichthuoc]`, ct.size);
+            formData.append(`chitietsanpham[${ind}][soluong]`, ct.quantity);
+        }
+    })
+    let requestOptions = {
+        method: 'POST',
+        body: formData,
+        redirect: 'follow'
+    }
+    fetch(`${ROOTFOLDER}api/editProduct`, requestOptions)
+        .then(res => res.text())
+        .then(data => {
+            console.log(data);
+        })
+
+})

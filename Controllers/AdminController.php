@@ -86,6 +86,8 @@
                 $res = $this->productModel->deleteProduct($delete);
                 if ($res){
                     $this->gotoPage('admin/product');
+                } else{
+                    echo '<script>alert("Xóa sản phẩm thất bại!");</script>';
                 }
             }
             $dmPros= $this->productModel->getDescProduct('danhmuc');   
@@ -177,6 +179,7 @@
                 'content'=> 'admins/chitietdonhang',
                 'title'=> 'Chi tiết đơn hàng',
                 'css'=> 'chitietdonhang',
+                'js'=>'chitietdonhang',
                 'subcontent'=> [
                     'order' => $order
                 ]
