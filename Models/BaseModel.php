@@ -74,6 +74,7 @@
         }
         protected function delete($table, $cond){
             $sql = "DELETE FROM $table WHERE $cond";
+            // echo $sql;
             return $this->_query($sql);
         }
         protected function generateUUIDv4() {

@@ -194,7 +194,8 @@ header {
 }
 
 #hideField {
-    height: 3auto;
+    min-height: 150px;
+    height: auto;
     display: none;
     position: absolute;
     top: 50%;

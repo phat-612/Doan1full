@@ -7,7 +7,7 @@
     border-radius: 8px;
     display: flex;
     flex-wrap: wrap;
-    align-content: flex-start;
+    align-content: space-around;
     justify-content: space-around;
 }
 
@@ -51,4 +51,25 @@
 .banner-form .box {
     position: relative;
     width: 140px;
+}
+
+.banner-form .old-displayImg,
+.new-displayImg {
+    width: 100%;
+    min-height: 200px;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.banner-form .btn-box {
+    width: 100%;
+    text-align: center;
+}
+
+.banner-form .btn-box button {
+    width: 70px;
+    height: 30px;
 }

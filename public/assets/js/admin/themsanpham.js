@@ -160,6 +160,10 @@ function loadImgUpload() {
 // sự kiện gửi form
 document.querySelector('form').addEventListener('submit', (e) => {
     e.preventDefault();
+    if (productData.length <= 0) {
+        alert('Vui lòng chọn chi tiết cho sản phẩm')
+        return;
+    }
     let formData = new FormData(document.querySelector('form'));
     productData.forEach((ct, ind) => {
         formData.append(`chitietsanpham[${ind}][idmausac]`, ct.color);
@@ -173,7 +177,7 @@ document.querySelector('form').addEventListener('submit', (e) => {
     }
     fetch(`${ROOTFOLDER}api/addProduct`, requestOptions)
         .then(res => {
-            console.log(res.status);
+            window.location.href = `${ROOTFOLDER}admin/product`;
         })
 
 })

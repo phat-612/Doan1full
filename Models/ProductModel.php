@@ -91,6 +91,23 @@
                 // foreach($dataImage as $key => $value){
                 //     $this->create("hinhanh", array("idsanpham"=> $id, "hinhanh"=> $value));
                 // }
+                if (isset($data['old_img'])){
+                    $imgs = $this->arr2to1($this->select('hinhanh', 'hinhanh', "idsanpham = '$id'"), true);
+                    foreach($imgs as $value){
+                        if (!in_array($value, $data['old_img'])){
+                            $this->deleteFile($value);
+                            $this->delete('hinhanh', "hinhanh='$value'");
+                        }
+                    }
+                }else{
+                    $this->deleteImgProduct($id);
+                }
+                if (isset($file['hinhanh'])){
+                    $dataImage = $this->saveImageProduct($file['hinhanh']);
+                    foreach($dataImage as $key => $value){
+                        $this->create("hinhanh", array("idsanpham"=> $id, "hinhanh"=> $value));
+                    }
+                }
                 // cập nhật bộ sưu tập
                 if (isset($data["bosuutap"])){
                     $dataCollection = $data["bosuutap"];

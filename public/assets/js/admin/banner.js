@@ -1,6 +1,6 @@
 let uploadImgs = [];
 const uploadInput = document.getElementById("upload");
-const displayImg = document.getElementById("displayImg");
+const displayImg = document.getElementById("new-displayImg");
 
 uploadInput.addEventListener("change", (e) => {
     let uploades = e.target.files;

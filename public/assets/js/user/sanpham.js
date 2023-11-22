@@ -67,6 +67,14 @@ fetch("api/getListProduct", requestOptions)
 //----------------------------------FUNCTIONS--------------------------------
 // load sản phẩm
 function loadProduct() {
+    if (listProduct.length == 0) {
+        document.querySelector('.none-found_product').style.display = 'block';
+        document.querySelector('.filter_sort').style.display = 'none';
+        // return;
+    } else {
+        document.querySelector('.none-found_product').style.display = 'none';
+        document.querySelector('.filter_sort').style.display = 'flex';
+    }
     let isStop = listProduct.length >= 12 ? 12 : listProduct.length;
     for (let i = 0; i < isStop; i++) {
         let product = listProduct.shift();

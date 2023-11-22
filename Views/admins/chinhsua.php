@@ -1,4 +1,4 @@
-<form action="" class="AddProduct-form">
+<form action="" class="AddProduct-form" enctype="multipart/form-data">
   <input type="text" name="id" id="id" value="<?= $product['id'] ?>" hidden>
         <div class="title-ADDPRODUCT">
           <header>SỬA SẢN PHẨM</header>
@@ -144,17 +144,17 @@
               Thêm ảnh sản Phẩm
             </header>
             <div class="drag-area">
-              <input type="file" name="upload" id="upload" multiple />
+              <div class="bor-upload"><input type="file" name="hinhanh[]" id="upload" multiple /></div>
               <div id="displayImg">
                 <!-- ảnh sản phẩm -->
                 <div class="old_img_area">
                 <?php
                   foreach ($product['hinhanh'] as $value) {
                 ?>
-                  <div>
+                  <div class="border-img">
                     <input type="text" name="old_img[]" id="" value="<?= $value ?>" hidden>
                     <img src="<?= _WEB_ROOT . '/' . $value ?>" alt="">
-                    <button>Xóa</button>
+                    <button onclick="deleteOldImg(event)">Xóa</button>
                   </div>
                 <?php } ?>
                 </div>
@@ -173,7 +173,6 @@
             foreach ($_SESSION['collection'] as $collection) {
               $ten = $collection['bosuutap'];
               $id = $collection['id'];
-
               ?>
               <div>
                 <input type="checkbox" name="bosuutap[]" id="bst<?= $id?>" class="collection-checkbox" value="<?= $ten ?>" <?= in_array($ten, $product['bosuutap']) ? 'checked' : '' ?>/>

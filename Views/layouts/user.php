@@ -149,7 +149,7 @@
         <li>
           <h2>danh mục sản phẩm</h2>
         </li>
-        <li><a href="">Tất cả</a></li>
+        <li><a href="<?= _WEB_ROOT . "/product" ?>">Tất cả</a></li>
         <?php
         foreach ($_SESSION['category'] as $category) {
           $ten = $category['danhmuc'];
@@ -193,7 +193,7 @@
         <div class="cont_sbag">
           <div class="list_card">
             <div class="empty_sbag">
-              <img src="./access/img/bag/empty_cart.webp" alt="">
+              <img src="<?= _WEB_ROOT."/public/assets/img/core/empty_cart.webp" ?>" alt="">
               <p>Không có sản phẩm nào trong giỏ hàng</p>
             </div>
             <div class="value_sbag">

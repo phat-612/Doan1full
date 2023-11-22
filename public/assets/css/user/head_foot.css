@@ -709,3 +709,9 @@ p.sold-out_text {
 .product_price {
   margin-top: 10px;
 }
+
+
+/* css chức năng */
+.showElement {
+  display: block !important;
+}

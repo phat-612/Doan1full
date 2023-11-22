@@ -9,7 +9,7 @@ header {
 
 .AddProduct-form {
     width: 83%;
-    height: 1100px;
+    height: 1200px;
     background-color: rgb(210, 210, 210);
     margin: 100px 16.5%;
     overflow: hidden;
@@ -22,13 +22,15 @@ header {
 }
 
 .title-ADDPRODUCT {
+    width: 100%;
+    text-align: center;
     font-size: 30px;
     margin: 10px 10px;
 }
 
 .mother-box-Add-Product {
     display: flex;
-    height: 55%;
+    height: 95%;
     flex-wrap: wrap;
     justify-content: space-around;
 }
@@ -38,7 +40,7 @@ header {
     border: 1px black solid;
     width: 48%;
     display: flex;
-    height: 95%;
+    height: 55%;
     flex-wrap: wrap;
     justify-content: space-around;
 }
@@ -81,7 +83,7 @@ a {
     width: 48%;
     border-radius: 8px;
     display: flex;
-    height: 95%;
+    height: 55%;
     flex-wrap: wrap;
     align-content: flex-start;
     justify-content: space-around;
@@ -91,7 +93,7 @@ a {
     border: 1px solid black;
     border-radius: 8px;
     width: 98%;
-    height: 65%;
+    height: 40%;
     display: flex;
     flex-wrap: wrap;
     align-content: space-around;
@@ -276,6 +278,12 @@ input[type="number"]::-webkit-outer-spin-button {
     display: none;
 }
 
+.colect_hide-box-form #closeBST {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
 .colect_hide-box h3 {
     width: 100%;
 }
@@ -409,6 +417,11 @@ h2 {
     justify-content: flex-start;
 }
 
+.drag-area .bor-upload {
+    text-align: center;
+    width: 100%;
+}
+
 .drag-area input {
     align-self: center;
 }
@@ -427,6 +440,17 @@ h2 {
     margin: 0 0 0 -25px;
 }
 
+.border-img {
+    position: relative;
+    padding: 0% 10px;
+}
+
+.border-img button {
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+
 .text-lg {
     font-size: 1.2rem;
     font-weight: bold;
@@ -442,21 +466,29 @@ h2 {
 }
 
 .save-bt {
+    width: 100%;
+    text-align: center;
     z-index: 15;
     padding-top: 1%;
 }
 
-.new_img_area .save-bt button {
+.save-bt button {
     width: 70px;
     height: 25px;
     background-color: white;
 }
 
-#displayImg,
+#displayImg {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .new_img_area,
 .old_img_area {
     width: 100%;
-    height: 75%;
+    height: 50%;
     display: flex;
     flex-wrap: wrap;
 }

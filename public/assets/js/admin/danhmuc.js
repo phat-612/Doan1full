@@ -33,7 +33,7 @@ function editRow(btn) {
     var row = btn.parentNode.parentNode;
     var category = row.cells[0].innerText; // Lấy văn bản danh mục để chỉnh sửa
     var newCategory = prompt("Chỉnh sửa danh mục", category);
-
+    console.log(newCategory);
     if (newCategory !== null && newCategory !== "") {
         row.cells[0].innerText = newCategory;
     }
@@ -65,7 +65,9 @@ function addToMSTable() {
         cell1.innerHTML = inputValue;
         var cell2 = newRow.insertCell(1);
         cell2.innerHTML =
-            '<button type="button" onclick="editRow(this)">sửa</button> <button type="button" onclick="deleteRow(this)">xóa</button>';
+            `<button type="button" onclick="editRow(this)"><span class='material-symbols-outlined'>edit</span></button> <button type="button" onclick="deleteRow(this)"><span class="material-symbols-outlined">
+        delete
+        </span></button>`;
         input.value = "";
         closeMauSacField();
     }
@@ -108,7 +110,9 @@ function addToKTTable() {
         cell1.innerHTML = inputValue;
         var cell2 = newRow.insertCell(1);
         cell2.innerHTML =
-            '<button type="button" onclick="editRow(this)">sửa</button> <button type="button" onclick="deleteRow(this)">xóa</button>';
+            `<button type="button" onclick="editRow(this)"><span class='material-symbols-outlined'>edit</span></button> <button type="button" onclick="deleteRow(this)"><span class="material-symbols-outlined">
+        delete
+        </span></button>`;
         input.value = "";
         closeKichThuocField();
     }
@@ -150,7 +154,9 @@ function addToBSTTable() {
         cell1.innerHTML = inputValue;
         var cell2 = newRow.insertCell(1);
         cell2.innerHTML =
-            '<button type="button" onclick="editRow(this)">sửa</button> <button type="button" onclick="deleteRow(this)">xóa</button>';
+            `<button type="button" onclick="editRow(this)"><span class='material-symbols-outlined'>edit</span></button> <button type="button" onclick="deleteRow(this)"><span class="material-symbols-outlined">
+        delete
+        </span></button>`;
         input.value = "";
         closeBoSuuTapField();
     }

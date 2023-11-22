@@ -165,7 +165,11 @@ function deleteImage(index) {
     uploadImgs.splice(index, 1);
     loadImgUpload();
 }
-
+// hàm xóa ảnh có sẳn
+function deleteOldImg(event) {
+    let parent = event.target.parentNode;
+    parent.parentNode.removeChild(parent);
+}
 // Hàm hiển thị và xóa hình ảnh
 function loadImgUpload() {
     displayImgNew.innerHTML = "";
@@ -206,9 +210,11 @@ document.querySelector('form').addEventListener('submit', (e) => {
         redirect: 'follow'
     }
     fetch(`${ROOTFOLDER}api/editProduct`, requestOptions)
-        .then(res => res.text())
-        .then(data => {
-            console.log(data);
+        .then(res => {
+            window.location.href = `${ROOTFOLDER}admin/detailProduct?id=${document.querySelector('#id').value}`;
         })
-
+    // .then(res => res.text())
+    // .then(data => {
+    //     console.log(data);
+    // })
 })

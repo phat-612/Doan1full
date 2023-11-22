@@ -122,6 +122,7 @@
         }
         public function showData(){
             inmang($_POST);
+            inmang($_FILES);
         }
     }
 ?>
