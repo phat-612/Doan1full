@@ -7,7 +7,6 @@ const btnCart = document.querySelector(".js_cart");
 const mdCart = document.querySelector(".js_bag");
 const mdCartClose = document.querySelector(".close_btn");
 const eleTotalPay = document.querySelectorAll(".card_sub .num_price");
-const imgSliders = document.querySelectorAll(".img_slider_js");
 let inpNumberPros = document.querySelectorAll(".myInput");
 let btnPlusPros = document.querySelectorAll(".js_plus");
 let btnMinusPros = document.querySelectorAll(".js_minus");
@@ -73,6 +72,10 @@ document.querySelector(".js_bag").addEventListener("click", (e) => {
 });
 // bấm nút thanh toán
 document.querySelector('.js_pay_btn').addEventListener("click", (e) => {
+    e.preventDefault();
+    if (loadCart().length <= 0) {
+        return false;
+    }
     window.location.href = ROOTFOLDER + 'payment';
 })
 // --------------------------FUNCTION---------------------------------------

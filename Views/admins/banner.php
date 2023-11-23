@@ -1,13 +1,19 @@
-<form action="" method="post" class="banner-form">
+<form action="<?= _WEB_ROOT?>/api/updateBanner" method="post" class="banner-form" enctype="multipart/form-data">
       <h1>THÊM ẢNH</h1>
       <div class="drag-area">
-        <input type="file" id="upload" multiple />
+        <input type="file" id="upload" name="hinhanh[]" multiple />
         <div class="displayImg" id="displayImg">
           <div class="old-displayImg" id="old-displayImg">
-            <div class="box">
-              <img src="https://phunugioi.com/wp-content/uploads/2020/02/hinh-anh-dep-thien-nhien.jpg" alt="">
-              <button>xóa</button>
-            </div>
+            <?php
+              foreach ($banners as $value) {
+            ?>
+              <div class="box">
+                <input type="text" name="old_img[]" id="" value="<?= $value ?>" hidden>
+                <img src="<?= _WEB_ROOT.'/'.$value ?>" alt="">
+                <button onclick="deleteOldImg(event)">xóa</button>
+              </div>
+            <?php } ?>
+            
           </div>
           <div class="new-displayImg" id="new-displayImg"></div>
         </div>

@@ -4,6 +4,7 @@
         private $orderModel;
         private $userModel;
         private $productModel;
+        private $sliderModel;
         public function __construct()
         {
             parent::__construct();
@@ -13,6 +14,8 @@
             $this->userModel = new UserModel();
             $this->importModel('ProductModel');
             $this->productModel = new ProductModel();
+            $this->importModel('SliderModel');
+            $this->sliderModel = new SliderModel();
             $this->_checkLogin();
         }
         // trang chủ
@@ -192,7 +195,7 @@
                 'css'=> 'banner',
                 'js'=>'banner',
                 'subcontent'=> [
-                    
+                    'banners'=>$this->sliderModel->getSlider()
                 ]
             ]); 
         }

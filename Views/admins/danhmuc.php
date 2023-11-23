@@ -14,17 +14,15 @@
                 <th>hành động</th>
               </thead>
               <tbody>
-                <tr>
-                  <td>quần</td>
-                  <td>
-                    <button type="button" onclick="editRow(this)"><span class="material-symbols-outlined">
-edit
-</span></button>
-                    <button type="button" onclick="deleteRow(this)"><span class="material-symbols-outlined">
-delete
-</span></button>
-                  </td>
-                </tr>
+                <?php foreach ($_SESSION['category'] as $value) { ?>
+                  <tr>
+                    <td><?= $value['danhmuc'] ?></td>
+                    <td>
+                      <button type="button" onclick="editCategory('<?= $value['danhmuc'] ?>', <?= $value['id']?>)"><span class="material-symbols-outlined">edit</span></button>
+                      <button type="button" onclick="deleteCategory(<?= $value['id']?>)"><span class="material-symbols-outlined">delete</span></button>
+                    </td>
+                  </tr>
+                <?php } ?>
               </tbody>
             </table>
           </div>
@@ -44,17 +42,15 @@ delete
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>đỏ</td>
-                  <td>
-                    <button type="button" onclick="editRow(this)"><span class="material-symbols-outlined">
-edit
-</span></button>
-                    <button type="button" onclick="deleteRow(this)"><span class="material-symbols-outlined">
-delete
-</span></button>
-                  </td>
-                </tr>
+                <?php foreach ($_SESSION['color'] as $value) { ?>
+                  <tr>
+                    <td><?= $value['mausac'] ?></td>
+                    <td>
+                      <button type="button" onclick="editColor('<?= $value['mausac'] ?>', <?= $value['id']?>)"><span class="material-symbols-outlined">edit</span></button>
+                      <button type="button" onclick="deleteColor(<?= $value['id']?>)"><span class="material-symbols-outlined">delete</span></button>
+                    </td>
+                  </tr>
+                <?php } ?>
               </tbody>
             </table>
           </div>
@@ -72,17 +68,15 @@ delete
                 <th>hành động</th>
               </thead>
               <tbody>
+              <?php foreach ($_SESSION['size'] as $value) { ?>
                 <tr>
-                  <td>M</td>
+                  <td><?= $value['kichthuoc'] ?></td>
                   <td>
-                    <button type="button" onclick="editRow(this)"><span class="material-symbols-outlined">
-edit
-</span></button>
-                    <button type="button" onclick="deleteRow(this)"><span class="material-symbols-outlined">
-delete
-</span></button>
+                    <button type="button" onclick="editCategory('<?= $value['kichthuoc'] ?>', <?= $value['id']?>)"><span class="material-symbols-outlined">edit</span></button>
+                    <button type="button" onclick="deleteSize(<?= $value['id']?>)"><span class="material-symbols-outlined">delete</span></button>
                   </td>
                 </tr>
+                <?php } ?>
               </tbody>
             </table>
           </div>
@@ -100,17 +94,15 @@ delete
                 <th>hành động</th>
               </thead>
               <tbody>
+              <?php foreach ($_SESSION['collection'] as $value) { ?>
                 <tr>
-                  <td>Mùa đông</td>
+                  <td><?= $value['bosuutap'] ?></td>
                   <td>
-                    <button type="button" onclick="editRow(this)"><span class="material-symbols-outlined">
-edit
-</span></button>
-                    <button type="button" onclick="deleteRow(this)"><span class="material-symbols-outlined">
-delete
-</span></button>
+                    <button type="button" onclick="editCollection('<?= $value['bosuutap'] ?>', <?= $value['id']?>)"><span class="material-symbols-outlined">edit</span></button>
+                    <button type="button" onclick="deleteCollection(<?= $value['id']?>)"><span class="material-symbols-outlined">delete</span></button>
                   </td>
                 </tr>
+              <?php } ?>
               </tbody>
             </table>
           </div>

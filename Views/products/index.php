@@ -23,8 +23,6 @@
         echo "<li>&#47;</li>";
         echo "<li><a href=" . _WEB_ROOT.'/product' . ">Sản phẩm</a></li>";
       }
-    
-    
     ?>
 
 

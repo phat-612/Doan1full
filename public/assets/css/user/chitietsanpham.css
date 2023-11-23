@@ -1,4 +1,5 @@
 .shop .wrap_shop {
+    padding-bottom: 30px;
     margin: 0 auto;
     width: 1400px;
     font-size: 1.5rem;
@@ -28,8 +29,8 @@ img {
 }
 
 .main_img {
-    padding: 0 20px;
-    width: 78%;
+    padding: 0 20px 30px;
+    width: 75%;
     display: flex;
     justify-content: center;
 }

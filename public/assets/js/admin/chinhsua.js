@@ -79,10 +79,13 @@ function displayProductData() {
             "' id='quantity-" +
             productData[i].id +
             "' onblur='changeValue(" + productData[i].id + ", event)' ></td>";
-        html +=
-            "<td><button type='button' class='btn btn-danger' onclick='removeItem(" +
-            productData[i].id +
-            ")'>Xóa</button></td>";
+        if (!productData[i].hasOwnProperty('idchitiet')) {
+            html +=
+                "<td><button type='button' class='btn btn-danger' onclick='removeItem(" +
+                productData[i].id +
+                ")'>Xóa</button></td>";
+        }
+
         html += "</tr>";
     }
 

@@ -51,7 +51,7 @@ function displayProductData() {
             productData[i].quantity +
             "' id='quantity-" +
             productData[i].id +
-            "'></td>";
+            "' onblur='changeValue(" + productData[i].id + ", event)' ></td>";
         html +=
             "<td><button type='button' class='btn btn-danger' onclick='removeItem(" +
             productData[i].id +
@@ -68,24 +68,36 @@ function addOnClick() {
     let selColor = document.getElementById("color");
     let selSize = document.getElementById("size");
     let quantity = document.getElementById("quantity").value;
-
     if (color.value && size.value && quantity) {
-        let id = productData.length + 1;
-        productData.push({
-            colorText: selColor.options[selColor.selectedIndex].innerText,
-            sizeText: selSize.options[selSize.selectedIndex].innerText,
-            color: selColor.value,
-            size: selSize.value,
-            quantity: quantity,
-            id: id,
+        let checkTonTai = productData.find(function (product) {
+            return (
+                product.color == selColor.value && product.size == selSize.value
+            );
         });
+        if (checkTonTai) {
+            checkTonTai.quantity = Number(checkTonTai.quantity) + Number(quantity);
+        }
+        else {
+            let id = productData.length + 1;
+            productData.push({
+                colorText: selColor.options[selColor.selectedIndex].innerText,
+                sizeText: selSize.options[selSize.selectedIndex].innerText,
+                color: selColor.value,
+                size: selSize.value,
+                quantity: quantity,
+                id: id,
+            });
+        }
+
         displayProductData();
         clearItems();
     } else {
         alert("Vui lòng chọn màu, size và nhập số lượng.");
     }
 }
-
+function changeValue(id, event) {
+    productData[id - 1]['quantity'] = event.target.value;
+}
 function removeItem(id) {
     for (var i = 0; i < productData.length; i++) {
         if (productData[i].id === id) {

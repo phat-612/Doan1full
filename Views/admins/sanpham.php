@@ -1,10 +1,9 @@
 <?php
     $qualProduct = count($listProduct2);
-    // $qualProduct=50;
     $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
     $limit=8;
     $totalPages = ceil($qualProduct / $limit);
-    if ( $currentPage > $totalPages || $currentPage < 1) {  
+    if ( $currentPage > $totalPages && $currentPage < 1) {  
             header("Location: ?page=1");
             exit();
         

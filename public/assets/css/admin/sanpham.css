@@ -55,7 +55,7 @@ a {
 }
 
 .table-box td {
-  padding: 0.35% 0;
+  margin: 1% 0;
 }
 
 .table-box th:nth-child(1) {
@@ -69,6 +69,7 @@ a {
   -webkit-line-clamp: 1;
   display: -webkit-box;
   -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
 }
 
 .table-box tbody tr td:nth-child(2) {

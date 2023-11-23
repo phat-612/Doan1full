@@ -6,8 +6,7 @@ const selSort = document.querySelector('.sort select');
 let dataOrder;
 
 let requestOptions = {
-    method: 'POST',
-    redirect: 'follow'
+    method: 'POST'
 }
 fetch(`${ROOTFOLDER}api/getListOrderUser`, requestOptions)
     .then(res => res.json())
@@ -39,8 +38,9 @@ function loadOrder() {
     let filter = selFilter.value;
     let tempData = dataOrder;
     if (filter) {
-        tempData = dataOrder.filter(order => order.trangthai == filter);
+        tempData = dataOrder.filter(order => { return order.trangthai == filter });
     }
+    // sau trừ trước là mới tới tới cũ từ lớn tới nhỏ
     tempData.sort((a, b) => {
         if (sort == 0) {
             return new Date(b['thoigian']) - new Date(a['thoigian']);
@@ -52,8 +52,8 @@ function loadOrder() {
             return a['tongtien'] - b['tongtien'];
         }
     })
-    let html = '';
     eleAreaOrder.innerHTML = '';
+    let html = '';
     tempData.forEach((order) => {
         html += `
         <div class="list-order">

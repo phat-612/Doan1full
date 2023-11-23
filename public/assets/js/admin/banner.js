@@ -17,6 +17,11 @@ function deleteImage(index) {
     uploadImgs.splice(index, 1);
     loadImgUpload();
 }
+function deleteOldImg(event) {
+    event.preventDefault();
+    let parent = event.target.parentNode;
+    parent.parentNode.removeChild(parent);
+}
 
 // Hàm hiển thị và xóa hình ảnh
 function loadImgUpload() {

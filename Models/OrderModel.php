@@ -24,6 +24,7 @@
                     ],
                     'chitietdonhang': [
                         [
+                            iddonhang
                             'idchitietsanpham': '1',
                             'gia': 122000
                             'soluong': '12'

@@ -5,17 +5,20 @@
         private $productModel;
         private $userModel;
         private $cartModel;
+        private $sliderModel;
         public function __construct()
         {
             $this->importModel('OrderModel');
             $this->importModel('ProductModel');
             $this->importModel('UserModel');
             $this->importModel('CartModel');
+            $this->importModel('SliderModel');
             $this->reqMethod = $_SERVER['REQUEST_METHOD'];
             $this->orderModel = new OrderModel();
             $this->productModel = new ProductModel();
             $this->userModel = new UserModel();
             $this->cartModel = new CartModel();
+            $this->sliderModel = new SliderModel();
             $this->_checkMethod();
         }
         public function index(){
@@ -156,6 +159,11 @@
                 echo json_encode([]);
                 http_response_code(400);
             }
+        }
+        // xử lý banner
+        public function updateBanner(){
+            $this->sliderModel->updateBanner($_POST, $_FILES);
+            $this->gotoPage('admin/banner');
         }
         // kiểm tra method
         private function _checkMethod($method = "POST"){

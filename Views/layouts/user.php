@@ -194,7 +194,7 @@
           <div class="list_card">
             <div class="empty_sbag">
               <img src="<?= _WEB_ROOT."/public/assets/img/core/empty_cart.webp" ?>" alt="">
-              <p>Không có sản phẩm nào trong giỏ hàng</p>
+              <span >Không có sản phẩm nào trong giỏ hàng</span>
             </div>
             <div class="value_sbag">
               <!-- Đừng có xóaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->

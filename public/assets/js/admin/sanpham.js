@@ -31,6 +31,16 @@ document.querySelector(".js_butSrPro").addEventListener("click", () => {
   let newUrl = urlObject.toString();
   window.location.href = newUrl;
 });
+document.querySelector(".js_srPro").addEventListener("keydown", (e) => {
+  if (e.key == "Enter") {
+    e.preventDefault();
+    let srPro = document.querySelector(".js_srPro").value;
+    let urlObject = new URL(window.location.href);
+    urlObject.searchParams.set("search", srPro);
+    let newUrl = urlObject.toString();
+    window.location.href = newUrl;
+  }
+});
 /////////////////////////////////////////////////////////////////////
 document.querySelector(".btn-del-filter").addEventListener("click", () => {
   clearSearchQuery();

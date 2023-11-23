@@ -5,7 +5,6 @@ trangThai.addEventListener('change', (e) => {
     let formData = new FormData();
     formData.append('id', iddonhang);
     formData.append('status', valStatus);
-
     let requestOptions = {
         method: 'POST',
         body: formData
@@ -14,5 +13,4 @@ trangThai.addEventListener('change', (e) => {
         .then(res => {
             alert('Đã thay đổi trạng thái đơn hàng');
         })
-
 });

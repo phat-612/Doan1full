@@ -65,6 +65,13 @@
 
                 ];
             */
+            /* 
+            [
+                ten='quan tay',
+                mota='quan ne',
+            ]
+            ten='quan tay', mota='quan ne'
+            */
             $set = array_map(function($key, $value){
                 return "$key = '$value'";
             }, array_keys($data), array_values($data));
@@ -109,7 +116,7 @@
         }
         protected function saveImage($dir, $files){
             // $dirSaveImage = "public/assets/img/products/";
-            $result = array();
+            $result =[];
             foreach ($files['tmp_name'] as $key => $tmp_name){
                 $targetPath = $dir . $this->generateUUIDv4() . '.png';
                 if (move_uploaded_file($tmp_name, $targetPath)){

@@ -23,8 +23,7 @@ formOrder.addEventListener('submit', (e) => {
     // console.log(formData.get('chitietdonhang[0]'));
     let requestOptions = {
         method: 'POST',
-        body: formData,
-        redirect: 'follow'
+        body: formData
     };
 
     fetch("api/addOrder", requestOptions)

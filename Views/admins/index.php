@@ -22,9 +22,9 @@
             <div>Đến Ngày</div>
             <input type="date" name="" id="" class="js_date_end" disabled/>
         </div>
-        <div class="bt">
-            <center><button class="js_filter">Đến</button></center>
-        </div>
+            <div class="bt">
+                <center><button class="js_filter">Đến</button></center>
+            </div>
         <div class="mini-right-box">
             <div id="title">Doanh Thu</div>
             <div id="number"><?php echo $totalRevenue ?></div>

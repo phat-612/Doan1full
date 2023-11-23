@@ -10,38 +10,20 @@ function closeDanhMucField() {
 function addToDMTable() {
     var input = document.getElementById("dm");
     var inputValue = input.value;
-
     if (inputValue !== "") {
-        var table = document
-            .getElementById("danhMucTable")
-            .getElementsByTagName("tbody")[0];
-        var newRow = table.insertRow(table.rows.length);
-        var cell1 = newRow.insertCell(0);
-        cell1.innerHTML = inputValue;
-        var cell2 = newRow.insertCell(1);
-        cell2.innerHTML =
-            `<button type="button" onclick="editRow(this)"><span class='material-symbols-outlined'>edit</span></button> <button type="button" onclick="deleteRow(this)"><span class="material-symbols-outlined">
-            delete
-            </span></button>`;
-
-        input.value = ""; // xóa input sau khi thêm danh mục
-        closeDanhMucField()
+        addDetailProduct('danhmuc', inputValue);
     }
 }
 
-function editRow(btn) {
-    var row = btn.parentNode.parentNode;
-    var category = row.cells[0].innerText; // Lấy văn bản danh mục để chỉnh sửa
-    var newCategory = prompt("Chỉnh sửa danh mục", category);
-    console.log(newCategory);
+function editCategory(tempValue, id) {
+    var newCategory = prompt("Chỉnh sửa danh mục", tempValue);
     if (newCategory !== null && newCategory !== "") {
-        row.cells[0].innerText = newCategory;
+        updateDetailProduct('danhmuc', newCategory, id);
     }
 }
 
-function deleteRow(btn) {
-    var row = btn.parentNode.parentNode;
-    row.parentNode.removeChild(row); // Xóa hàng khỏi bảng
+function deleteCategory(id) {
+    deleteDetailProduct('danhmuc', id);
 }
 /////////////////////////////*MAU SAC*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function showMauSacField() {
@@ -57,35 +39,20 @@ function addToMSTable() {
     var inputValue = input.value;
 
     if (inputValue !== "") {
-        var table = document
-            .getElementById("mauSacTable")
-            .getElementsByTagName("tbody")[0];
-        var newRow = table.insertRow(table.rows.length);
-        var cell1 = newRow.insertCell(0);
-        cell1.innerHTML = inputValue;
-        var cell2 = newRow.insertCell(1);
-        cell2.innerHTML =
-            `<button type="button" onclick="editRow(this)"><span class='material-symbols-outlined'>edit</span></button> <button type="button" onclick="deleteRow(this)"><span class="material-symbols-outlined">
-        delete
-        </span></button>`;
-        input.value = "";
-        closeMauSacField();
+        addDetailProduct('mausac', inputValue);
     }
 }
 
-function editRow(btn) {
-    var row = btn.parentNode.parentNode;
-    var color = row.cells[0].innerText;
-    var newColor = prompt("Chỉnh sửa màu sắc", color);
+function editColor(tempValue, id) {
+    var newColor = prompt("Chỉnh sửa màu sắc", tempValue);
 
     if (newColor !== null && newColor !== "") {
-        row.cells[0].innerText = newColor;
+        updateDetailProduct('mausac', newColor, id);
     }
 }
 
-function deleteRow(btn) {
-    var row = btn.parentNode.parentNode;
-    row.parentNode.removeChild(row);
+function deleteColor(id) {
+    deleteDetailProduct('mausac', id);
 }
 ///////////////////////////////* KICH THUOC */////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -102,35 +69,20 @@ function addToKTTable() {
     var inputValue = input.value;
 
     if (inputValue !== "") {
-        var table = document
-            .getElementById("kichThuocTable")
-            .getElementsByTagName("tbody")[0];
-        var newRow = table.insertRow(table.rows.length);
-        var cell1 = newRow.insertCell(0);
-        cell1.innerHTML = inputValue;
-        var cell2 = newRow.insertCell(1);
-        cell2.innerHTML =
-            `<button type="button" onclick="editRow(this)"><span class='material-symbols-outlined'>edit</span></button> <button type="button" onclick="deleteRow(this)"><span class="material-symbols-outlined">
-        delete
-        </span></button>`;
-        input.value = "";
-        closeKichThuocField();
+        addDetailProduct('kichthuoc', inputValue);
     }
 }
 
-function editRow(btn) {
-    var row = btn.parentNode.parentNode;
-    var size = row.cells[0].innerText;
-    var newSize = prompt("Chỉnh sửa kích thước", size);
+function editSize(tempValue, id) {
+    var newSize = prompt("Chỉnh sửa kích thước", tempValue);
 
     if (newSize !== null && newSize !== "") {
-        row.cells[0].innerText = newSize;
+        updateDetailProduct('kichthuoc', newSize, id);
     }
 }
 
-function deleteRow(btn) {
-    var row = btn.parentNode.parentNode;
-    row.parentNode.removeChild(row);
+function deleteSize(id) {
+    deleteDetailProduct('kichthuoc', id);
 }
 /////////////////////////////////////* BO SUU TAP *///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function showBoSuuTapField() {
@@ -146,34 +98,65 @@ function addToBSTTable() {
     var inputValue = input.value;
 
     if (inputValue !== "") {
-        var table = document
-            .getElementById("boSuutapTable")
-            .getElementsByTagName("tbody")[0];
-        var newRow = table.insertRow(table.rows.length);
-        var cell1 = newRow.insertCell(0);
-        cell1.innerHTML = inputValue;
-        var cell2 = newRow.insertCell(1);
-        cell2.innerHTML =
-            `<button type="button" onclick="editRow(this)"><span class='material-symbols-outlined'>edit</span></button> <button type="button" onclick="deleteRow(this)"><span class="material-symbols-outlined">
-        delete
-        </span></button>`;
-        input.value = "";
-        closeBoSuuTapField();
+        addDetailProduct('bosuutap', inputValue);
     }
 }
 
-function editRow(btn) {
-    var row = btn.parentNode.parentNode;
-    var collection = row.cells[0].innerText;
-    var newCollection = prompt("Chỉnh sửa bộ sưu tập", collection);
+function editCollection(tempValue, id) {
+    var newCollection = prompt("Chỉnh sửa bộ sưu tập", tempValue);
 
     if (newCollection !== null && newCollection !== "") {
-        row.cells[0].innerText = newCollection;
+        updateDetailProduct('bosuutap', newCollection, id);
     }
 }
 
-function deleteRow(btn) {
-    var row = btn.parentNode.parentNode;
-    row.parentNode.removeChild(row);
+
+function deleteCollection(id) {
+    deleteDetailProduct('bosuutap', id);
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function addDetailProduct(name, value) {
+    let formData = new FormData();
+    formData.append('name', name);
+    formData.append('value', value);
+    let requestOptions = {
+        method: 'POST',
+        body: formData
+    }
+    fetch(`${ROOTFOLDER}/api/addDetailValue`, requestOptions)
+        .then(res => {
+            window.location.reload();
+        })
+}
+function updateDetailProduct(name, value, id) {
+    let formData = new FormData();
+    formData.append('name', name);
+    formData.append('value', value);
+    formData.append('id', id);
+    let requestOptions = {
+        method: 'POST',
+        body: formData
+    }
+    fetch(`${ROOTFOLDER}/api/changeDetailValue`, requestOptions)
+        .then(res => {
+            window.location.reload();
+        })
+}
+function deleteDetailProduct(name, id) {
+    let formData = new FormData();
+    formData.append('name', name);
+    formData.append('id', id);
+    let requestOptions = {
+        method: 'POST',
+        body: formData
+    }
+    fetch(`${ROOTFOLDER}/api/deleteDetailValue`, requestOptions)
+        .then(res => {
+            if (res.status == 200) {
+                window.location.reload();
+            } else {
+                alert('Không thể xóa');
+            }
+        })
+}

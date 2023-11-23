@@ -122,7 +122,15 @@
         }
         public function showData(){
             inmang($_POST);
-            inmang($_FILES);
+            // inmang($_FILES);
+            if (isset($_FILES['hinhanh'])){
+                if ($_FILES['hinhanh']['error'][0] != 0){
+                    echo "mảng rỗng";
+                }else{
+                    inmang($_FILES['hinhanh']);
+                }
+
+            }
         }
     }
 ?>

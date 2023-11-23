@@ -84,7 +84,7 @@
                 return false;
             }
             $dataUser = $dataUser[0];
-            if ($dataUser['taikhoan'] == $taikhoan && $dataUser['matkhau'] == $matkhau){
+            if ($dataUser['taikhoan'] == $taikhoan && password_verify($matkhau, $dataUser['matkhau'])){
                 // $dataCookie =  $this->encodeData(json_encode($dataUser));
                 // setcookie('verify_login', $dataCookie, time() + 3600, '/');
                 $_SESSION['isLogin'] = true;
@@ -101,10 +101,10 @@
             if ($this->isExistEmail($_POST['email'])){
                 return false;
             }
-
+            
             $data = [
                 'taikhoan' => $_POST['email'],
-                'matkhau' => $_POST['matkhau'],
+                'matkhau' => password_hash($_POST['matkhau'], PASSWORD_DEFAULT),
                 'hoten' => $_POST['hoten'],
                 'sodienthoai' => $_POST['sodienthoai'],
                 'ngaysinh' => $_POST['ngaysinh'],
@@ -116,17 +116,18 @@
             return false;
         }
         public function logout(){
-            if (isset($_COOKIE['verify_login'])){
-                setcookie('verify_login', '', time() - 10, '/');
-            }
+            // if (isset($_COOKIE['verify_login'])){
+            //     setcookie('verify_login', '', time() - 10, '/');
+            // }
             if (isset($_SESSION['isLogin'])){
-                unset($_SESSION['isLogin']);
+                // unset($_SESSION['isLogin']);
+                session_unset() ;
             }
             return true;
         }
         public function getUserInfo($email){
             $res = $this->select('taikhoan', 'hoten, taikhoan, ngaysinh, sodienthoai, gioitinh', "taikhoan='$email'");
-            return $this->arr2to1($res);
+            return $res[0];
         }
         public function changeUserInfo(){
             $data = [

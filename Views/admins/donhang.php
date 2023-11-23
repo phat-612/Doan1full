@@ -3,7 +3,7 @@
     $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
     $limit = 8; 
     $totalPages = ceil($getOrder / $limit);
-    if ($currentPage < 1 || $currentPage > $totalPages) {
+    if ($currentPage < 1 && $currentPage > $totalPages) {
         header("Location: ?page=1");
         exit();
     }
@@ -70,15 +70,13 @@
                     <td><?= $order['tongtien']?></td>
                     <td><?= $order['trangthai']?></td>
                     <td>
-                        <a href="<?= _WEB_ROOT."/admin/detailOrder?id=".$order['id']?>"><span class="material-symbols-outlined">
-info
-</span></a>
+                        <a href="<?= _WEB_ROOT."/admin/detailOrder?id=".$order['id']?>"><span class="material-symbols-outlined">info</span></a>
                     </td>
                 </tr>
-                <?php
+                    <?php
+                        }
                     }
-                }
-                ?>
+                    ?>
             </tbody>
         </table>
     </div>
