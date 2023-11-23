@@ -243,7 +243,7 @@
         public function getDataProduct($id=''){
             $sql1 = "SELECT sp.id , sp.ten , sp.mota , sp.gia 
             FROM  sanpham AS sp WHERE sp.id = '$id'";
-            $sql2 = "SELECT kt.kichthuoc,ms.mausac,ct.soluong, ct.id
+            $sql2 = "SELECT kt.kichthuoc,ms.mausac,ct.soluong, ct.id, ct.idmausac, ct.idkichthuoc
             FROM chitietsanpham ct,mausac ms,kichthuoc kt
             WHERE ct.idmausac = ms.id AND ct.idkichthuoc = kt.id AND ct.idsanpham ='$id'";
             $sql3 = "SELECT ha.hinhanh

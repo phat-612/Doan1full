@@ -51,6 +51,8 @@ fetch(`${ROOTFOLDER}api/getDetailProduct`, requestOptions)
                 colorText: value['mausac'],
                 sizeText: value['kichthuoc'],
                 quantity: value['soluong'],
+                color: value['idmausac'],
+                size: value['idkichthuoc'],
                 id
             }
         });
