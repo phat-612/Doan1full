@@ -172,8 +172,10 @@ function loadImgUpload() {
 // sự kiện gửi form
 document.querySelector('form').addEventListener('submit', (e) => {
     e.preventDefault();
+    document.querySelector('#them_sp').disabled = true;
     if (productData.length <= 0) {
-        alert('Vui lòng chọn chi tiết cho sản phẩm')
+        alert('Vui lòng chọn chi tiết cho sản phẩm');
+        document.querySelector('#them_sp').disabled = false;
         return;
     }
     let formData = new FormData(document.querySelector('form'));

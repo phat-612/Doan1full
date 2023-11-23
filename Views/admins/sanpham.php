@@ -76,8 +76,8 @@
                     foreach ($listProduct as $product) {?>
                 <tr>
                     <td><?= $product['ten']?></td>
-                    <td><?= $product['soluong']?></td>
-                    <td><?= $product['gia']?></td>
+                    <td><?= number_format($product['soluong'], 0, '.', ' ') ?></td>
+                    <td><?= number_format($product['gia'], 0, '.', ' ')?></td>
                     <td>
                         <a href="<?= _WEB_ROOT."/admin/detailProduct?id=".$product['id']?>"><span class="material-symbols-outlined">info</span></a>
                         <a href="<?= "?delete=".$product['id']?>" <?= $product['daban'] != 0 ? "style='pointer-events: none'" : '' ?>><span class="material-symbols-outlined">delete</span></a>

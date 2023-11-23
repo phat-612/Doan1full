@@ -67,7 +67,7 @@
                 <tr>
                     <td><?= $order['hoten']?></td>
                     <td><?= $order['thoigian']?></td>
-                    <td><?= $order['tongtien']?></td>
+                    <td><?= number_format($order['tongtien'], 0, '.', ' ')?></td>
                     <td><?= $order['trangthai']?></td>
                     <td>
                         <a href="<?= _WEB_ROOT."/admin/detailOrder?id=".$order['id']?>"><span class="material-symbols-outlined">info</span></a>

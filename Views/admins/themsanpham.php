@@ -100,7 +100,7 @@
         <div id="displayImg"></div>
       </div>
     </div>
-    <div class="save-bt"><button type="submit">Lưu</button></div>
+    <div class="save-bt"><button type="submit" id="them_sp">Lưu</button></div>
   </div>
   <div class="colect_hide-box-form">
     <span id="closeBST">X Đóng</span>

@@ -61,7 +61,7 @@
               <div class="li-item-right">
                 <div class="li-name"><a href="<?php echo _WEB_ROOT.'/product/detail?id='.$value['id'] ?>"><?php echo $value['ten'] ?></a></div>
                 <div class="li-describe">
-                 Màu sắc:<?php echo $value['mausac']?>/Kích Thước<?php echo $value['kichthuoc']?>
+                 Màu sắc:<?php echo $value['mausac']?> / Kích Thước:<?php echo $value['kichthuoc']?> / Số Lượng:<?php echo $value['soluong'] ?>
                 </div>
               </div>
               <div class="li-price"><?php echo $value['gia'] ?></div>

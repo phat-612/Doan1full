@@ -150,10 +150,11 @@
             if (!$query){
                 return false;
             }
-            if ($query[0]['matkhau'] != $oldPass){
+            if (!password_verify($oldPass, $query[0]['matkhau'])){
                 return false;
             }
-            $sql = "UPDATE taikhoan SET matkhau='$newPass' where taikhoan='$user'";
+            $hashPass = password_hash($newPass, PASSWORD_DEFAULT);
+            $sql = "UPDATE taikhoan SET matkhau='$hashPass' where taikhoan='$user'";
             $this->select_by_sql($sql);
             return true;
         }

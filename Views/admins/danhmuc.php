@@ -10,8 +10,8 @@
           <div class="tableDM-container scroll" id="tableDM">
             <table id="danhMucTable">
               <thead>
-                <th>danh mục</th>
-                <th>hành động</th>
+                <th>DANH MỤC</th>
+                <th>HÀNH ĐỘNG</th>
               </thead>
               <tbody>
                 <?php foreach ($_SESSION['category'] as $value) { ?>
@@ -37,8 +37,8 @@
             <table id="mauSacTable">
               <thead>
                 <tr>
-                  <th>màu sắc</th>
-                  <th>hành động</th>
+                  <th>MÀU SẮC</th>
+                  <th>HÀNH ĐỘNG</th>
                 </tr>
               </thead>
               <tbody>
@@ -64,8 +64,8 @@
           <div class="tableKT-container scroll" id="tableKT">
             <table id="kichThuocTable">
               <thead>
-                <th>Kích thước</th>
-                <th>hành động</th>
+                <th>KÍCH THƯỚC</th>
+                <th>HÀNH ĐỘNG</th>
               </thead>
               <tbody>
               <?php foreach ($_SESSION['size'] as $value) { ?>
@@ -90,8 +90,8 @@
           <div class="tableBST-container scroll" id="tableBST">
             <table id="boSuutapTable">
               <thead>
-                <th>Bộ Sưu tập</th>
-                <th>hành động</th>
+                <th>BỘ SƯU TẬP</th>
+                <th>HÀNH ĐỘNG</th>
               </thead>
               <tbody>
               <?php foreach ($_SESSION['collection'] as $value) { ?>

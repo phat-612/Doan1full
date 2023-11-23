@@ -4,10 +4,11 @@ document.querySelector('form').addEventListener('submit', (e) => {
         method: 'POST',
         body: formData
     }
+    //gửi yên cầu tới link
     fetch(`${ROOTFOLDER}api/login`, requestOptions)
         .then((res) => {
             if (res.status == 200) {
-                location.reload();
+                window.location.href = "profile";
             } else {
                 alert('Sai thông tin đăng nhập')
             }

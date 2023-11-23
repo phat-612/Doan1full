@@ -24,7 +24,11 @@
                     ],
                     'chitietdonhang': [
                         [
-                            iddonhang
+                            'idchitietsanpham': '1',
+                            'gia': 122000
+                            'soluong': '12'
+                        ],
+                        [
                             'idchitietsanpham': '1',
                             'gia': 122000
                             'soluong': '12'
@@ -37,7 +41,7 @@
             $dataOrder = [
                 'ghichu'=>$data['ghichu'],
                 'tongtien'=>$data['tongtien'],
-                'trangthai'=>'Chờ xử lý',
+                'trangthai'=>'chờ xử lý',
                 'idtaikhoan'=> isset($_SESSION['id']) ? $_SESSION['id'] : '-1'
             ];
             $this->conn->begin_transaction();
@@ -47,12 +51,12 @@
                 $idOrder = $this->create('donhang', $dataOrder);
                 foreach ($dataOrderDetail as $value) {
                    $value['iddonhang'] = $idOrder;
-                   $this->create('chitietdonhang', $value);
                    $isQua = $this->_checkQuaPro($value['idchitietsanpham'], $value['soluong']);
                    $isPrice = $this->_checkPrice($value['idchitietsanpham'], $value['gia']);
                    if (!($isQua && $isPrice)){
                         throw new Exception("Sai thông tin về giá, số lượng");
                     }
+                    $this->create('chitietdonhang', $value);
                 }
                 $this->conn->commit();
                 return true;
@@ -143,22 +147,7 @@
             }
             return array_merge($prices, [$totalPrice]);
         }
-        private function _checkQuaPro($idDetalPro, $orderQua){
-            $query = $this->select('chitietsanpham', 'soluong', "id = '$idDetalPro'");
-            if ($query){
-                $quaDetail = $query[0]['soluong'];
-                if ($orderQua > $quaDetail){
-                    return false;
-                }else{
-                    $data = [
-                        'soluong' => $quaDetail - $orderQua
-                    ];
-                    $this->update('chitietsanpham', $data, $idDetalPro);
-                    return true;
-                }
-            }
-            return false;
-        }
+        
         public function getDataOrderAdmin($status='', $sort='thoigian desc', $find = '', $limit = '', $page = ''){
             if (!$sort){
                 $sort = 'thoigian';
@@ -193,7 +182,7 @@
             } else {
                 $order = $order[0];
             }
-            $sql = "SELECT ten,kichthuoc,mausac,hinhanh,ctdh.gia,sp.id
+            $sql = "SELECT ten,kichthuoc,mausac,hinhanh,ctdh.gia,sp.id,ctdh.soluong
             FROM sanpham sp,hinhanh ha,kichthuoc kt,mausac ms,chitietdonhang ctdh,chitietsanpham ctsp
             WHERE ctdh.idchitietsanpham = ctsp.id AND
                   sp.id = ctsp.idsanpham AND
@@ -221,8 +210,24 @@
             $query = $this->select_by_sql($sql);
             return $query[0]['sodonhang'];
         }
-        private function _checkPrice($idDetalPro, $price){
-            $query = $this->select('chitietsanpham c, sanpham s', 's.gia', "c.id = '$idDetalPro' and c.idsanpham = s.id");
+        private function _checkQuaPro($idDetailPro, $orderQua){
+            $query = $this->select('chitietsanpham', 'soluong', "id = '$idDetailPro'");
+            if ($query){
+                $quaDetail = $query[0]['soluong'];
+                if ($orderQua > $quaDetail){
+                    return false;
+                }else{
+                    $data = [
+                        'soluong' => $quaDetail - $orderQua
+                    ];
+                    $this->update('chitietsanpham', $data, $idDetailPro);
+                    return true;
+                }
+            }
+            return false;
+        }
+        private function _checkPrice($idDetailPro, $price){
+            $query = $this->select('chitietsanpham c, sanpham s', 's.gia', "c.idsanpham = s.id and c.id = '$idDetailPro'");
             if ($query){
                 $pricePro = $query[0]['gia'];
                 if ($pricePro == $price){

@@ -44,7 +44,7 @@ btnPage.addEventListener('click', (e) => {
 })
 // lấy dữ liệu sản phẩm
 let formdata = new FormData();
-console.log(seaParams['find'] ?? '');
+// console.log(seaParams['find'] ?? '');
 formdata.append("collection", seaParams['collection'] ?? "");
 formdata.append("category", seaParams['category'] ?? '');
 formdata.append("sort", !seaParams['sort'] ? 'ten' : seaParams['sort']);
@@ -60,7 +60,7 @@ fetch("api/getListProduct", requestOptions)
     .then(res => res.json())
     .then(result => {
         listProduct = result;
-        console.log(listProduct);
+        // console.log(listProduct);
         loadProduct();
     });
 

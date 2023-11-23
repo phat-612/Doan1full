@@ -72,6 +72,10 @@
     justify-content: space-around;
 }
 
+.hidden-field h4 {
+    font-size: 30px;
+}
+
 .tableDM-container table {
     width: 100%;
 }

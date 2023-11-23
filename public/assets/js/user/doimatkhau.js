@@ -9,7 +9,6 @@ inpNewRePass.addEventListener('keyup', () => {
 function checkPass() {
     let newPass = inpNewPass.value;
     let newRePass = inpNewRePass.value;
-    console.log(newPass, newRePass);
     if (newPass != newRePass) {
         document.querySelector('.error').textContent = '*Mật khẩu không trùng khớp'
         return false;

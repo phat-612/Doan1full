@@ -1,3 +1,7 @@
+if (loadCart().length <= 0) {
+    window.location.href = "product";
+}
+
 const formOrder = document.querySelector('.js_form_order');
 
 
@@ -10,8 +14,8 @@ formOrder.addEventListener('submit', (e) => {
     e.preventDefault();
     let cart = loadCart();
     if (cart.length <= 0) {
-        alert('Không có sản phẩm');
-        return;
+        alert('Không có sản phẩm trong giỏ hàng');
+        return false;
     }
     let formData = new FormData(e.target);
     cart.forEach((item, index) => {

@@ -138,6 +138,17 @@ function loadEleCart() {
     });
     inpNumberPros.forEach((inpQua) => {
         inpQua.addEventListener("change", (e) => {
+            if (e.target.value <= 0) {
+                let cfDelPro = confirm("Bạn muốn xóa sản phẩm này không?");
+                if (cfDelPro) {
+                    e.target.closest(".js_card_item").remove();
+                    editCartQua(
+                        "delete",
+                        e.target.closest(".js_card_item").getAttribute("idctsp")
+                    );
+                    totalPay();
+                }
+            }
             editCartQua(
                 "change",
                 e.target.closest(".js_card_item").getAttribute("idctsp"),
