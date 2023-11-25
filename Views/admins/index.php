@@ -27,7 +27,7 @@
             </div>
         <div class="mini-right-box">
             <div id="title">Doanh Thu</div>
-            <div id="number"><?php echo $totalRevenue ?></div>
+            <div id="number"><?php echo number_format($totalRevenue, 0, '.', ' ')  ?></div>
         </div>
         <div class="mini-right-box">
             <div id="title">Số Đơn Hàng</div>

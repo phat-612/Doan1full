@@ -90,7 +90,7 @@
             $total = 0;
             $sql = "SELECT tongtien FROM donhang";
             if ($timet && $timee){
-                $sql .=  " WHERE thoigian BETWEEN '$timet' AND '$timee'";
+                $sql .=  " WHERE date(thoigian) BETWEEN '$timet' AND '$timee'";
                 if ($status){
                 $sql .= " AND trangthai='$status'";
                 }
