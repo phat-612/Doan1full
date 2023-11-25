@@ -80,17 +80,20 @@ function loadProduct() {
         let product = listProduct.shift();
         let html = `
             <div class="product_card">
-            <a href="product/detail?id=${product['id']}">
-            <div class="product_img">
-                <img class="before" src="${product['hinhanh'][0]}" alt="" />
-                <img src="${product['hinhanh'][1]}" alt="" class="after" />
+                ${product['soluong'] <= 0 ? ` <div class='sold-out_cover'>
+                        <p class='sold-out_text'>Đã hết</p>
+                    </div>` : ''}
+                <a href="product/detail?id=${product['id']}">
+                <div class="product_img">
+                    <img class="before" src="${product['hinhanh'][0]}" alt="" />
+                    <img src="${product['hinhanh'][1]}" alt="" class="after" />
+                </div>
+                <div class="card_content">
+                    <h5 class="product_name">${product['ten']}</h5>
+                    <p class="product_price">${formatPrice(product['gia'])}<span> vnđ</span></p>
+                </div>
+                </a>
             </div>
-            <div class="card_content">
-                <h5 class="product_name">${product['ten']}</h5>
-                <p class="product_price">${formatPrice(product['gia'])}<span> vnđ</span></p>
-            </div>
-            </a>
-        </div>
         `
         contProduct.innerHTML += html;
     }

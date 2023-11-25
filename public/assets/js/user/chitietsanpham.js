@@ -80,6 +80,7 @@ function loadPage() {
     let ctsp = detailProduct['chitietsanpham'];
     let listColor = new Set();
     let listSize = new Set();
+    console.log(ctsp);
     ctsp.forEach(e => {
         listColor.add(e.mausac);
         listSize.add(e.kichthuoc);
@@ -100,16 +101,30 @@ function loadPage() {
             eleColors.forEach(color => {
                 if (color == e.target && !e.target.classList.contains('bold_border') && !e.target.classList.contains('disabled')) {
                     e.target.classList.add('bold_border');
-                    let tempSize = ctsp.filter((item) => item['mausac'] == e.target.textContent).map(item => item['kichthuoc']);
+                    let tempSize1 = ctsp.filter((item) => item['mausac'] == e.target.textContent);
+                    let tempSize = {};
+                    tempSize1.forEach(item => {
+                        tempSize[item['kichthuoc']] = item['soluong'];
+                    });
                     eleSizes.forEach(item => {
-                        if (!tempSize.includes(item.textContent)) {
+                        // không tồn tại size theo màu
+                        if (Object.keys(tempSize).includes(item.textContent)) {
+                            // hết size theo màu
+                            if (tempSize[item.textContent] > 0) {
+                                item.classList.remove('disabled');
+                                item.style.opacity = '1';
+                            } else {
+                                item.classList.add('disabled');
+                                item.style.opacity = '0.5';
+                            }
+                        } else {
                             item.classList.add('disabled');
                             item.style.opacity = '0.5';
-                        } else {
-                            item.classList.remove('disabled');
-                            item.style.opacity = '1';
                         }
+
                     })
+
+
                 } else if (color == e.target && e.target.classList.contains('bold_border')) {
                     eleSizes.forEach(item => {
                         item.classList.remove('disabled');
@@ -129,14 +144,26 @@ function loadPage() {
             eleSizes.forEach(size => {
                 if (size == e.target && !e.target.classList.contains('bold_border') && !e.target.classList.contains('disabled')) {
                     e.target.classList.add('bold_border');
-                    let tempColor = ctsp.filter((item) => item['kichthuoc'] == e.target.textContent).map(item => item['mausac']);
+                    let tempColor1 = ctsp.filter((item) => item['kichthuoc'] == e.target.textContent);
+                    let tempColor = {}
+                    tempColor1.forEach(item => {
+                        tempColor[item['mausac']] = [item['soluong']];
+                    })
+                    console.log(Object.keys(tempColor));
                     eleColors.forEach(item => {
-                        if (!tempColor.includes(item.textContent)) {
+                        if (Object.keys(tempColor).includes(item.textContent)) {
+                            if (tempColor[item.textContent] > 0) {
+                                item.classList.remove('disabled');
+                                item.style.opacity = '1';
+                            } else {
+                                item.classList.add('disabled');
+                                item.style.opacity = '0.5';
+                            }
+
+                        } else {
                             item.classList.add('disabled');
                             item.style.opacity = '0.5';
-                        } else {
-                            item.classList.remove('disabled');
-                            item.style.opacity = '1';
+
                         }
                     })
                 } else if (size == e.target && e.target.classList.contains('bold_border')) {

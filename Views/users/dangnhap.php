@@ -21,19 +21,19 @@
                 </label>
             </div>
             <div class="auth-form_controls">
-                <a href="" class="forget">Quên mật khẩu ?</a>
+                <a href="" class="forget js_forget">Quên mật khẩu ?</a>
                 <button type="submit" class="btn">Đăng nhập</button>
             </div>
         </form>
     </div>
 </div>
-<div class="modal">
+<div class="modal js_forget_md">
     <div class="modal_overplay"></div>
     <div class="modal_body-center">
         <div class="modal_body_content">
             <h2 class="auth-form_heading">Nhập địa chỉ email của bạn</h2>
-            <input type="email" name="mail" id="mail" placeholder="Email" class="auth-form_input" required>
-            <button class="btn">Gửi</button>
+            <input type="email" name="forget_mail" id="forget_mail" placeholder="Email" class="auth-form_input" required>
+            <button class="btn" id="send_new_pw">Gửi</button>
         </div>
     </div>
 </div>

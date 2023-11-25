@@ -11,6 +11,7 @@ a {
   border: 1px solid black;
   box-shadow: 7px 7px 7px gray;
   border-radius: 4px;
+  background-color: whitesmoke;
 }
 
 .Product-list-form {

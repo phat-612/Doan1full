@@ -56,7 +56,7 @@
 
                 // Cấu hình nội dung email
                 $mail->isHTML(true);
-                $mail->Subject ='=?UTF-8?B?' . base64_encode('Xác Nhận Xem Lịch Sử') . '?=';
+                $mail->Subject ='=?UTF-8?B?' . base64_encode('Otp đăng kí tài khoản') . '?=';
                 
                 $mail->Body = $contentEmail; // Nội dung email
 
@@ -157,6 +157,66 @@
             $sql = "UPDATE taikhoan SET matkhau='$hashPass' where taikhoan='$user'";
             $this->select_by_sql($sql);
             return true;
+        }
+        // quên mật khẩu
+        public function forgotPassword($email){
+            if (!$this->isExistEmail($email)){
+                return false;
+            }
+            $newPass = $this->randomCode(8);
+            inmang($newPass);
+            $newPassHash = password_hash($newPass, PASSWORD_DEFAULT);
+            $data = [
+                'matkhau' => $newPassHash
+            ];
+            $this->update('taikhoan', $data, "taikhoan = '$email'");
+            $contentEmail = "
+                <html>
+                    <head>
+                        <style>
+                            p{
+                                text-align: center;
+                                font-size: 48px;
+                                color:red;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <h2>Mật khẩu mới của bạn là</h2>
+                        <p>$newPass</p>
+                    </body>
+                </html>
+            ";
+            $mail = new PHPMailer(true);
+            try {
+                //Server settings
+                $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+                $mail->isSMTP();                                            //Send using SMTP
+                $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+                $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+                $mail->Username   = 'phatforstudy612@gmail.com';                     //SMTP username
+                $mail->Password   = 'bkfdgfvhanesxltv';                               //SMTP password
+                $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
+                $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+                $mail->setFrom('phatforstudy612@gmail.com'); // Địa chỉ email gửi và tên người gửi
+                $mail->addAddress($email); // Địa chỉ email nhận và tên người nhận
+
+                // Cấu hình nội dung email
+                $mail->isHTML(true);
+                $mail->Subject ='=?UTF-8?B?' . base64_encode('Cấp lại mật khẩu mới') . '?=';
+                
+                $mail->Body = $contentEmail; // Nội dung email
+
+                // Gửi email và kiểm tra kết quả
+                if (!$mail->send()) {
+                    return false;
+                } else {
+                    return true;
+                }
+            } catch (Exception $e) {
+                return false;
+            }
         }
         // tổng số khánh hàng
         public function totalCustomers(){

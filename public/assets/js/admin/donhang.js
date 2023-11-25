@@ -1,5 +1,6 @@
 // láy key value url
 let seaParams = {};
+// dg dan hien tai
 let searchParams = new URLSearchParams(window.location.search);
 searchParams.forEach(function (value, key) {
     seaParams[key] = value;

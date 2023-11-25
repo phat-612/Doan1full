@@ -21,6 +21,10 @@
     margin: 5px;
 }
 
+.box h4 {
+    font-size: 20px;
+}
+
 .scroll {
     overflow-y: auto;
     height: 90%;

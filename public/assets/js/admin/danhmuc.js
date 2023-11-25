@@ -109,8 +109,6 @@ function editCollection(tempValue, id) {
         updateDetailProduct('bosuutap', newCollection, id);
     }
 }
-
-
 function deleteCollection(id) {
     deleteDetailProduct('bosuutap', id);
 }

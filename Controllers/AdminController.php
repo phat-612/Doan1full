@@ -23,9 +23,9 @@
             $dateStart = isset($_GET['dateStart']) ? $_GET['dateStart'] : '';
             $dateEnd = isset($_GET['dateEnd']) ? $_GET['dateEnd'] : '';     
             $quaProduct = $this->productModel->getQuaProduct();
-            $numberOrder = $this->orderModel->getNumberOrder('Chờ Xử Lý','','');
-            $numberCustomers = $this -> userModel->totalCustomers();
             $totalRevenue = $this->orderModel->totalRevenue('Hoàn Thành',$dateStart,$dateEnd);
+            $numberCustomers = $this -> userModel->totalCustomers();
+            $numberOrder = $this->orderModel->getNumberOrder('Chờ Xử Lý','','');
             $numberOrderSS = $this->orderModel->getNumberOrder('',$dateStart,$dateEnd);
             $this->render('layouts/admin',[
                 'content'=> 'admins/index',
@@ -48,32 +48,6 @@
                     $this->gotoPage('admin');
                 }
             }
-            // yêu cầu đăng nhập bằng mật khẩu
-            // if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-            //     if (isset($_POST['taikhoan']) && $_POST['matkhau']){
-            //         $res = $this->userModel->login($_POST['taikhoan'], $_POST['matkhau']);
-            //         if ($res){
-            //             $this->gotoPage('admin');
-            //         } else{
-            //             $this->gotoPage('admin/login?error=1');
-            //         }
-            //     }
-                    
-            // }
-            // tự động đăng nhập
-            // if (isset($_COOKIE['verify_login'])){
-            //     echo"Kiem tra coookie";
-            //     $dataUser = json_decode($this->userModel->decodeData($_COOKIE['verify_login']), true);
-            //     $taikhoan= $dataUser['taikhoan'];
-            //     $matkhau= $dataUser['matkhau'];
-            //     $res = $this->userModel->login($taikhoan, $matkhau);
-            //     if ($res){
-            //         $this->gotoPage('admin');
-            //     } else{
-            //         $this->gotoPage('admin/login');
-            //     }
-            // }
-            // $this->render('admins/login');
             $this->render('admins/login',[
                 'title'=> 'Đăng nhập',
                 'css'=> 'admins/login.css',
@@ -206,7 +180,6 @@
                 'css'=> 'danhmuc',
                 'js'=> 'danhmuc',
                 'subcontent'=> [
-                    
                 ]
             ]);
         }

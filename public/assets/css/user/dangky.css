@@ -86,8 +86,6 @@ p.describe {
 
 .send_again .send {
     color: #22a3ec;
-    /*sau khi hết 1p thì tắt cái này  */
-    /* opacity: 0.6; */
 }
 
 .send_again .send:hover {

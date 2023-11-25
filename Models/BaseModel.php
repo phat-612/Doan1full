@@ -58,7 +58,7 @@
             $id = mysqli_insert_id($this->conn);
             return $id;
         }
-        protected function update($table, $data, $id){
+        protected function update($table, $data, $cond){
             /*
                 $data = [
                     'ten'=>'quan tay,
@@ -76,7 +76,12 @@
                 return "$key = '$value'";
             }, array_keys($data), array_values($data));
             $set = implode(',', $set);
-            $sql = "UPDATE $table SET $set WHERE id = $id";
+            if (is_numeric($cond)){
+                $sql = "UPDATE $table SET $set WHERE id = $cond";
+            } else{
+                $sql = "UPDATE $table SET $set WHERE $cond";
+            }
+            
             return $this->_query($sql);
         }
         protected function delete($table, $cond){

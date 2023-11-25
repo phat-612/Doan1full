@@ -141,6 +141,14 @@
                 http_response_code(400);
             }
         }
+        public function forgotPassword(){
+            $res = $this->userModel->forgotPassword($_POST['email']);
+            if ($res){
+                http_response_code(200);
+            } else{
+                http_response_code(400);
+            }
+        }
         public function changePassword(){
             $res = $this->userModel->changePassword();
             if ($res){
@@ -160,6 +168,7 @@
                 http_response_code(400);
             }
         }
+
         // xử lý banner
         public function updateBanner(){
             $this->sliderModel->updateBanner($_POST, $_FILES);
