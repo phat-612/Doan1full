@@ -8,19 +8,24 @@ class UserController extends BaseController{
             $this->userModel = new UserModel();
     }
     public function login(){
-        if (isset($_SESSION['isLogin'])){
-            // if ($_SESSION['role'] == 0){
-                $this->gotoPage('user/profile');
-            // }
-        }
 
+        if (isset($_SESSION['isLogin'])){
+            $this->gotoPage('user/profile');
+        }
+        if (isset($_COOKIE['verify_login'])){
+            $res = $this->userModel->login();
+            if ($res){
+                $this->gotoPage('user/profile');
+            } else{
+                setcookie('verify_login', '', time() - 3600, '/');
+            }
+        }
         $this->render('layouts/user',[
             'content'=> 'users/dangnhap',
             'title'=> 'Đăng nhập',
             'css'=> 'dangnhap',
             'js'=>'dangnhap',
             'subcontent'=> [
-                
             ]
         ]);
     }

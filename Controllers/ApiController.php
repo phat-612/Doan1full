@@ -134,7 +134,8 @@
             }
         }
         public function login(){
-            $res = $this->userModel->login($_POST['email'], $_POST['pass']);
+            $isSave = isset($_POST['save']) ? $_POST['save'] : false;
+            $res = $this->userModel->login($_POST['email'], $_POST['pass'], $isSave);
             if ($res){
                 http_response_code(200);
             } else{

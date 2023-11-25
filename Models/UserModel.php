@@ -6,6 +6,11 @@
     //Load Composer's autoloader
     require 'vendor/autoload.php';
     class UserModel extends BaseModel{
+        private $secretKey;
+        public function __construct(){
+            parent::__construct();
+            $this->secretKey = 'neu_doc_duoc_ban_la_nguoi_!taigioi<-_->';
+        }
         public function sendOtpEmail($email, $isExist = false){
             if (!(($this->isExistEmail($email)) == $isExist)){
                 return false;
@@ -78,15 +83,28 @@
                 return false;
             }
         }
-        public function login($taikhoan, $matkhau){
+        public function login($taikhoan = '', $matkhau = '', $isSave = false){
+            if (isset($_COOKIE['verify_login'])){
+                $dataCookie = $_COOKIE['verify_login'];
+                $dataUser = $this->decodeData($dataCookie);
+                $taikhoan = $dataUser['taikhoan'];
+                $matkhau = $dataUser['matkhau'];
+            }
             $dataUser = $this->select('taikhoan', '*', "taikhoan = '$taikhoan'");
             if (!$dataUser){
                 return false;
             }
             $dataUser = $dataUser[0];
             if ($dataUser['taikhoan'] == $taikhoan && password_verify($matkhau, $dataUser['matkhau'])){
-                // $dataCookie =  $this->encodeData(json_encode($dataUser));
-                // setcookie('verify_login', $dataCookie, time() + 3600, '/');
+                if ($isSave){
+                    $dataUser = [
+                        'taikhoan' => $taikhoan,
+                        'matkhau' => $matkhau
+                    ];
+                    $dataCookie =  $this->encodeData(json_encode($dataUser));
+                    setcookie('verify_login', $dataCookie, time() + (30 * 24 * 60 * 60), '/');
+                }
+                
                 $_SESSION['isLogin'] = true;
                 $_SESSION['role'] = $dataUser['quyen'];
                 $_SESSION['email'] = $dataUser['taikhoan'];
@@ -121,10 +139,12 @@
             // }
             if (isset($_SESSION['isLogin'])){
                 // unset($_SESSION['isLogin']);
-                session_unset() ;
+                session_unset();
+                setcookie('verify_login', '', time() - 3600, '/');
             }
             return true;
         }
+        // lấy thông tin người dùng
         public function getUserInfo($email){
             $res = $this->select('taikhoan', 'hoten, taikhoan, ngaysinh, sodienthoai, gioitinh', "taikhoan='$email'");
             return $res[0];
@@ -234,19 +254,18 @@
             return $code;
         }
         public function encodeData($data){
-            $secretKey = 'qweetretewrtggdfsg';
-            $key = base64_decode($secretKey);
+            $key = base64_decode($this->secretKey);
             $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
             $encrypted = openssl_encrypt($data, 'aes-256-cbc', $key, 0, $iv);
             return base64_encode($encrypted . '::' . $iv);
         }
         public function decodeData($dataEncode){
-            $secretKey = 'qweetretewrtggdfsg';
-            $key = base64_decode($secretKey);
+            
+            $key = base64_decode($this->secretKey);
             $decodeData = base64_decode($dataEncode);
             [$dataEncode, $iv] = explode('::', $decodeData);
             $decrypted = openssl_decrypt($dataEncode, 'aes-256-cbc', $key, 0, $iv);
-            return $decrypted;
+            return json_decode($decrypted, true);
         }
         public function isExistEmail($email){
             $query = $this->select('taikhoan', 'id', "taikhoan = '$email'");

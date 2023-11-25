@@ -14,7 +14,7 @@
             </div>
             <div class="auth-form_group">
                 <p class="goto_signup">Bạn chưa có tài khoản?<a href="<?php echo _WEB_ROOT?>/user/signup">Đăng ký</a></p>
-                <input type="checkbox" name="save" value="yes" id="luu"
+                <input type="checkbox" name="save" value="save" id="luu"
                     class="auth-form_policy-check">
                 <label class="auth-form_policy-text" for="luu">
                     Lưu tài khoản
