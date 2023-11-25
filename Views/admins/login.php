@@ -18,6 +18,10 @@
         <label for="password">Mật Khẩu:</label>
         <input type="password" name="pass" id="" placeholder="Nhập Mật Khẩu" />      </div>
       <div class="btn-box">
+        <div>
+          <input type="checkbox" name="save" value="save" id="ghinho">
+          <label for="ghinho">Ghi Nhớ Đăng Nhập</label>
+        </div>
         <button type="submit">Đăng Nhập</button>
       </div>
     </form>

@@ -119,7 +119,6 @@
             if ($this->isExistEmail($_POST['email'])){
                 return false;
             }
-            
             $data = [
                 'taikhoan' => $_POST['email'],
                 'matkhau' => password_hash($_POST['matkhau'], PASSWORD_DEFAULT),

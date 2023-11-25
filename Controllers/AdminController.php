@@ -48,6 +48,14 @@
                     $this->gotoPage('admin');
                 }
             }
+            if (isset($_COOKIE['verify_login'])){
+                $res = $this->userModel->login();
+                if ($res){
+                    $this->gotoPage('admin');
+                } else{
+                    setcookie('verify_login', '', time() - 3600, '/');
+                }
+            }
             $this->render('admins/login',[
                 'title'=> 'Đăng nhập',
                 'css'=> 'admins/login.css',
