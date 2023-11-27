@@ -80,7 +80,6 @@
             $sort = isset($_GET['sort']) ? $_GET['sort'] : 'ten';
             $search = isset($_GET['search']) ? $_GET['search'] : '';
             $page = isset($_GET['page']) ? $_GET['page'] : 1;
-            $limit = isset($_GET['limit']) ? $_GET['limit'] : '';
             $listProduct = $this->productModel->getListProduct('',$category, $sort, $search, 8, $page, false);
             $listProduct2 = $this->productModel->getListProduct('',$category, $sort, $search, '', '' , false);
             $this->render('layouts/admin',[
