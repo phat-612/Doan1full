@@ -198,7 +198,7 @@
         public function getNumberOrder($status = '',$timeb='',$timee=''){
             $sql = "SELECT COUNT(*) sodonhang FROM donhang";
             if ($timeb && $timee){
-                $sql .=  " WHERE thoigian BETWEEN '$timeb' AND ('$timee' + INTERVAL 1 MONTH)";
+                $sql .=  " WHERE date(thoigian) BETWEEN '$timeb' AND '$timee'";
                 if ($status){
                 $sql .= " AND trangthai='$status'";
                 }

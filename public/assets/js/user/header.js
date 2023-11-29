@@ -99,18 +99,18 @@ function loadEleCart() {
             let inpNumber = e.target.closest(".amount").querySelector(".myInput");
             inpNumber.value = parseInt(inpNumber.value) - 1;
             inpNumber.dispatchEvent(new Event("change"));
-            if (parseInt(inpNumber.value) <= 0) {
-                let cfDelPro = confirm("Bạn muốn xóa sản phẩm này không?");
-                if (cfDelPro) {
-                    editCartQua(
-                        "delete",
-                        e.target.closest(".js_card_item").getAttribute("idctsp")
-                    );
-                    e.target.closest(".js_card_item").remove();
-                } else {
-                    inpNumber.value = 1;
-                }
-            }
+            // if (parseInt(inpNumber.value) <= 0) {
+            //     let cfDelPro = confirm("Bạn muốn xóa sản phẩm này không?");
+            //     if (cfDelPro) {
+            //         editCartQua(
+            //             "delete",
+            //             e.target.closest(".js_card_item").getAttribute("idctsp")
+            //         );
+            //         e.target.closest(".js_card_item").remove();
+            //     } else {
+            //         inpNumber.value = 1;
+            //     }
+            // }
             totalPay();
         });
     });
@@ -147,6 +147,8 @@ function loadEleCart() {
                         e.target.closest(".js_card_item").getAttribute("idctsp")
                     );
                     totalPay();
+                } else {
+                    e.target.value = 1;
                 }
             }
             editCartQua(
