@@ -34,6 +34,7 @@
                     $this->create("hinhanh", array("idsanpham"=> $id, "hinhanh"=> $value));
                 }
                 foreach($dataDetail as $key => $value){
+                    $value['tongsoluong'] = $value['soluong']; 
                     $this->create("chitietsanpham", array_merge(array("idsanpham"=> $id), $value));
                 }
                 foreach($dataCollection as $value){
@@ -80,8 +81,15 @@
                 foreach($dataDetail as $key => $value){
                     $value['idsanpham'] = $id;
                     if (isset($value['id'])){
+                        $idDetail = $value['id'];
+
+                        $query = $this->select('chitietsanpham', 'soluong, tongsoluong', "id='$idDetail'")[0];
+                        $tempSoLuong = intval($value['soluong']) - intval($query['soluong']);
+                        $value['tongsoluong'] = intval($query['tongsoluong']) + $tempSoLuong;
+                        // inmang($value);
                         $this->update('chitietsanpham', $value, $value['id']);
                     } else{
+                        $value['tongsoluong'] = $value['soluong'];
                         $this->create('chitietsanpham', $value);
                     }
                 }
@@ -114,7 +122,6 @@
                     $this->delete('chitietbosuutap', "idsanpham = '$id'");
                     foreach($dataCollection as $value){
                         $query = $this->select('bosuutap', 'id', "bosuutap = '$value'");
-                        inmang($query);
                         if ($query){
                             $idCollection = $this->arr2to1($query)['id'];
                             $data = [

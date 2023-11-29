@@ -81,7 +81,7 @@
             } else{
                 $sql = "UPDATE $table SET $set WHERE $cond";
             }
-            
+            // inmang($sql);
             return $this->_query($sql);
         }
         protected function delete($table, $cond){
