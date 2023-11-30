@@ -1,0 +1,19 @@
+.box {
+    width: 70%;
+    margin: auto;
+    padding: 50px 0px;
+}
+
+.box p {
+    font-size: 2rem;
+}
+
+.box p~p {
+    margin-top: 10px;
+}
+
+.box li {
+    list-style: circle;
+    font-size: 2rem;
+    margin-left: 20px;
+}

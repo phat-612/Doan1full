@@ -58,7 +58,7 @@
       </div>
       <div class="sub_header">
         <ul class="nav">
-          <li><a href="">Giới thiệu</a></li>
+          <li><a href="<?= _WEB_ROOT.'/home/about' ?>">Giới thiệu</a></li>
           <li class="drop-down_menu">
             <a href="<?php echo _WEB_ROOT ?>/product" class="isSubnav">Sản phẩm<i
                 class="fa-solid fa-angle-down down_btn"></i></a>
@@ -97,14 +97,12 @@
               </li> -->
             </ul>
           </li>
-          <li><a href="">Liên hệ</a></li>
           <li>
             <a href="" class="isSubnav">Chăm sóc khách hàng
               <i class="fa-solid fa-angle-down down_btn"></i></a>
             <ul class="nav_list_item">
-              <li><a href="">Đổi trả & bảo hành</a></li>
-              <li><a href="">Chính sách vận chuyển</a></li>
-              <li><a href="">Hỏi và đáp</a></li>
+              <li><a href="<?= _WEB_ROOT.'/home/shipping_policy' ?>">Chính sách vận chuyển</a></li>
+              <li><a href="<?= _WEB_ROOT.'/home/return_policy' ?>">Chính sách đổi trả</a></li>
             </ul>
           </li>
         </ul>
@@ -162,9 +160,8 @@
         <li>
           <h2>hỗ trợ</h2>
         </li>
-        <li><a href="">Chính sách vận chuyển</a></li>
-        <li><a href="">Chính sách bảo hành</a></li>
-        <li><a href="">Chính sách khiếu nại</a></li>
+        <li><a href="<?= _WEB_ROOT.'/home/shipping_policy' ?>">Chính sách vận chuyển</a></li>
+        <li><a href="<?= _WEB_ROOT.'/home/return_policy' ?>">Chính sách đổi trả</a></li>
         <ul class="listic_footer">
           <li><a href=""><i class="fa-brands fa-facebook"></i></a></li>
           <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>

@@ -1,0 +1,25 @@
+.box {
+    max-width: 900px;
+    padding: 25px 30px 50px;
+    margin: auto;
+}
+
+h2.main-title {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    text-align: center;
+    padding-bottom: 12px;
+}
+
+p.sub-title {
+    text-align: center;
+    font-size: 1.8rem;
+    color: gray;
+    padding-bottom: 15px;
+}
+
+p.nd {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    text-align: justify;
+}

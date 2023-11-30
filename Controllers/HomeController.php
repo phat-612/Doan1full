@@ -26,5 +26,32 @@
                 ]
             ]);
         }
+        public function about(){
+            $this->render('layouts/user',[
+                'content'=> 'abouts/gioithieu',
+                'title'=> 'Giới thiệu',
+                'css'=> 'gioithieu',
+                'subcontent'=> [
+                ]
+            ]);
+        }
+        public function shipping_policy(){
+            $this->render('layouts/user',[
+                'content'=> 'abouts/chinhsachvanchuyen',
+                'title'=> 'Chính sách vận chuyển',
+                'css'=> 'chinhsach',
+                'subcontent'=> [
+                ]
+            ]);
+        }
+        public function return_policy(){
+            $this->render('layouts/user',[
+                'content'=> 'abouts/chinhsachdoitra',
+                'title'=> 'Chính sách đổi trả',
+                'css'=> 'chinhsach',
+                'subcontent'=> [
+                ]
+            ]);
+        }
     }
 ?>
