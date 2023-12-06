@@ -9,6 +9,7 @@
         </div>
         <div class="auth-form_group">
             <input type="email" name="email" id="email" placeholder="Email" class="auth-form_input" required>
+            <p class="error error-email"></p>
         </div>
         <div class="auth-form_group">
             <input type="tel" name="sodienthoai" id="phone" minlength="10" maxlength="10" placeholder="Số điện thoại"
@@ -18,12 +19,12 @@
             <input type="date" name="ngaysinh" id="sn" placeholder="Ngày sinh" class="auth-form_input" required>
         </div>
         <div class="auth-form_group">
-            <input type="password" name="matkhau" id="pass" placeholder="Mật khẩu" class="auth-form_input" onblur="checkPass();" required>
+            <input type="password" name="matkhau" id="pass" placeholder="Mật khẩu" class="auth-form_input" required>
         </div>
         <div class="auth-form_group">
-            <input type="password" name="repass" id="repass" placeholder="Xác nhận mật khẩu" class="auth-form_input" onblur="checkPass();"
+            <input type="password" name="repass" id="repass" placeholder="Xác nhận mật khẩu" class="auth-form_input" onkeyup="checkPass();"
             required>
-            <p class="error"></p>
+            <p class="error error-pass"></p>
         </div>
         <div class="auth-form_group">
             <input type="checkbox" name="policy" value="yes" id="policy" required="" class="auth-form_policy-check">

@@ -154,6 +154,7 @@
                 'ngaysinh'=>$_POST['ngaysinh'],
                 'gioitinh'=>$_POST['gioitinh'],
             ];
+            $_SESSION['hoten'] = $data['hoten'];
             return $this->update('taikhoan', $data, $_SESSION['id']);
         }
         // đổi mật khẩu

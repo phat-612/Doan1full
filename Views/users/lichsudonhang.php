@@ -10,10 +10,10 @@
                 <span class="title">Tình trạng:</span>
                 <select class="choosen">
                     <option value="">Tất cả</option>
-                    <option value="Chờ xử lý">Chờ xử lý</option>
-                    <option value="Đang giao hàng">Đang giao hàng</option>
-                    <option value="Bị hủy">Bị hủy</option>
-                    <option value="Hoàn thành">Hoàn thành</option>
+                    <option value="chờ xử lý">Chờ xử lý</option>
+                    <option value="đang giao hàng">Đang giao hàng</option>
+                    <option value="bị hủy">Bị hủy</option>
+                    <option value="hoàn thành">Hoàn thành</option>
                 </select>
             </div>
             <div class="sort">

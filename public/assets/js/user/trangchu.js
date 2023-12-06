@@ -1,3 +1,6 @@
+/*
+front-end
+*/
 const imgSliders = document.querySelectorAll(".img_slider_js");
 autoSlider(0);
 

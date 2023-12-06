@@ -90,7 +90,6 @@ function displayProductData() {
 
         html += "</tr>";
     }
-
     html += "</table>";
     document.querySelector("#table").innerHTML = html;
 }

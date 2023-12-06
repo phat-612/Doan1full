@@ -11,17 +11,19 @@ function checkPass() {
     let isTrue = true;
     let inpPw = document.querySelector('#pass');
     let inpRePw = document.querySelector('#repass');
-    // xử lý nhập repass trước
-    if (inpRePw.value) {
-        if (inpPw.value != inpRePw.value) {
-            document.querySelector('.error').textContent = '*Mật khẩu và xác nhận mật khẩu không chính xác';
-            isTrue = false;
-        } else {
-            document.querySelector('.error').textContent = '';
-        }
-    } else {
+    if (inpPw.value != inpRePw.value) {
+        document.querySelector('.error-pass').textContent = '*Mật khẩu không trùng khớp';
         isTrue = false;
+    } else {
+        document.querySelector('.error-pass').textContent = '';
     }
+    // if (newPass != newRePass) {
+    //     document.querySelector('.error').textContent = '*Mật khẩu không trùng khớp'
+    //     return false;
+    // } else {
+    //     document.querySelector('.error').textContent = '';
+    //     return true;
+    // }
     return isTrue;
 }
 // xử lý nhập otp
@@ -108,13 +110,13 @@ function sendOtp() {
             if (res.status == 200) {
                 // xử lý đúng otp khi submit
                 document.querySelector('.js_otp').style.display = 'flex';
-                document.querySelector('.error').textContent = '';
+                document.querySelector('.error-email').textContent = '';
                 timeOtp();
                 timeReSendOtp();
 
             } else {
                 // xử lý sai otp khi submit
-                document.querySelector('.error').textContent = '*Email đã được đăng ký';
+                document.querySelector('.error-email').textContent = '*Email đã được đăng ký';
             }
             btnSignup.disabled = false;
         });

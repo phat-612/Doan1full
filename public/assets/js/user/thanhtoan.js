@@ -1,3 +1,6 @@
+/*
+back-end
+*/
 if (loadCart().length <= 0) {
     window.location.href = "product";
 }

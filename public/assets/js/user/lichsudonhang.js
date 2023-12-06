@@ -17,6 +17,7 @@ fetch(`${ROOTFOLDER}api/getListOrderUser`, requestOptions)
         } else {
             eleNoneOrder.style.display = 'block';
         }
+        console.log(dataOrder);
         loadOrder();
     })
 

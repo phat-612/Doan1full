@@ -1,3 +1,7 @@
+/*
+front-end
+*/
+
 const selFilter = document.querySelector('.filter select');
 const selSort = document.querySelector('.sort select');
 const contProduct = document.querySelector('.product_section');
