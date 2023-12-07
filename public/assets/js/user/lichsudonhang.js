@@ -41,7 +41,7 @@ function loadOrder() {
     if (filter) {
         tempData = dataOrder.filter(order => { return order.trangthai == filter });
     }
-    // sau trừ trước là mới tới tới cũ từ lớn tới nhỏ
+    // sau trừ trước là mới tới cũ từ lớn tới nhỏ
     tempData.sort((a, b) => {
         if (sort == 0) {
             return new Date(b['thoigian']) - new Date(a['thoigian']);

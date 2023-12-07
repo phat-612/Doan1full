@@ -3,7 +3,7 @@
         public function getSlider(){
             $output = [];
             $dir = "public/assets/img/slider"; // Thay đường dẫn thư mục vào đây
-            $files = scandir($dir); //CamHung note : lấy ds thư mục
+            $files = scandir($dir); //CamHung note : lấy ds file
             foreach ($files as $file) {
                 if ($file !== '.' && $file !== '..') {
                     $output[] = $dir."/$file";

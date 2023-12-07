@@ -34,16 +34,6 @@ document.querySelector(".js_btnSrOrder").addEventListener("click", () => {
     let newUrl = urlObject.toString();
     window.location.href = newUrl;
 });
-// document.querySelector(".js_srOrder").addEventListener("keydown", (e) => {
-//     if (e.keyCode == "Enter") {
-//         e.preventDefault();
-//         let srOrder = document.querySelector(".js_srOrder").value;
-//         let urlObject = new URL(window.location.href);
-//         urlObject.searchParams.set("search", srOrder);
-//         let newUrl = urlObject.toString();
-//         window.location.href = newUrl;
-//     }
-// });
 ////////////////////////////////////////////////////////////
 document.querySelector(".btn-del-filter").addEventListener("click", () => {
     clearSearchQuery();

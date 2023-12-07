@@ -103,6 +103,8 @@
                     ];
                     $dataCookie =  $this->encodeData(json_encode($dataUser));
                     setcookie('verify_login', $dataCookie, time() + (30 * 24 * 60 * 60), '/');
+                } else{
+                    setcookie('verify_login', '', time() - 3600, '/');
                 }
                 
                 $_SESSION['isLogin'] = true;
